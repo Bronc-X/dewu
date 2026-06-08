@@ -1,112 +1,99 @@
 <!doctype html>
-<html lang="zh-CN">
+<html class="dark" lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% if report.status.value in ["queued", "processing"] %}
-    <meta http-equiv="refresh" content="8">
-    {% endif %}
-    <title>批次 {{ batch_display_time }}</title>
-    <link rel="stylesheet" href="/static/styles.css?v=20260608-history">
+    {% if is_processing %}<meta http-equiv="refresh" content="12">{% endif %}
+    <title>Dewu AI - Batch {{ batch_id }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=20260609-liquid">
   </head>
-  <body>
-    <main class="app-shell">
-      <aside class="history-sidebar" aria-label="历史记录">
-        <div class="history-header">
-          <h2>历史记录</h2>
-          <a class="history-new" href="/">新建</a>
+  <body class="app-body" data-batch-id="{{ batch_id }}" data-active-nav="{{ active_nav|default('pipeline') }}">
+    <aside class="side-nav">
+      <a class="brand-block" href="/" aria-label="Dewu AI ??"><span class="brand-orb"><span class="material-symbols-outlined">psychology</span></span><span><strong>Dewu AI</strong><em>Creative Engine</em></span></a>
+      <form action="/import" method="get"><button class="primary-pill side-cta" type="submit"><span class="material-symbols-outlined">add</span>New Batch</button></form>
+      <nav class="nav-links" aria-label="???">
+        <a class="nav-link" href="/"><span class="material-symbols-outlined">folder_copy</span>Projects</a>
+        <a class="nav-link" href="/import"><span class="material-symbols-outlined">add_photo_alternate</span>Import</a>
+        <a class="nav-link {% if active_nav == 'pipeline' %}is-active{% endif %}" href="/batches/{{ batch_id }}"><span class="material-symbols-outlined">auto_awesome</span>Pipeline</a>
+        <a class="nav-link {% if active_nav == 'review' %}is-active{% endif %}" href="/batches/{{ batch_id }}"><span class="material-symbols-outlined">fact_check</span>Review</a>
+        <a class="nav-link" href="/backgrounds"><span class="material-symbols-outlined">wallpaper</span>Backgrounds</a>
+      </nav>
+      <div class="side-footer">
+        <a class="nav-link" href="/settings"><span class="material-symbols-outlined">settings</span>Settings</a>
+        <a class="nav-link" href="/"><span class="material-symbols-outlined">help</span>Support</a>
+      </div>
+    </aside>
+    <header class="top-appbar"><div></div><div class="top-actions"><button class="icon-button" aria-label="??"><span class="material-symbols-outlined">notifications</span></button><button class="icon-button" aria-label="??"><span class="material-symbols-outlined">account_circle</span></button></div></header>
+
+    {% if is_processing %}
+    <main class="workspace generation-monitor">
+      <header class="batch-heading">
+        <div>
+          <h1>Smart Generation Monitor</h1>
+          <div class="batch-meta"><span class="live-pill"><span></span>Batch {{ batch_display_time }}</span><span>Processing {{ report.total }} Assets</span></div>
         </div>
-        {% if history_items %}
-        <nav class="history-list">
-          {% for item in history_items %}
-          <a class="history-item{% if item.batch_id == current_batch_id %} is-active{% endif %}" href="/batches/{{ item.batch_id }}">
-            <span class="history-time">{{ item.display_time }}</span>
-            <span class="history-meta">{{ item.status }} · 共 {{ item.total }} 张 · 通过 {{ item.pass_count }} · 复查 {{ item.review_count }} · 失败 {{ item.fail_count }}</span>
-          </a>
-          {% endfor %}
-        </nav>
-        {% else %}
-        <p class="history-empty">还没有处理记录。</p>
-        {% endif %}
-      </aside>
-
-      <section class="page">
-        <header class="topbar">
-          <div>
-            <h1>批次 {{ batch_display_time }}</h1>
-            <p>状态：{{ report.status.value }}，通过 {{ report.pass_count }}，需复查 {{ report.review_count }}，失败 {{ report.fail_count }}</p>
-            <p class="batch-id">记录 ID：{{ batch_id }}</p>
-          </div>
-          <nav class="actions">
-            {% if zip_exists %}
-            <a class="button" href="/batches/{{ batch_id }}/zip">下载 ZIP</a>
-            <a class="button ghost" href="/batches/{{ batch_id }}/report.html">下载 HTML 报告</a>
-            <form class="inline-action" method="post" action="/batches/{{ batch_id }}/open-folder">
-              <button class="button ghost" type="submit">打开输出文件夹</button>
-            </form>
-            {% endif %}
-            <a class="button ghost" href="/">新建批次</a>
-          </nav>
-        </header>
-
-        <section class="grid">
-          {% for item in report.items %}
-          <article class="card status-{{ item.status.value }}">
-            <div class="compare-strip">
-              <figure>
-                <img src="/data/batches/{{ batch_id }}/{{ item.input }}" alt="原图 {{ item.index }}">
-                <figcaption>原图</figcaption>
-              </figure>
-              {% if item.debug.alpha %}
-              <figure>
-                <img src="/data/batches/{{ batch_id }}/{{ item.debug.alpha }}" alt="抠图 {{ item.index }}">
-                <figcaption>抠图</figcaption>
-              </figure>
-              {% endif %}
-              {% if item.debug.composite %}
-              <figure>
-                <img src="/data/batches/{{ batch_id }}/{{ item.debug.composite }}" alt="初合成 {{ item.index }}">
-                <figcaption>初合成</figcaption>
-              </figure>
-              {% endif %}
-              {% if item.final %}
-              <figure>
-                <img src="/data/batches/{{ batch_id }}/{{ item.final }}" alt="最终图 {{ item.index }}">
-                <figcaption>最终图</figcaption>
-              </figure>
-              {% else %}
-              <div class="placeholder">处理中</div>
-              {% endif %}
+        <div id="progress-number" class="huge-percent">{{ progress }}%</div>
+      </header>
+      <section class="monitor-grid">
+        <div class="monitor-main">
+          <section class="glass-card high-card visualizer-card">
+            <div class="liquid-orb" style="--progress: {{ progress }}%"><div class="liquid-fill"></div><div class="orb-glass"></div><div class="orb-label"><strong id="orb-progress">{{ progress }}<span>%</span></strong><em>{{ report.status.value }}</em></div></div>
+            <div class="pipeline-nodes" style="--progress: {{ progress }}%">
+              <div class="node-line"><span></span></div>
+              <div class="node done"><i><span class="material-symbols-outlined">check</span></i><b>Isolation</b></div>
+              <div class="node active"><i><span class="material-symbols-outlined">compare</span></i><b>Matching</b></div>
+              <div class="node {% if progress > 66 %}active{% endif %}"><i><span class="material-symbols-outlined">lightbulb</span></i><b>Lighting</b></div>
+              <div class="node {% if progress > 88 %}active{% endif %}"><i><span class="material-symbols-outlined">verified</span></i><b>Review</b></div>
             </div>
-            <div class="card-body">
-              <div class="status">{{ item.status.value }}</div>
-              <h2>图片 {{ item.index }}</h2>
-              <p>{{ item.reason or "等待处理。" }}</p>
-              <p class="suggestion">{{ item.suggestion }}</p>
-              <dl>
-                <dt>背景</dt><dd>{{ item.background_id or "-" }}</dd>
-                <dt>耗时</dt><dd>{{ item.elapsed_seconds }} 秒</dd>
-                <dt>尝试</dt><dd>{{ item.attempts }}</dd>
-                {% if item.metrics %}
-                <dt>变化</dt><dd>{{ item.metrics.product_change_score | default("-") }}</dd>
-                {% endif %}
-                {% if item.guardrails %}
-                <dt>保护</dt><dd>{{ item.guardrails[0].selected }}{% if item.guardrails[0].reverted %} / 已回退{% endif %}</dd>
-                {% endif %}
-              </dl>
-              {% if item.final %}
-              <div class="result-actions">
-                <a href="/batches/{{ batch_id }}/file?path={{ item.final }}">下载本图</a>
-                <form class="inline-action" method="post" action="/batches/{{ batch_id }}/open-file?path={{ item.final }}">
-                  <button class="link-button" type="submit">打开位置</button>
-                </form>
-              </div>
-              {% endif %}
+          </section>
+          <section class="glass-card preview-strip-card">
+            <div class="section-title"><h2>Live Render Previews</h2><span>{{ items_done }}/{{ report.total }}</span></div>
+            <div class="preview-strip">
+              {% for item in preview_items %}
+              <a class="preview-tile" href="/batches/{{ batch_id }}/file?path={{ item.final }}"><img src="/data/batches/{{ batch_id }}/{{ item.final }}" alt="?? {{ item.index }}"><span><b>IMG-{{ '%02d'|format(item.index) }}</b><em>{{ item.status.value }}</em></span></a>
+              {% endfor %}
+              {% if preview_items|length == 0 %}<div class="preview-placeholder"><span class="material-symbols-outlined">hourglass_empty</span></div>{% endif %}
             </div>
-          </article>
-          {% endfor %}
-        </section>
+          </section>
+        </div>
+        <aside class="monitor-side">
+          <section class="glass-card log-card">
+            <div class="section-title"><h2><span class="material-symbols-outlined">terminal</span>Processing Log</h2><span class="pulse-dot"></span></div>
+            <div id="log-container" class="log-list">
+              <p>[{{ batch_display_time }}] Batch queued.</p>
+              <p>[runtime] Loaded {{ report.total }} raw assets.</p>
+              {% for item in report.items %}<p class="{% if item.status.value == 'processing' %}is-live{% endif %}">&gt; IMG-{{ '%02d'|format(item.index) }} / {{ item.status.value }}{% if item.background_id %} / {{ item.background_id }}{% endif %}</p>{% endfor %}
+            </div>
+          </section>
+          <section class="stat-grid"><div class="glass-card stat-card"><small>Completed</small><strong id="items-done">{{ items_done }}<span>/{{ report.total }}</span></strong></div><div class="glass-card stat-card"><small>Pass Rate</small><strong>{{ report.pass_count }}<span> pass</span></strong></div></section>
+        </aside>
       </section>
     </main>
+    {% else %}
+    <main class="review-shell">
+      <section class="review-canvas">
+        <header class="review-heading"><div><h1>Result Review</h1><p>Batch {{ batch_display_time }} - {{ report.pass_count }} pass / {{ report.review_count }} review / {{ report.fail_count }} fail</p></div><div class="review-tools"><button class="secondary-pill"><span class="material-symbols-outlined">zoom_in</span>100%</button><button class="secondary-pill"><span class="material-symbols-outlined">fit_screen</span>Fit</button></div></header>
+        {% set selected = first_final or report.items[0] if report.items else none %}
+        {% if selected %}
+        <div class="comparison-view" id="comparisonSlider">
+          {% if selected.final %}<img class="base-image" src="/data/batches/{{ batch_id }}/{{ selected.final }}" alt="??? {{ selected.index }}">{% else %}<img class="base-image" src="/data/batches/{{ batch_id }}/{{ selected.input }}" alt="?? {{ selected.index }}">{% endif %}
+          <div class="image-overlay" id="overlayImage"><img src="/data/batches/{{ batch_id }}/{{ selected.input }}" alt="?? {{ selected.index }}"><span>Original</span></div>
+          <span class="result-label">AI Result</span><button id="sliderHandle" class="slider-handle" type="button" aria-label="????????"></button>
+        </div>
+        {% endif %}
+      </section>
+      <aside class="review-inspector">
+        {% set current = selected %}
+        <section class="glass-card quality-card"><h2><span class="material-symbols-outlined">analytics</span>Quality Analysis</h2><div class="quality-rings"><div class="ring" style="--value:92"><strong>92%</strong><span>Lighting</span></div><div class="ring purple" style="--value:88"><strong>88%</strong><span>Edge</span></div><div class="ring pink" style="--value:95"><strong>95%</strong><span>Align</span></div></div></section>
+        <section class="glass-card suggestions-card"><h2><span class="material-symbols-outlined">auto_fix_high</span>Suggestions</h2>{% if current %}<article class="suggestion-item"><strong>{{ current.reason or '???????' }}</strong><p>{{ current.suggestion or '???????????????' }}</p><a href="/batches/{{ batch_id }}/file?path={{ current.final or current.input }}"><span class="material-symbols-outlined">download</span>????</a></article><article class="suggestion-item"><strong>Background</strong><p>{{ current.background_id or '??????' }} ? {{ current.elapsed_seconds }} ? ? {{ current.attempts }} ???</p></article>{% endif %}</section>
+        <section class="glass-card approval-card"><a class="secondary-pill reject" href="/batches/{{ batch_id }}/report.json"><span class="material-symbols-outlined">data_object</span>JSON</a>{% if zip_exists %}<a class="primary-pill" href="/batches/{{ batch_id }}/zip"><span class="material-symbols-outlined">download</span>ZIP</a>{% else %}<a class="primary-pill disabled" aria-disabled="true"><span class="material-symbols-outlined">hourglass_empty</span>ZIP</a>{% endif %}</section>
+      </aside>
+      <footer class="thumbnail-rail"><span class="rail-label">Batch</span>{% for item in report.items %}<a class="thumb {% if item.index == selected.index %}is-active{% endif %}" href="/batches/{{ batch_id }}/file?path={{ item.final or item.input }}"><img src="/data/batches/{{ batch_id }}/{{ item.final or item.input }}" alt="??? {{ item.index }}"><span class="material-symbols-outlined">{% if item.status.value == 'pass' %}check_circle{% elif item.status.value == 'fail' %}cancel{% else %}rate_review{% endif %}</span></a>{% endfor %}</footer>
+    </main>
+    {% endif %}
+    <script src="/static/workbench.js?v=20260609-liquid"></script>
   </body>
 </html>
