@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.playwright-mcp/*.zip
+data/batches/
+assets/backgrounds/*.png
+assets/backgrounds/*.jpg
+assets/backgrounds/*.jpeg
+assets/backgrounds/*.webp
+!assets/backgrounds/backgrounds.json

@@ -1,0 +1,278 @@
+[
+  {
+    "id": "B01",
+    "file": "B01_real_urban_concrete.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "street",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B02",
+    "file": "B02_real_concrete_steps.png",
+    "scene_type": "steps",
+    "pose_fit": [
+      "sitting"
+    ],
+    "sit_support": true,
+    "ground_type": "stone",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "steps",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B03",
+    "file": "B03_real_mountain_stone_platform.png",
+    "scene_type": "mountain",
+    "pose_fit": [
+      "standing"
+    ],
+    "sit_support": false,
+    "ground_type": "stone",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "mountain",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B04",
+    "file": "B04_real_low_wall.png",
+    "scene_type": "bench",
+    "pose_fit": [
+      "sitting"
+    ],
+    "sit_support": true,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "bench",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B05",
+    "file": "B05_real_urban_plaza.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "street",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B06",
+    "file": "B06_real_stone_bench.png",
+    "scene_type": "bench",
+    "pose_fit": [
+      "sitting"
+    ],
+    "sit_support": true,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "bench",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B07",
+    "file": "B07_real_gray_walkway.png",
+    "scene_type": "mountain",
+    "pose_fit": [
+      "standing",
+      "sitting"
+    ],
+    "sit_support": false,
+    "ground_type": "stone",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "mountain",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B08",
+    "file": "B08_real_exterior_corridor.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "street",
+      "generated_image_2"
+    ],
+    "risk_notes": []
+  },
+  {
+    "id": "B09",
+    "file": "B09_image2_clean_plaster_corner.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing",
+      "sitting"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "flat_floor",
+      "image_2_direction"
+    ],
+    "risk_notes": [
+      "safe_for_existing_chair"
+    ]
+  },
+  {
+    "id": "B10",
+    "file": "B10_image2_flat_service_wall.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing",
+      "sitting"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "flat_floor",
+      "image_2_direction"
+    ],
+    "risk_notes": [
+      "safe_for_existing_chair"
+    ]
+  },
+  {
+    "id": "B11",
+    "file": "B11_image2_pale_stone_courtyard.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing",
+      "sitting"
+    ],
+    "sit_support": false,
+    "ground_type": "stone",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "flat_floor",
+      "image_2_direction"
+    ],
+    "risk_notes": [
+      "safe_for_existing_chair"
+    ]
+  },
+  {
+    "id": "B12",
+    "file": "B12_image2_microcement_corner.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing",
+      "sitting"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "flat_floor",
+      "image_2_direction"
+    ],
+    "risk_notes": [
+      "safe_for_existing_chair"
+    ]
+  },
+  {
+    "id": "B13",
+    "file": "B13_image2_clean_concrete_wall.png",
+    "scene_type": "street",
+    "pose_fit": [
+      "standing",
+      "sitting"
+    ],
+    "sit_support": false,
+    "ground_type": "concrete",
+    "lighting_direction": "front_left",
+    "color_temperature": "cool_neutral",
+    "depth_of_field": "sharp",
+    "style": [
+      "clean_ecommerce",
+      "outdoor",
+      "flat_floor",
+      "image_2_direction"
+    ],
+    "risk_notes": [
+      "safe_for_existing_chair"
+    ]
+  }
+]

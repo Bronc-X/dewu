@@ -1,0 +1,81 @@
+- main [ref=e2]:
+  - complementary "历史记录" [ref=e3]:
+    - generic [ref=e4]:
+      - heading "历史记录" [level=2] [ref=e5]
+      - link "新建" [ref=e6] [cursor=pointer]:
+        - /url: /
+    - navigation [ref=e7]:
+      - link "2026-06-08 02:41:00 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0" [ref=e8] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837
+        - generic [ref=e9]: 2026-06-08 02:41:00
+        - generic [ref=e10]: 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0
+      - link "2026-06-08 00:10:56 已完成 · 共 2 张 · 通过 1 · 复查 0 · 失败 1" [ref=e11] [cursor=pointer]:
+        - /url: /batches/screen_guard_two_20260608_000948
+        - generic [ref=e12]: 2026-06-08 00:10:56
+        - generic [ref=e13]: 已完成 · 共 2 张 · 通过 1 · 复查 0 · 失败 1
+      - link "2026-06-07 23:52:02 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0" [ref=e14] [cursor=pointer]:
+        - /url: /batches/api_two_20260607_234906
+        - generic [ref=e15]: 2026-06-07 23:52:02
+        - generic [ref=e16]: 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0
+      - link "2026-06-07 23:39:30 已完成 · 共 1 张 · 通过 1 · 复查 0 · 失败 0" [ref=e17] [cursor=pointer]:
+        - /url: /batches/api_probe_20260607_233821
+        - generic [ref=e18]: 2026-06-07 23:39:30
+        - generic [ref=e19]: 已完成 · 共 1 张 · 通过 1 · 复查 0 · 失败 0
+      - link "2026-06-07 10:36:51 已完成 · 共 8 张 · 通过 4 · 复查 4 · 失败 0" [ref=e20] [cursor=pointer]:
+        - /url: /batches/20260607_103651_a1c50047
+        - generic [ref=e21]: 2026-06-07 10:36:51
+        - generic [ref=e22]: 已完成 · 共 8 张 · 通过 4 · 复查 4 · 失败 0
+      - link "2026-06-07 10:29:45 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0" [ref=e23] [cursor=pointer]:
+        - /url: /batches/20260607_102945_81c77091
+        - generic [ref=e24]: 2026-06-07 10:29:45
+        - generic [ref=e25]: 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0
+      - link "2026-06-07 10:38:21 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0" [ref=e26] [cursor=pointer]:
+        - /url: /batches/20260607_103821_9e8fa26b
+        - generic [ref=e27]: 2026-06-07 10:38:21
+        - generic [ref=e28]: 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0
+      - link "2026-06-06 03:26:05 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e29] [cursor=pointer]:
+        - /url: /batches/20260606_032605_89752b44
+        - generic [ref=e30]: 2026-06-06 03:26:05
+        - generic [ref=e31]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 13:35:41 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e32] [cursor=pointer]:
+        - /url: /batches/regression_20260606_133226
+        - generic [ref=e33]: 2026-06-06 13:35:41
+        - generic [ref=e34]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 13:31:53 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0" [ref=e35] [cursor=pointer]:
+        - /url: /batches/regression_20260606_132821
+        - generic [ref=e36]: 2026-06-06 13:31:53
+        - generic [ref=e37]: 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0
+      - link "2026-06-06 03:25:01 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e38] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_032138
+        - generic [ref=e39]: 2026-06-06 03:25:01
+        - generic [ref=e40]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 03:23:29 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e41] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_031949
+        - generic [ref=e42]: 2026-06-06 03:23:29
+        - generic [ref=e43]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 03:07:45 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e44] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_030425
+        - generic [ref=e45]: 2026-06-06 03:07:45
+        - generic [ref=e46]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 02:54:33 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0" [ref=e47] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_025114
+        - generic [ref=e48]: 2026-06-06 02:54:33
+        - generic [ref=e49]: 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0
+  - generic [ref=e50]:
+    - generic [ref=e52]:
+      - heading "得物商品上身图背景合成 Agent" [level=1] [ref=e53]
+      - paragraph [ref=e54]: 一次上传 8 张绿幕或白幕图，自动匹配冷灰调电商外景背景。
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - strong [ref=e58]: 推荐：由本地 Agent 打开文件夹
+          - generic [ref=e59]: 如果浏览器的选择文件按钮不弹窗，请用这个入口。
+        - button "本机选择 8 张并开始处理" [ref=e60] [cursor=pointer]
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]: 请点击下方的原生选择文件按钮，一次选择 8 张图片
+          - generic [ref=e65]: 也可以把 8 张图片直接拖到这里
+        - button "Choose File" [ref=e66] [cursor=pointer]
+        - generic [ref=e67]: 尚未选择图片。
+        - list
+        - button "开始处理" [ref=e68] [cursor=pointer]

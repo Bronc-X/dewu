@@ -1,0 +1,286 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "批次 regression_20260606_133226" [level=1] [ref=e5]
+      - paragraph [ref=e6]: 状态：completed，通过 8，可参考 0，未通过 0
+    - navigation [ref=e7]:
+      - link "下载 zip" [ref=e8] [cursor=pointer]:
+        - /url: /batches/regression_20260606_133226/zip
+      - link "下载 HTML 报告" [ref=e9] [cursor=pointer]:
+        - /url: /batches/regression_20260606_133226/report.html
+      - button "打开输出文件夹" [ref=e11] [cursor=pointer]
+      - link "新建批次" [ref=e12] [cursor=pointer]:
+        - /url: /
+  - generic [ref=e13]:
+    - article [ref=e14]:
+      - generic [ref=e15]:
+        - figure "原图" [ref=e16]:
+          - img "原图 1" [ref=e17]
+          - generic [ref=e18]: 原图
+        - figure "抠图" [ref=e19]:
+          - img "Alpha 1" [ref=e20]
+          - generic [ref=e21]: 抠图
+        - figure "初合成" [ref=e22]:
+          - img "初合成 1" [ref=e23]
+          - generic [ref=e24]: 初合成
+        - figure "最终" [ref=e25]:
+          - img "最终图 1" [ref=e26]
+          - generic [ref=e27]: 最终
+      - generic [ref=e28]:
+        - generic [ref=e29]: pass
+        - heading "图片 1" [level=2] [ref=e30]
+        - paragraph [ref=e31]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e32]: 可作为正式图使用。
+        - generic [ref=e33]:
+          - term [ref=e34]: 背景
+          - definition [ref=e35]: B02
+          - term [ref=e36]: 耗时
+          - definition [ref=e37]: 34.92 秒
+          - term [ref=e38]: 尝试
+          - definition [ref=e39]: "1"
+          - term [ref=e40]: 商品变化
+          - definition [ref=e41]: "4.03"
+          - term [ref=e42]: 保护
+          - definition [ref=e43]: candidate
+        - generic [ref=e44]:
+          - link "下载本图" [ref=e45] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_01_final.png
+          - button "打开位置" [ref=e47] [cursor=pointer]
+    - article [ref=e48]:
+      - generic [ref=e49]:
+        - figure "原图" [ref=e50]:
+          - img "原图 2" [ref=e51]
+          - generic [ref=e52]: 原图
+        - figure "抠图" [ref=e53]:
+          - img "Alpha 2" [ref=e54]
+          - generic [ref=e55]: 抠图
+        - figure "初合成" [ref=e56]:
+          - img "初合成 2" [ref=e57]
+          - generic [ref=e58]: 初合成
+        - figure "最终" [ref=e59]:
+          - img "最终图 2" [ref=e60]
+          - generic [ref=e61]: 最终
+      - generic [ref=e62]:
+        - generic [ref=e63]: pass
+        - heading "图片 2" [level=2] [ref=e64]
+        - paragraph [ref=e65]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e66]: 可作为正式图使用。
+        - generic [ref=e67]:
+          - term [ref=e68]: 背景
+          - definition [ref=e69]: B02
+          - term [ref=e70]: 耗时
+          - definition [ref=e71]: 19.33 秒
+          - term [ref=e72]: 尝试
+          - definition [ref=e73]: "1"
+          - term [ref=e74]: 商品变化
+          - definition [ref=e75]: "6.43"
+          - term [ref=e76]: 保护
+          - definition [ref=e77]: candidate
+        - generic [ref=e78]:
+          - link "下载本图" [ref=e79] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_02_final.png
+          - button "打开位置" [ref=e81] [cursor=pointer]
+    - article [ref=e82]:
+      - generic [ref=e83]:
+        - figure "原图" [ref=e84]:
+          - img "原图 3" [ref=e85]
+          - generic [ref=e86]: 原图
+        - figure "抠图" [ref=e87]:
+          - img "Alpha 3" [ref=e88]
+          - generic [ref=e89]: 抠图
+        - figure "初合成" [ref=e90]:
+          - img "初合成 3" [ref=e91]
+          - generic [ref=e92]: 初合成
+        - figure "最终" [ref=e93]:
+          - img "最终图 3" [ref=e94]
+          - generic [ref=e95]: 最终
+      - generic [ref=e96]:
+        - generic [ref=e97]: pass
+        - heading "图片 3" [level=2] [ref=e98]
+        - paragraph [ref=e99]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e100]: 可作为正式图使用。
+        - generic [ref=e101]:
+          - term [ref=e102]: 背景
+          - definition [ref=e103]: B06
+          - term [ref=e104]: 耗时
+          - definition [ref=e105]: 26.25 秒
+          - term [ref=e106]: 尝试
+          - definition [ref=e107]: "1"
+          - term [ref=e108]: 商品变化
+          - definition [ref=e109]: "3.96"
+          - term [ref=e110]: 保护
+          - definition [ref=e111]: candidate
+        - generic [ref=e112]:
+          - link "下载本图" [ref=e113] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_03_final.png
+          - button "打开位置" [ref=e115] [cursor=pointer]
+    - article [ref=e116]:
+      - generic [ref=e117]:
+        - figure "原图" [ref=e118]:
+          - img "原图 4" [ref=e119]
+          - generic [ref=e120]: 原图
+        - figure "抠图" [ref=e121]:
+          - img "Alpha 4" [ref=e122]
+          - generic [ref=e123]: 抠图
+        - figure "初合成" [ref=e124]:
+          - img "初合成 4" [ref=e125]
+          - generic [ref=e126]: 初合成
+        - figure "最终" [ref=e127]:
+          - img "最终图 4" [ref=e128]
+          - generic [ref=e129]: 最终
+      - generic [ref=e130]:
+        - generic [ref=e131]: pass
+        - heading "图片 4" [level=2] [ref=e132]
+        - paragraph [ref=e133]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e134]: 可作为正式图使用。
+        - generic [ref=e135]:
+          - term [ref=e136]: 背景
+          - definition [ref=e137]: B02
+          - term [ref=e138]: 耗时
+          - definition [ref=e139]: 19.39 秒
+          - term [ref=e140]: 尝试
+          - definition [ref=e141]: "1"
+          - term [ref=e142]: 商品变化
+          - definition [ref=e143]: "6.51"
+          - term [ref=e144]: 保护
+          - definition [ref=e145]: candidate
+        - generic [ref=e146]:
+          - link "下载本图" [ref=e147] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_04_final.png
+          - button "打开位置" [ref=e149] [cursor=pointer]
+    - article [ref=e150]:
+      - generic [ref=e151]:
+        - figure "原图" [ref=e152]:
+          - img "原图 5" [ref=e153]
+          - generic [ref=e154]: 原图
+        - figure "抠图" [ref=e155]:
+          - img "Alpha 5" [ref=e156]
+          - generic [ref=e157]: 抠图
+        - figure "初合成" [ref=e158]:
+          - img "初合成 5" [ref=e159]
+          - generic [ref=e160]: 初合成
+        - figure "最终" [ref=e161]:
+          - img "最终图 5" [ref=e162]
+          - generic [ref=e163]: 最终
+      - generic [ref=e164]:
+        - generic [ref=e165]: pass
+        - heading "图片 5" [level=2] [ref=e166]
+        - paragraph [ref=e167]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e168]: 可作为正式图使用。
+        - generic [ref=e169]:
+          - term [ref=e170]: 背景
+          - definition [ref=e171]: B06
+          - term [ref=e172]: 耗时
+          - definition [ref=e173]: 25.35 秒
+          - term [ref=e174]: 尝试
+          - definition [ref=e175]: "1"
+          - term [ref=e176]: 商品变化
+          - definition [ref=e177]: "4.0"
+          - term [ref=e178]: 保护
+          - definition [ref=e179]: candidate
+        - generic [ref=e180]:
+          - link "下载本图" [ref=e181] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_05_final.png
+          - button "打开位置" [ref=e183] [cursor=pointer]
+    - article [ref=e184]:
+      - generic [ref=e185]:
+        - figure "原图" [ref=e186]:
+          - img "原图 6" [ref=e187]
+          - generic [ref=e188]: 原图
+        - figure "抠图" [ref=e189]:
+          - img "Alpha 6" [ref=e190]
+          - generic [ref=e191]: 抠图
+        - figure "初合成" [ref=e192]:
+          - img "初合成 6" [ref=e193]
+          - generic [ref=e194]: 初合成
+        - figure "最终" [ref=e195]:
+          - img "最终图 6" [ref=e196]
+          - generic [ref=e197]: 最终
+      - generic [ref=e198]:
+        - generic [ref=e199]: pass
+        - heading "图片 6" [level=2] [ref=e200]
+        - paragraph [ref=e201]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e202]: 可作为正式图使用。
+        - generic [ref=e203]:
+          - term [ref=e204]: 背景
+          - definition [ref=e205]: B02
+          - term [ref=e206]: 耗时
+          - definition [ref=e207]: 19.46 秒
+          - term [ref=e208]: 尝试
+          - definition [ref=e209]: "1"
+          - term [ref=e210]: 商品变化
+          - definition [ref=e211]: "6.55"
+          - term [ref=e212]: 保护
+          - definition [ref=e213]: candidate
+        - generic [ref=e214]:
+          - link "下载本图" [ref=e215] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_06_final.png
+          - button "打开位置" [ref=e217] [cursor=pointer]
+    - article [ref=e218]:
+      - generic [ref=e219]:
+        - figure "原图" [ref=e220]:
+          - img "原图 7" [ref=e221]
+          - generic [ref=e222]: 原图
+        - figure "抠图" [ref=e223]:
+          - img "Alpha 7" [ref=e224]
+          - generic [ref=e225]: 抠图
+        - figure "初合成" [ref=e226]:
+          - img "初合成 7" [ref=e227]
+          - generic [ref=e228]: 初合成
+        - figure "最终" [ref=e229]:
+          - img "最终图 7" [ref=e230]
+          - generic [ref=e231]: 最终
+      - generic [ref=e232]:
+        - generic [ref=e233]: pass
+        - heading "图片 7" [level=2] [ref=e234]
+        - paragraph [ref=e235]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e236]: 可作为正式图使用。
+        - generic [ref=e237]:
+          - term [ref=e238]: 背景
+          - definition [ref=e239]: B06
+          - term [ref=e240]: 耗时
+          - definition [ref=e241]: 25.42 秒
+          - term [ref=e242]: 尝试
+          - definition [ref=e243]: "1"
+          - term [ref=e244]: 商品变化
+          - definition [ref=e245]: "3.99"
+          - term [ref=e246]: 保护
+          - definition [ref=e247]: candidate
+        - generic [ref=e248]:
+          - link "下载本图" [ref=e249] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_07_final.png
+          - button "打开位置" [ref=e251] [cursor=pointer]
+    - article [ref=e252]:
+      - generic [ref=e253]:
+        - figure "原图" [ref=e254]:
+          - img "原图 8" [ref=e255]
+          - generic [ref=e256]: 原图
+        - figure "抠图" [ref=e257]:
+          - img "Alpha 8" [ref=e258]
+          - generic [ref=e259]: 抠图
+        - figure "初合成" [ref=e260]:
+          - img "初合成 8" [ref=e261]
+          - generic [ref=e262]: 初合成
+        - figure "最终" [ref=e263]:
+          - img "最终图 8" [ref=e264]
+          - generic [ref=e265]: 最终
+      - generic [ref=e266]:
+        - generic [ref=e267]: pass
+        - heading "图片 8" [level=2] [ref=e268]
+        - paragraph [ref=e269]: 抠图边缘、羽化、亮度匹配、背景清晰度和头发边缘光照均通过基础检查，商品外观未发现明显变化。
+        - paragraph [ref=e270]: 可作为正式图使用。
+        - generic [ref=e271]:
+          - term [ref=e272]: 背景
+          - definition [ref=e273]: B02
+          - term [ref=e274]: 耗时
+          - definition [ref=e275]: 19.04 秒
+          - term [ref=e276]: 尝试
+          - definition [ref=e277]: "1"
+          - term [ref=e278]: 商品变化
+          - definition [ref=e279]: "6.43"
+          - term [ref=e280]: 保护
+          - definition [ref=e281]: candidate
+        - generic [ref=e282]:
+          - link "下载本图" [ref=e283] [cursor=pointer]:
+            - /url: /batches/regression_20260606_133226/file?path=final_pass/input_08_final.png
+          - button "打开位置" [ref=e285] [cursor=pointer]

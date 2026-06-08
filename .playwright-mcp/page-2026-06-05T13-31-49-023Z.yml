@@ -1,0 +1,121 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "批次 20260605_213147_230aba7c" [level=1] [ref=e5]
+      - paragraph [ref=e6]: 状态：queued，通过 0，可参考 0，未通过 0
+    - navigation [ref=e7]:
+      - link "新建批次" [ref=e8] [cursor=pointer]:
+        - /url: /
+  - generic [ref=e9]:
+    - article [ref=e10]:
+      - generic [ref=e12]: 处理中
+      - generic [ref=e13]:
+        - generic [ref=e14]: queued
+        - heading "图片 1" [level=2] [ref=e15]
+        - paragraph [ref=e16]: 等待处理。
+        - paragraph
+        - generic [ref=e17]:
+          - term [ref=e18]: 背景
+          - definition [ref=e19]: "-"
+          - term [ref=e20]: 耗时
+          - definition [ref=e21]: 0.0 秒
+          - term [ref=e22]: 尝试
+          - definition [ref=e23]: "0"
+    - article [ref=e24]:
+      - generic [ref=e26]: 处理中
+      - generic [ref=e27]:
+        - generic [ref=e28]: queued
+        - heading "图片 2" [level=2] [ref=e29]
+        - paragraph [ref=e30]: 等待处理。
+        - paragraph
+        - generic [ref=e31]:
+          - term [ref=e32]: 背景
+          - definition [ref=e33]: "-"
+          - term [ref=e34]: 耗时
+          - definition [ref=e35]: 0.0 秒
+          - term [ref=e36]: 尝试
+          - definition [ref=e37]: "0"
+    - article [ref=e38]:
+      - generic [ref=e40]: 处理中
+      - generic [ref=e41]:
+        - generic [ref=e42]: queued
+        - heading "图片 3" [level=2] [ref=e43]
+        - paragraph [ref=e44]: 等待处理。
+        - paragraph
+        - generic [ref=e45]:
+          - term [ref=e46]: 背景
+          - definition [ref=e47]: "-"
+          - term [ref=e48]: 耗时
+          - definition [ref=e49]: 0.0 秒
+          - term [ref=e50]: 尝试
+          - definition [ref=e51]: "0"
+    - article [ref=e52]:
+      - generic [ref=e54]: 处理中
+      - generic [ref=e55]:
+        - generic [ref=e56]: queued
+        - heading "图片 4" [level=2] [ref=e57]
+        - paragraph [ref=e58]: 等待处理。
+        - paragraph
+        - generic [ref=e59]:
+          - term [ref=e60]: 背景
+          - definition [ref=e61]: "-"
+          - term [ref=e62]: 耗时
+          - definition [ref=e63]: 0.0 秒
+          - term [ref=e64]: 尝试
+          - definition [ref=e65]: "0"
+    - article [ref=e66]:
+      - generic [ref=e68]: 处理中
+      - generic [ref=e69]:
+        - generic [ref=e70]: queued
+        - heading "图片 5" [level=2] [ref=e71]
+        - paragraph [ref=e72]: 等待处理。
+        - paragraph
+        - generic [ref=e73]:
+          - term [ref=e74]: 背景
+          - definition [ref=e75]: "-"
+          - term [ref=e76]: 耗时
+          - definition [ref=e77]: 0.0 秒
+          - term [ref=e78]: 尝试
+          - definition [ref=e79]: "0"
+    - article [ref=e80]:
+      - generic [ref=e82]: 处理中
+      - generic [ref=e83]:
+        - generic [ref=e84]: queued
+        - heading "图片 6" [level=2] [ref=e85]
+        - paragraph [ref=e86]: 等待处理。
+        - paragraph
+        - generic [ref=e87]:
+          - term [ref=e88]: 背景
+          - definition [ref=e89]: "-"
+          - term [ref=e90]: 耗时
+          - definition [ref=e91]: 0.0 秒
+          - term [ref=e92]: 尝试
+          - definition [ref=e93]: "0"
+    - article [ref=e94]:
+      - generic [ref=e96]: 处理中
+      - generic [ref=e97]:
+        - generic [ref=e98]: queued
+        - heading "图片 7" [level=2] [ref=e99]
+        - paragraph [ref=e100]: 等待处理。
+        - paragraph
+        - generic [ref=e101]:
+          - term [ref=e102]: 背景
+          - definition [ref=e103]: "-"
+          - term [ref=e104]: 耗时
+          - definition [ref=e105]: 0.0 秒
+          - term [ref=e106]: 尝试
+          - definition [ref=e107]: "0"
+    - article [ref=e108]:
+      - generic [ref=e110]: 处理中
+      - generic [ref=e111]:
+        - generic [ref=e112]: queued
+        - heading "图片 8" [level=2] [ref=e113]
+        - paragraph [ref=e114]: 等待处理。
+        - paragraph
+        - generic [ref=e115]:
+          - term [ref=e116]: 背景
+          - definition [ref=e117]: "-"
+          - term [ref=e118]: 耗时
+          - definition [ref=e119]: 0.0 秒
+          - term [ref=e120]: 尝试
+          - definition [ref=e121]: "0"

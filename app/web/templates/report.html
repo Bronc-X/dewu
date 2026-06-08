@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>批次 {{ report.batch_id }} 报告</title>
+    <link rel="stylesheet" href="../../app/web/static/styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <h1>批次 {{ report.batch_id }} 报告</h1>
+      <p>通过 {{ report.pass_count }}，可参考 {{ report.review_count }}，未通过 {{ report.fail_count }}</p>
+      <section class="grid">
+        {% for item in report.items %}
+        <article class="card status-{{ item.status.value }}">
+          <div class="compare-strip">
+            <figure>
+              <img src="{{ item.input }}" alt="原图 {{ item.index }}">
+              <figcaption>原图</figcaption>
+            </figure>
+            {% if item.debug.alpha %}
+            <figure>
+              <img src="{{ item.debug.alpha }}" alt="Alpha {{ item.index }}">
+              <figcaption>抠图</figcaption>
+            </figure>
+            {% endif %}
+            {% if item.debug.composite %}
+            <figure>
+              <img src="{{ item.debug.composite }}" alt="初合成 {{ item.index }}">
+              <figcaption>初合成</figcaption>
+            </figure>
+            {% endif %}
+            {% if item.final %}
+            <figure>
+              <img src="{{ item.final }}" alt="最终图 {{ item.index }}">
+              <figcaption>最终</figcaption>
+            </figure>
+            {% endif %}
+          </div>
+          <div class="card-body">
+            <div class="status">{{ item.status.value }}</div>
+            <h2>图片 {{ item.index }}</h2>
+            <p>{{ item.reason }}</p>
+            <p class="suggestion">{{ item.suggestion }}</p>
+            <p>背景：{{ item.background_id }}，耗时：{{ item.elapsed_seconds }} 秒</p>
+            {% if item.metrics %}
+            <p class="metrics">商品变化分：{{ item.metrics.product_change_score | default("-") }}；回退基线：{{ item.metrics.product_change_fallback_score | default("-") }}</p>
+            {% endif %}
+            {% if item.guardrails %}
+            <p class="metrics">保护：{{ item.guardrails[0].selected }}{% if item.guardrails[0].reverted %}，已回退{% endif %}</p>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>

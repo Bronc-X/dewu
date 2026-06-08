@@ -1,0 +1,146 @@
+- main [ref=e2]:
+  - complementary "历史记录" [ref=e3]:
+    - generic [ref=e4]:
+      - heading "历史记录" [level=2] [ref=e5]
+      - link "新建" [ref=e6] [cursor=pointer]:
+        - /url: /
+    - navigation [ref=e7]:
+      - link "2026-06-08 02:41:00 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0" [ref=e8] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837
+        - generic [ref=e9]: 2026-06-08 02:41:00
+        - generic [ref=e10]: 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0
+      - link "2026-06-08 00:10:56 已完成 · 共 2 张 · 通过 1 · 复查 0 · 失败 1" [ref=e11] [cursor=pointer]:
+        - /url: /batches/screen_guard_two_20260608_000948
+        - generic [ref=e12]: 2026-06-08 00:10:56
+        - generic [ref=e13]: 已完成 · 共 2 张 · 通过 1 · 复查 0 · 失败 1
+      - link "2026-06-07 23:52:02 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0" [ref=e14] [cursor=pointer]:
+        - /url: /batches/api_two_20260607_234906
+        - generic [ref=e15]: 2026-06-07 23:52:02
+        - generic [ref=e16]: 已完成 · 共 2 张 · 通过 1 · 复查 1 · 失败 0
+      - link "2026-06-07 23:39:30 已完成 · 共 1 张 · 通过 1 · 复查 0 · 失败 0" [ref=e17] [cursor=pointer]:
+        - /url: /batches/api_probe_20260607_233821
+        - generic [ref=e18]: 2026-06-07 23:39:30
+        - generic [ref=e19]: 已完成 · 共 1 张 · 通过 1 · 复查 0 · 失败 0
+      - link "2026-06-07 10:36:51 已完成 · 共 8 张 · 通过 4 · 复查 4 · 失败 0" [ref=e20] [cursor=pointer]:
+        - /url: /batches/20260607_103651_a1c50047
+        - generic [ref=e21]: 2026-06-07 10:36:51
+        - generic [ref=e22]: 已完成 · 共 8 张 · 通过 4 · 复查 4 · 失败 0
+      - link "2026-06-07 10:29:45 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0" [ref=e23] [cursor=pointer]:
+        - /url: /batches/20260607_102945_81c77091
+        - generic [ref=e24]: 2026-06-07 10:29:45
+        - generic [ref=e25]: 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0
+      - link "2026-06-07 10:38:21 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0" [ref=e26] [cursor=pointer]:
+        - /url: /batches/20260607_103821_9e8fa26b
+        - generic [ref=e27]: 2026-06-07 10:38:21
+        - generic [ref=e28]: 已完成 · 共 8 张 · 通过 5 · 复查 3 · 失败 0
+      - link "2026-06-06 03:26:05 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e29] [cursor=pointer]:
+        - /url: /batches/20260606_032605_89752b44
+        - generic [ref=e30]: 2026-06-06 03:26:05
+        - generic [ref=e31]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 13:35:41 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e32] [cursor=pointer]:
+        - /url: /batches/regression_20260606_133226
+        - generic [ref=e33]: 2026-06-06 13:35:41
+        - generic [ref=e34]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 13:31:53 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0" [ref=e35] [cursor=pointer]:
+        - /url: /batches/regression_20260606_132821
+        - generic [ref=e36]: 2026-06-06 13:31:53
+        - generic [ref=e37]: 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0
+      - link "2026-06-06 03:25:01 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e38] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_032138
+        - generic [ref=e39]: 2026-06-06 03:25:01
+        - generic [ref=e40]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 03:23:29 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e41] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_031949
+        - generic [ref=e42]: 2026-06-06 03:23:29
+        - generic [ref=e43]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 03:07:45 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0" [ref=e44] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_030425
+        - generic [ref=e45]: 2026-06-06 03:07:45
+        - generic [ref=e46]: 已完成 · 共 8 张 · 通过 8 · 复查 0 · 失败 0
+      - link "2026-06-06 02:54:33 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0" [ref=e47] [cursor=pointer]:
+        - /url: /batches/smoke_20260606_025114
+        - generic [ref=e48]: 2026-06-06 02:54:33
+        - generic [ref=e49]: 已完成 · 共 8 张 · 通过 6 · 复查 2 · 失败 0
+  - generic [ref=e50]:
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - heading "批次 2026-06-08 02:41:00" [level=1] [ref=e53]
+        - paragraph [ref=e54]: 状态：completed，通过 1，需复查 1，失败 0
+        - paragraph [ref=e55]: 记录 ID：preview2_20260608_023837
+      - navigation [ref=e56]:
+        - link "下载 ZIP" [ref=e57] [cursor=pointer]:
+          - /url: /batches/preview2_20260608_023837/zip
+        - link "下载 HTML 报告" [ref=e58] [cursor=pointer]:
+          - /url: /batches/preview2_20260608_023837/report.html
+        - button "打开输出文件夹" [ref=e60] [cursor=pointer]
+        - link "新建批次" [ref=e61] [cursor=pointer]:
+          - /url: /
+    - generic [ref=e62]:
+      - article [ref=e63]:
+        - generic [ref=e64]:
+          - figure "原图" [ref=e65]:
+            - img "原图 1" [ref=e66]
+            - generic [ref=e67]: 原图
+          - figure "抠图" [ref=e68]:
+            - img "抠图 1" [ref=e69]
+            - generic [ref=e70]: 抠图
+          - figure "初合成" [ref=e71]:
+            - img "初合成 1" [ref=e72]
+            - generic [ref=e73]: 初合成
+          - figure "最终图" [ref=e74]:
+            - img "最终图 1" [ref=e75]
+            - generic [ref=e76]: 最终图
+        - generic [ref=e77]:
+          - generic [ref=e78]: pass
+          - heading "图片 1" [level=2] [ref=e79]
+          - paragraph [ref=e80]: 与原图相比，模特面部、发型、姿势、服装花纹和鞋型保持一致；椅子与脚部支撑关系正常，未见明显抠图边缘、绿边、过硬/过软羽化或灯光不匹配问题。
+          - paragraph [ref=e81]: 可作为正式图使用。
+          - generic [ref=e82]:
+            - term [ref=e83]: 背景
+            - definition [ref=e84]: B09
+            - term [ref=e85]: 耗时
+            - definition [ref=e86]: 72.81 秒
+            - term [ref=e87]: 尝试
+            - definition [ref=e88]: "1"
+            - term [ref=e89]: 变化
+            - definition [ref=e90]: "10.44"
+            - term [ref=e91]: 保护
+            - definition [ref=e92]: candidate
+          - generic [ref=e93]:
+            - link "下载本图" [ref=e94] [cursor=pointer]:
+              - /url: /batches/preview2_20260608_023837/file?path=final_pass/input_01_final.png
+            - button "打开位置" [ref=e96] [cursor=pointer]
+      - article [ref=e97]:
+        - generic [ref=e98]:
+          - figure "原图" [ref=e99]:
+            - img "原图 2" [ref=e100]
+            - generic [ref=e101]: 原图
+          - figure "抠图" [ref=e102]:
+            - img "抠图 2" [ref=e103]
+            - generic [ref=e104]: 抠图
+          - figure "初合成" [ref=e105]:
+            - img "初合成 2" [ref=e106]
+            - generic [ref=e107]: 初合成
+          - figure "最终图" [ref=e108]:
+            - img "最终图 2" [ref=e109]
+            - generic [ref=e110]: 最终图
+        - generic [ref=e111]:
+          - generic [ref=e112]: review
+          - heading "图片 2" [level=2] [ref=e113]
+          - paragraph [ref=e114]: 主体姿态、服装花纹、鞋款与人物面部整体一致，未见明显替换；但合成后前景人物与椅子、地面背景的综合色温和亮度偏灰，人物边缘与新背景的统一性一般，存在轻微抠图/光照不匹配感。
+          - paragraph [ref=e115]: 建议再做一次前景亮度、色温和阴影统一，重点检查人物轮廓与椅子边缘过渡，使主体更贴合新背景光线。
+          - generic [ref=e116]:
+            - term [ref=e117]: 背景
+            - definition [ref=e118]: B10
+            - term [ref=e119]: 耗时
+            - definition [ref=e120]: 68.94 秒
+            - term [ref=e121]: 尝试
+            - definition [ref=e122]: "1"
+            - term [ref=e123]: 变化
+            - definition [ref=e124]: "11.71"
+            - term [ref=e125]: 保护
+            - definition [ref=e126]: candidate
+          - generic [ref=e127]:
+            - link "下载本图" [ref=e128] [cursor=pointer]:
+              - /url: /batches/preview2_20260608_023837/file?path=final_review/input_02_final.png
+            - button "打开位置" [ref=e130] [cursor=pointer]

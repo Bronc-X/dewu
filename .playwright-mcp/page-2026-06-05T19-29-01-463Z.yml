@@ -1,0 +1,141 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "批次 20260606_032605_89752b44" [level=1] [ref=e5]
+      - paragraph [ref=e6]: 状态：completed，通过 8，可参考 0，未通过 0
+    - navigation [ref=e7]:
+      - link "下载 zip" [ref=e8] [cursor=pointer]:
+        - /url: /batches/20260606_032605_89752b44/zip
+      - link "下载 HTML 报告" [ref=e9] [cursor=pointer]:
+        - /url: /batches/20260606_032605_89752b44/report.html
+      - link "新建批次" [ref=e10] [cursor=pointer]:
+        - /url: /
+  - generic [ref=e11]:
+    - article [ref=e12]:
+      - img "结果图 1" [ref=e14]
+      - generic [ref=e15]:
+        - generic [ref=e16]: pass
+        - heading "图片 1" [level=2] [ref=e17]
+        - paragraph [ref=e18]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e19]: 可作为正式图使用。
+        - generic [ref=e20]:
+          - term [ref=e21]: 背景
+          - definition [ref=e22]: B02
+          - term [ref=e23]: 耗时
+          - definition [ref=e24]: 32.6 秒
+          - term [ref=e25]: 尝试
+          - definition [ref=e26]: "1"
+        - link "下载本图" [ref=e27] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_01_final.png
+    - article [ref=e28]:
+      - img "结果图 2" [ref=e30]
+      - generic [ref=e31]:
+        - generic [ref=e32]: pass
+        - heading "图片 2" [level=2] [ref=e33]
+        - paragraph [ref=e34]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e35]: 可作为正式图使用。
+        - generic [ref=e36]:
+          - term [ref=e37]: 背景
+          - definition [ref=e38]: B04
+          - term [ref=e39]: 耗时
+          - definition [ref=e40]: 12.3 秒
+          - term [ref=e41]: 尝试
+          - definition [ref=e42]: "1"
+        - link "下载本图" [ref=e43] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_02_final.png
+    - article [ref=e44]:
+      - img "结果图 3" [ref=e46]
+      - generic [ref=e47]:
+        - generic [ref=e48]: pass
+        - heading "图片 3" [level=2] [ref=e49]
+        - paragraph [ref=e50]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e51]: 可作为正式图使用。
+        - generic [ref=e52]:
+          - term [ref=e53]: 背景
+          - definition [ref=e54]: B06
+          - term [ref=e55]: 耗时
+          - definition [ref=e56]: 23.85 秒
+          - term [ref=e57]: 尝试
+          - definition [ref=e58]: "1"
+        - link "下载本图" [ref=e59] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_03_final.png
+    - article [ref=e60]:
+      - img "结果图 4" [ref=e62]
+      - generic [ref=e63]:
+        - generic [ref=e64]: pass
+        - heading "图片 4" [level=2] [ref=e65]
+        - paragraph [ref=e66]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e67]: 可作为正式图使用。
+        - generic [ref=e68]:
+          - term [ref=e69]: 背景
+          - definition [ref=e70]: B07
+          - term [ref=e71]: 耗时
+          - definition [ref=e72]: 12.91 秒
+          - term [ref=e73]: 尝试
+          - definition [ref=e74]: "1"
+        - link "下载本图" [ref=e75] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_04_final.png
+    - article [ref=e76]:
+      - img "结果图 5" [ref=e78]
+      - generic [ref=e79]:
+        - generic [ref=e80]: pass
+        - heading "图片 5" [level=2] [ref=e81]
+        - paragraph [ref=e82]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e83]: 可作为正式图使用。
+        - generic [ref=e84]:
+          - term [ref=e85]: 背景
+          - definition [ref=e86]: B02
+          - term [ref=e87]: 耗时
+          - definition [ref=e88]: 32.81 秒
+          - term [ref=e89]: 尝试
+          - definition [ref=e90]: "1"
+        - link "下载本图" [ref=e91] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_05_final.png
+    - article [ref=e92]:
+      - img "结果图 6" [ref=e94]
+      - generic [ref=e95]:
+        - generic [ref=e96]: pass
+        - heading "图片 6" [level=2] [ref=e97]
+        - paragraph [ref=e98]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e99]: 可作为正式图使用。
+        - generic [ref=e100]:
+          - term [ref=e101]: 背景
+          - definition [ref=e102]: B04
+          - term [ref=e103]: 耗时
+          - definition [ref=e104]: 12.41 秒
+          - term [ref=e105]: 尝试
+          - definition [ref=e106]: "1"
+        - link "下载本图" [ref=e107] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_06_final.png
+    - article [ref=e108]:
+      - img "结果图 7" [ref=e110]
+      - generic [ref=e111]:
+        - generic [ref=e112]: pass
+        - heading "图片 7" [level=2] [ref=e113]
+        - paragraph [ref=e114]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e115]: 可作为正式图使用。
+        - generic [ref=e116]:
+          - term [ref=e117]: 背景
+          - definition [ref=e118]: B06
+          - term [ref=e119]: 耗时
+          - definition [ref=e120]: 22.72 秒
+          - term [ref=e121]: 尝试
+          - definition [ref=e122]: "1"
+        - link "下载本图" [ref=e123] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_07_final.png
+    - article [ref=e124]:
+      - img "结果图 8" [ref=e126]
+      - generic [ref=e127]:
+        - generic [ref=e128]: pass
+        - heading "图片 8" [level=2] [ref=e129]
+        - paragraph [ref=e130]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e131]: 可作为正式图使用。
+        - generic [ref=e132]:
+          - term [ref=e133]: 背景
+          - definition [ref=e134]: B07
+          - term [ref=e135]: 耗时
+          - definition [ref=e136]: 12.98 秒
+          - term [ref=e137]: 尝试
+          - definition [ref=e138]: "1"
+        - link "下载本图" [ref=e139] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44/file?path=final_pass/input_08_final.png

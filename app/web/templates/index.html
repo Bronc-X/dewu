@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>得物商品上身图背景合成 Agent</title>
+    <link rel="stylesheet" href="/static/styles.css?v=20260608-history">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="history-sidebar" aria-label="历史记录">
+        <div class="history-header">
+          <h2>历史记录</h2>
+          <a class="history-new" href="/">新建</a>
+        </div>
+        {% if history_items %}
+        <nav class="history-list">
+          {% for item in history_items %}
+          <a class="history-item{% if item.batch_id == current_batch_id %} is-active{% endif %}" href="/batches/{{ item.batch_id }}">
+            <span class="history-time">{{ item.display_time }}</span>
+            <span class="history-meta">{{ item.status }} · 共 {{ item.total }} 张 · 通过 {{ item.pass_count }} · 复查 {{ item.review_count }} · 失败 {{ item.fail_count }}</span>
+          </a>
+          {% endfor %}
+        </nav>
+        {% else %}
+        <p class="history-empty">还没有处理记录。</p>
+        {% endif %}
+      </aside>
+
+      <section class="page">
+        <header class="topbar">
+          <div>
+            <h1>得物商品上身图背景合成 Agent</h1>
+            <p>一次上传 8 张绿幕或白幕图，自动匹配冷灰调电商外景背景。</p>
+          </div>
+        </header>
+
+        <section class="panel">
+          <form class="local-picker-form" action="/batches/pick-local" method="post">
+            <div class="local-picker-copy">
+              <strong>推荐：由本地 Agent 打开文件夹</strong>
+              <span>如果浏览器的选择文件按钮不弹窗，请用这个入口。</span>
+            </div>
+            <button class="local-picker-button" type="submit">本机选择 8 张并开始处理</button>
+          </form>
+          <div class="section-divider"></div>
+          <form id="upload-form" action="/batches" method="post" enctype="multipart/form-data">
+            <div id="upload-zone" class="upload-zone">
+              <span>请点击下方的原生选择文件按钮，一次选择 8 张图片</span>
+              <span class="upload-hint">也可以把 8 张图片直接拖到这里</span>
+            </div>
+            <input id="file-input" class="file-input-native" type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required>
+            <div id="file-summary" class="file-summary">尚未选择图片。</div>
+            <ul id="file-list" class="file-list"></ul>
+            <button id="submit-button" type="submit">开始处理</button>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script>
+      const fileInput = document.getElementById("file-input");
+      const uploadZone = document.getElementById("upload-zone");
+      const fileSummary = document.getElementById("file-summary");
+      const fileList = document.getElementById("file-list");
+      const form = document.getElementById("upload-form");
+      const submitButton = document.getElementById("submit-button");
+
+      function renderFileList() {
+        const files = Array.from(fileInput.files || []);
+        fileList.innerHTML = "";
+        fileSummary.textContent = files.length
+          ? "已选择 " + files.length + " 张图片。需要正好 8 张。"
+          : "尚未选择图片。";
+        files.forEach((file) => {
+          const item = document.createElement("li");
+          item.textContent = file.name;
+          fileList.appendChild(item);
+        });
+      }
+
+      uploadZone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        uploadZone.classList.add("is-dragover");
+      });
+      uploadZone.addEventListener("dragleave", () => {
+        uploadZone.classList.remove("is-dragover");
+      });
+      uploadZone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        uploadZone.classList.remove("is-dragover");
+        fileInput.files = event.dataTransfer.files;
+        renderFileList();
+      });
+
+      fileInput.addEventListener("change", renderFileList);
+
+      form.addEventListener("submit", (event) => {
+        const count = (fileInput.files || []).length;
+        if (count !== 8) {
+          event.preventDefault();
+          fileSummary.textContent = "当前选择 " + count + " 张，请一次上传 8 张图片。";
+          return;
+        }
+        submitButton.disabled = true;
+        submitButton.textContent = "正在上传，马上进入结果页";
+      });
+    </script>
+  </body>
+</html>

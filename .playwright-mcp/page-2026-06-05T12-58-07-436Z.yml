@@ -1,0 +1,127 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "批次 20260605_205713_a14fa061" [level=1] [ref=e5]
+      - paragraph [ref=e6]: 状态：processing，通过 3，可参考 0，未通过 0
+    - navigation [ref=e7]:
+      - link "新建批次" [ref=e8] [cursor=pointer]:
+        - /url: /
+  - generic [ref=e9]:
+    - article [ref=e10]:
+      - img "结果图 1" [ref=e12]
+      - generic [ref=e13]:
+        - generic [ref=e14]: pass
+        - heading "图片 1" [level=2] [ref=e15]
+        - paragraph [ref=e16]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e17]: 可作为正式图使用。
+        - generic [ref=e18]:
+          - term [ref=e19]: 背景
+          - definition [ref=e20]: B12
+          - term [ref=e21]: 耗时
+          - definition [ref=e22]: 20.52 秒
+          - term [ref=e23]: 尝试
+          - definition [ref=e24]: "1"
+        - link "下载本图" [ref=e25] [cursor=pointer]:
+          - /url: /batches/20260605_205713_a14fa061/file?path=final_pass/input_01_final.png
+    - article [ref=e26]:
+      - img "结果图 2" [ref=e28]
+      - generic [ref=e29]:
+        - generic [ref=e30]: pass
+        - heading "图片 2" [level=2] [ref=e31]
+        - paragraph [ref=e32]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e33]: 可作为正式图使用。
+        - generic [ref=e34]:
+          - term [ref=e35]: 背景
+          - definition [ref=e36]: B13
+          - term [ref=e37]: 耗时
+          - definition [ref=e38]: 11.02 秒
+          - term [ref=e39]: 尝试
+          - definition [ref=e40]: "1"
+        - link "下载本图" [ref=e41] [cursor=pointer]:
+          - /url: /batches/20260605_205713_a14fa061/file?path=final_pass/input_02_final.png
+    - article [ref=e42]:
+      - img "结果图 3" [ref=e44]
+      - generic [ref=e45]:
+        - generic [ref=e46]: pass
+        - heading "图片 3" [level=2] [ref=e47]
+        - paragraph [ref=e48]: 主体和背景融合基本自然，商品外观未发现明显变化。
+        - paragraph [ref=e49]: 可作为正式图使用。
+        - generic [ref=e50]:
+          - term [ref=e51]: 背景
+          - definition [ref=e52]: B14
+          - term [ref=e53]: 耗时
+          - definition [ref=e54]: 19.98 秒
+          - term [ref=e55]: 尝试
+          - definition [ref=e56]: "1"
+        - link "下载本图" [ref=e57] [cursor=pointer]:
+          - /url: /batches/20260605_205713_a14fa061/file?path=final_pass/input_03_final.png
+    - article [ref=e58]:
+      - generic [ref=e60]: 处理中
+      - generic [ref=e61]:
+        - generic [ref=e62]: queued
+        - heading "图片 4" [level=2] [ref=e63]
+        - paragraph [ref=e64]: 等待处理。
+        - paragraph
+        - generic [ref=e65]:
+          - term [ref=e66]: 背景
+          - definition [ref=e67]: "-"
+          - term [ref=e68]: 耗时
+          - definition [ref=e69]: 0.0 秒
+          - term [ref=e70]: 尝试
+          - definition [ref=e71]: "0"
+    - article [ref=e72]:
+      - generic [ref=e74]: 处理中
+      - generic [ref=e75]:
+        - generic [ref=e76]: queued
+        - heading "图片 5" [level=2] [ref=e77]
+        - paragraph [ref=e78]: 等待处理。
+        - paragraph
+        - generic [ref=e79]:
+          - term [ref=e80]: 背景
+          - definition [ref=e81]: "-"
+          - term [ref=e82]: 耗时
+          - definition [ref=e83]: 0.0 秒
+          - term [ref=e84]: 尝试
+          - definition [ref=e85]: "0"
+    - article [ref=e86]:
+      - generic [ref=e88]: 处理中
+      - generic [ref=e89]:
+        - generic [ref=e90]: queued
+        - heading "图片 6" [level=2] [ref=e91]
+        - paragraph [ref=e92]: 等待处理。
+        - paragraph
+        - generic [ref=e93]:
+          - term [ref=e94]: 背景
+          - definition [ref=e95]: "-"
+          - term [ref=e96]: 耗时
+          - definition [ref=e97]: 0.0 秒
+          - term [ref=e98]: 尝试
+          - definition [ref=e99]: "0"
+    - article [ref=e100]:
+      - generic [ref=e102]: 处理中
+      - generic [ref=e103]:
+        - generic [ref=e104]: queued
+        - heading "图片 7" [level=2] [ref=e105]
+        - paragraph [ref=e106]: 等待处理。
+        - paragraph
+        - generic [ref=e107]:
+          - term [ref=e108]: 背景
+          - definition [ref=e109]: "-"
+          - term [ref=e110]: 耗时
+          - definition [ref=e111]: 0.0 秒
+          - term [ref=e112]: 尝试
+          - definition [ref=e113]: "0"
+    - article [ref=e114]:
+      - generic [ref=e116]: 处理中
+      - generic [ref=e117]:
+        - generic [ref=e118]: queued
+        - heading "图片 8" [level=2] [ref=e119]
+        - paragraph [ref=e120]: 等待处理。
+        - paragraph
+        - generic [ref=e121]:
+          - term [ref=e122]: 背景
+          - definition [ref=e123]: "-"
+          - term [ref=e124]: 耗时
+          - definition [ref=e125]: 0.0 秒
+          - term [ref=e126]: 尝试
+          - definition [ref=e127]: "0"

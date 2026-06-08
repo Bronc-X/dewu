@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if report.status.value in ["queued", "processing"] %}
+    <meta http-equiv="refresh" content="8">
+    {% endif %}
+    <title>批次 {{ batch_display_time }}</title>
+    <link rel="stylesheet" href="/static/styles.css?v=20260608-history">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="history-sidebar" aria-label="历史记录">
+        <div class="history-header">
+          <h2>历史记录</h2>
+          <a class="history-new" href="/">新建</a>
+        </div>
+        {% if history_items %}
+        <nav class="history-list">
+          {% for item in history_items %}
+          <a class="history-item{% if item.batch_id == current_batch_id %} is-active{% endif %}" href="/batches/{{ item.batch_id }}">
+            <span class="history-time">{{ item.display_time }}</span>
+            <span class="history-meta">{{ item.status }} · 共 {{ item.total }} 张 · 通过 {{ item.pass_count }} · 复查 {{ item.review_count }} · 失败 {{ item.fail_count }}</span>
+          </a>
+          {% endfor %}
+        </nav>
+        {% else %}
+        <p class="history-empty">还没有处理记录。</p>
+        {% endif %}
+      </aside>
+
+      <section class="page">
+        <header class="topbar">
+          <div>
+            <h1>批次 {{ batch_display_time }}</h1>
+            <p>状态：{{ report.status.value }}，通过 {{ report.pass_count }}，需复查 {{ report.review_count }}，失败 {{ report.fail_count }}</p>
+            <p class="batch-id">记录 ID：{{ batch_id }}</p>
+          </div>
+          <nav class="actions">
+            {% if zip_exists %}
+            <a class="button" href="/batches/{{ batch_id }}/zip">下载 ZIP</a>
+            <a class="button ghost" href="/batches/{{ batch_id }}/report.html">下载 HTML 报告</a>
+            <form class="inline-action" method="post" action="/batches/{{ batch_id }}/open-folder">
+              <button class="button ghost" type="submit">打开输出文件夹</button>
+            </form>
+            {% endif %}
+            <a class="button ghost" href="/">新建批次</a>
+          </nav>
+        </header>
+
+        <section class="grid">
+          {% for item in report.items %}
+          <article class="card status-{{ item.status.value }}">
+            <div class="compare-strip">
+              <figure>
+                <img src="/data/batches/{{ batch_id }}/{{ item.input }}" alt="原图 {{ item.index }}">
+                <figcaption>原图</figcaption>
+              </figure>
+              {% if item.debug.alpha %}
+              <figure>
+                <img src="/data/batches/{{ batch_id }}/{{ item.debug.alpha }}" alt="抠图 {{ item.index }}">
+                <figcaption>抠图</figcaption>
+              </figure>
+              {% endif %}
+              {% if item.debug.composite %}
+              <figure>
+                <img src="/data/batches/{{ batch_id }}/{{ item.debug.composite }}" alt="初合成 {{ item.index }}">
+                <figcaption>初合成</figcaption>
+              </figure>
+              {% endif %}
+              {% if item.final %}
+              <figure>
+                <img src="/data/batches/{{ batch_id }}/{{ item.final }}" alt="最终图 {{ item.index }}">
+                <figcaption>最终图</figcaption>
+              </figure>
+              {% else %}
+              <div class="placeholder">处理中</div>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <div class="status">{{ item.status.value }}</div>
+              <h2>图片 {{ item.index }}</h2>
+              <p>{{ item.reason or "等待处理。" }}</p>
+              <p class="suggestion">{{ item.suggestion }}</p>
+              <dl>
+                <dt>背景</dt><dd>{{ item.background_id or "-" }}</dd>
+                <dt>耗时</dt><dd>{{ item.elapsed_seconds }} 秒</dd>
+                <dt>尝试</dt><dd>{{ item.attempts }}</dd>
+                {% if item.metrics %}
+                <dt>变化</dt><dd>{{ item.metrics.product_change_score | default("-") }}</dd>
+                {% endif %}
+                {% if item.guardrails %}
+                <dt>保护</dt><dd>{{ item.guardrails[0].selected }}{% if item.guardrails[0].reverted %} / 已回退{% endif %}</dd>
+                {% endif %}
+              </dl>
+              {% if item.final %}
+              <div class="result-actions">
+                <a href="/batches/{{ batch_id }}/file?path={{ item.final }}">下载本图</a>
+                <form class="inline-action" method="post" action="/batches/{{ batch_id }}/open-file?path={{ item.final }}">
+                  <button class="link-button" type="submit">打开位置</button>
+                </form>
+              </div>
+              {% endif %}
+            </div>
+          </article>
+          {% endfor %}
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

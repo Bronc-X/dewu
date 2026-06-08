@@ -1,0 +1,21 @@
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - heading "得物商品上身图背景合成 Agent" [level=1] [ref=e5]
+    - paragraph [ref=e6]: 一次上传 8 张绿幕或白幕图，自动匹配冷灰调电商外景背景。
+  - generic [ref=e8]:
+    - button "点击选择 8 张图片 选择文件 也可以把 8 张图片直接拖到这里 Choose File" [ref=e9] [cursor=pointer]:
+      - generic [ref=e10]: 点击选择 8 张图片
+      - generic [ref=e11]: 选择文件
+      - generic [ref=e12]: 也可以把 8 张图片直接拖到这里
+      - button "Choose File" [active] [ref=e13]
+    - generic [ref=e14]: 已选择 8 张图片。需要正好 8 张。
+    - list [ref=e16]:
+      - listitem [ref=e17]: input_01.png
+      - listitem [ref=e18]: input_02.png
+      - listitem [ref=e19]: input_03.png
+      - listitem [ref=e20]: input_04.png
+      - listitem [ref=e21]: input_05.png
+      - listitem [ref=e22]: input_06.png
+      - listitem [ref=e23]: input_07.png
+      - listitem [ref=e24]: input_08.png
+    - button "开始处理" [ref=e15] [cursor=pointer]
