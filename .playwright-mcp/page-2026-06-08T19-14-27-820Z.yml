@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Dewu AI ??" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dewu AI
+        - emphasis [ref=e8]: Creative Engine
+    - button "add New Batch" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: New Batch
+    - navigation "???" [ref=e12]:
+      - link "folder_copy Projects" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e14]: folder_copy
+        - text: Projects
+      - link "add_photo_alternate Import" [ref=e15] [cursor=pointer]:
+        - /url: /import
+        - generic [ref=e16]: add_photo_alternate
+        - text: Import
+      - link "auto_awesome Pipeline" [ref=e17] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8
+        - generic [ref=e18]: auto_awesome
+        - text: Pipeline
+      - link "fact_check Review" [ref=e19] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8
+        - generic [ref=e20]: fact_check
+        - text: Review
+      - link "wallpaper Backgrounds" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds
+        - generic [ref=e22]: wallpaper
+        - text: Backgrounds
+    - generic [ref=e23]:
+      - link "settings Settings" [ref=e24] [cursor=pointer]:
+        - /url: /settings
+        - generic [ref=e25]: settings
+        - text: Settings
+      - link "help Support" [ref=e26] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e27]: help
+        - text: Support
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - button "??" [ref=e30] [cursor=pointer]:
+        - generic [ref=e31]: notifications
+      - button "??" [ref=e32] [cursor=pointer]:
+        - generic [ref=e33]: account_circle
+  - main [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - heading "Result Review" [level=1] [ref=e38]
+          - paragraph [ref=e39]: Batch 2026-06-05 20:49:41 - 8 pass / 0 review / 0 fail
+        - generic [ref=e40]:
+          - button "zoom_in 100%" [ref=e41] [cursor=pointer]:
+            - generic [ref=e42]: zoom_in
+            - text: 100%
+          - button "fit_screen Fit" [ref=e43] [cursor=pointer]:
+            - generic [ref=e44]: fit_screen
+            - text: Fit
+      - generic [ref=e45]:
+        - img "??? 1" [ref=e46]
+        - generic [ref=e47]:
+          - img "?? 1" [ref=e48]
+          - generic [ref=e49]: Original
+        - generic [ref=e50]: AI Result
+        - button "????????" [ref=e51]: < >
+    - complementary [ref=e52]:
+      - generic [ref=e53]:
+        - heading "analytics Quality Analysis" [level=2] [ref=e54]:
+          - generic [ref=e55]: analytics
+          - text: Quality Analysis
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - strong [ref=e58]: 92%
+            - generic [ref=e59]: Lighting
+          - generic [ref=e60]:
+            - strong [ref=e61]: 88%
+            - generic [ref=e62]: Edge
+          - generic [ref=e63]:
+            - strong [ref=e64]: 95%
+            - generic [ref=e65]: Align
+      - generic [ref=e66]:
+        - heading "auto_fix_high Suggestions" [level=2] [ref=e67]:
+          - generic [ref=e68]: auto_fix_high
+          - text: Suggestions
+        - article [ref=e69]:
+          - strong [ref=e70]: 主体和背景融合基本自然，商品外观未发现明显变化。
+          - paragraph [ref=e71]: 可作为正式图使用。
+          - link "download ????" [ref=e72] [cursor=pointer]:
+            - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_01_final.png
+            - generic [ref=e73]: download
+            - text: "????"
+        - article [ref=e74]:
+          - strong [ref=e75]: Background
+          - paragraph [ref=e76]: B12 ? 23.99 ? ? 1 ???
+      - generic [ref=e77]:
+        - link "data_object JSON" [ref=e78] [cursor=pointer]:
+          - /url: /batches/20260605_204941_a28182c8/report.json
+          - generic [ref=e79]: data_object
+          - text: JSON
+        - link "download ZIP" [ref=e80] [cursor=pointer]:
+          - /url: /batches/20260605_204941_a28182c8/zip
+          - generic [ref=e81]: download
+          - text: ZIP
+    - generic [ref=e82]:
+      - generic [ref=e83]: Batch
+      - link "??? 1 check_circle" [ref=e84] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_01_final.png
+        - img "??? 1" [ref=e85]
+        - generic [ref=e86]: check_circle
+      - link "??? 2 check_circle" [ref=e87] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_02_final.png
+        - img "??? 2" [ref=e88]
+        - generic [ref=e89]: check_circle
+      - link "??? 3 check_circle" [ref=e90] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_03_final.png
+        - img "??? 3" [ref=e91]
+        - generic [ref=e92]: check_circle
+      - link "??? 4 check_circle" [ref=e93] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_04_final.png
+        - img "??? 4" [ref=e94]
+        - generic [ref=e95]: check_circle
+      - link "??? 5 check_circle" [ref=e96] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_05_final.png
+        - img "??? 5" [ref=e97]
+        - generic [ref=e98]: check_circle
+      - link "??? 6 check_circle" [ref=e99] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_06_final.png
+        - img "??? 6" [ref=e100]
+        - generic [ref=e101]: check_circle
+      - link "??? 7 check_circle" [ref=e102] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_07_final.png
+        - img "??? 7" [ref=e103]
+        - generic [ref=e104]: check_circle
+      - link "??? 8 check_circle" [ref=e105] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_08_final.png
+        - img "??? 8" [ref=e106]
+        - generic [ref=e107]: check_circle

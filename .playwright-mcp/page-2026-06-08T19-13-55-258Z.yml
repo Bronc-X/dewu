@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Dewu AI ??" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dewu AI
+        - emphasis [ref=e8]: Creative Engine
+    - button "add New Batch" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: New Batch
+    - navigation "???" [ref=e12]:
+      - link "folder_copy Projects" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e14]: folder_copy
+        - text: Projects
+      - link "add_photo_alternate Import" [ref=e15] [cursor=pointer]:
+        - /url: /import
+        - generic [ref=e16]: add_photo_alternate
+        - text: Import
+      - link "auto_awesome Pipeline" [ref=e17] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837
+        - generic [ref=e18]: auto_awesome
+        - text: Pipeline
+      - link "fact_check Review" [ref=e19] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837
+        - generic [ref=e20]: fact_check
+        - text: Review
+      - link "wallpaper Backgrounds" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds
+        - generic [ref=e22]: wallpaper
+        - text: Backgrounds
+    - generic [ref=e23]:
+      - link "settings Settings" [ref=e24] [cursor=pointer]:
+        - /url: /settings
+        - generic [ref=e25]: settings
+        - text: Settings
+      - link "help Support" [ref=e26] [cursor=pointer]:
+        - /url: /docs
+        - generic [ref=e27]: help
+        - text: Support
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - button "??" [ref=e30] [cursor=pointer]:
+        - generic [ref=e31]: notifications
+      - button "??" [ref=e32] [cursor=pointer]:
+        - generic [ref=e33]: account_circle
+  - main [ref=e34]:
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: Projects
+        - heading "?????????" [level=1] [ref=e38]
+        - paragraph [ref=e39]: "?????????????????????????????????????????????"
+      - generic [ref=e40]:
+        - button "new_releases ????" [ref=e41] [cursor=pointer]:
+          - generic [ref=e42]: new_releases
+          - text: "????"
+        - button "style ????" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: style
+          - text: "????"
+        - button "campaign ????" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: campaign
+          - text: "????"
+        - button "visibility ????" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]: visibility
+          - text: "????"
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - heading "Recent Projects" [level=2] [ref=e51]
+          - link "New Batch" [ref=e52] [cursor=pointer]:
+            - /url: /import
+        - link "MVP Flow ??????? ??????????? 8 ???????????? ZIP? local pipeline ready" [ref=e54] [cursor=pointer]:
+          - /url: /import
+          - generic [ref=e55]: MVP Flow
+          - strong [ref=e56]: "???????"
+          - paragraph [ref=e57]: "??????????? 8 ???????????? ZIP?"
+          - generic [ref=e58]:
+            - generic [ref=e59]: local pipeline
+            - generic [ref=e60]: ready
+      - complementary [ref=e61]:
+        - generic [ref=e62]:
+          - heading "Generation History" [level=2] [ref=e63]
+          - generic [ref=e64]: "14"
+        - link "2026-06-08 02:41:00 ??? ? 2 ? ? ?? 1 ? ?? 1 ? ?? 0" [ref=e65] [cursor=pointer]:
+          - /url: /batches/preview2_20260608_023837
+          - strong [ref=e66]: 2026-06-08 02:41:00
+          - generic [ref=e67]: "??? ? 2 ? ? ?? 1 ? ?? 1 ? ?? 0"
+        - link "2026-06-08 00:10:56 ??? ? 2 ? ? ?? 1 ? ?? 0 ? ?? 1" [ref=e68] [cursor=pointer]:
+          - /url: /batches/screen_guard_two_20260608_000948
+          - strong [ref=e69]: 2026-06-08 00:10:56
+          - generic [ref=e70]: "??? ? 2 ? ? ?? 1 ? ?? 0 ? ?? 1"
+        - link "2026-06-07 23:52:02 ??? ? 2 ? ? ?? 1 ? ?? 1 ? ?? 0" [ref=e71] [cursor=pointer]:
+          - /url: /batches/api_two_20260607_234906
+          - strong [ref=e72]: 2026-06-07 23:52:02
+          - generic [ref=e73]: "??? ? 2 ? ? ?? 1 ? ?? 1 ? ?? 0"
+        - link "2026-06-07 23:39:30 ??? ? 1 ? ? ?? 1 ? ?? 0 ? ?? 0" [ref=e74] [cursor=pointer]:
+          - /url: /batches/api_probe_20260607_233821
+          - strong [ref=e75]: 2026-06-07 23:39:30
+          - generic [ref=e76]: "??? ? 1 ? ? ?? 1 ? ?? 0 ? ?? 0"
+        - link "2026-06-07 10:36:51 ??? ? 8 ? ? ?? 4 ? ?? 4 ? ?? 0" [ref=e77] [cursor=pointer]:
+          - /url: /batches/20260607_103651_a1c50047
+          - strong [ref=e78]: 2026-06-07 10:36:51
+          - generic [ref=e79]: "??? ? 8 ? ? ?? 4 ? ?? 4 ? ?? 0"
+        - link "2026-06-07 10:29:45 ??? ? 8 ? ? ?? 5 ? ?? 3 ? ?? 0" [ref=e80] [cursor=pointer]:
+          - /url: /batches/20260607_102945_81c77091
+          - strong [ref=e81]: 2026-06-07 10:29:45
+          - generic [ref=e82]: "??? ? 8 ? ? ?? 5 ? ?? 3 ? ?? 0"
+        - link "2026-06-07 10:38:21 ??? ? 8 ? ? ?? 5 ? ?? 3 ? ?? 0" [ref=e83] [cursor=pointer]:
+          - /url: /batches/20260607_103821_9e8fa26b
+          - strong [ref=e84]: 2026-06-07 10:38:21
+          - generic [ref=e85]: "??? ? 8 ? ? ?? 5 ? ?? 3 ? ?? 0"
+        - link "2026-06-06 03:26:05 ??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0" [ref=e86] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44
+          - strong [ref=e87]: 2026-06-06 03:26:05
+          - generic [ref=e88]: "??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0"
+        - link "2026-06-06 13:35:41 ??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0" [ref=e89] [cursor=pointer]:
+          - /url: /batches/regression_20260606_133226
+          - strong [ref=e90]: 2026-06-06 13:35:41
+          - generic [ref=e91]: "??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0"
+        - link "2026-06-06 13:31:53 ??? ? 8 ? ? ?? 6 ? ?? 2 ? ?? 0" [ref=e92] [cursor=pointer]:
+          - /url: /batches/regression_20260606_132821
+          - strong [ref=e93]: 2026-06-06 13:31:53
+          - generic [ref=e94]: "??? ? 8 ? ? ?? 6 ? ?? 2 ? ?? 0"
+        - link "2026-06-06 03:25:01 ??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0" [ref=e95] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_032138
+          - strong [ref=e96]: 2026-06-06 03:25:01
+          - generic [ref=e97]: "??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0"
+        - link "2026-06-06 03:23:29 ??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0" [ref=e98] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_031949
+          - strong [ref=e99]: 2026-06-06 03:23:29
+          - generic [ref=e100]: "??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0"
+        - link "2026-06-06 03:07:45 ??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0" [ref=e101] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_030425
+          - strong [ref=e102]: 2026-06-06 03:07:45
+          - generic [ref=e103]: "??? ? 8 ? ? ?? 8 ? ?? 0 ? ?? 0"
+        - link "2026-06-06 02:54:33 ??? ? 8 ? ? ?? 6 ? ?? 2 ? ?? 0" [ref=e104] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_025114
+          - strong [ref=e105]: 2026-06-06 02:54:33
+          - generic [ref=e106]: "??? ? 8 ? ? ?? 6 ? ?? 2 ? ?? 0"

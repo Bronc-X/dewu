@@ -1,177 +1,75 @@
 <!doctype html>
-<html class="dark" lang="zh-CN">
+<html class="dark" lang="{{ t.html_lang }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dewu AI - Creative Engine</title>
+    <title>{{ t.brand }} - {{ t.engine }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css?v=20260609-liquid">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Hanken+Grotesk:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=20260609-liquid-i18n">
   </head>
-  <body class="app-body" data-active-nav="{{ active_nav|default('projects') }}">
+  <body class="app-body" data-active-nav="{{ active_nav|default('projects') }}" data-max-images="{{ max_images|default(8) }}" data-lang="{{ lang }}">
     <aside class="side-nav">
-      <a class="brand-block" href="/" aria-label="Dewu AI ??">
+      <a class="brand-block" href="/?lang={{ lang }}" aria-label="{{ t.brand }}">
         <span class="brand-orb"><span class="material-symbols-outlined">psychology</span></span>
-        <span>
-          <strong>Dewu AI</strong>
-          <em>Creative Engine</em>
-        </span>
+        <span><strong>{{ t.brand }}</strong><em>{{ t.engine }}</em></span>
       </a>
       <form action="/import" method="get">
-        <button class="primary-pill side-cta" type="submit"><span class="material-symbols-outlined">add</span>New Batch</button>
+        <input type="hidden" name="lang" value="{{ lang }}">
+        <button class="primary-pill side-cta" type="submit"><span class="material-symbols-outlined">add</span>{{ t.new_batch }}</button>
       </form>
-      <nav class="nav-links" aria-label="???">
-        <a class="nav-link {% if active_nav|default('projects') == 'projects' %}is-active{% endif %}" href="/"><span class="material-symbols-outlined">folder_copy</span>Projects</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'import' %}is-active{% endif %}" href="/import"><span class="material-symbols-outlined">add_photo_alternate</span>Import</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'pipeline' %}is-active{% endif %}" href="{% if latest_batch %}/batches/{{ latest_batch.batch_id }}{% else %}/import{% endif %}"><span class="material-symbols-outlined">auto_awesome</span>Pipeline</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'review' %}is-active{% endif %}" href="{% if latest_batch %}/batches/{{ latest_batch.batch_id }}{% else %}/import{% endif %}"><span class="material-symbols-outlined">fact_check</span>Review</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'backgrounds' %}is-active{% endif %}" href="/backgrounds"><span class="material-symbols-outlined">wallpaper</span>Backgrounds</a>
+      <nav class="nav-links" aria-label="{{ t.main_navigation }}">
+        <a class="nav-link {% if active_nav|default('projects') == 'projects' %}is-active{% endif %}" href="/?lang={{ lang }}"><span class="material-symbols-outlined">folder_copy</span>{{ t.projects }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'import' %}is-active{% endif %}" href="/import?lang={{ lang }}"><span class="material-symbols-outlined">add_photo_alternate</span>{{ t.import }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'pipeline' %}is-active{% endif %}" href="{% if latest_batch %}/batches/{{ latest_batch.batch_id }}?lang={{ lang }}{% else %}/import?lang={{ lang }}{% endif %}"><span class="material-symbols-outlined">auto_awesome</span>{{ t.pipeline }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'review' %}is-active{% endif %}" href="{% if latest_batch %}/batches/{{ latest_batch.batch_id }}?lang={{ lang }}{% else %}/import?lang={{ lang }}{% endif %}"><span class="material-symbols-outlined">fact_check</span>{{ t.review }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'backgrounds' %}is-active{% endif %}" href="/backgrounds?lang={{ lang }}"><span class="material-symbols-outlined">wallpaper</span>{{ t.backgrounds }}</a>
       </nav>
       <div class="side-footer">
-        <a class="nav-link {% if active_nav|default('projects') == 'settings' %}is-active{% endif %}" href="/settings"><span class="material-symbols-outlined">settings</span>Settings</a>
-        <a class="nav-link" href="/docs"><span class="material-symbols-outlined">help</span>Support</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'settings' %}is-active{% endif %}" href="/settings?lang={{ lang }}"><span class="material-symbols-outlined">settings</span>{{ t.settings }}</a>
+        <a class="nav-link" href="/?lang={{ lang }}"><span class="material-symbols-outlined">help</span>{{ t.support }}</a>
       </div>
     </aside>
 
     <header class="top-appbar">
-      <div class="top-search"><span class="material-symbols-outlined">search</span><input aria-label="?????" placeholder="Search workspace..." type="search"></div>
-      <div class="top-actions">
-        <button class="icon-button" aria-label="??"><span class="material-symbols-outlined">notifications</span></button>
-        <button class="icon-button" aria-label="??"><span class="material-symbols-outlined">account_circle</span></button>
-      </div>
+      <div class="top-search"><span class="material-symbols-outlined">search</span><input aria-label="{{ t.search }}" placeholder="{{ t.search }}" type="search"></div>
+      <div class="top-actions"><a class="lang-toggle" href="{{ lang_switch_url }}">{{ other_lang_label }}</a><button class="icon-button" aria-label="{{ t.notifications }}"><span class="material-symbols-outlined">notifications</span></button><button class="icon-button" aria-label="{{ t.account }}"><span class="material-symbols-outlined">account_circle</span></button></div>
     </header>
 
     <main class="workspace">
       {% if view|default('home') == 'project' %}
-        <section class="work-grid project-detail-view">
-          <div class="main-column">
-            <header class="page-heading split-heading">
-              <div>
-                <p class="eyebrow">Project / {{ project.project_type.value }}</p>
-                <h1>{{ project.name }}</h1>
-                <p>{{ project.description or '????????????????????????????' }}</p>
-              </div>
-              <div class="progress-number">{{ project.asset_count }}</div>
-            </header>
-            <section class="glass-card stepper-card">
-              <a class="step-card is-active" href="#assets"><span class="material-symbols-outlined">inventory_2</span><strong>????</strong><small>{{ assets|length }} files</small></a>
-              <a class="step-card" href="/import"><span class="material-symbols-outlined">auto_awesome</span><strong>????</strong><small>?? 8 ???</small></a>
-              <a class="step-card" href="{% if project_batches %}/batches/{{ project_batches[0].batch_id }}{% else %}/import{% endif %}"><span class="material-symbols-outlined">fact_check</span><strong>????</strong><small>{{ project_batches|length }} batches</small></a>
-              <a class="step-card" href="{% if project_batches %}/batches/{{ project_batches[0].batch_id }}/zip{% else %}#{% endif %}"><span class="material-symbols-outlined">download</span><strong>????</strong><small>ZIP / report</small></a>
-            </section>
-            <section id="assets" class="panel-section">
-              <div class="section-title"><h2>Uploaded Assets</h2><span>{{ assets|length }}</span></div>
-              <div class="asset-grid">
-                {% for asset in assets %}
-                <article class="asset-card">
-                  <img src="{{ asset.url }}" alt="{{ asset.filename }}">
-                  <div><strong>{{ asset.filename }}</strong><small>{{ (asset.size / 1024 / 1024)|round(1) }} MB</small></div>
-                </article>
-                {% else %}
-                <div class="empty-glass"><span class="material-symbols-outlined">cloud_upload</span><strong>???????</strong><p>???? Import ?????????? API ???????</p></div>
-                {% endfor %}
-              </div>
-            </section>
-          </div>
-          <aside class="right-inspector">
-            <h2><span class="material-symbols-outlined">tune</span>Project Console</h2>
-            <dl class="metric-list">
-              <dt>Status</dt><dd>{{ project.status.value }}</dd>
-              <dt>Assets</dt><dd>{{ project.asset_count }}</dd>
-              <dt>Results</dt><dd>{{ project.result_count }}</dd>
-              <dt>Updated</dt><dd>{{ project.updated_at }}</dd>
-            </dl>
-            <div class="inspector-block"><h3>Recent Batches</h3>{% for batch in project_batches %}<a class="history-chip" href="/batches/{{ batch.batch_id }}"><strong>{{ batch.display_time }}</strong><span>{{ batch.status }} / {{ batch.progress }}%</span></a>{% else %}<p>???????</p>{% endfor %}</div>
-          </aside>
-        </section>
-      {% elif view|default('home') == 'import' %}
-        <section class="work-grid">
-          <div class="main-column">
-            <header class="page-heading">
-              <p class="eyebrow">Import</p>
-              <h1>????</h1>
-              <p>???? {{ max_images }} ?????????????????????????????</p>
-            </header>
-            <section class="glass-card upload-workbench">
-              <form class="local-picker-form" action="/batches/pick-local" method="post">
-                <div><strong>??????</strong><span>????????????? Agent ????????</span></div>
-                <button class="secondary-pill" type="submit"><span class="material-symbols-outlined">folder_open</span>?? {{ max_images }} ?</button>
-              </form>
-              <form id="upload-form" action="/batches" method="post" enctype="multipart/form-data">
-                <label id="upload-zone" class="liquid-dropzone" for="file-input">
-                  <span class="material-symbols-outlined">cloud_upload</span>
-                  <strong>Drag & Drop Assets</strong>
-                  <em>?? PNG / JPG / JPEG / WEBP????? {{ max_images }} ??</em>
-                </label>
-                <input id="file-input" class="native-file" type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required>
-                <div id="file-summary" class="file-summary">???????</div>
-                <ul id="file-list" class="file-list"></ul>
-                <button id="submit-button" class="primary-pill" type="submit"><span class="material-symbols-outlined">model_training</span>Start Batch Generation</button>
-              </form>
-            </section>
-          </div>
-          <aside class="right-inspector">
-            <h2><span class="material-symbols-outlined">rule</span>Input Check</h2>
-            <div class="check-row is-ok"><span></span> ?? {{ max_images }} ?????</div>
-            <div class="check-row is-ok"><span></span> ???? / ????</div>
-            <div class="check-row"><span></span> ?????????</div>
-            <div class="inspector-block"><h3>Pipeline</h3><p>???????????????????????????</p></div>
-          </aside>
-        </section>
-      {% elif view|default('home') == 'backgrounds' %}
-        <section class="main-column full-width">
-          <header class="page-heading"><p class="eyebrow">Background Library</p><h1>???</h1><p>???????????????????????????????????</p></header>
-          <div class="asset-grid background-grid">
-            {% for bg in backgrounds %}
-            <article class="asset-card">
-              <img src="/data/../assets/backgrounds/{{ bg.file }}" alt="?? {{ bg.id }}">
-              <div><strong>{{ bg.id }} / {{ bg.scene_type }}</strong><small>{{ bg.ground_type }} ? {{ bg.lighting_direction }}</small></div>
-            </article>
-            {% else %}
-            <div class="empty-glass"><span class="material-symbols-outlined">wallpaper</span><strong>?????</strong><p>?? scripts/create_placeholder_backgrounds.py ?????????</p></div>
-            {% endfor %}
-          </div>
-        </section>
-      {% elif view|default('home') == 'settings' %}
-        <section class="work-grid">
-          <div class="main-column"><header class="page-heading"><p class="eyebrow">Settings</p><h1>????</h1><p>???????????????????? .env ???</p></header><section class="glass-card settings-grid">{% for key, value in provider_status.items() %}<div class="setting-row"><span>{{ key }}</span><strong>{{ value }}</strong></div>{% endfor %}</section></div>
-          <aside class="right-inspector"><h2><span class="material-symbols-outlined">verified_user</span>Guardrails</h2><p>????????????????????????</p></aside>
-        </section>
-      {% else %}
-        <section class="home-grid">
-          <header class="page-heading home-heading">
-            <p class="eyebrow">Projects</p>
-            <h1>?????????</h1>
-            <p>?????????????????????????????????????????????</p>
+      <section class="work-grid project-detail-view">
+        <div class="main-column">
+          <header class="page-heading split-heading">
+            <div><p class="eyebrow">{{ t.project }} / {{ project.type_label }}</p><h1>{{ project.name }}</h1><p>{{ project.description or t.production_workspace }}</p></div>
+            <div class="progress-number">{{ project.asset_count }}</div>
           </header>
-          <section class="glass-card project-type-strip">
-            <button class="type-chip is-active"><span class="material-symbols-outlined">new_releases</span>????</button>
-            <button class="type-chip"><span class="material-symbols-outlined">style</span>????</button>
-            <button class="type-chip"><span class="material-symbols-outlined">campaign</span>????</button>
-            <button class="type-chip"><span class="material-symbols-outlined">visibility</span>????</button>
+          <section class="glass-card stepper-card">
+            <a class="step-card is-active" href="#assets"><span class="material-symbols-outlined">inventory_2</span><strong>{{ t.import }}</strong><small>{{ assets|length }} {{ t.files }}</small></a>
+            <a class="step-card" href="/import?lang={{ lang }}"><span class="material-symbols-outlined">auto_awesome</span><strong>{{ t.generate }}</strong><small>{{ t.start_batch }}</small></a>
+            <a class="step-card" href="{% if project_batches %}/batches/{{ project_batches[0].batch_id }}?lang={{ lang }}{% else %}/import?lang={{ lang }}{% endif %}"><span class="material-symbols-outlined">fact_check</span><strong>{{ t.review }}</strong><small>{{ project_batches|length }} {{ t.batches }}</small></a>
+            <a class="step-card" href="{% if project_batches %}/batches/{{ project_batches[0].batch_id }}/zip{% else %}#{% endif %}"><span class="material-symbols-outlined">download</span><strong>{{ t.export }}</strong><small>{{ t.zip }} / {{ t.report }}</small></a>
           </section>
-          <section class="project-board">
-            <div class="section-title"><h2>Recent Projects</h2><a href="/import">New Batch</a></div>
-            <div class="project-grid">
-              {% for project in projects %}
-              <a class="project-card" href="/projects/{{ project.id }}">
-                <span class="status-dot"></span><small>{{ project.project_type.value }}</small><strong>{{ project.name }}</strong><p>{{ project.description or '???????' }}</p><div><span>{{ project.asset_count }} assets</span><span>{{ project.status.value }}</span></div>
-              </a>
-              {% else %}
-              <a class="project-card featured" href="/import"><small>MVP Flow</small><strong>???????</strong><p>??????????? {{ max_images }} ???????????? ZIP?</p><div><span>local pipeline</span><span>ready</span></div></a>
-              {% endfor %}
+          <section id="assets" class="panel-section">
+            <div class="section-title"><h2>{{ t.uploaded_assets }}</h2><span>{{ assets|length }}</span></div>
+            <div class="asset-grid">
+              {% for asset in assets %}<article class="asset-card"><img src="{{ asset.url }}" alt="{{ asset.filename }}"><div><strong>{{ asset.filename }}</strong><small>{{ (asset.size / 1024 / 1024)|round(1) }} MB</small></div></article>{% else %}<div class="empty-glass"><span class="material-symbols-outlined">cloud_upload</span><strong>{{ t.no_assets }}</strong><p>{{ t.no_assets_hint }}</p></div>{% endfor %}
             </div>
           </section>
-          <aside class="glass-card recent-batches">
-            <div class="section-title"><h2>Generation History</h2><span>{{ history_items|length }}</span></div>
-            {% for item in history_items %}
-            <a class="history-chip {% if item.batch_id == current_batch_id %}is-active{% endif %}" href="/batches/{{ item.batch_id }}"><strong>{{ item.display_time }}</strong><span>{{ item.status }} ? {{ item.total }} ? ? ?? {{ item.pass_count }} ? ?? {{ item.review_count }} ? ?? {{ item.fail_count }}</span></a>
-            {% else %}<p class="muted-text">???????</p>{% endfor %}
-          </aside>
-        </section>
+        </div>
+        <aside class="right-inspector"><h2><span class="material-symbols-outlined">tune</span>{{ t.project_console }}</h2><dl class="metric-list"><dt>{{ t.status }}</dt><dd>{{ project.status_label }}</dd><dt>{{ t.assets }}</dt><dd>{{ project.asset_count }}</dd><dt>{{ t.results }}</dt><dd>{{ project.result_count }}</dd><dt>{{ t.updated }}</dt><dd>{{ project.updated_at }}</dd></dl><div class="inspector-block"><h3>{{ t.recent_batches }}</h3>{% for batch in project_batches %}<a class="history-chip" href="/batches/{{ batch.batch_id }}?lang={{ lang }}"><strong>{{ batch.display_time }}</strong><span>{{ batch.status }} / {{ batch.progress }}%</span></a>{% else %}<p>{{ t.no_attached_batches }}</p>{% endfor %}</div></aside>
+      </section>
+      {% elif view|default('home') == 'import' %}
+      <section class="work-grid"><div class="main-column"><header class="page-heading"><p class="eyebrow">{{ t.import }}</p><h1>{{ t.asset_import }}</h1><p>{{ t.import_intro }}</p></header><section class="glass-card upload-workbench"><form class="local-picker-form" action="/batches/pick-local" method="post"><div><strong>{{ t.local_picker }}</strong><span>{{ t.local_picker_hint }}</span></div><button class="secondary-pill" type="submit"><span class="material-symbols-outlined">folder_open</span>{{ t.select_images }}</button></form><form id="upload-form" action="/batches" method="post" enctype="multipart/form-data"><label id="upload-zone" class="liquid-dropzone" for="file-input"><span class="material-symbols-outlined">cloud_upload</span><strong>{{ t.drop_title }}</strong><em>{{ t.drop_hint }}</em></label><input id="file-input" class="native-file" type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required><div id="file-summary" class="file-summary">{{ t.no_images }}</div><ul id="file-list" class="file-list"></ul><button id="submit-button" class="primary-pill" type="submit"><span class="material-symbols-outlined">model_training</span>{{ t.start_generation }}</button></form></section></div><aside class="right-inspector"><h2><span class="material-symbols-outlined">rule</span>{{ t.input_check }}</h2><div class="check-row is-ok"><span></span>{{ t.exact_required }}</div><div class="check-row is-ok"><span></span>{{ t.screen_supported }}</div><div class="check-row"><span></span>{{ t.avoid_duplicate }}</div><div class="inspector-block"><h3>{{ t.pipeline }}</h3><p>{{ t.pipeline_summary }}</p></div></aside></section>
+      {% elif view|default('home') == 'backgrounds' %}
+      <section class="main-column full-width"><header class="page-heading"><p class="eyebrow">{{ t.background_title }}</p><h1>{{ t.backgrounds }}</h1><p>{{ t.background_intro }}</p></header><div class="asset-grid background-grid">{% for bg in backgrounds %}<article class="asset-card"><img src="/background-assets/{{ bg.file }}" alt="{{ t.background }} {{ bg.id }}"><div><strong>{{ bg.id }} / {{ bg.scene_type }}</strong><small>{{ bg.ground_type }} / {{ bg.lighting_direction }}</small></div></article>{% else %}<div class="empty-glass"><span class="material-symbols-outlined">wallpaper</span><strong>{{ t.no_backgrounds }}</strong><p>{{ t.no_backgrounds_hint }}</p></div>{% endfor %}</div></section>
+      {% elif view|default('home') == 'settings' %}
+      <section class="work-grid"><div class="main-column"><header class="page-heading"><p class="eyebrow">{{ t.settings }}</p><h1>{{ t.settings_title }}</h1><p>{{ t.settings_intro }}</p></header><section class="glass-card settings-grid">{% for key, value in provider_status.items() %}<div class="setting-row"><span>{{ key }}</span><strong>{{ value }}</strong></div>{% endfor %}</section></div><aside class="right-inspector"><h2><span class="material-symbols-outlined">verified_user</span>{{ t.guardrails }}</h2><p>{{ t.guardrails_hint }}</p></aside></section>
+      {% else %}
+      <section class="home-grid"><header class="page-heading home-heading"><p class="eyebrow">{{ t.projects }}</p><h1>{{ t.home_title }}</h1><p>{{ t.home_intro }}</p></header><section class="glass-card project-type-strip"><button class="type-chip is-active"><span class="material-symbols-outlined">new_releases</span>{{ t.new_listing }}</button><button class="type-chip"><span class="material-symbols-outlined">style</span>{{ t.style_reuse }}</button><button class="type-chip"><span class="material-symbols-outlined">campaign</span>{{ t.campaign }}</button><button class="type-chip"><span class="material-symbols-outlined">visibility</span>{{ t.buyer_preview }}</button></section><section class="project-board"><div class="section-title"><h2>{{ t.recent_projects }}</h2><a href="/import?lang={{ lang }}">{{ t.new_batch }}</a></div><div class="project-grid">{% for project in projects %}<a class="project-card" href="/projects/{{ project.id }}?lang={{ lang }}"><span class="status-dot"></span><small>{{ project.type_label }}</small><strong>{{ project.name }}</strong><p>{{ project.description or t.production_workspace }}</p><div><span>{{ project.asset_count }} {{ t.assets }}</span><span>{{ project.status_label }}</span></div></a>{% else %}<a class="project-card featured" href="/import?lang={{ lang }}"><small>{{ t.mvp_flow }}</small><strong>{{ t.create_first_batch }}</strong><p>{{ t.mvp_ready }}</p><div><span>{{ t.local_pipeline }}</span><span>{{ t.ready }}</span></div></a>{% endfor %}</div></section><aside class="glass-card recent-batches"><div class="section-title"><h2>{{ t.generation_history }}</h2><span>{{ history_items|length }}</span></div>{% for item in history_items %}<a class="history-chip {% if item.batch_id == current_batch_id %}is-active{% endif %}" href="/batches/{{ item.batch_id }}?lang={{ lang }}"><strong>{{ item.display_time }}</strong><span>{{ item.status }} / {{ item.total }} {{ t.items }} / {{ t.pass }} {{ item.pass_count }} / {{ t.review }} {{ item.review_count }} / {{ t.fail }} {{ item.fail_count }}</span></a>{% else %}<p class="muted-text">{{ t.no_history }}</p>{% endfor %}</aside></section>
       {% endif %}
     </main>
-    <script src="/static/workbench.js?v=20260609-liquid"></script>
+    <script src="/static/workbench.js?v=20260609-liquid-i18n"></script>
   </body>
 </html>

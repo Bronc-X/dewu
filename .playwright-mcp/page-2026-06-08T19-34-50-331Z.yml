@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Dewu AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=en
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dewu AI
+        - emphasis [ref=e8]: Creative Engine
+    - button "add New Batch" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: New Batch
+    - navigation "Main navigation" [ref=e12]:
+      - link "folder_copy Projects" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e14]: folder_copy
+        - text: Projects
+      - link "add_photo_alternate Import" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e16]: add_photo_alternate
+        - text: Import
+      - link "auto_awesome Pipeline" [ref=e17] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837?lang=en
+        - generic [ref=e18]: auto_awesome
+        - text: Pipeline
+      - link "fact_check Review" [ref=e19] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837?lang=en
+        - generic [ref=e20]: fact_check
+        - text: Review
+      - link "wallpaper Backgrounds" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=en
+        - generic [ref=e22]: wallpaper
+        - text: Backgrounds
+    - generic [ref=e23]:
+      - link "settings Settings" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=en
+        - generic [ref=e25]: settings
+        - text: Settings
+      - link "help Support" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e27]: help
+        - text: Support
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "Search workspace..." [ref=e31]
+    - generic [ref=e32]:
+      - link "中文" [ref=e33] [cursor=pointer]:
+        - /url: /?lang=zh
+      - button "Notifications" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "Account" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: Projects
+        - heading "Smart Image Production Workspace" [level=1] [ref=e42]
+        - paragraph [ref=e43]: Organize assets, batches, review, and delivery as a traceable production chain.
+      - generic [ref=e44]:
+        - button "new_releases New Listing" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: new_releases
+          - text: New Listing
+        - button "style Style Reuse" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]: style
+          - text: Style Reuse
+        - button "campaign Campaign" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50]: campaign
+          - text: Campaign
+        - button "visibility Buyer Preview" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]: visibility
+          - text: Buyer Preview
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - heading "Recent Projects" [level=2] [ref=e55]
+          - link "New Batch" [ref=e56] [cursor=pointer]:
+            - /url: /import?lang=en
+        - link "MVP Flow Create the first batch The backend can upload images, generate results, and export reports and ZIP packages. local pipeline ready" [ref=e58] [cursor=pointer]:
+          - /url: /import?lang=en
+          - generic [ref=e59]: MVP Flow
+          - strong [ref=e60]: Create the first batch
+          - paragraph [ref=e61]: The backend can upload images, generate results, and export reports and ZIP packages.
+          - generic [ref=e62]:
+            - generic [ref=e63]: local pipeline
+            - generic [ref=e64]: ready
+      - complementary [ref=e65]:
+        - generic [ref=e66]:
+          - heading "Generation History" [level=2] [ref=e67]
+          - generic [ref=e68]: "14"
+        - link "2026-06-08 02:41:00 Completed / 2 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 1 / Fail 0" [ref=e69] [cursor=pointer]:
+          - /url: /batches/preview2_20260608_023837?lang=en
+          - strong [ref=e70]: 2026-06-08 02:41:00
+          - generic [ref=e71]: Completed / 2 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 1 / Fail 0
+        - link "2026-06-08 00:10:56 Completed / 2 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 0 / Fail 1" [ref=e72] [cursor=pointer]:
+          - /url: /batches/screen_guard_two_20260608_000948?lang=en
+          - strong [ref=e73]: 2026-06-08 00:10:56
+          - generic [ref=e74]: Completed / 2 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 0 / Fail 1
+        - link "2026-06-07 23:52:02 Completed / 2 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 1 / Fail 0" [ref=e75] [cursor=pointer]:
+          - /url: /batches/api_two_20260607_234906?lang=en
+          - strong [ref=e76]: 2026-06-07 23:52:02
+          - generic [ref=e77]: Completed / 2 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 1 / Fail 0
+        - link "2026-06-07 23:39:30 Completed / 1 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 0 / Fail 0" [ref=e78] [cursor=pointer]:
+          - /url: /batches/api_probe_20260607_233821?lang=en
+          - strong [ref=e79]: 2026-06-07 23:39:30
+          - generic [ref=e80]: Completed / 1 <built-in method items of dict object at 0x000001B0F659A800> / Pass 1 / Review 0 / Fail 0
+        - link "2026-06-07 10:36:51 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 4 / Review 4 / Fail 0" [ref=e81] [cursor=pointer]:
+          - /url: /batches/20260607_103651_a1c50047?lang=en
+          - strong [ref=e82]: 2026-06-07 10:36:51
+          - generic [ref=e83]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 4 / Review 4 / Fail 0
+        - link "2026-06-07 10:29:45 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 5 / Review 3 / Fail 0" [ref=e84] [cursor=pointer]:
+          - /url: /batches/20260607_102945_81c77091?lang=en
+          - strong [ref=e85]: 2026-06-07 10:29:45
+          - generic [ref=e86]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 5 / Review 3 / Fail 0
+        - link "2026-06-07 10:38:21 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 5 / Review 3 / Fail 0" [ref=e87] [cursor=pointer]:
+          - /url: /batches/20260607_103821_9e8fa26b?lang=en
+          - strong [ref=e88]: 2026-06-07 10:38:21
+          - generic [ref=e89]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 5 / Review 3 / Fail 0
+        - link "2026-06-06 03:26:05 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0" [ref=e90] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44?lang=en
+          - strong [ref=e91]: 2026-06-06 03:26:05
+          - generic [ref=e92]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0
+        - link "2026-06-06 13:35:41 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0" [ref=e93] [cursor=pointer]:
+          - /url: /batches/regression_20260606_133226?lang=en
+          - strong [ref=e94]: 2026-06-06 13:35:41
+          - generic [ref=e95]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0
+        - link "2026-06-06 13:31:53 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 6 / Review 2 / Fail 0" [ref=e96] [cursor=pointer]:
+          - /url: /batches/regression_20260606_132821?lang=en
+          - strong [ref=e97]: 2026-06-06 13:31:53
+          - generic [ref=e98]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 6 / Review 2 / Fail 0
+        - link "2026-06-06 03:25:01 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0" [ref=e99] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_032138?lang=en
+          - strong [ref=e100]: 2026-06-06 03:25:01
+          - generic [ref=e101]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0
+        - link "2026-06-06 03:23:29 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0" [ref=e102] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_031949?lang=en
+          - strong [ref=e103]: 2026-06-06 03:23:29
+          - generic [ref=e104]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0
+        - link "2026-06-06 03:07:45 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0" [ref=e105] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_030425?lang=en
+          - strong [ref=e106]: 2026-06-06 03:07:45
+          - generic [ref=e107]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 8 / Review 0 / Fail 0
+        - link "2026-06-06 02:54:33 Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 6 / Review 2 / Fail 0" [ref=e108] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_025114?lang=en
+          - strong [ref=e109]: 2026-06-06 02:54:33
+          - generic [ref=e110]: Completed / 8 <built-in method items of dict object at 0x000001B0F659A800> / Pass 6 / Review 2 / Fail 0

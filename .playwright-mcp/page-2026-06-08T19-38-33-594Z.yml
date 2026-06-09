@@ -1,0 +1,141 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Dewu AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=en
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dewu AI
+        - emphasis [ref=e8]: Creative Engine
+    - button "add New Batch" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: New Batch
+    - navigation "Main navigation" [ref=e12]:
+      - link "folder_copy Projects" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e14]: folder_copy
+        - text: Projects
+      - link "add_photo_alternate Import" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e16]: add_photo_alternate
+        - text: Import
+      - link "auto_awesome Pipeline" [ref=e17] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8?lang=en
+        - generic [ref=e18]: auto_awesome
+        - text: Pipeline
+      - link "fact_check Review" [ref=e19] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8?lang=en
+        - generic [ref=e20]: fact_check
+        - text: Review
+      - link "wallpaper Backgrounds" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=en
+        - generic [ref=e22]: wallpaper
+        - text: Backgrounds
+    - generic [ref=e23]:
+      - link "settings Settings" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=en
+        - generic [ref=e25]: settings
+        - text: Settings
+      - link "help Support" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e27]: help
+        - text: Support
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - link "中文" [ref=e30] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8?lang=zh
+      - button "Notifications" [ref=e31] [cursor=pointer]:
+        - generic [ref=e32]: notifications
+      - button "Account" [ref=e33] [cursor=pointer]:
+        - generic [ref=e34]: account_circle
+  - main [ref=e35]:
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - heading "Result Review" [level=1] [ref=e39]
+          - paragraph [ref=e40]: Batch 2026-06-05 20:49:41 / Pass 8 / Review 0 / Fail 0
+        - generic [ref=e41]:
+          - button "zoom_in Zoom" [ref=e42] [cursor=pointer]:
+            - generic [ref=e43]: zoom_in
+            - text: Zoom
+          - button "fit_screen Fit" [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: fit_screen
+            - text: Fit
+      - generic [ref=e46]:
+        - img "AI Result 1" [ref=e47]
+        - generic [ref=e48]:
+          - img "Original 1" [ref=e49]
+          - generic [ref=e50]: Original
+        - generic [ref=e51]: AI Result
+        - button "Compare before and after" [ref=e52]: < >
+    - complementary [ref=e53]:
+      - generic [ref=e54]:
+        - heading "analytics Quality Analysis" [level=2] [ref=e55]:
+          - generic [ref=e56]: analytics
+          - text: Quality Analysis
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - strong [ref=e59]: 92%
+            - generic [ref=e60]: Lighting
+          - generic [ref=e61]:
+            - strong [ref=e62]: 88%
+            - generic [ref=e63]: Edge
+          - generic [ref=e64]:
+            - strong [ref=e65]: 95%
+            - generic [ref=e66]: Align
+      - generic [ref=e67]:
+        - heading "auto_fix_high Suggestions" [level=2] [ref=e68]:
+          - generic [ref=e69]: auto_fix_high
+          - text: Suggestions
+        - article [ref=e70]:
+          - strong [ref=e71]: 主体和背景融合基本自然，商品外观未发现明显变化。
+          - paragraph [ref=e72]: 可作为正式图使用。
+          - link "download Download Image" [ref=e73] [cursor=pointer]:
+            - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_01_final.png
+            - generic [ref=e74]: download
+            - text: Download Image
+        - article [ref=e75]:
+          - strong [ref=e76]: Background
+          - paragraph [ref=e77]: B12 / 23.99s / 1 attempts
+      - generic [ref=e78]:
+        - link "data_object Report" [ref=e79] [cursor=pointer]:
+          - /url: /batches/20260605_204941_a28182c8/report.json
+          - generic [ref=e80]: data_object
+          - text: Report
+        - link "download ZIP" [ref=e81] [cursor=pointer]:
+          - /url: /batches/20260605_204941_a28182c8/zip
+          - generic [ref=e82]: download
+          - text: ZIP
+    - generic [ref=e83]:
+      - generic [ref=e84]: Batch
+      - link "AI Result 1 check_circle" [ref=e85] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_01_final.png
+        - img "AI Result 1" [ref=e86]
+        - generic [ref=e87]: check_circle
+      - link "AI Result 2 check_circle" [ref=e88] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_02_final.png
+        - img "AI Result 2" [ref=e89]
+        - generic [ref=e90]: check_circle
+      - link "AI Result 3 check_circle" [ref=e91] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_03_final.png
+        - img "AI Result 3" [ref=e92]
+        - generic [ref=e93]: check_circle
+      - link "AI Result 4 check_circle" [ref=e94] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_04_final.png
+        - img "AI Result 4" [ref=e95]
+        - generic [ref=e96]: check_circle
+      - link "AI Result 5 check_circle" [ref=e97] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_05_final.png
+        - img "AI Result 5" [ref=e98]
+        - generic [ref=e99]: check_circle
+      - link "AI Result 6 check_circle" [ref=e100] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_06_final.png
+        - img "AI Result 6" [ref=e101]
+        - generic [ref=e102]: check_circle
+      - link "AI Result 7 check_circle" [ref=e103] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_07_final.png
+        - img "AI Result 7" [ref=e104]
+        - generic [ref=e105]: check_circle
+      - link "AI Result 8 check_circle" [ref=e106] [cursor=pointer]:
+        - /url: /batches/20260605_204941_a28182c8/file?path=final_pass/input_08_final.png
+        - img "AI Result 8" [ref=e107]
+        - generic [ref=e108]: check_circle

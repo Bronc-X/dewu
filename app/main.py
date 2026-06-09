@@ -63,28 +63,244 @@ def startup() -> None:
 
 app.mount("/static", StaticFiles(directory="app/web/static"), name="static")
 app.mount("/data", StaticFiles(directory=str(settings.app_data_dir)), name="data")
+app.mount("/background-assets", StaticFiles(directory=str(settings.background_dir)), name="background_assets")
 
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 ACTIVE_WORKERS: set[str] = set()
 ACTIVE_WORKERS_LOCK = threading.Lock()
 WORKSPACE_ROOT = Path.cwd().resolve()
 
+UI_TEXT = {
+    "zh": {
+        "html_lang": "zh-CN",
+        "brand": "得物 AI",
+        "engine": "智能生图引擎",
+        "new_batch": "新建批次",
+        "projects": "项目",
+        "import": "导入",
+        "pipeline": "生成",
+        "review": "复核",
+        "backgrounds": "背景库",
+        "settings": "设置",
+        "support": "帮助",
+        "search": "搜索工作台...",
+        "notifications": "通知",
+        "account": "账户",
+        "home_title": "智能图像生产工作台",
+        "home_intro": "按项目沉淀素材、批次、复核和交付结果，形成可追踪的图像生产链路。",
+        "new_listing": "商品上新",
+        "style_reuse": "款式复用",
+        "campaign": "活动投放",
+        "buyer_preview": "买家预览",
+        "recent_projects": "最近项目",
+        "generation_history": "生成历史",
+        "create_first_batch": "创建第一个批次",
+        "mvp_ready": "当前后端已支持上传图片、生成结果、导出报告和压缩包。",
+        "no_history": "暂无批次记录。",
+        "project_console": "项目控制台",
+        "uploaded_assets": "已导入素材",
+        "no_assets": "暂无项目素材",
+        "no_assets_hint": "可以从导入页创建批次，或通过接口上传项目素材。",
+        "generate": "智能生成",
+        "export": "交付导出",
+        "recent_batches": "最近批次",
+        "no_attached_batches": "暂无绑定批次。",
+        "asset_import": "素材导入",
+        "import_intro": "一次上传指定数量的商品图，后端会创建批次并启动生成管线。",
+        "local_picker": "本机文件选择",
+        "local_picker_hint": "浏览器上传不方便时，可用本地选择器。",
+        "select_images": "选择图片",
+        "drop_title": "拖拽上传素材",
+        "drop_hint": "支持 PNG、JPG、JPEG、WEBP，数量必须符合批次要求。",
+        "no_images": "尚未选择图片。",
+        "start_generation": "开始批量生成",
+        "input_check": "输入检查",
+        "exact_required": "图片数量必须符合批次要求",
+        "screen_supported": "支持绿幕或白底输入",
+        "avoid_duplicate": "处理中请勿重复提交",
+        "pipeline_summary": "主体识别、抠图、背景匹配、合成、光影修复、质检、导出。",
+        "background_title": "背景库",
+        "background_intro": "预览当前固定背景资源，生成时由后端自动匹配。",
+        "no_backgrounds": "背景库为空",
+        "no_backgrounds_hint": "请先生成占位背景或真实背景库。",
+        "settings_title": "系统设置",
+        "settings_intro": "这里展示当前后端能力开关，密钥仍由 .env 管理。",
+        "guardrails": "保护规则",
+        "guardrails_hint": "商品主体保护、变化分数和回退策略由后端管线执行。",
+        "smart_monitor": "智能生成监控",
+        "processing_assets": "正在处理素材",
+        "live_previews": "实时预览",
+        "processing_log": "处理日志",
+        "completed": "已完成",
+        "pass_rate": "通过数",
+        "result_review": "结果复核",
+        "quality_analysis": "质量分析",
+        "suggestions": "建议",
+        "download_image": "下载本图",
+        "background": "背景",
+        "json": "报告",
+        "zip": "压缩包",
+        "original": "原图",
+        "ai_result": "生成图",
+        "queued": "排队中",
+        "processing": "处理中",
+        "completed_status": "已完成",
+        "failed": "失败",
+        "pass": "通过",
+        "fail": "失败",
+        "status": "状态",
+        "assets": "素材",
+        "results": "结果",
+        "updated": "更新",
+        "files": "个文件",
+        "batches": "个批次",
+        "start_batch": "启动批次",
+        "report": "报告",
+        "ready": "就绪",
+        "batch": "批次",
+        "items": "张",
+        "seconds": "秒",
+        "attempts": "次尝试",
+        "fit": "适应",
+        "zoom": "缩放",
+        "stage_isolation": "主体识别",
+        "stage_matching": "背景匹配",
+        "stage_lighting": "光影修复",
+        "stage_review": "质检复核",
+        "log_runtime": "运行时",
+        "loaded_assets": "已载入原始素材",
+        "local_pipeline": "本地管线",
+        "production_workspace": "生产工作台",
+        "mvp_flow": "可运行流程",
+        "project": "项目",
+        "main_navigation": "主导航",
+        "compare_label": "拖动查看前后对比",
+    },
+    "en": {
+        "html_lang": "en",
+        "brand": "Dewu AI",
+        "engine": "Creative Engine",
+        "new_batch": "New Batch",
+        "projects": "Projects",
+        "import": "Import",
+        "pipeline": "Pipeline",
+        "review": "Review",
+        "backgrounds": "Backgrounds",
+        "settings": "Settings",
+        "support": "Support",
+        "search": "Search workspace...",
+        "notifications": "Notifications",
+        "account": "Account",
+        "home_title": "Smart Image Production Workspace",
+        "home_intro": "Organize assets, batches, review, and delivery as a traceable production chain.",
+        "new_listing": "New Listing",
+        "style_reuse": "Style Reuse",
+        "campaign": "Campaign",
+        "buyer_preview": "Buyer Preview",
+        "recent_projects": "Recent Projects",
+        "generation_history": "Generation History",
+        "create_first_batch": "Create the first batch",
+        "mvp_ready": "The backend can upload images, generate results, and export reports and ZIP packages.",
+        "no_history": "No batch history yet.",
+        "project_console": "Project Console",
+        "uploaded_assets": "Uploaded Assets",
+        "no_assets": "No project assets yet",
+        "no_assets_hint": "Use Import to create a batch, or upload assets through the API.",
+        "generate": "Generate",
+        "export": "Export",
+        "recent_batches": "Recent Batches",
+        "no_attached_batches": "No attached batches.",
+        "asset_import": "Asset Import",
+        "import_intro": "Upload the required number of product photos. The backend will create a batch and start the pipeline.",
+        "local_picker": "Local File Picker",
+        "local_picker_hint": "Use the local picker when browser upload is inconvenient.",
+        "select_images": "Select Images",
+        "drop_title": "Drag & Drop Assets",
+        "drop_hint": "PNG, JPG, JPEG, and WEBP are supported. The count must match the batch requirement.",
+        "no_images": "No images selected.",
+        "start_generation": "Start Batch Generation",
+        "input_check": "Input Check",
+        "exact_required": "Image count must match the batch requirement",
+        "screen_supported": "Green screen and white background inputs are supported",
+        "avoid_duplicate": "Avoid duplicate submit while processing",
+        "pipeline_summary": "Subject analysis, matting, background match, composition, lighting repair, QC, export.",
+        "background_title": "Backgrounds",
+        "background_intro": "Preview the fixed background library used by backend matching.",
+        "no_backgrounds": "No backgrounds",
+        "no_backgrounds_hint": "Generate placeholder or real backgrounds first.",
+        "settings_title": "System Settings",
+        "settings_intro": "Current backend capability switches. Secrets remain managed by .env.",
+        "guardrails": "Guardrails",
+        "guardrails_hint": "Product protection, change scoring, and fallback rules are enforced by the backend pipeline.",
+        "smart_monitor": "Smart Generation Monitor",
+        "processing_assets": "Processing Assets",
+        "live_previews": "Live Render Previews",
+        "processing_log": "Processing Log",
+        "completed": "Completed",
+        "pass_rate": "Pass Count",
+        "result_review": "Result Review",
+        "quality_analysis": "Quality Analysis",
+        "suggestions": "Suggestions",
+        "download_image": "Download Image",
+        "background": "Background",
+        "json": "Report",
+        "zip": "ZIP",
+        "original": "Original",
+        "ai_result": "AI Result",
+        "queued": "Queued",
+        "processing": "Processing",
+        "completed_status": "Completed",
+        "failed": "Failed",
+        "pass": "Pass",
+        "fail": "Fail",
+        "status": "Status",
+        "assets": "Assets",
+        "results": "Results",
+        "updated": "Updated",
+        "files": "files",
+        "batches": "batches",
+        "start_batch": "Start batch",
+        "report": "report",
+        "ready": "ready",
+        "batch": "Batch",
+        "items": "assets",
+        "seconds": "s",
+        "attempts": "attempts",
+        "fit": "Fit",
+        "zoom": "Zoom",
+        "stage_isolation": "Isolation",
+        "stage_matching": "Matching",
+        "stage_lighting": "Lighting",
+        "stage_review": "Review",
+        "log_runtime": "runtime",
+        "loaded_assets": "Loaded raw assets",
+        "local_pipeline": "local pipeline",
+        "production_workspace": "Production workspace",
+        "mvp_flow": "MVP Flow",
+        "project": "Project",
+        "main_navigation": "Main navigation",
+        "compare_label": "Compare before and after",
+    },
+}
+
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request) -> HTMLResponse:
+    lang = _ui_lang(request)
     latest_batch = _latest_batch_summary()
+    projects = _localized_projects(list_projects(), lang)
     return templates.TemplateResponse(
         "index.html",
-        {
+        _template_context(request, {
             "request": request,
-            "history_items": _recent_batch_history(),
+            "history_items": _recent_batch_history(lang=lang),
             "current_batch_id": "",
-            "projects": list_projects(),
+            "projects": projects,
             "provider_status": provider_status(),
             "latest_batch": latest_batch,
             "active_nav": "projects",
             "max_images": settings.max_images_per_batch,
-        },
+        }),
     )
 
 
@@ -172,7 +388,11 @@ def create_batch_from_local_picker() -> RedirectResponse:
 
 @app.get("/projects/{project_id}", response_class=HTMLResponse)
 def project_detail(request: Request, project_id: str) -> HTMLResponse:
+    lang = _ui_lang(request)
     project = _load_project_or_404(project_id)
+    project_view = project.model_dump(mode="json")
+    project_view["type_label"] = _project_type_label(project.project_type, lang)
+    project_view["status_label"] = _project_status_label(project.status, lang)
     assets = [
         {
             "filename": path.name,
@@ -193,7 +413,7 @@ def project_detail(request: Request, project_id: str) -> HTMLResponse:
             {
                 "batch_id": attached_batch_id,
                 "display_time": _batch_display_time(attached_batch_id, report_path(attached_batch_id)),
-                "status": _status_label(attached_report.status),
+                "status": _status_label(attached_report.status, _ui_lang(request)),
                 "progress": _batch_progress(attached_report),
                 "total": attached_report.total,
                 "pass_count": attached_report.pass_count,
@@ -203,18 +423,18 @@ def project_detail(request: Request, project_id: str) -> HTMLResponse:
         )
     return templates.TemplateResponse(
         "index.html",
-        {
+        _template_context(request, {
             "request": request,
             "view": "project",
-            "project": project,
+            "project": project_view,
             "assets": assets,
             "project_batches": batches,
-            "history_items": _recent_batch_history(),
+            "history_items": _recent_batch_history(lang=_ui_lang(request)),
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "projects",
             "max_images": settings.max_images_per_batch,
-        },
+        }),
     )
 
 
@@ -222,15 +442,15 @@ def project_detail(request: Request, project_id: str) -> HTMLResponse:
 def import_workspace(request: Request) -> HTMLResponse:
     return templates.TemplateResponse(
         "index.html",
-        {
+        _template_context(request, {
             "request": request,
             "view": "import",
-            "history_items": _recent_batch_history(),
+            "history_items": _recent_batch_history(lang=_ui_lang(request)),
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "import",
             "max_images": settings.max_images_per_batch,
-        },
+        }),
     )
 
 
@@ -247,16 +467,16 @@ def background_library(request: Request) -> HTMLResponse:
         backgrounds = []
     return templates.TemplateResponse(
         "index.html",
-        {
+        _template_context(request, {
             "request": request,
             "view": "backgrounds",
             "backgrounds": backgrounds,
-            "history_items": _recent_batch_history(),
+            "history_items": _recent_batch_history(lang=_ui_lang(request)),
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "backgrounds",
             "max_images": settings.max_images_per_batch,
-        },
+        }),
     )
 
 
@@ -264,15 +484,15 @@ def background_library(request: Request) -> HTMLResponse:
 def settings_page(request: Request) -> HTMLResponse:
     return templates.TemplateResponse(
         "index.html",
-        {
+        _template_context(request, {
             "request": request,
             "view": "settings",
-            "history_items": _recent_batch_history(),
+            "history_items": _recent_batch_history(lang=_ui_lang(request)),
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "settings",
             "max_images": settings.max_images_per_batch,
-        },
+        }),
     )
 
 
@@ -340,16 +560,41 @@ def _batch_display_time(batch_id: str, fallback_path: Path) -> str:
         return timestamp.strftime("%Y-%m-%d %H:%M:%S")
 
 
-def _status_label(status: BatchStatus) -> str:
+def _ui_lang(request: Request) -> str:
+    lang = request.query_params.get("lang", "zh").lower()
+    return "en" if lang.startswith("en") else "zh"
+
+
+def _lang_url(request: Request, lang: str) -> str:
+    params = dict(request.query_params)
+    params["lang"] = lang
+    query = "&".join(f"{key}={value}" for key, value in params.items())
+    return f"{request.url.path}?{query}" if query else request.url.path
+
+
+def _template_context(request: Request, context: dict) -> dict:
+    lang = _ui_lang(request)
+    merged = {
+        "lang": lang,
+        "t": UI_TEXT[lang],
+        "lang_switch_url": _lang_url(request, "en" if lang == "zh" else "zh"),
+        "other_lang_label": "English" if lang == "zh" else "中文",
+    }
+    merged.update(context)
+    return merged
+
+
+def _status_label(status: BatchStatus, lang: str = "en") -> str:
+    text = UI_TEXT.get(lang, UI_TEXT["en"])
     return {
-        BatchStatus.queued: "排队中",
-        BatchStatus.processing: "处理中",
-        BatchStatus.completed: "已完成",
-        BatchStatus.failed: "失败",
+        BatchStatus.queued: text["queued"],
+        BatchStatus.processing: text["processing"],
+        BatchStatus.completed: text["completed_status"],
+        BatchStatus.failed: text["failed"],
     }.get(status, status.value)
 
 
-def _recent_batch_history(limit: int = 14) -> list[dict[str, str | int]]:
+def _recent_batch_history(limit: int = 14, lang: str = "en") -> list[dict[str, str | int]]:
     batches_dir = settings.app_data_dir / "batches"
     if not batches_dir.exists():
         return []
@@ -371,7 +616,7 @@ def _recent_batch_history(limit: int = 14) -> list[dict[str, str | int]]:
             {
                 "batch_id": batch_id,
                 "display_time": _batch_display_time(batch_id, report_file),
-                "status": _status_label(report.status),
+                "status": _status_label(report.status, lang),
                 "total": report.total,
                 "pass_count": report.pass_count,
                 "review_count": report.review_count,
@@ -425,37 +670,48 @@ def _batch_context(report: BatchReport, batch_id: str) -> dict[str, object]:
     }
 
 
-def _project_type_label(value: object) -> str:
+def _project_type_label(value: object, lang: str = "zh") -> str:
     key = getattr(value, "value", str(value))
+    text = UI_TEXT.get(lang, UI_TEXT["zh"])
     return {
-        "new_listing": "商品上新",
-        "style_reuse": "款式复用",
-        "campaign": "活动投放",
-        "buyer_preview": "买家预览",
+        "new_listing": text["new_listing"],
+        "style_reuse": text["style_reuse"],
+        "campaign": text["campaign"],
+        "buyer_preview": text["buyer_preview"],
     }.get(key, str(key))
 
 
-def _project_status_label(value: object) -> str:
+def _project_status_label(value: object, lang: str = "zh") -> str:
     key = getattr(value, "value", str(value))
-    return {
-        "draft": "草稿",
-        "active": "进行中",
-        "processing": "生成中",
-        "review": "待复核",
-        "completed": "已完成",
-        "archived": "已归档",
-    }.get(key, str(key))
+    if lang == "zh":
+        labels = {
+            "draft": "草稿",
+            "active": "进行中",
+            "processing": "生成中",
+            "review": "待复核",
+            "completed": "已完成",
+            "archived": "已归档",
+        }
+    else:
+        labels = {
+            "draft": "Draft",
+            "active": "Active",
+            "processing": "Processing",
+            "review": "Review",
+            "completed": "Completed",
+            "archived": "Archived",
+        }
+    return labels.get(key, str(key))
 
 
-def _now_iso() -> str:
-    return datetime.now().isoformat(timespec="seconds")
-
-
-def _safe_name(name: str) -> str:
-    return "".join(
-        character if character.isalnum() or character in {"-", "_", "."} else "_"
-        for character in name
-    ).strip("._") or "asset"
+def _localized_projects(projects: list[ProjectRecord], lang: str) -> list[dict]:
+    localized = []
+    for project in projects:
+        data = project.model_dump(mode="json")
+        data["type_label"] = _project_type_label(project.project_type, lang)
+        data["status_label"] = _project_status_label(project.status, lang)
+        localized.append(data)
+    return localized
 
 
 def _load_project_or_404(project_id: str) -> ProjectRecord:
@@ -741,12 +997,12 @@ def view_batch(request: Request, batch_id: str) -> HTMLResponse:
     batch_context = _batch_context(report, batch_id)
     return templates.TemplateResponse(
         "batch.html",
-        {
+        _template_context(request, {
             "request": request,
             "report": report,
             "batch_id": batch_id,
             "batch_display_time": _batch_display_time(batch_id, report_path(batch_id)),
-            "history_items": _recent_batch_history(),
+            "history_items": _recent_batch_history(lang=_ui_lang(request)),
             "current_batch_id": batch_id,
             "zip_exists": batch_context["zip_exists"],
             "progress": batch_context["progress"],
@@ -756,7 +1012,7 @@ def view_batch(request: Request, batch_id: str) -> HTMLResponse:
             "preview_items": batch_context["preview_items"],
             "is_processing": batch_context["is_processing"],
             "active_nav": "pipeline" if batch_context["is_processing"] else "review",
-        },
+        }),
     )
 
 

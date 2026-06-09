@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - button "add 新建批次" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: 新建批次
+    - navigation "主导航" [ref=e12]:
+      - link "folder_copy 项目" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e14]: folder_copy
+        - text: 项目
+      - link "add_photo_alternate 导入" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e16]: add_photo_alternate
+        - text: 导入
+      - link "auto_awesome 生成" [ref=e17] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837?lang=zh
+        - generic [ref=e18]: auto_awesome
+        - text: 生成
+      - link "fact_check 复核" [ref=e19] [cursor=pointer]:
+        - /url: /batches/preview2_20260608_023837?lang=zh
+        - generic [ref=e20]: fact_check
+        - text: 复核
+      - link "wallpaper 背景库" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e22]: wallpaper
+        - text: 背景库
+    - generic [ref=e23]:
+      - link "settings 设置" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e25]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e27]: help
+        - text: 帮助
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "搜索工作台..." [ref=e31]
+    - generic [ref=e32]:
+      - link "English" [ref=e33] [cursor=pointer]:
+        - /url: /?lang=en
+      - button "通知" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "账户" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: 项目
+        - heading "智能图像生产工作台" [level=1] [ref=e42]
+        - paragraph [ref=e43]: 按项目沉淀素材、批次、复核和交付结果，形成可追踪的图像生产链路。
+      - generic [ref=e44]:
+        - button "new_releases 商品上新" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]: new_releases
+          - text: 商品上新
+        - button "style 款式复用" [ref=e47] [cursor=pointer]:
+          - generic [ref=e48]: style
+          - text: 款式复用
+        - button "campaign 活动投放" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50]: campaign
+          - text: 活动投放
+        - button "visibility 买家预览" [ref=e51] [cursor=pointer]:
+          - generic [ref=e52]: visibility
+          - text: 买家预览
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - heading "最近项目" [level=2] [ref=e55]
+          - link "新建批次" [ref=e56] [cursor=pointer]:
+            - /url: /import?lang=zh
+        - link "可运行流程 创建第一个批次 当前后端已支持上传图片、生成结果、导出报告和压缩包。 本地管线 就绪" [ref=e58] [cursor=pointer]:
+          - /url: /import?lang=zh
+          - generic [ref=e59]: 可运行流程
+          - strong [ref=e60]: 创建第一个批次
+          - paragraph [ref=e61]: 当前后端已支持上传图片、生成结果、导出报告和压缩包。
+          - generic [ref=e62]:
+            - generic [ref=e63]: 本地管线
+            - generic [ref=e64]: 就绪
+      - complementary [ref=e65]:
+        - generic [ref=e66]:
+          - heading "生成历史" [level=2] [ref=e67]
+          - generic [ref=e68]: "14"
+        - link "2026-06-08 02:41:00 已完成 / 2 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 1 / 失败 0" [ref=e69] [cursor=pointer]:
+          - /url: /batches/preview2_20260608_023837?lang=zh
+          - strong [ref=e70]: 2026-06-08 02:41:00
+          - generic [ref=e71]: 已完成 / 2 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 1 / 失败 0
+        - link "2026-06-08 00:10:56 已完成 / 2 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 0 / 失败 1" [ref=e72] [cursor=pointer]:
+          - /url: /batches/screen_guard_two_20260608_000948?lang=zh
+          - strong [ref=e73]: 2026-06-08 00:10:56
+          - generic [ref=e74]: 已完成 / 2 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 0 / 失败 1
+        - link "2026-06-07 23:52:02 已完成 / 2 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 1 / 失败 0" [ref=e75] [cursor=pointer]:
+          - /url: /batches/api_two_20260607_234906?lang=zh
+          - strong [ref=e76]: 2026-06-07 23:52:02
+          - generic [ref=e77]: 已完成 / 2 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 1 / 失败 0
+        - link "2026-06-07 23:39:30 已完成 / 1 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 0 / 失败 0" [ref=e78] [cursor=pointer]:
+          - /url: /batches/api_probe_20260607_233821?lang=zh
+          - strong [ref=e79]: 2026-06-07 23:39:30
+          - generic [ref=e80]: 已完成 / 1 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 1 / 复核 0 / 失败 0
+        - link "2026-06-07 10:36:51 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 4 / 复核 4 / 失败 0" [ref=e81] [cursor=pointer]:
+          - /url: /batches/20260607_103651_a1c50047?lang=zh
+          - strong [ref=e82]: 2026-06-07 10:36:51
+          - generic [ref=e83]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 4 / 复核 4 / 失败 0
+        - link "2026-06-07 10:29:45 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 5 / 复核 3 / 失败 0" [ref=e84] [cursor=pointer]:
+          - /url: /batches/20260607_102945_81c77091?lang=zh
+          - strong [ref=e85]: 2026-06-07 10:29:45
+          - generic [ref=e86]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 5 / 复核 3 / 失败 0
+        - link "2026-06-07 10:38:21 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 5 / 复核 3 / 失败 0" [ref=e87] [cursor=pointer]:
+          - /url: /batches/20260607_103821_9e8fa26b?lang=zh
+          - strong [ref=e88]: 2026-06-07 10:38:21
+          - generic [ref=e89]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 5 / 复核 3 / 失败 0
+        - link "2026-06-06 03:26:05 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0" [ref=e90] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44?lang=zh
+          - strong [ref=e91]: 2026-06-06 03:26:05
+          - generic [ref=e92]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-06 13:35:41 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0" [ref=e93] [cursor=pointer]:
+          - /url: /batches/regression_20260606_133226?lang=zh
+          - strong [ref=e94]: 2026-06-06 13:35:41
+          - generic [ref=e95]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-06 13:31:53 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 6 / 复核 2 / 失败 0" [ref=e96] [cursor=pointer]:
+          - /url: /batches/regression_20260606_132821?lang=zh
+          - strong [ref=e97]: 2026-06-06 13:31:53
+          - generic [ref=e98]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 6 / 复核 2 / 失败 0
+        - link "2026-06-06 03:25:01 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0" [ref=e99] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_032138?lang=zh
+          - strong [ref=e100]: 2026-06-06 03:25:01
+          - generic [ref=e101]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-06 03:23:29 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0" [ref=e102] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_031949?lang=zh
+          - strong [ref=e103]: 2026-06-06 03:23:29
+          - generic [ref=e104]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-06 03:07:45 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0" [ref=e105] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_030425?lang=zh
+          - strong [ref=e106]: 2026-06-06 03:07:45
+          - generic [ref=e107]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-06 02:54:33 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 6 / 复核 2 / 失败 0" [ref=e108] [cursor=pointer]:
+          - /url: /batches/smoke_20260606_025114?lang=zh
+          - strong [ref=e109]: 2026-06-06 02:54:33
+          - generic [ref=e110]: 已完成 / 8 <built-in method items of dict object at 0x000001B0D6D87E00> / 通过 6 / 复核 2 / 失败 0
