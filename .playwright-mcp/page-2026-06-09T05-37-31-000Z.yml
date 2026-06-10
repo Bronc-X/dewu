@@ -1,0 +1,86 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Dewu AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=en
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dewu AI
+        - emphasis [ref=e8]: Creative Engine
+    - button "add New Batch" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: New Batch
+    - navigation "Main navigation" [ref=e12]:
+      - link "folder_copy Projects" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e14]: folder_copy
+        - text: Projects
+      - link "add_photo_alternate Import" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e16]: add_photo_alternate
+        - text: Import
+      - link "auto_awesome Pipeline" [ref=e17] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e18]: auto_awesome
+        - text: Pipeline
+      - link "fact_check Review" [ref=e19] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e20]: fact_check
+        - text: Review
+      - link "wallpaper Backgrounds" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=en
+        - generic [ref=e22]: wallpaper
+        - text: Backgrounds
+    - generic [ref=e23]:
+      - link "settings Settings" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=en
+        - generic [ref=e25]: settings
+        - text: Settings
+      - link "help Support" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e27]: help
+        - text: Support
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "Search workspace..." [ref=e31]
+    - generic [ref=e32]:
+      - link "Switch to Chinese" [ref=e33] [cursor=pointer]:
+        - /url: /settings?lang=zh
+      - button "Notifications" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "Account" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Settings
+          - heading "System Settings" [level=1] [ref=e43]
+          - paragraph [ref=e44]: Current backend capability switches. Secrets remain managed by .env.
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - text: photoroom
+              - strong [ref=e48]: Not Configured
+            - text: PHOTOROOM_API_KEY
+            - code [ref=e49]: "{\"image_editing\": \"https://image-api.photoroom.com/v2/edit\", \"remove_background\": \"https://sdk.photoroom.com/v1/segment\"}"
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - text: adobe_firefly
+              - strong [ref=e52]: Not Configured
+            - text: ADOBE_CLIENT_ID, ADOBE_CLIENT_SECRET
+            - code [ref=e53]: "{\"generate_background_async\": \"https://firefly-api.adobe.io/v3/images/generate-async\"}"
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - text: adobe_photoshop
+              - strong [ref=e56]: Not Configured
+            - text: ADOBE_CLIENT_ID, ADOBE_CLIENT_SECRET
+            - code [ref=e57]: "{\"remove_background\": \"https://image.adobe.io/v2/remove-background\", \"status\": \"https://image.adobe.io/v2/status/{jobId}\"}"
+      - complementary [ref=e58]:
+        - heading "verified_user Guardrails" [level=2] [ref=e59]:
+          - generic [ref=e60]: verified_user
+          - text: Guardrails
+        - paragraph [ref=e61]: Product protection, change scoring, and fallback rules are enforced by the backend pipeline.
+        - generic [ref=e62]:
+          - heading "API Readiness" [level=3] [ref=e63]
+          - paragraph [ref=e64]: The frontend is wired to status and tool endpoints. Add the API key to enable calls.

@@ -40,6 +40,8 @@ class BackgroundMeta(BaseModel):
     id: str
     file: str
     scene_type: str
+    scene_level: str = "L1_product_safe"
+    priority: int = 50
     pose_fit: list[str] = Field(default_factory=list)
     sit_support: bool = False
     ground_type: str = "unknown"
@@ -57,7 +59,9 @@ class ImageItemReport(BaseModel):
     status: ItemStatus = ItemStatus.queued
     background_id: str | None = None
     reason: str = ""
+    reason_en: str = ""
     suggestion: str = ""
+    suggestion_en: str = ""
     elapsed_seconds: float = 0
     attempts: int = 0
     risk_tags: list[str] = Field(default_factory=list)

@@ -47,10 +47,24 @@ PROMPTS = {
 
 def metadata_item(index: int, kind: str, filename: str) -> dict:
     sit_support = kind in {"steps", "bench"} or index in {16, 17, 18}
+    scene_level = {
+        "street": "L1_product_safe",
+        "steps": "L2_pose_matched",
+        "bench": "L2_pose_matched",
+        "mountain": "L3_contextual",
+    }.get(kind, "L1_product_safe")
+    priority = {
+        "street": 10,
+        "steps": 20,
+        "bench": 25,
+        "mountain": 35,
+    }.get(kind, 50)
     return {
         "id": f"B{index:02d}",
         "file": filename,
         "scene_type": kind,
+        "scene_level": scene_level,
+        "priority": priority,
         "pose_fit": ["sitting"] if sit_support else ["standing"],
         "sit_support": sit_support,
         "ground_type": "stone" if kind in {"mountain", "steps"} else "concrete",
@@ -90,4 +104,3 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
-

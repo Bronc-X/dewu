@@ -1,4 +1,5 @@
 import base64
+import asyncio
 import json
 import mimetypes
 from pathlib import Path
@@ -17,13 +18,18 @@ class VisionApiClient:
         if not self.enabled():
             return self._local_subject_fallback(image_path)
         prompt = (
-            "Analyze this ecommerce fashion model image for an automated background "
-            "compositing pipeline. Return strict JSON only with keys: pose "
-            "('standing'|'sitting'|'leaning'), support_required (boolean), "
-            "support_kept (boolean), risk_tags (array of strings). Use risk_tags "
-            "from: transparent_prop, white_screen_edge, green_spill_risk, "
-            "complex_hair, seated_support, hand_prop. If the model is seated or "
-            "touching a chair/bench/table, support_required must be true."
+            "Analyze this Dewu ecommerce product-on-model image for a controlled "
+            "image-production pipeline. The system must preserve the product, model "
+            "identity, pose, logos, shoe shape, clothing pattern, and any real support "
+            "object that makes the pose physically valid. Return strict JSON only. "
+            "Schema: pose ('standing'|'sitting'|'leaning'), support_required "
+            "(boolean), support_kept (boolean), scene_level "
+            "('L1_product_safe'|'L2_pose_matched'|'L3_contextual'), product_consistency "
+            "('strict'), risk_tags (array of strings). Use risk_tags only from: "
+            "transparent_prop, white_screen_edge, green_spill_risk, complex_hair, "
+            "seated_support, hand_prop. If the model is seated or touching a "
+            "chair/bench/table, support_required must be true and scene_level should "
+            "prefer L1_product_safe or L2_pose_matched."
         )
         try:
             result = await self._responses_json(prompt, [image_path])
@@ -32,6 +38,9 @@ class VisionApiClient:
                 pose = "standing"
             support_required = bool(result.get("support_required", pose == "sitting"))
             support_kept = bool(result.get("support_kept", support_required))
+            scene_level = str(result.get("scene_level", "L1_product_safe"))
+            if scene_level not in {"L1_product_safe", "L2_pose_matched", "L3_contextual"}:
+                scene_level = "L1_product_safe"
             risk_tags = result.get("risk_tags", [])
             if not isinstance(risk_tags, list):
                 risk_tags = []
@@ -39,6 +48,8 @@ class VisionApiClient:
                 "pose": pose,
                 "support_required": support_required,
                 "support_kept": support_kept,
+                "scene_level": scene_level,
+                "product_consistency": "strict",
                 "risk_tags": [str(tag) for tag in risk_tags],
                 "external_call": {
                     "provider": "openai_compatible",
@@ -68,6 +79,7 @@ class VisionApiClient:
             "background_too_blurry",
             "hair_edge_lighting_mismatch",
             "support_logic_error",
+            "scene_level_mismatch",
         }
         prompt = (
             "You are a strict ecommerce image quality reviewer. Compare the original "
@@ -75,14 +87,20 @@ class VisionApiClient:
             "replacement is intentional, so do not treat scene change or background "
             "replacement as a risk by itself. Review or fail only when the product, "
             "model identity, face, pose, support logic, edge quality, lighting match, "
-            "or background clarity is visibly wrong. Return strict JSON only with "
-            "keys: status ('pass'|'review'|'fail'), reason_zh, suggestion_zh, "
-            "risk_tags. Use risk_tags only from: product_changed, face_changed, "
+            "scene level, or background clarity is visibly wrong. Product consistency "
+            "is the highest priority: product shape, logos, patterns, shoe shape, face, "
+            "and pose must not change. Scene hierarchy is: L1_product_safe for clean "
+            "commercial backgrounds, L2_pose_matched for support/pose-matched scenes, "
+            "and L3_contextual for richer outdoor context. Fail identity/product/support "
+            "breakage; review weaker lighting, edge, or scene-level mismatch. Return "
+            "strict JSON only with keys: status ('pass'|'review'|'fail'), reason_zh, "
+            "reason_en, suggestion_zh, suggestion_en, risk_tags. Use risk_tags only from: "
+            "product_changed, face_changed, "
             "pose_changed, edge_halo, edge_green_spill, edge_feather_too_hard, "
             "edge_feather_too_soft, lighting_mismatch, background_too_blurry, "
-            "hair_edge_lighting_mismatch, support_logic_error. Product shape, logos, "
-            "patterns, shoe shape, face, and pose must not change. Slight brightness "
-            "and color temperature changes are acceptable. Be precise in Chinese. "
+            "hair_edge_lighting_mismatch, support_logic_error, scene_level_mismatch. "
+            "Slight brightness and color temperature changes are acceptable. Be precise "
+            "in both Chinese and English. "
             "Existing local assessment: "
             f"{json.dumps(payload, ensure_ascii=False)}"
         )
@@ -93,8 +111,12 @@ class VisionApiClient:
                 merged["status"] = result["status"]
             if result.get("reason_zh"):
                 merged["reason"] = str(result["reason_zh"])
+            if result.get("reason_en"):
+                merged["reason_en"] = str(result["reason_en"])
             if result.get("suggestion_zh"):
                 merged["suggestion"] = str(result["suggestion_zh"])
+            if result.get("suggestion_en"):
+                merged["suggestion_en"] = str(result["suggestion_en"])
             if isinstance(result.get("risk_tags"), list):
                 merged["risk_tags"] = [
                     tag
@@ -142,6 +164,8 @@ class VisionApiClient:
             "pose": pose,
             "support_required": support_required,
             "support_kept": support_required,
+            "scene_level": "L1_product_safe",
+            "product_consistency": "strict",
             "risk_tags": risk_tags,
             "external_call": {
                 "provider": "local_fallback",
@@ -177,14 +201,24 @@ class VisionApiClient:
             "Authorization": f"Bearer {self._api_key()}",
             "Content-Type": "application/json",
         }
-        async with httpx.AsyncClient(timeout=120) as client:
-            response = await client.post(
-                f"{self._base_url()}/responses", headers=headers, json=payload
-            )
-            response.raise_for_status()
-        data = response.json()
-        text = self._extract_output_text(data)
-        return json.loads(text)
+        attempts = max(1, settings.vision_api_retries + 1)
+        last_error: Exception | None = None
+        for attempt in range(1, attempts + 1):
+            try:
+                async with httpx.AsyncClient(timeout=settings.vision_api_timeout_seconds) as client:
+                    response = await client.post(
+                        f"{self._base_url()}/responses", headers=headers, json=payload
+                    )
+                    response.raise_for_status()
+                data = response.json()
+                text = self._extract_output_text(data)
+                return self._loads_json_object(text)
+            except (httpx.HTTPError, json.JSONDecodeError, ValueError) as exc:
+                last_error = exc
+                if attempt >= attempts:
+                    break
+                await asyncio.sleep(min(0.5 * attempt, 2.0))
+        raise RuntimeError(f"Vision API JSON call failed after {attempts} attempt(s): {last_error}")
 
     def _extract_output_text(self, response: dict) -> str:
         if isinstance(response.get("output_text"), str):
@@ -194,3 +228,17 @@ class VisionApiClient:
                 if content.get("type") in {"output_text", "text"} and content.get("text"):
                     return content["text"]
         raise ValueError("Vision API response did not include output text.")
+
+    def _loads_json_object(self, text: str) -> dict:
+        text = text.strip()
+        try:
+            parsed = json.loads(text)
+        except json.JSONDecodeError:
+            start = text.find("{")
+            end = text.rfind("}")
+            if start < 0 or end <= start:
+                raise
+            parsed = json.loads(text[start:end + 1])
+        if not isinstance(parsed, dict):
+            raise ValueError("Vision API response JSON was not an object.")
+        return parsed

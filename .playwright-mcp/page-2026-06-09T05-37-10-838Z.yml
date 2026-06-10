@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - button "add 新建批次" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: 新建批次
+    - navigation "主导航" [ref=e12]:
+      - link "folder_copy 项目" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e14]: folder_copy
+        - text: 项目
+      - link "add_photo_alternate 导入" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e16]: add_photo_alternate
+        - text: 导入
+      - link "auto_awesome 生成" [ref=e17] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e18]: auto_awesome
+        - text: 生成
+      - link "fact_check 复核" [ref=e19] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e20]: fact_check
+        - text: 复核
+      - link "wallpaper 背景库" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e22]: wallpaper
+        - text: 背景库
+    - generic [ref=e23]:
+      - link "settings 设置" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e25]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e27]: help
+        - text: 帮助
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "搜索工作台..." [ref=e31]
+    - generic [ref=e32]:
+      - link "切换到英文" [ref=e33] [cursor=pointer]:
+        - /url: /import?lang=en
+      - button "通知" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "账户" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: 导入
+          - heading "素材导入" [level=1] [ref=e43]
+          - paragraph [ref=e44]: 按照 PhotoRoom 式流程处理商品图：上传 1 到 8 张图片，先抠图，再选背景、调光影，最后进入复核导出。
+        - generic [ref=e45]:
+          - article [ref=e46]:
+            - generic [ref=e47]: upload_file
+            - strong [ref=e48]: 上传图片
+            - text: 单张或批量上传
+          - article [ref=e49]:
+            - generic [ref=e50]: layers_clear
+            - strong [ref=e51]: 移除背景
+            - text: 预留 PhotoRoom 抠图接口
+          - article [ref=e52]:
+            - generic [ref=e53]: wallpaper
+            - strong [ref=e54]: 选择背景
+            - text: 背景图或 AI 背景提示词
+          - article [ref=e55]:
+            - generic [ref=e56]: wb_twilight
+            - strong [ref=e57]: 光影与阴影
+            - text: 预留调光和柔影参数
+          - article [ref=e58]:
+            - generic [ref=e59]: ios_share
+            - strong [ref=e60]: 复核导出
+            - text: 查看结果并下载
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]:
+              - strong [ref=e64]: 本机文件选择
+              - generic [ref=e65]: 浏览器上传不方便时，可用本地选择器。
+            - button "folder_open 选择图片" [ref=e66] [cursor=pointer]:
+              - generic [ref=e67]: folder_open
+              - text: 选择图片
+          - generic [ref=e68]:
+            - generic [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]: cloud_upload
+              - strong [ref=e71]: 拖拽上传素材
+              - emphasis [ref=e72]: 支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 8 张。
+            - button "cloud_upload 拖拽上传素材 支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 8 张。" [ref=e73]
+            - generic [ref=e74]: 尚未选择图片。
+            - list
+            - button "model_training 开始批量生成" [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: model_training
+              - text: 开始批量生成
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - heading "api API 接入准备" [level=2] [ref=e79]:
+              - generic [ref=e80]: api
+              - text: API 接入准备
+            - button "刷新状态" [ref=e81] [cursor=pointer]
+          - paragraph [ref=e82]: 前端已连接状态查询和工具端点；填入密钥后即可调用。
+          - generic [ref=e83]:
+            - text: 接口状态
+            - strong [ref=e84]: 未配置
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - text: 图片路径
+              - textbox "图片路径" [ref=e87]:
+                - /placeholder: data/batches/example/input/input_01.png
+            - generic [ref=e88]:
+              - text: 背景提示词
+              - textbox "背景提示词" [ref=e89]:
+                - /placeholder: 干净的电商棚拍背景
+          - generic [ref=e90]:
+            - button "layers_clear 测试抠图接口" [ref=e91] [cursor=pointer]:
+              - generic [ref=e92]: layers_clear
+              - text: 测试抠图接口
+            - button "auto_fix_high 测试编辑接口" [ref=e93] [cursor=pointer]:
+              - generic [ref=e94]: auto_fix_high
+              - text: 测试编辑接口
+          - generic [ref=e95]: 选择本地结果路径后，可从这里调用后端工具。
+      - complementary [ref=e96]:
+        - heading "rule 输入检查" [level=2] [ref=e97]:
+          - generic [ref=e98]: rule
+          - text: 输入检查
+        - generic [ref=e99]: 支持 1 到 8 张图片
+        - generic [ref=e101]: 支持绿幕或白底输入
+        - generic [ref=e103]: 处理中请勿重复提交
+        - generic [ref=e105]:
+          - heading "PhotoRoom 式流程" [level=3] [ref=e106]
+          - paragraph [ref=e107]: 上传、抠图、背景、光影、阴影、复核、导出。
+        - generic [ref=e108]:
+          - heading "API 接入准备" [level=3] [ref=e109]
+          - paragraph [ref=e110]: 需要在 .env 配置 PHOTOROOM_API_KEY。

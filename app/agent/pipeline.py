@@ -126,11 +126,14 @@ async def _process_item(
     pose = analysis["pose"]
     support_required = bool(analysis["support_required"])
     support_kept = bool(analysis["support_kept"])
+    scene_level = str(analysis.get("scene_level", "L1_product_safe"))
     risk_tags = list(analysis.get("risk_tags", []))
     item.external_calls.append(analysis["external_call"])
 
     best_report: tuple[
         ItemStatus,
+        str,
+        str,
         str,
         str,
         list[str],
@@ -150,6 +153,7 @@ async def _process_item(
             risk_tags,
             item.index + attempt - 1,
             used_background_ids,
+            scene_level,
         )
         bg_path = background_path(background)
         if not bg_path.exists():
@@ -224,6 +228,9 @@ async def _process_item(
             "risk_tags": evaluated_risks,
             "background_id": background.id,
             "pose": pose,
+            "scene_level": background.scene_level,
+            "target_scene_level": scene_level,
+            "product_consistency": "strict",
         }
         quality_payload = await vision.explain_quality(
             quality_payload, input_path, protected_final_path
@@ -232,7 +239,9 @@ async def _process_item(
             item.external_calls.append(quality_payload["external_call"])
         status = _status_from_value(str(quality_payload.get("status", _status_value(status))))
         reason = str(quality_payload.get("reason", reason))
+        reason_en = str(quality_payload.get("reason_en", ""))
         suggestion = str(quality_payload.get("suggestion", suggestion))
+        suggestion_en = str(quality_payload.get("suggestion_en", ""))
         evaluated_risks = [
             str(tag) for tag in quality_payload.get("risk_tags", evaluated_risks)
         ]
@@ -254,7 +263,9 @@ async def _process_item(
         best_report = (
             status,
             reason,
+            reason_en,
             suggestion,
+            suggestion_en,
             evaluated_risks,
             protected_final_path,
             debug,
@@ -272,7 +283,9 @@ async def _process_item(
     (
         status,
         reason,
+        reason_en,
         suggestion,
+        suggestion_en,
         evaluated_risks,
         final_debug_path,
         debug,
@@ -286,7 +299,9 @@ async def _process_item(
     item.final = _relative_to_batch(batch_id, final_path)
     item.background_id = background_id
     item.reason = reason
+    item.reason_en = reason_en
     item.suggestion = suggestion
+    item.suggestion_en = suggestion_en
     item.risk_tags = evaluated_risks
     item.debug = {key: _relative_to_batch(batch_id, Path(value)) for key, value in debug.items()}
     item.metrics = metrics

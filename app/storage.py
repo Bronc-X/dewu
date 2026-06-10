@@ -40,8 +40,9 @@ def report_path(batch_id: str) -> Path:
     return get_batch_paths(batch_id).root / "report.json"
 
 
-def html_report_path(batch_id: str) -> Path:
-    return get_batch_paths(batch_id).root / "report.html"
+def html_report_path(batch_id: str, lang: str = "zh") -> Path:
+    suffix = "en" if lang == "en" else "zh"
+    return get_batch_paths(batch_id).root / f"report_{suffix}.html"
 
 
 def zip_path(batch_id: str) -> Path:

@@ -1,52 +1,84 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="{{ t.html_lang }}">
   <head>
     <meta charset="utf-8">
-    <title>批次 {{ report.batch_id }} 报告</title>
-    <link rel="stylesheet" href="../../app/web/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ report.batch_id }} - {{ t.title }}</title>
+    <style>
+      :root { color-scheme: dark; --surface: #0b1326; --panel: rgba(23,31,51,.68); --text: #dae2fd; --muted: #b9cacb; --cyan: #7df4ff; --pink: #fface8; --line: rgba(255,255,255,.1); }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; font-family: "Hanken Grotesk", "Noto Sans SC", "Microsoft YaHei", sans-serif; background: radial-gradient(circle at 15% 20%, rgba(0,219,233,.09), transparent 28%), var(--surface); color: var(--text); }
+      main { width: min(1180px, calc(100vw - 48px)); margin: 0 auto; padding: 40px 0 56px; }
+      header { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
+      h1 { margin: 0; font-size: 32px; line-height: 1.2; }
+      header p { margin: 8px 0 0; color: var(--muted); }
+      .summary { display: flex; gap: 10px; flex-wrap: wrap; }
+      .summary span, .status { padding: 7px 10px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--line); color: var(--cyan); font-size: 12px; font-weight: 800; }
+      .grid { display: grid; gap: 18px; }
+      .card { border: 1px solid var(--line); border-top-color: rgba(255,255,255,.2); border-radius: 18px; background: var(--panel); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.22); }
+      .compare-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); }
+      figure { margin: 0; min-height: 220px; background: rgba(255,255,255,.04); position: relative; }
+      img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; }
+      figcaption { position: absolute; left: 10px; top: 10px; padding: 6px 9px; border-radius: 999px; background: rgba(11,19,38,.72); border: 1px solid var(--line); color: var(--cyan); font-size: 11px; font-weight: 800; }
+      .card-body { padding: 18px; display: grid; gap: 10px; }
+      h2 { margin: 0; font-size: 20px; }
+      p { margin: 0; color: var(--muted); line-height: 1.55; }
+      .suggestion { color: var(--pink); }
+      .metrics { color: rgba(218,226,253,.78); font-size: 13px; }
+      @media (max-width: 760px) { header { display: block; } .summary { margin-top: 14px; } .compare-strip { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    </style>
   </head>
   <body>
-    <main class="page">
-      <h1>批次 {{ report.batch_id }} 报告</h1>
-      <p>通过 {{ report.pass_count }}，可参考 {{ report.review_count }}，未通过 {{ report.fail_count }}</p>
+    <main>
+      <header>
+        <div>
+          <h1>{{ t.title }}</h1>
+          <p>{{ report.batch_id }}</p>
+        </div>
+        <div class="summary">
+          <span>{{ t.pass }} {{ report.pass_count }}</span>
+          <span>{{ t.review }} {{ report.review_count }}</span>
+          <span>{{ t.fail }} {{ report.fail_count }}</span>
+        </div>
+      </header>
       <section class="grid">
-        {% for item in report.items %}
-        <article class="card status-{{ item.status.value }}">
+        {% for item in items %}
+        <article class="card status-{{ item.status }}">
           <div class="compare-strip">
             <figure>
-              <img src="{{ item.input }}" alt="原图 {{ item.index }}">
-              <figcaption>原图</figcaption>
+              <img src="{{ item.input }}" alt="{{ t.original }} {{ item.index }}">
+              <figcaption>{{ t.original }}</figcaption>
             </figure>
             {% if item.debug.alpha %}
             <figure>
-              <img src="{{ item.debug.alpha }}" alt="Alpha {{ item.index }}">
-              <figcaption>抠图</figcaption>
+              <img src="{{ item.debug.alpha }}" alt="{{ t.matte }} {{ item.index }}">
+              <figcaption>{{ t.matte }}</figcaption>
             </figure>
             {% endif %}
             {% if item.debug.composite %}
             <figure>
-              <img src="{{ item.debug.composite }}" alt="初合成 {{ item.index }}">
-              <figcaption>初合成</figcaption>
+              <img src="{{ item.debug.composite }}" alt="{{ t.composite }} {{ item.index }}">
+              <figcaption>{{ t.composite }}</figcaption>
             </figure>
             {% endif %}
             {% if item.final %}
             <figure>
-              <img src="{{ item.final }}" alt="最终图 {{ item.index }}">
-              <figcaption>最终</figcaption>
+              <img src="{{ item.final }}" alt="{{ t.final }} {{ item.index }}">
+              <figcaption>{{ t.final }}</figcaption>
             </figure>
             {% endif %}
           </div>
           <div class="card-body">
-            <div class="status">{{ item.status.value }}</div>
-            <h2>图片 {{ item.index }}</h2>
-            <p>{{ item.reason }}</p>
-            <p class="suggestion">{{ item.suggestion }}</p>
-            <p>背景：{{ item.background_id }}，耗时：{{ item.elapsed_seconds }} 秒</p>
+            <div class="status">{{ item.status_label }}</div>
+            <h2>{{ t.image }} {{ item.index }}</h2>
+            <p>{{ item.reason_label }}</p>
+            <p class="suggestion">{{ item.suggestion_label }}</p>
+            <p>{{ t.background }}: {{ item.background_id or "-" }} / {{ t.elapsed }}: {{ item.elapsed_seconds }}{{ t.seconds }}</p>
             {% if item.metrics %}
-            <p class="metrics">商品变化分：{{ item.metrics.product_change_score | default("-") }}；回退基线：{{ item.metrics.product_change_fallback_score | default("-") }}</p>
+            <p class="metrics">{{ t.product_change_score }}: {{ item.metrics.product_change_score | default("-") }} / {{ t.fallback_score }}: {{ item.metrics.product_change_fallback_score | default("-") }}</p>
             {% endif %}
             {% if item.guardrails %}
-            <p class="metrics">保护：{{ item.guardrails[0].selected }}{% if item.guardrails[0].reverted %}，已回退{% endif %}</p>
+            <p class="metrics">{{ t.protection }}: {{ item.guardrails[0].selected }}{% if item.guardrails[0].reverted %} / {{ t.reverted }}{% endif %}</p>
             {% endif %}
           </div>
         </article>

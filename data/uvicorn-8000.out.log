@@ -1,0 +1,21 @@
+INFO:     127.0.0.1:62042 - "GET /import?lang=zh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57267 - "GET /import?lang=zh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57267 - "GET /static/styles.css?v=20260609-photoroom-ready HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:52234 - "GET /static/workbench.js?v=20260609-photoroom-ready HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:52234 - "GET /api/providers/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52234 - "GET /favicon.ico HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:59946 - "GET /import?lang=en HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59946 - "GET /api/providers/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59946 - "GET /favicon.ico HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:65043 - "GET /?lang=zh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65043 - "GET /?lang=en HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65043 - "GET /import?lang=zh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65043 - "GET /import?lang=en HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65043 - "GET /settings?lang=zh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65043 - "GET /settings?lang=en HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65043 - "GET /api/providers/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52739 - "GET /import?lang=zh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52739 - "GET /static/styles.css?v=20260609-photoroom-ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63983 - "GET /static/workbench.js?v=20260609-photoroom-ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52739 - "GET /api/providers/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52739 - "GET /favicon.ico HTTP/1.1" 204 No Content

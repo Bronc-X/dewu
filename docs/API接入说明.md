@@ -161,6 +161,8 @@ POST /batches/{batch_id}/open-folder
 POST /batches/{batch_id}/open-file
 ```
 
+`POST /batches` 支持上传 1 到 `MAX_IMAGES_PER_BATCH` 张图片，默认上限为 8 张；不再要求一次必须上传满 8 张。
+
 ## 7. 前端接入建议
 
 前端不要直接保存任何第三方 API key。推荐链路：

@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - button "add 新建批次" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: 新建批次
+    - navigation "主导航" [ref=e12]:
+      - link "folder_copy 项目" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e14]: folder_copy
+        - text: 项目
+      - link "add_photo_alternate 导入" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e16]: add_photo_alternate
+        - text: 导入
+      - link "auto_awesome 生成" [ref=e17] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e18]: auto_awesome
+        - text: 生成
+      - link "fact_check 复核" [ref=e19] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e20]: fact_check
+        - text: 复核
+      - link "wallpaper 背景库" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e22]: wallpaper
+        - text: 背景库
+    - generic [ref=e23]:
+      - link "settings 设置" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e25]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e27]: help
+        - text: 帮助
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "搜索工作台..." [ref=e31]
+    - generic [ref=e32]:
+      - link "切换到英文" [ref=e33] [cursor=pointer]:
+        - /url: /import?lang=en
+      - button "通知" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "账户" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: 导入
+          - heading "素材导入" [level=1] [ref=e43]
+          - paragraph [ref=e44]: 按照 PhotoRoom 式流程处理商品图：上传 1 到 8 张图片，先抠图，再选背景、调光影，最后进入复核导出。
+        - generic [ref=e45]:
+          - article [ref=e46]:
+            - generic [ref=e47]: upload_file
+            - strong [ref=e48]: 上传图片
+            - generic [ref=e49]: 单张或批量上传
+          - article [ref=e50]:
+            - generic [ref=e51]: layers_clear
+            - strong [ref=e52]: 移除背景
+            - generic [ref=e53]: 预留 PhotoRoom 抠图接口
+          - article [ref=e54]:
+            - generic [ref=e55]: wallpaper
+            - strong [ref=e56]: 选择背景
+            - generic [ref=e57]: 背景图或 AI 背景提示词
+          - article [ref=e58]:
+            - generic [ref=e59]: wb_twilight
+            - strong [ref=e60]: 光影与阴影
+            - generic [ref=e61]: 预留调光和柔影参数
+          - article [ref=e62]:
+            - generic [ref=e63]: ios_share
+            - strong [ref=e64]: 复核导出
+            - generic [ref=e65]: 查看结果并下载
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - strong [ref=e69]: 本机文件选择
+              - generic [ref=e70]: 浏览器上传不方便时，可用本地选择器。
+            - button "folder_open 选择图片" [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]: folder_open
+              - text: 选择图片
+          - generic [ref=e73]:
+            - generic [ref=e74] [cursor=pointer]:
+              - generic [ref=e75]: cloud_upload
+              - strong [ref=e76]: 拖拽上传素材
+              - emphasis [ref=e77]: 支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 8 张。
+            - button "cloud_upload 拖拽上传素材 支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 8 张。" [ref=e78]
+            - generic [ref=e79]: 尚未选择图片。
+            - list
+            - button "model_training 开始批量生成" [ref=e80] [cursor=pointer]:
+              - generic [ref=e81]: model_training
+              - text: 开始批量生成
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - heading "api API 接入准备" [level=2] [ref=e84]:
+              - generic [ref=e85]: api
+              - text: API 接入准备
+            - button "刷新状态" [ref=e86] [cursor=pointer]
+          - paragraph [ref=e87]: 前端已连接状态查询和工具端点；填入密钥后即可调用。
+          - generic [ref=e88]:
+            - generic [ref=e89]: 接口状态
+            - strong [ref=e90]: 未配置
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]: 图片路径
+              - textbox "图片路径" [ref=e94]:
+                - /placeholder: data/batches/example/input/input_01.png
+            - generic [ref=e95]:
+              - generic [ref=e96]: 背景提示词
+              - textbox "背景提示词" [ref=e97]:
+                - /placeholder: 干净的电商棚拍背景
+          - generic [ref=e98]:
+            - button "layers_clear 测试抠图接口" [ref=e99] [cursor=pointer]:
+              - generic [ref=e100]: layers_clear
+              - text: 测试抠图接口
+            - button "auto_fix_high 测试编辑接口" [ref=e101] [cursor=pointer]:
+              - generic [ref=e102]: auto_fix_high
+              - text: 测试编辑接口
+          - generic [ref=e103]: "{ \"providers\": [ { \"provider\": \"photoroom\", \"configured\": false, \"required_env\": [ \"PHOTOROOM_API_KEY\" ], \"capabilities\": [ \"remove_background\", \"segmentation_alpha\", \"static_background\", \"ai_background\", \"ai_relight\", \"ai_shadow\" ], \"endpoints\": { \"remove_background\": \"https://sdk.photoroom.com/v1/segment\", \"image_editing\": \"https://image-api.photoroom.com/v2/edit\" } }, { \"provider\": \"adobe_firefly\", \"configured\": false, \"required_env\": [ \"ADOBE_CLIENT_ID\", \"ADOBE_CLIENT_SECRET\" ], \"capabilities\": [ \"generate_background\", \"expand_image\", \"fill_image\" ], \"endpoints\": { \"generate_background_async\": \"https://firefly-api.adobe.io/v3/images/generate-async\" } }, { \"provider\": \"adobe_photoshop\", \"configured\": false, \"required_env\": [ \"ADOBE_CLIENT_ID\", \"ADOBE_CLIENT_SECRET\" ], \"capabilities\": [ \"remove_background_from_signed_url\", \"mask_from_signed_url\" ], \"endpoints\": { \"remove_background\": \"https://image.adobe.io/v2/remove-background\", \"status\": \"https://image.adobe.io/v2/status/{jobId}\" }, \"notes\": \"Adobe Photoshop API requires externally reachable signed source/output URLs.\" } ] }"
+      - complementary [ref=e104]:
+        - heading "rule 输入检查" [level=2] [ref=e105]:
+          - generic [ref=e106]: rule
+          - text: 输入检查
+        - generic [ref=e107]: 支持 1 到 8 张图片
+        - generic [ref=e109]: 支持绿幕或白底输入
+        - generic [ref=e111]: 处理中请勿重复提交
+        - generic [ref=e113]:
+          - heading "PhotoRoom 式流程" [level=3] [ref=e114]
+          - paragraph [ref=e115]: 上传、抠图、背景、光影、阴影、复核、导出。
+        - generic [ref=e116]:
+          - heading "API 接入准备" [level=3] [ref=e117]
+          - paragraph [ref=e118]: 需要在 .env 配置 PHOTOROOM_API_KEY。

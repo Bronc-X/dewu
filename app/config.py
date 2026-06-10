@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     vision_api_base_url: str = ""
     vision_api_key: str = ""
     vision_model: str = "gpt-4.1-mini"
+    vision_api_retries: int = 2
+    vision_api_timeout_seconds: float = 120
     image_api_base_url: str = ""
     image_api_key: str = ""
     image_model: str = "gpt-image-1.5"
@@ -30,6 +32,7 @@ class Settings(BaseSettings):
     adobe_photoshop_base_url: str = "https://image.adobe.io"
     adobe_job_poll_attempts: int = 40
     adobe_job_poll_interval_seconds: float = 3
+    min_images_per_batch: int = 1
     max_images_per_batch: int = 8
     max_retries_per_image: int = 1
     processing_long_edge: int = 1800

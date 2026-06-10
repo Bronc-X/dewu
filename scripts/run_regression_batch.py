@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from app.agent.pipeline import process_batch
+from app.config import settings
 from app.models import BatchReport, BatchStatus, ImageItemReport
 from app.storage import create_batch_dirs, load_report, save_report
 
@@ -24,17 +25,20 @@ def _collect_images(input_dir: Path) -> list[Path]:
         for path in sorted(input_dir.iterdir())
         if path.is_file() and path.suffix.lower() in SUPPORTED_SUFFIXES
     ]
-    if len(files) != 8:
-        raise ValueError(f"回归样本必须正好 8 张，当前 {len(files)} 张：{input_dir}")
+    if not settings.min_images_per_batch <= len(files) <= settings.max_images_per_batch:
+        raise ValueError(
+            f"回归样本必须为 {settings.min_images_per_batch} 到 {settings.max_images_per_batch} 张，"
+            f"当前 {len(files)} 张：{input_dir}"
+        )
     return files
 
 
 async def main() -> None:
-    parser = argparse.ArgumentParser(description="Run the fixed 8-image regression batch.")
+    parser = argparse.ArgumentParser(description="Run a configured-size regression batch.")
     parser.add_argument(
         "--input-dir",
         default="data/regression_cases/default",
-        help="Directory containing exactly 8 regression images.",
+        help="Directory containing 1 to the configured maximum number of regression images.",
     )
     parser.add_argument(
         "--batch-id",

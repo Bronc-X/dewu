@@ -27,6 +27,7 @@ from app.models import (
     BatchReport,
     BatchStatus,
     ImageItemReport,
+    ItemStatus,
     PhotoRoomEditRequest,
     PhotoRoomMattingRequest,
     ProjectCreateRequest,
@@ -106,19 +107,42 @@ UI_TEXT = {
         "recent_batches": "最近批次",
         "no_attached_batches": "暂无绑定批次。",
         "asset_import": "素材导入",
-        "import_intro": "一次上传指定数量的商品图，后端会创建批次并启动生成管线。",
+        "import_intro": "按照影棚工具式流程处理商品图：上传 1 到 8 张图片，先抠图，再选背景、调光影，最后进入复核导出。",
         "local_picker": "本机文件选择",
         "local_picker_hint": "浏览器上传不方便时，可用本地选择器。",
         "select_images": "选择图片",
         "drop_title": "拖拽上传素材",
-        "drop_hint": "支持 PNG、JPG、JPEG、WEBP，数量必须符合批次要求。",
+        "drop_hint": "支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 8 张。",
         "no_images": "尚未选择图片。",
         "start_generation": "开始批量生成",
         "input_check": "输入检查",
-        "exact_required": "图片数量必须符合批次要求",
+        "exact_required": "支持 1 到 8 张图片",
         "screen_supported": "支持绿幕或白底输入",
         "avoid_duplicate": "处理中请勿重复提交",
-        "pipeline_summary": "主体识别、抠图、背景匹配、合成、光影修复、质检、导出。",
+        "pipeline_summary": "上传、抠图、背景、光影、阴影、复核、导出。",
+        "photoroom_workflow": "PhotoRoom 式流程",
+        "workflow_upload": "上传图片",
+        "workflow_upload_hint": "单张或批量上传",
+        "workflow_cutout": "移除背景",
+        "workflow_cutout_hint": "预留抠图接口",
+        "workflow_background": "选择背景",
+        "workflow_background_hint": "背景图或智能背景提示词",
+        "workflow_relight": "光影与阴影",
+        "workflow_relight_hint": "预留调光和柔影参数",
+        "workflow_export": "复核导出",
+        "workflow_export_hint": "查看结果并下载",
+        "api_ready": "接口接入准备",
+        "api_ready_hint": "前端已连接状态查询和工具端点；填入密钥后即可调用。",
+        "api_status": "接口状态",
+        "api_configured": "已配置",
+        "api_unconfigured": "未配置",
+        "api_refresh": "刷新状态",
+        "api_remove_bg": "测试抠图",
+        "api_edit": "测试编辑",
+        "api_image_path": "图片路径",
+        "api_background_prompt": "背景提示词",
+        "api_result_placeholder": "选择本地结果路径后，可从这里调用后端工具。",
+        "api_key_required": "需要在 .env 配置 PhotoRoom 密钥。",
         "background_title": "背景库",
         "background_intro": "预览当前固定背景资源，生成时由后端自动匹配。",
         "no_backgrounds": "背景库为空",
@@ -175,6 +199,13 @@ UI_TEXT = {
         "project": "项目",
         "main_navigation": "主导航",
         "compare_label": "拖动查看前后对比",
+        "lighting_metric": "光照",
+        "edge_metric": "边缘",
+        "alignment_metric": "对齐",
+        "scene_level": "场景等级",
+        "priority": "优先级",
+        "selected_language": "中文",
+        "switch_language": "切换到英文",
     },
     "en": {
         "html_lang": "en",
@@ -211,19 +242,42 @@ UI_TEXT = {
         "recent_batches": "Recent Batches",
         "no_attached_batches": "No attached batches.",
         "asset_import": "Asset Import",
-        "import_intro": "Upload the required number of product photos. The backend will create a batch and start the pipeline.",
+        "import_intro": "Use a PhotoRoom-style flow: upload 1 to 8 product photos, remove the background, choose a background, relight, then review and export.",
         "local_picker": "Local File Picker",
         "local_picker_hint": "Use the local picker when browser upload is inconvenient.",
         "select_images": "Select Images",
         "drop_title": "Drag & Drop Assets",
-        "drop_hint": "PNG, JPG, JPEG, and WEBP are supported. The count must match the batch requirement.",
+        "drop_hint": "PNG, JPG, JPEG, and WEBP are supported. One image is enough, up to 8 images.",
         "no_images": "No images selected.",
         "start_generation": "Start Batch Generation",
         "input_check": "Input Check",
-        "exact_required": "Image count must match the batch requirement",
+        "exact_required": "Accepts 1 to 8 images",
         "screen_supported": "Green screen and white background inputs are supported",
         "avoid_duplicate": "Avoid duplicate submit while processing",
-        "pipeline_summary": "Subject analysis, matting, background match, composition, lighting repair, QC, export.",
+        "pipeline_summary": "Upload, cutout, background, relight, shadow, review, export.",
+        "photoroom_workflow": "PhotoRoom-Style Flow",
+        "workflow_upload": "Upload Images",
+        "workflow_upload_hint": "Single or batch upload",
+        "workflow_cutout": "Remove Background",
+        "workflow_cutout_hint": "PhotoRoom cutout endpoint reserved",
+        "workflow_background": "Choose Background",
+        "workflow_background_hint": "Background image or AI prompt",
+        "workflow_relight": "Relight and Shadow",
+        "workflow_relight_hint": "Lighting and soft-shadow parameters reserved",
+        "workflow_export": "Review and Export",
+        "workflow_export_hint": "Inspect results and download",
+        "api_ready": "API Readiness",
+        "api_ready_hint": "The frontend is wired to status and tool endpoints. Add the API key to enable calls.",
+        "api_status": "API Status",
+        "api_configured": "Configured",
+        "api_unconfigured": "Not Configured",
+        "api_refresh": "Refresh Status",
+        "api_remove_bg": "Test Cutout API",
+        "api_edit": "Test Edit API",
+        "api_image_path": "Image Path",
+        "api_background_prompt": "Background Prompt",
+        "api_result_placeholder": "Enter a local result path to call backend tools from here.",
+        "api_key_required": "Set PHOTOROOM_API_KEY in .env.",
         "background_title": "Backgrounds",
         "background_intro": "Preview the fixed background library used by backend matching.",
         "no_backgrounds": "No backgrounds",
@@ -280,6 +334,13 @@ UI_TEXT = {
         "project": "Project",
         "main_navigation": "Main navigation",
         "compare_label": "Compare before and after",
+        "lighting_metric": "Lighting",
+        "edge_metric": "Edge",
+        "alignment_metric": "Align",
+        "scene_level": "Scene Level",
+        "priority": "Priority",
+        "selected_language": "English",
+        "switch_language": "Switch to Chinese",
     },
 }
 
@@ -287,7 +348,7 @@ UI_TEXT = {
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request) -> HTMLResponse:
     lang = _ui_lang(request)
-    latest_batch = _latest_batch_summary()
+    latest_batch = _latest_batch_summary(lang)
     projects = _localized_projects(list_projects(), lang)
     return templates.TemplateResponse(
         "index.html",
@@ -299,6 +360,7 @@ def index(request: Request) -> HTMLResponse:
             "provider_status": provider_status(),
             "latest_batch": latest_batch,
             "active_nav": "projects",
+            "min_images": settings.min_images_per_batch,
             "max_images": settings.max_images_per_batch,
         }),
     )
@@ -311,13 +373,11 @@ def favicon() -> Response:
 
 @app.post("/batches")
 async def create_batch(
+    request: Request,
     files: list[UploadFile] = File(...),
 ) -> RedirectResponse:
-    if len(files) != settings.max_images_per_batch:
-        raise HTTPException(
-            status_code=400,
-            detail=f"请一次上传 {settings.max_images_per_batch} 张图片。",
-        )
+    lang = _ui_lang(request)
+    _validate_batch_image_count(len(files), lang=lang)
 
     batch_id = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + uuid4().hex[:8]
     paths = create_batch_dirs(batch_id)
@@ -345,17 +405,14 @@ async def create_batch(
     )
     save_report(report)
     _start_batch_worker(batch_id)
-    return RedirectResponse(url=f"/batches/{batch_id}", status_code=303)
+    return RedirectResponse(url=f"/batches/{batch_id}?lang={lang}", status_code=303)
 
 
 @app.post("/batches/pick-local")
-def create_batch_from_local_picker() -> RedirectResponse:
+def create_batch_from_local_picker(request: Request) -> RedirectResponse:
+    lang = _ui_lang(request)
     selected = _pick_local_images()
-    if len(selected) != settings.max_images_per_batch:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Please select exactly {settings.max_images_per_batch} images.",
-        )
+    _validate_batch_image_count(len(selected), lang=lang)
 
     batch_id = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + uuid4().hex[:8]
     paths = create_batch_dirs(batch_id)
@@ -383,7 +440,7 @@ def create_batch_from_local_picker() -> RedirectResponse:
     )
     save_report(report)
     _start_batch_worker(batch_id)
-    return RedirectResponse(url=f"/batches/{batch_id}", status_code=303)
+    return RedirectResponse(url=f"/batches/{batch_id}?lang={lang}", status_code=303)
 
 
 @app.get("/projects/{project_id}", response_class=HTMLResponse)
@@ -433,6 +490,7 @@ def project_detail(request: Request, project_id: str) -> HTMLResponse:
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "projects",
+            "min_images": settings.min_images_per_batch,
             "max_images": settings.max_images_per_batch,
         }),
     )
@@ -449,6 +507,7 @@ def import_workspace(request: Request) -> HTMLResponse:
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "import",
+            "min_images": settings.min_images_per_batch,
             "max_images": settings.max_images_per_batch,
         }),
     )
@@ -456,13 +515,15 @@ def import_workspace(request: Request) -> HTMLResponse:
 
 @app.get("/backgrounds", response_class=HTMLResponse)
 def background_library(request: Request) -> HTMLResponse:
+    lang = _ui_lang(request)
     backgrounds = []
     meta_path = settings.background_dir / "backgrounds.json"
     try:
         import json
 
         payload = json.loads(meta_path.read_text(encoding="utf-8"))
-        backgrounds = payload if isinstance(payload, list) else payload.get("backgrounds", [])
+        raw_backgrounds = payload if isinstance(payload, list) else payload.get("backgrounds", [])
+        backgrounds = [_localized_background(bg, lang) for bg in raw_backgrounds]
     except Exception:
         backgrounds = []
     return templates.TemplateResponse(
@@ -471,10 +532,11 @@ def background_library(request: Request) -> HTMLResponse:
             "request": request,
             "view": "backgrounds",
             "backgrounds": backgrounds,
-            "history_items": _recent_batch_history(lang=_ui_lang(request)),
+            "history_items": _recent_batch_history(lang=lang),
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "backgrounds",
+            "min_images": settings.min_images_per_batch,
             "max_images": settings.max_images_per_batch,
         }),
     )
@@ -491,6 +553,7 @@ def settings_page(request: Request) -> HTMLResponse:
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "settings",
+            "min_images": settings.min_images_per_batch,
             "max_images": settings.max_images_per_batch,
         }),
     )
@@ -510,7 +573,7 @@ def _pick_local_images() -> list[Path]:
     try:
         filenames = filedialog.askopenfilenames(
             parent=root,
-            title="Select exactly 8 product images",
+            title=f"Select {settings.min_images_per_batch} to {settings.max_images_per_batch} product images",
             filetypes=[
                 ("Image files", "*.png *.jpg *.jpeg *.webp"),
                 ("All files", "*.*"),
@@ -519,6 +582,18 @@ def _pick_local_images() -> list[Path]:
     finally:
         root.destroy()
     return [Path(filename) for filename in filenames]
+
+
+def _validate_batch_image_count(count: int, *, lang: str = "zh") -> None:
+    minimum = settings.min_images_per_batch
+    maximum = settings.max_images_per_batch
+    if minimum <= count <= maximum:
+        return
+    if lang == "en":
+        detail = f"Please upload {minimum} to {maximum} images."
+    else:
+        detail = f"请上传 {minimum} 到 {maximum} 张图片。"
+    raise HTTPException(status_code=400, detail=detail)
 
 
 def _start_batch_worker(batch_id: str) -> None:
@@ -578,10 +653,22 @@ def _template_context(request: Request, context: dict) -> dict:
         "lang": lang,
         "t": UI_TEXT[lang],
         "lang_switch_url": _lang_url(request, "en" if lang == "zh" else "zh"),
-        "other_lang_label": "English" if lang == "zh" else "中文",
+        "other_lang_label": UI_TEXT[lang]["switch_language"],
     }
     merged.update(context)
     return merged
+
+
+def _item_status_label(status: object, lang: str = "zh") -> str:
+    key = getattr(status, "value", str(status))
+    text = UI_TEXT.get(lang, UI_TEXT["zh"])
+    return {
+        "queued": text["queued"],
+        "processing": text["processing"],
+        "pass": text["pass"],
+        "review": text["review"],
+        "fail": text["fail"],
+    }.get(key, str(key))
 
 
 def _status_label(status: BatchStatus, lang: str = "en") -> str:
@@ -592,6 +679,68 @@ def _status_label(status: BatchStatus, lang: str = "en") -> str:
         BatchStatus.completed: text["completed_status"],
         BatchStatus.failed: text["failed"],
     }.get(status, status.value)
+
+
+def _localized_item(item: ImageItemReport, lang: str) -> dict:
+    data = item.model_dump(mode="json")
+    data["status_label"] = _item_status_label(item.status, lang)
+    data["reason_label"] = item.reason if lang == "zh" else (item.reason_en or _english_quality_reason(item))
+    data["suggestion_label"] = item.suggestion if lang == "zh" else (item.suggestion_en or _english_quality_suggestion(item))
+    return data
+
+
+def _english_quality_reason(item: ImageItemReport) -> str:
+    risks = set(item.risk_tags)
+    if "product_changed" in risks:
+        return "Protected product pixels changed too much compared with the original image."
+    if "product_change_near_limit" in risks:
+        return "Product consistency is near the review limit; inspect shape, logo, and clothing pattern."
+    if "edge_green_spill" in risks:
+        return "Foreground edges still show green-screen spill."
+    if "edge_feather_too_hard" in risks:
+        return "Foreground edges are too hard and may look pasted onto the scene."
+    if "edge_feather_too_soft" in risks:
+        return "Foreground edges are too soft and may blur fine detail."
+    if "lighting_mismatch" in risks:
+        return "Foreground and background lighting do not match closely enough."
+    if "background_too_blurry" in risks:
+        return "The background is too blurry for a reliable ecommerce result."
+    if "hair_edge_lighting_mismatch" in risks:
+        return "Hair or upper-body edge lighting does not match the surrounding scene."
+    if {"chair_logic_error", "floating_subject", "support_logic_error"} & risks:
+        return "The pose needs a visible support relationship with the selected scene."
+    if item.status == ItemStatus.fail:
+        return "The item failed the production quality gate."
+    if item.status == ItemStatus.review:
+        return "The item should be reviewed before delivery."
+    if item.status == ItemStatus.pass_:
+        return "Matting, edge quality, lighting, background clarity, and product consistency passed the local checks."
+    return "Quality analysis is not available yet."
+
+
+def _english_quality_suggestion(item: ImageItemReport) -> str:
+    risks = set(item.risk_tags)
+    if "product_changed" in risks:
+        return "Rerun with a stricter product-protection mask."
+    if "product_change_near_limit" in risks:
+        return "Inspect the product area before approving the image."
+    if "edge_green_spill" in risks:
+        return "Increase edge despill strength or use a cleaner background candidate."
+    if "edge_feather_too_hard" in risks:
+        return "Increase soft-alpha transition around hair, sleeves, and leg edges."
+    if "edge_feather_too_soft" in risks:
+        return "Narrow the feathering range while preserving high-confidence subject pixels."
+    if "lighting_mismatch" in risks:
+        return "Rerun foreground brightness and color-temperature matching."
+    if "background_too_blurry" in risks:
+        return "Use a sharper background or enhance background sharpness before rerunning."
+    if "hair_edge_lighting_mismatch" in risks:
+        return "Strengthen local hair-edge lighting and despill correction."
+    if {"chair_logic_error", "floating_subject", "support_logic_error"} & risks:
+        return "Use a steps, low-wall, bench, or chair-safe background."
+    if item.status == ItemStatus.pass_:
+        return "Ready for delivery."
+    return "Review the image and rerun with a safer scene if needed."
 
 
 def _recent_batch_history(limit: int = 14, lang: str = "en") -> list[dict[str, str | int]]:
@@ -626,8 +775,8 @@ def _recent_batch_history(limit: int = 14, lang: str = "en") -> list[dict[str, s
     return history
 
 
-def _latest_batch_summary() -> dict[str, str | int] | None:
-    history = _recent_batch_history(limit=1)
+def _latest_batch_summary(lang: str = "zh") -> dict[str, str | int] | None:
+    history = _recent_batch_history(limit=1, lang=lang)
     return history[0] if history else None
 
 
@@ -646,7 +795,7 @@ def _batch_progress(report: BatchReport) -> int:
     return max(6, min(96, round((done / report.total) * 100)))
 
 
-def _batch_context(report: BatchReport, batch_id: str) -> dict[str, object]:
+def _batch_context(report: BatchReport, batch_id: str, lang: str = "zh") -> dict[str, object]:
     report.recompute_counts()
     items_done = sum(
         1
@@ -659,14 +808,21 @@ def _batch_context(report: BatchReport, batch_id: str) -> dict[str, object]:
     )
     first_final = next((item for item in report.items if item.final), None)
     preview_items = [item for item in report.items if item.final][:8]
+    selected_item = first_final or (report.items[0] if report.items else None)
+    localized_items = [_localized_item(item, lang) for item in report.items]
+    localized_preview_items = [_localized_item(item, lang) for item in preview_items]
+    localized_selected = _localized_item(selected_item, lang) if selected_item else None
     return {
         "progress": _batch_progress(report),
         "items_done": items_done,
         "active_item": active_item,
         "first_final": first_final,
-        "preview_items": preview_items,
+        "selected_item": localized_selected,
+        "preview_items": localized_preview_items,
+        "localized_items": localized_items,
         "is_processing": report.status in {BatchStatus.queued, BatchStatus.processing},
         "zip_exists": zip_path(batch_id).exists(),
+        "batch_status_label": _status_label(report.status, lang),
     }
 
 
@@ -712,6 +868,64 @@ def _localized_projects(projects: list[ProjectRecord], lang: str) -> list[dict]:
         data["status_label"] = _project_status_label(project.status, lang)
         localized.append(data)
     return localized
+
+
+def _localized_background(raw: dict, lang: str) -> dict:
+    scene = str(raw.get("scene_type", ""))
+    ground = str(raw.get("ground_type", ""))
+    lighting = str(raw.get("lighting_direction", ""))
+    level = str(raw.get("scene_level", "L1_product_safe"))
+    data = dict(raw)
+    if lang == "zh":
+        scene_labels = {
+            "street": "街景",
+            "steps": "台阶",
+            "mountain": "山石",
+            "bench": "长椅",
+        }
+        ground_labels = {
+            "concrete": "混凝土",
+            "stone": "石材",
+            "unknown": "未知地面",
+        }
+        lighting_labels = {
+            "front_left": "左前方光",
+            "front": "正面光",
+            "side": "侧光",
+        }
+        level_labels = {
+            "L1_product_safe": "一级商品安全",
+            "L2_pose_matched": "二级姿态匹配",
+            "L3_contextual": "三级场景表达",
+        }
+    else:
+        scene_labels = {
+            "street": "Street",
+            "steps": "Steps",
+            "mountain": "Stone Outdoor",
+            "bench": "Bench",
+        }
+        ground_labels = {
+            "concrete": "Concrete",
+            "stone": "Stone",
+            "unknown": "Unknown Ground",
+        }
+        lighting_labels = {
+            "front_left": "Front-left Light",
+            "front": "Front Light",
+            "side": "Side Light",
+        }
+        level_labels = {
+            "L1_product_safe": "L1 Product Safe",
+            "L2_pose_matched": "L2 Pose Matched",
+            "L3_contextual": "L3 Contextual",
+        }
+    data["scene_type_label"] = scene_labels.get(scene, scene)
+    data["ground_type_label"] = ground_labels.get(ground, ground)
+    data["lighting_direction_label"] = lighting_labels.get(lighting, lighting)
+    data["scene_level_label"] = level_labels.get(level, level)
+    data["priority"] = raw.get("priority", 50)
+    return data
 
 
 def _load_project_or_404(project_id: str) -> ProjectRecord:
@@ -990,11 +1204,12 @@ def _open_in_file_manager(target: Path) -> None:
 
 @app.get("/batches/{batch_id}", response_class=HTMLResponse)
 def view_batch(request: Request, batch_id: str) -> HTMLResponse:
+    lang = _ui_lang(request)
     report = load_report(batch_id)
     report.recompute_counts()
     if not report_path(batch_id).exists():
         raise HTTPException(status_code=404, detail="批次不存在")
-    batch_context = _batch_context(report, batch_id)
+    batch_context = _batch_context(report, batch_id, lang)
     return templates.TemplateResponse(
         "batch.html",
         _template_context(request, {
@@ -1002,7 +1217,7 @@ def view_batch(request: Request, batch_id: str) -> HTMLResponse:
             "report": report,
             "batch_id": batch_id,
             "batch_display_time": _batch_display_time(batch_id, report_path(batch_id)),
-            "history_items": _recent_batch_history(lang=_ui_lang(request)),
+            "history_items": _recent_batch_history(lang=lang),
             "current_batch_id": batch_id,
             "zip_exists": batch_context["zip_exists"],
             "progress": batch_context["progress"],
@@ -1041,11 +1256,17 @@ def download_report_json(batch_id: str) -> FileResponse:
 
 
 @app.get("/batches/{batch_id}/report.html")
-def download_report_html(batch_id: str) -> FileResponse:
-    path = html_report_path(batch_id)
+def download_report_html(request: Request, batch_id: str) -> FileResponse:
+    lang = _ui_lang(request)
+    path = html_report_path(batch_id, lang)
+    if not path.exists() and report_path(batch_id).exists():
+        from app.agent.reporting import render_html_report
+
+        report = load_report(batch_id)
+        render_html_report(report, lang)
     if not path.exists():
         raise HTTPException(status_code=404, detail="HTML 报告不存在")
-    return FileResponse(path, filename="report.html")
+    return FileResponse(path, filename=f"report_{lang}.html")
 
 
 @app.get("/batches/{batch_id}/zip")

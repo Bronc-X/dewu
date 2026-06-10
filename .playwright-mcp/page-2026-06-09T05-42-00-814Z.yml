@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "Dewu AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=en
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: Dewu AI
+        - emphasis [ref=e8]: Creative Engine
+    - button "add New Batch" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: New Batch
+    - navigation "Main navigation" [ref=e12]:
+      - link "folder_copy Projects" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e14]: folder_copy
+        - text: Projects
+      - link "add_photo_alternate Import" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e16]: add_photo_alternate
+        - text: Import
+      - link "auto_awesome Pipeline" [ref=e17] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e18]: auto_awesome
+        - text: Pipeline
+      - link "fact_check Review" [ref=e19] [cursor=pointer]:
+        - /url: /import?lang=en
+        - generic [ref=e20]: fact_check
+        - text: Review
+      - link "wallpaper Backgrounds" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=en
+        - generic [ref=e22]: wallpaper
+        - text: Backgrounds
+    - generic [ref=e23]:
+      - link "settings Settings" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=en
+        - generic [ref=e25]: settings
+        - text: Settings
+      - link "help Support" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=en
+        - generic [ref=e27]: help
+        - text: Support
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "Search workspace..." [ref=e31]
+    - generic [ref=e32]:
+      - link "Switch to Chinese" [ref=e33] [cursor=pointer]:
+        - /url: /import?lang=zh
+      - button "Notifications" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "Account" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Import
+          - heading "Asset Import" [level=1] [ref=e43]
+          - paragraph [ref=e44]: "Use a PhotoRoom-style flow: upload 1 to 8 product photos, remove the background, choose a background, relight, then review and export."
+        - generic [ref=e45]:
+          - article [ref=e46]:
+            - generic [ref=e47]: upload_file
+            - strong [ref=e48]: Upload Images
+            - generic [ref=e49]: Single or batch upload
+          - article [ref=e50]:
+            - generic [ref=e51]: layers_clear
+            - strong [ref=e52]: Remove Background
+            - generic [ref=e53]: PhotoRoom cutout endpoint reserved
+          - article [ref=e54]:
+            - generic [ref=e55]: wallpaper
+            - strong [ref=e56]: Choose Background
+            - generic [ref=e57]: Background image or AI prompt
+          - article [ref=e58]:
+            - generic [ref=e59]: wb_twilight
+            - strong [ref=e60]: Relight and Shadow
+            - generic [ref=e61]: Lighting and soft-shadow parameters reserved
+          - article [ref=e62]:
+            - generic [ref=e63]: ios_share
+            - strong [ref=e64]: Review and Export
+            - generic [ref=e65]: Inspect results and download
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - strong [ref=e69]: Local File Picker
+              - generic [ref=e70]: Use the local picker when browser upload is inconvenient.
+            - button "folder_open Select Images" [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]: folder_open
+              - text: Select Images
+          - generic [ref=e73]:
+            - generic [ref=e74] [cursor=pointer]:
+              - generic [ref=e75]: cloud_upload
+              - strong [ref=e76]: Drag & Drop Assets
+              - emphasis [ref=e77]: PNG, JPG, JPEG, and WEBP are supported. One image is enough, up to 8 images.
+            - button "cloud_upload Drag & Drop Assets PNG, JPG, JPEG, and WEBP are supported. One image is enough, up to 8 images." [ref=e78]
+            - generic [ref=e79]: No images selected.
+            - list
+            - button "model_training Start Batch Generation" [ref=e80] [cursor=pointer]:
+              - generic [ref=e81]: model_training
+              - text: Start Batch Generation
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - heading "api API Readiness" [level=2] [ref=e84]:
+              - generic [ref=e85]: api
+              - text: API Readiness
+            - button "Refresh Status" [ref=e86] [cursor=pointer]
+          - paragraph [ref=e87]: The frontend is wired to status and tool endpoints. Add the API key to enable calls.
+          - generic [ref=e88]:
+            - generic [ref=e89]: API Status
+            - strong [ref=e90]: Not Configured
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]: Image Path
+              - textbox "Image Path" [ref=e94]:
+                - /placeholder: data/batches/example/input/input_01.png
+            - generic [ref=e95]:
+              - generic [ref=e96]: Background Prompt
+              - textbox "Background Prompt" [ref=e97]:
+                - /placeholder: clean ecommerce studio background
+          - generic [ref=e98]:
+            - button "layers_clear Test Cutout API" [ref=e99] [cursor=pointer]:
+              - generic [ref=e100]: layers_clear
+              - text: Test Cutout API
+            - button "auto_fix_high Test Edit API" [ref=e101] [cursor=pointer]:
+              - generic [ref=e102]: auto_fix_high
+              - text: Test Edit API
+          - generic [ref=e103]: "{ \"providers\": [ { \"provider\": \"photoroom\", \"configured\": false, \"required_env\": [ \"PHOTOROOM_API_KEY\" ], \"capabilities\": [ \"remove_background\", \"segmentation_alpha\", \"static_background\", \"ai_background\", \"ai_relight\", \"ai_shadow\" ], \"endpoints\": { \"remove_background\": \"https://sdk.photoroom.com/v1/segment\", \"image_editing\": \"https://image-api.photoroom.com/v2/edit\" } }, { \"provider\": \"adobe_firefly\", \"configured\": false, \"required_env\": [ \"ADOBE_CLIENT_ID\", \"ADOBE_CLIENT_SECRET\" ], \"capabilities\": [ \"generate_background\", \"expand_image\", \"fill_image\" ], \"endpoints\": { \"generate_background_async\": \"https://firefly-api.adobe.io/v3/images/generate-async\" } }, { \"provider\": \"adobe_photoshop\", \"configured\": false, \"required_env\": [ \"ADOBE_CLIENT_ID\", \"ADOBE_CLIENT_SECRET\" ], \"capabilities\": [ \"remove_background_from_signed_url\", \"mask_from_signed_url\" ], \"endpoints\": { \"remove_background\": \"https://image.adobe.io/v2/remove-background\", \"status\": \"https://image.adobe.io/v2/status/{jobId}\" }, \"notes\": \"Adobe Photoshop API requires externally reachable signed source/output URLs.\" } ] }"
+      - complementary [ref=e104]:
+        - heading "rule Input Check" [level=2] [ref=e105]:
+          - generic [ref=e106]: rule
+          - text: Input Check
+        - generic [ref=e107]: Accepts 1 to 8 images
+        - generic [ref=e109]: Green screen and white background inputs are supported
+        - generic [ref=e111]: Avoid duplicate submit while processing
+        - generic [ref=e113]:
+          - heading "PhotoRoom-Style Flow" [level=3] [ref=e114]
+          - paragraph [ref=e115]: Upload, cutout, background, relight, shadow, review, export.
+        - generic [ref=e116]:
+          - heading "API Readiness" [level=3] [ref=e117]
+          - paragraph [ref=e118]: Set PHOTOROOM_API_KEY in .env.

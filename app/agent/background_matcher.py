@@ -4,6 +4,12 @@ from pathlib import Path
 from app.config import settings
 from app.models import BackgroundMeta
 
+SCENE_LEVEL_ORDER = {
+    "L1_product_safe": 1,
+    "L2_pose_matched": 2,
+    "L3_contextual": 3,
+}
+
 
 def _chair_safe_backgrounds(backgrounds: list[BackgroundMeta]) -> list[BackgroundMeta]:
     return [
@@ -30,9 +36,14 @@ def choose_background(
     risk_tags: list[str],
     index: int,
     used_background_ids: list[str] | None = None,
+    scene_level: str = "L1_product_safe",
 ) -> BackgroundMeta:
     if not backgrounds:
         raise FileNotFoundError("背景库为空，请先生成背景图和 backgrounds.json。")
+
+    target_rank = SCENE_LEVEL_ORDER.get(scene_level, 1)
+    if {"transparent_prop", "hand_prop", "white_screen_edge"} & set(risk_tags):
+        target_rank = min(target_rank, 1)
 
     if pose == "sitting":
         candidates = [
@@ -66,7 +77,8 @@ def choose_background(
             for bg in candidates
             if "safe_for_existing_chair" in bg.risk_notes
         ]
-        candidates = clean_generated or candidates
+        if target_rank <= 1:
+            candidates = clean_generated or candidates
 
     if {"transparent_prop", "hand_prop"} & set(risk_tags):
         stable = _chair_safe_backgrounds(backgrounds) or [
@@ -91,9 +103,22 @@ def choose_background(
         if bg_id in used_counts:
             used_counts[bg_id] += 1
     min_used = min(used_counts.values())
+    ordered_candidates = sorted(
+        candidates,
+        key=lambda bg: (
+            used_counts.get(bg.id, 0),
+            abs(SCENE_LEVEL_ORDER.get(bg.scene_level, 1) - target_rank),
+            bg.priority,
+            bg.id,
+        ),
+    )
     least_used = sorted(
-        [bg for bg in candidates if used_counts.get(bg.id, 0) == min_used],
-        key=lambda bg: bg.id,
+        [bg for bg in ordered_candidates if used_counts.get(bg.id, 0) == min_used],
+        key=lambda bg: (
+            abs(SCENE_LEVEL_ORDER.get(bg.scene_level, 1) - target_rank),
+            bg.priority,
+            bg.id,
+        ),
     )
     if len(least_used) == len(candidates):
         return least_used[(index - 1) % len(least_used)]
