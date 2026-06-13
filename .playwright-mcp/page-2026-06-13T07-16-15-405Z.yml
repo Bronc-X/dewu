@@ -1,0 +1,180 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e458]:
+      - generic [ref=e459]:
+        - generic [ref=e460]:
+          - generic [ref=e462]:
+            - button "批处理" [ref=e463]:
+              - img [ref=e465]
+            - generic [ref=e468]:
+              - button "撤销" [disabled]:
+                - generic:
+                  - img
+              - button "重做" [disabled]:
+                - generic:
+                  - img
+            - button "添加图片" [ref=e470]:
+              - generic [ref=e471]:
+                - img [ref=e472]
+                - generic [ref=e475]: 添加图片
+          - generic [ref=e476]:
+            - button "845 剩余 655 次 月度 下载" [ref=e477]:
+              - meter [ref=e478]
+              - img [ref=e479]
+              - generic [ref=e482]: 剩余 655 次 月度 下载
+            - button "取消" [ref=e483]:
+              - generic [ref=e485]: 取消
+            - button "下载图像（11 张）" [disabled]:
+              - generic:
+                - img
+                - generic: 下载图像（11 张）
+        - generic [ref=e486]:
+          - generic [ref=e487]:
+            - button "模板" [ref=e489] [cursor=pointer]:
+              - img [ref=e491]
+              - generic [ref=e494]: 模板
+            - button "调整大小" [ref=e496] [cursor=pointer]:
+              - img [ref=e498]
+              - generic [ref=e512]: 调整大小
+            - button "位置" [ref=e514] [cursor=pointer]:
+              - img [ref=e516]
+              - generic [ref=e518]: 位置
+            - button "背景" [ref=e520] [cursor=pointer]:
+              - img [ref=e522]
+              - generic [ref=e527]: 背景
+            - button "AI 阴影" [ref=e529] [cursor=pointer]:
+              - img [ref=e531]
+              - generic [ref=e535]: AI 阴影
+            - button "AI 工具" [ref=e537] [cursor=pointer]:
+              - img [ref=e539]
+              - generic [ref=e542]: AI 工具
+            - button "用途" [ref=e544] [cursor=pointer]:
+              - img [ref=e546]
+              - generic [ref=e548]: 用途
+          - generic [ref=e550]:
+            - list [ref=e552]:
+              - listitem [ref=e553]:
+                - list [ref=e554]:
+                  - button "DW_001_original 3000 × 4498 351934e1-5512-48c8-867e-482b9887fe1b" [ref=e555]:
+                    - generic [ref=e556]:
+                      - generic [ref=e557]:
+                        - generic [ref=e559]: DW_001_original
+                        - generic [ref=e560]: 3000 × 4498
+                      - generic [ref=e561]:
+                        - button "351934e1-5512-48c8-867e-482b9887fe1b":
+                          - img "351934e1-5512-48c8-867e-482b9887fe1b" [ref=e563] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_002_original 3000 × 4498 5f18c340-b6ac-49e1-8bea-3faac88f9a9b" [ref=e564]:
+                    - generic [ref=e565]:
+                      - generic [ref=e566]:
+                        - generic [ref=e568]: DW_002_original
+                        - generic [ref=e569]: 3000 × 4498
+                      - generic [ref=e570]:
+                        - button "5f18c340-b6ac-49e1-8bea-3faac88f9a9b":
+                          - img "5f18c340-b6ac-49e1-8bea-3faac88f9a9b" [ref=e572] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_003_original 3000 × 4498 91655b35-14a5-4f29-94d0-19c1076c1edd" [ref=e573]:
+                    - generic [ref=e574]:
+                      - generic [ref=e575]:
+                        - generic [ref=e577]: DW_003_original
+                        - generic [ref=e578]: 3000 × 4498
+                      - generic [ref=e579]:
+                        - button "91655b35-14a5-4f29-94d0-19c1076c1edd":
+                          - img "91655b35-14a5-4f29-94d0-19c1076c1edd" [ref=e581] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_004_original 3000 × 4498 986677a3-a555-483c-8095-1cfbfc7c61e2" [ref=e582]:
+                    - generic [ref=e583]:
+                      - generic [ref=e584]:
+                        - generic [ref=e586]: DW_004_original
+                        - generic [ref=e587]: 3000 × 4498
+                      - generic [ref=e588]:
+                        - button "986677a3-a555-483c-8095-1cfbfc7c61e2":
+                          - img "986677a3-a555-483c-8095-1cfbfc7c61e2" [ref=e590] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_005_original 3000 × 4498 8ce373b1-9ec4-4574-8d27-a289b8979896" [ref=e591]:
+                    - generic [ref=e592]:
+                      - generic [ref=e593]:
+                        - generic [ref=e595]: DW_005_original
+                        - generic [ref=e596]: 3000 × 4498
+                      - generic [ref=e597]:
+                        - button "8ce373b1-9ec4-4574-8d27-a289b8979896":
+                          - img "8ce373b1-9ec4-4574-8d27-a289b8979896" [ref=e599] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_006_original 3000 × 4498 df75b63d-afba-45c0-ae0c-d8aee348c098" [ref=e600]:
+                    - generic [ref=e601]:
+                      - generic [ref=e602]:
+                        - generic [ref=e604]: DW_006_original
+                        - generic [ref=e605]: 3000 × 4498
+                      - generic [ref=e606]:
+                        - button "df75b63d-afba-45c0-ae0c-d8aee348c098":
+                          - img "df75b63d-afba-45c0-ae0c-d8aee348c098" [ref=e608] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_007_original 3000 × 4498 189ed9f3-4070-414f-bbd9-c53be7e0f16c" [ref=e609]:
+                    - generic [ref=e610]:
+                      - generic [ref=e611]:
+                        - generic [ref=e613]: DW_007_original
+                        - generic [ref=e614]: 3000 × 4498
+                      - generic [ref=e615]:
+                        - button "189ed9f3-4070-414f-bbd9-c53be7e0f16c":
+                          - img "189ed9f3-4070-414f-bbd9-c53be7e0f16c" [ref=e617] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_008_original 3000 × 4498 79b01488-7e32-491c-9dc6-0ec85807d0fb" [ref=e618]:
+                    - generic [ref=e619]:
+                      - generic [ref=e620]:
+                        - generic [ref=e622]: DW_008_original
+                        - generic [ref=e623]: 3000 × 4498
+                      - generic [ref=e624]:
+                        - button "79b01488-7e32-491c-9dc6-0ec85807d0fb":
+                          - img "79b01488-7e32-491c-9dc6-0ec85807d0fb" [ref=e626] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_009_original 3000 × 4498 66105d2d-001d-4eff-adef-b614253a0224" [ref=e627]:
+                    - generic [ref=e628]:
+                      - generic [ref=e629]:
+                        - generic [ref=e631]: DW_009_original
+                        - generic [ref=e632]: 3000 × 4498
+                      - generic [ref=e633]:
+                        - button "66105d2d-001d-4eff-adef-b614253a0224":
+                          - img "66105d2d-001d-4eff-adef-b614253a0224" [ref=e635] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_010_original 3000 × 4498 7eb5c54a-563b-44f6-a7e3-63082e1985aa" [ref=e636]:
+                    - generic [ref=e637]:
+                      - generic [ref=e638]:
+                        - generic [ref=e640]: DW_010_original
+                        - generic [ref=e641]: 3000 × 4498
+                      - generic [ref=e642]:
+                        - button "7eb5c54a-563b-44f6-a7e3-63082e1985aa":
+                          - img "7eb5c54a-563b-44f6-a7e3-63082e1985aa" [ref=e644] [cursor=pointer]
+                          - generic:
+                            - img
+                  - button "DW_011_original 3000 × 4498 1a79df8e-39d2-428b-8ee0-82cb65ab5fbb" [ref=e645]:
+                    - generic [ref=e646]:
+                      - generic [ref=e647]:
+                        - generic [ref=e649]: DW_011_original
+                        - generic [ref=e650]: 3000 × 4498
+                      - generic [ref=e651]:
+                        - button "1a79df8e-39d2-428b-8ee0-82cb65ab5fbb":
+                          - img "1a79df8e-39d2-428b-8ee0-82cb65ab5fbb" [ref=e653] [cursor=pointer]
+                          - generic:
+                            - img
+            - status [ref=e654]
+      - generic [ref=e656]:
+        - generic [ref=e657]:
+          - button [ref=e658] [cursor=pointer]:
+            - img [ref=e659]
+          - separator [ref=e661]
+          - button [ref=e662] [cursor=pointer]:
+            - img [ref=e663]
+        - button "帮助" [ref=e666] [cursor=pointer]:
+          - img [ref=e667]
+    - region "Notifications alt+T"
+  - iframe [ref=e451]:
+    

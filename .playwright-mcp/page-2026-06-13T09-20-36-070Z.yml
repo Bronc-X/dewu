@@ -1,0 +1,245 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e41]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - button "切换空间" [ref=e47] [cursor=pointer]:
+            - generic [ref=e51]: P
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - generic [ref=e54]: Photoroom 空间
+                - img [ref=e56]
+              - generic [ref=e60]: Max
+          - navigation [ref=e61]:
+            - generic [ref=e62]:
+              - link "首页" [ref=e63] [cursor=pointer]:
+                - /url: /create
+                - generic [ref=e64]:
+                  - img [ref=e65]
+                  - generic [ref=e67]: 首页
+              - link "AI 工具" [ref=e68] [cursor=pointer]:
+                - /url: /ai-tools
+                - generic [ref=e69]:
+                  - img [ref=e70]
+                  - generic [ref=e74]: AI 工具
+              - link "批量" [ref=e75] [cursor=pointer]:
+                - /url: /batch
+                - generic [ref=e76]:
+                  - img [ref=e77]
+                  - generic [ref=e81]: 批量
+              - button "活动" [ref=e83]:
+                - generic [ref=e84] [cursor=pointer]:
+                  - img [ref=e85]
+                  - generic [ref=e88]: 活动
+            - generic [ref=e89]:
+              - button "内容" [ref=e91]:
+                - generic [ref=e92]: 内容
+              - generic [ref=e93]:
+                - link "Shopify商品" [ref=e94] [cursor=pointer]:
+                  - /url: /product-catalog
+                  - generic [ref=e95]:
+                    - img [ref=e96]
+                    - generic [ref=e98]: Shopify商品
+                - generic [ref=e99]: 新
+              - link "设计" [ref=e100] [cursor=pointer]:
+                - /url: /your-content/designs
+                - generic [ref=e101]:
+                  - img [ref=e102]
+                  - generic [ref=e106]: 设计
+              - link "品牌套件" [ref=e107] [cursor=pointer]:
+                - /url: /brand-kit
+                - generic [ref=e108]:
+                  - img [ref=e109]
+                  - generic [ref=e111]: 品牌套件
+              - link "模板" [ref=e112] [cursor=pointer]:
+                - /url: /your-content/templates
+                - generic [ref=e113]:
+                  - img [ref=e114]
+                  - generic [ref=e117]: 模板
+              - link "上传内容" [ref=e118] [cursor=pointer]:
+                - /url: /your-content/uploads
+                - generic [ref=e119]:
+                  - img [ref=e120]
+                  - generic [ref=e123]: 上传内容
+              - link "AI Images" [ref=e124] [cursor=pointer]:
+                - /url: /your-content/ai-images
+                - generic [ref=e125]:
+                  - img [ref=e126]
+                  - generic [ref=e130]: AI Images
+        - navigation [ref=e131]:
+          - generic [ref=e132]:
+            - img [ref=e133]
+            - generic [ref=e135]: 您的付款方式出现问题。请更新付款信息以继续使用订阅。 管理订阅
+          - generic [ref=e136]:
+            - button "用途" [ref=e137]:
+              - generic [ref=e138] [cursor=pointer]:
+                - img [ref=e139]
+                - generic [ref=e141]: 用途
+            - button "空间管理" [ref=e142]:
+              - generic [ref=e143] [cursor=pointer]:
+                - img [ref=e144]
+                - generic [ref=e146]: 空间管理
+            - button "登录移动应用程序" [ref=e147]:
+              - generic [ref=e148] [cursor=pointer]:
+                - img [ref=e149]
+                - generic [ref=e151]: 登录移动应用程序
+            - button "偏好设置" [ref=e152]:
+              - generic [ref=e153] [cursor=pointer]:
+                - img [ref=e154]
+                - generic [ref=e156]: 偏好设置
+        - button "升级空间至Ultra" [ref=e158]:
+          - generic [ref=e160]: 升级空间至Ultra
+      - generic [ref=e162]:
+        - heading "批处理" [level=2] [ref=e164]:
+          - generic [ref=e165]: 批处理
+        - generic [ref=e166]:
+          - generic [ref=e169]:
+            - img [ref=e172]:
+              - generic [ref=e173]:
+                - generic "New" [ref=e189]
+                - generic "New" [ref=e202]
+                - generic "New" [ref=e215]
+            - generic [ref=e228]:
+              - generic [ref=e229]:
+                - generic [ref=e230]: 一次最多编辑 250 张图像
+                - generic [ref=e231]: 将图像或文件夹拖放到此页面上。
+              - generic [ref=e233]:
+                - button "导入图像" [ref=e234]:
+                  - generic [ref=e235]:
+                    - img [ref=e236]
+                    - generic [ref=e241]: 导入图像
+                - button "导入文件夹" [ref=e242]:
+                  - generic [ref=e243]:
+                    - img [ref=e244]
+                    - generic [ref=e246]: 导入文件夹
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - heading "Essentials" [level=2] [ref=e251]
+              - generic [ref=e252]:
+                - list [ref=e253]:
+                  - listitem [ref=e254]:
+                    - button "Transparent" [ref=e255]:
+                      - figure [ref=e258]:
+                        - img "Transparent" [ref=e259]
+                      - generic [ref=e261]: Transparent
+                  - listitem [ref=e262]:
+                    - button "White" [ref=e263]:
+                      - figure [ref=e266]:
+                        - img "White" [ref=e267]
+                      - generic [ref=e269]: White
+                  - listitem [ref=e270]:
+                    - button "Neutral 01" [ref=e271]:
+                      - figure [ref=e274]:
+                        - img "Neutral 01" [ref=e275]
+                      - generic [ref=e277]: Neutral 01
+                  - listitem [ref=e278]:
+                    - button "Neutral 02" [ref=e279]:
+                      - figure [ref=e282]:
+                        - img "Neutral 02" [ref=e283]
+                      - generic [ref=e285]: Neutral 02
+                  - listitem [ref=e286]:
+                    - button "Neutral 03" [ref=e287]:
+                      - figure [ref=e290]:
+                        - img "Neutral 03" [ref=e291]
+                      - generic [ref=e293]: Neutral 03
+                  - listitem [ref=e294]:
+                    - button "Neutral 04" [ref=e295]:
+                      - figure [ref=e298]:
+                        - img "Neutral 04" [ref=e299]
+                      - generic [ref=e301]: Neutral 04
+                  - listitem [ref=e302]:
+                    - button "Neutral 05" [ref=e303]:
+                      - figure [ref=e306]:
+                        - img "Neutral 05" [ref=e307]
+                      - generic [ref=e309]: Neutral 05
+                  - listitem [ref=e310]:
+                    - button "Neutral 06" [ref=e311]:
+                      - figure [ref=e314]:
+                        - img "Neutral 06" [ref=e315]
+                      - generic [ref=e317]: Neutral 06
+                  - listitem [ref=e318]:
+                    - button "Neutral 07" [ref=e319]:
+                      - figure [ref=e322]:
+                        - img "Neutral 07" [ref=e323]
+                      - generic [ref=e325]: Neutral 07
+                  - listitem [ref=e326]:
+                    - button "Neutral 08" [ref=e327]:
+                      - figure [ref=e330]:
+                        - img "Neutral 08" [ref=e331]
+                      - generic [ref=e333]: Neutral 08
+                  - listitem [ref=e334]:
+                    - button "Dark grey" [ref=e335]:
+                      - figure [ref=e338]:
+                        - img "Dark grey" [ref=e339]
+                      - generic [ref=e341]: Dark grey
+                  - listitem [ref=e342]:
+                    - button "Black" [ref=e343]:
+                      - figure [ref=e346]:
+                        - img "Black" [ref=e347]
+                      - generic [ref=e349]: Black
+                - button "下一步" [ref=e351]:
+                  - img [ref=e352]
+            - generic [ref=e355]:
+              - heading "Studio" [level=2] [ref=e357]
+              - list [ref=e359]:
+                - listitem [ref=e360]:
+                  - button "Studio white" [ref=e361]:
+                    - generic [ref=e362]:
+                      - figure [ref=e364]:
+                        - img "Studio white" [ref=e365]
+                      - img [ref=e368]
+                    - generic [ref=e372]: Studio white
+                - listitem [ref=e373]:
+                  - button "Studio grey" [ref=e374]:
+                    - generic [ref=e375]:
+                      - figure [ref=e377]:
+                        - img "Studio grey" [ref=e378]
+                      - img [ref=e381]
+                    - generic [ref=e385]: Studio grey
+                - listitem [ref=e386]:
+                  - button "Studio beige" [ref=e387]:
+                    - generic [ref=e388]:
+                      - figure [ref=e390]:
+                        - img "Studio beige" [ref=e391]
+                      - img [ref=e394]
+                    - generic [ref=e398]: Studio beige
+                - listitem [ref=e399]:
+                  - button "Studio pastel yellow" [ref=e400]:
+                    - generic [ref=e401]:
+                      - figure [ref=e403]:
+                        - img "Studio pastel yellow" [ref=e404]
+                      - img [ref=e407]
+                    - generic [ref=e411]: Studio pastel yellow
+                - listitem [ref=e412]:
+                  - button "Studio pastel orange" [ref=e413]:
+                    - generic [ref=e414]:
+                      - figure [ref=e416]:
+                        - img "Studio pastel orange" [ref=e417]
+                      - img [ref=e420]
+                    - generic [ref=e424]: Studio pastel orange
+                - listitem [ref=e425]:
+                  - button "Studio pastel green" [ref=e426]:
+                    - generic [ref=e427]:
+                      - figure [ref=e429]:
+                        - img "Studio pastel green" [ref=e430]
+                      - img [ref=e433]
+                    - generic [ref=e437]: Studio pastel green
+                - listitem [ref=e438]:
+                  - button "Studio pastel blue" [ref=e439]:
+                    - generic [ref=e440]:
+                      - figure [ref=e442]:
+                        - img "Studio pastel blue" [ref=e443]
+                      - img [ref=e446]
+                    - generic [ref=e450]: Studio pastel blue
+                - listitem [ref=e451]:
+                  - button "Studio pastel pink" [ref=e452]:
+                    - generic [ref=e453]:
+                      - figure [ref=e455]:
+                        - img "Studio pastel pink" [ref=e456]
+                      - img [ref=e459]
+                    - generic [ref=e463]: Studio pastel pink
+    - button "帮助" [ref=e466] [cursor=pointer]:
+      - img [ref=e467]
+    - region "Notifications alt+T"
+  - iframe [ref=e470]:
+    

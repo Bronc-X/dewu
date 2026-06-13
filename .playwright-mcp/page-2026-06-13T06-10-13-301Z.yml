@@ -1,0 +1,12 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - paragraph [ref=e5]:
+        - heading "Cookie preferences" [level=2] [ref=e6]
+        - text: At Photoroom we use cookies to keep the website functioning properly, to measure visitor activity, to integrate third-party content, and to evaluate our advertising strategies. You can change your preferences at any time in the cookies policy.
+      - button "View our partners" [ref=e7] [cursor=pointer]
+    - generic [ref=e8]:
+      - button "Manage cookies" [ref=e9] [cursor=pointer]
+      - button "Decline all" [ref=e10] [cursor=pointer]
+      - button "Accept all" [ref=e11] [cursor=pointer]
+  - main [ref=e46]

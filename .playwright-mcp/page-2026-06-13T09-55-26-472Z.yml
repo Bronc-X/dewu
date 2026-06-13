@@ -1,0 +1,282 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                        - generic:
+                          - button:
+                            - generic:
+                              - img
+                          - button [disabled]:
+                            - generic:
+                              - img
+                        - button:
+                          - generic:
+                            - img
+                            - generic: 添加图片
+                    - generic:
+                      - button:
+                        - meter
+                        - img
+                        - generic: 剩余 626 次 月度 下载
+                      - button:
+                        - generic:
+                          - img
+                          - generic: 下载图像（10 张）
+                  - generic:
+                    - generic:
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: 模板
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: 调整大小
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: 位置
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: 背景
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: AI 阴影
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: AI 工具
+                      - generic:
+                        - button:
+                          - generic:
+                            - img
+                          - generic: 用途
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - heading [level=5]: 背景
+                            - button:
+                              - img
+                          - generic:
+                            - generic:
+                              - checkbox [checked]
+                              - generic:
+                                - generic:
+                                  - generic: 移除原始背景
+                          - group:
+                            - radio:
+                              - img
+                              - generic: 颜色
+                            - radio:
+                              - img
+                              - generic: 图片
+                            - radio [checked]:
+                              - img
+                              - generic: AI
+                        - generic:
+                          - generic:
+                            - generic:
+                              - textbox:
+                                - generic:
+                                  - textbox:
+                                    - /placeholder: 描述一个背景（材质、氛围和场景）
+                                    - text: Warm boutique shopping street, light stone pavement, soft beige storefront and display window reflections, understated premium lifestyle feel, warm afternoon daylight, realistic contact shadows, no extra people, no text, no logos, no watermark. Keep model, checkered handbag, outfit, shoes, product details unchanged. Same boutique street environment across this series, with subtle camera angle variation for each pose.
+                                - generic:
+                                  - generic:
+                                    - button:
+                                      - generic: 影棚
+                                    - button:
+                                      - generic:
+                                        - img
+                                      - generic: 背景
+                                  - generic:
+                                    - button:
+                                      - img
+                            - generic:
+                              - generic:
+                                - generic: 清除
+                              - generic:
+                                - generic:
+                                  - button
+                                - generic:
+                                  - button
+                    - generic:
+                      - generic:
+                        - generic:
+                          - list:
+                            - listitem:
+                              - list:
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_030_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_031_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_032_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_033_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_034_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_035_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_036_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_037_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_038_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                - button:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: DW_039_original
+                                      - generic: 1366 × 2048
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                        - status
+                - generic [ref=e670]:
+                  - generic [ref=e671]:
+                    - button [ref=e672] [cursor=pointer]:
+                      - img [ref=e673]
+                    - separator [ref=e675]
+                    - button [ref=e676] [cursor=pointer]:
+                      - img [ref=e677]
+                  - button [ref=e794] [cursor=pointer]:
+                    - img [ref=e681]
+      - region "Notifications alt+T"
+  - iframe [ref=e470]:
+    
+  - dialog "下载" [ref=e797]:
+    - generic [ref=e800]:
+      - heading "下载" [level=2] [ref=e802]
+      - generic [ref=e803]:
+        - generic [ref=e804]:
+          - generic [ref=e806]: 文件夹名称 (.zip)
+          - textbox "文件夹名称 (.zip)" [active] [ref=e808]: Photoroom
+        - generic [ref=e809]:
+          - generic [ref=e811]: 格式
+          - combobox "格式 透明背景的图像将保存为 PNG 格式文件,带背景的图像将保存为 JPEG 格式文件" [ref=e812]:
+            - option "自动" [selected]
+            - option "PNG"
+            - option "JPEG"
+            - option "WEBP"
+            - option "AVIF"
+          - generic [ref=e813]: 透明背景的图像将保存为 PNG 格式文件,带背景的图像将保存为 JPEG 格式文件
+        - button "下载" [ref=e815]:
+          - generic [ref=e817]: 下载
+    - button "close dialog" [ref=e819]:
+      - img [ref=e820]

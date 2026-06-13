@@ -1,0 +1,1 @@
+PhotoRoom rate limit active; retry after 7180 seconds. {"error":{"message":"Request was throttled. Expected available in 7180 seconds."}}

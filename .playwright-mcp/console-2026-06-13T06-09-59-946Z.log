@@ -1,0 +1,19 @@
+[   11226ms] [INFO] [adjust-sdk] 2026-06-13T06:10:11.170Z INFO:  Log level set to error @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88
+[   24833ms] [ERROR] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88
+[   24834ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88
+[   24952ms] [ERROR] Not signed in with the identity provider. @ https://app.photoroom.com/create:0
+[   36435ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88
+[  216180ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://snap.licdn.com/li.lms-analytics/insight.min.js:0
+[  234945ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://snap.licdn.com/li.lms-analytics/insight.min.js:0
+[  444550ms] [ERROR] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88
+[  444552ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88
+[ 1470415ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://k.clarity.ms/collect:0
+[ 1848410ms] [WARNING] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}. @ https://app.photoroom.com/assets/TemplateExporter-B0S35uf6.js:88

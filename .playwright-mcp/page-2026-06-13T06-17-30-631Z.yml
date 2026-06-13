@@ -1,0 +1,346 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - button:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: P
+                  - generic:
+                    - generic:
+                      - generic: Photoroom 空间
+                      - generic:
+                        - img
+                    - generic:
+                      - generic:
+                        - generic: Max
+              - navigation:
+                - generic:
+                  - link:
+                    - /url: /create
+                    - generic:
+                      - img
+                      - generic: 首页
+                  - link:
+                    - /url: /ai-tools
+                    - generic:
+                      - img
+                      - generic: AI 工具
+                  - link:
+                    - /url: /batch
+                    - generic:
+                      - img
+                      - generic: 批量
+                  - generic:
+                    - button:
+                      - generic:
+                        - img
+                        - generic: 活动
+                - generic:
+                  - generic:
+                    - button:
+                      - generic: 内容
+                  - generic:
+                    - link:
+                      - /url: /product-catalog
+                      - generic:
+                        - img
+                        - generic: Shopify商品
+                    - generic: 新
+                  - link:
+                    - /url: /your-content/designs
+                    - generic:
+                      - img
+                      - generic: 设计
+                  - link:
+                    - /url: /brand-kit
+                    - generic:
+                      - img
+                      - generic: 品牌套件
+                  - link:
+                    - /url: /your-content/templates
+                    - generic:
+                      - img
+                      - generic: 模板
+                  - link:
+                    - /url: /your-content/uploads
+                    - generic:
+                      - img
+                      - generic: 上传内容
+                  - link:
+                    - /url: /your-content/ai-images
+                    - generic:
+                      - img
+                      - generic: AI Images
+            - navigation:
+              - generic:
+                - img
+                - generic: 您的付款方式出现问题。请更新付款信息以继续使用订阅。 管理订阅
+              - generic:
+                - button:
+                  - generic:
+                    - img
+                    - generic: 用途
+                - button:
+                  - generic:
+                    - img
+                    - generic: 空间管理
+                - button:
+                  - generic:
+                    - img
+                    - generic: 登录移动应用程序
+                - button:
+                  - generic:
+                    - img
+                    - generic: 偏好设置
+            - generic:
+              - button:
+                - generic:
+                  - generic: 升级空间至Ultra
+          - generic:
+            - generic:
+              - generic:
+                - heading [level=2]:
+                  - generic: 批处理
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - img
+                      - generic:
+                        - generic:
+                          - generic: 一次最多编辑 250 张图像
+                          - generic: 将图像或文件夹拖放到此页面上。
+                        - generic:
+                          - generic:
+                            - button:
+                              - generic:
+                                - img
+                                - generic: 导入图像
+                            - button:
+                              - generic:
+                                - img
+                                - generic: 导入文件夹
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - heading [level=2]: Essentials
+                      - generic:
+                        - list:
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Transparent
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: White
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 01
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 02
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 03
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 04
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 05
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 06
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 07
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Neutral 08
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Dark grey
+                          - listitem:
+                            - button:
+                              - generic:
+                                - generic:
+                                  - figure:
+                                    - img
+                              - generic:
+                                - generic: Black
+                        - generic:
+                          - button:
+                            - img
+                    - generic:
+                      - generic:
+                        - generic:
+                          - heading [level=2]: Studio
+                        - generic:
+                          - list:
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio white
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio grey
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio beige
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio pastel yellow
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio pastel orange
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio pastel green
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio pastel blue
+                            - listitem:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - figure:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - img
+                                - generic:
+                                  - generic: Studio pastel pink
+      - button [ref=e1055] [cursor=pointer]:
+        - img [ref=e94]
+      - region "Notifications alt+T"
+  - iframe [ref=e1054]:
+    
+  - dialog [ref=e1058]:
+    - generic [ref=e1062]:
+      - generic [ref=e1063]:
+        - generic [ref=e1064]:
+          - paragraph [ref=e1065]: 全新分区功能
+          - heading "全新方式，轻松整理你的图片。" [level=2] [ref=e1066]
+        - paragraph [ref=e1067]: 右键点击选中的图片，将它们分组为不同区块。导出时，每个区块会成为一个独立文件夹。
+      - button "知道了" [active] [ref=e1068]:
+        - generic [ref=e1070]: 知道了
+    - button "close dialog" [ref=e1072]:
+      - img [ref=e1073]
