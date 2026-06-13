@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Hanken+Grotesk:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css?v=20260609-photoroom-ready">
+    <link rel="stylesheet" href="/static/styles.css?v=20260613-image-lightbox">
   </head>
   <body class="app-body" data-active-nav="{{ active_nav|default('projects') }}" data-min-images="{{ min_images|default(1) }}" data-max-images="{{ max_images|default(8) }}" data-lang="{{ lang }}">
     <aside class="side-nav">
@@ -15,15 +15,14 @@
         <span class="brand-orb"><span class="material-symbols-outlined">psychology</span></span>
         <span><strong>{{ t.brand }}</strong><em>{{ t.engine }}</em></span>
       </a>
-      <form action="/import" method="get">
-        <input type="hidden" name="lang" value="{{ lang }}">
-        <button class="primary-pill side-cta" type="submit"><span class="material-symbols-outlined">add</span>{{ t.new_batch }}</button>
-      </form>
+      <a class="primary-pill side-cta" href="/import?lang={{ lang }}&tool=cutout">
+        <span class="material-symbols-outlined">layers_clear</span>{{ t.cutout_nav }}
+      </a>
       <nav class="nav-links" aria-label="{{ t.main_navigation }}">
-        <a class="nav-link {% if active_nav|default('projects') == 'projects' %}is-active{% endif %}" href="/?lang={{ lang }}"><span class="material-symbols-outlined">folder_copy</span>{{ t.projects }}</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'import' %}is-active{% endif %}" href="/import?lang={{ lang }}"><span class="material-symbols-outlined">add_photo_alternate</span>{{ t.import }}</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'pipeline' %}is-active{% endif %}" href="{% if latest_batch %}/batches/{{ latest_batch.batch_id }}?lang={{ lang }}{% else %}/import?lang={{ lang }}{% endif %}"><span class="material-symbols-outlined">auto_awesome</span>{{ t.pipeline }}</a>
-        <a class="nav-link {% if active_nav|default('projects') == 'review' %}is-active{% endif %}" href="{% if latest_batch %}/batches/{{ latest_batch.batch_id }}?lang={{ lang }}{% else %}/import?lang={{ lang }}{% endif %}"><span class="material-symbols-outlined">fact_check</span>{{ t.review }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'projects' %}is-active{% endif %}" href="/?lang={{ lang }}"><span class="material-symbols-outlined">home</span>{{ t.projects }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'cutout' %}is-active{% endif %}" href="/import?lang={{ lang }}&tool=cutout"><span class="material-symbols-outlined">layers_clear</span>{{ t.cutout_nav }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'ai_background' %}is-active{% endif %}" href="/import?lang={{ lang }}&tool=ai_background"><span class="material-symbols-outlined">auto_awesome</span>{{ t.ai_background_nav }}</a>
+        <a class="nav-link {% if active_nav|default('projects') == 'review' %}is-active{% endif %}" href="/review?lang={{ lang }}"><span class="material-symbols-outlined">fact_check</span>{{ t.review_nav }}</a>
         <a class="nav-link {% if active_nav|default('projects') == 'backgrounds' %}is-active{% endif %}" href="/backgrounds?lang={{ lang }}"><span class="material-symbols-outlined">wallpaper</span>{{ t.backgrounds }}</a>
       </nav>
       <div class="side-footer">
@@ -47,29 +46,172 @@
           </header>
           <section class="glass-card stepper-card">
             <a class="step-card is-active" href="#assets"><span class="material-symbols-outlined">inventory_2</span><strong>{{ t.import }}</strong><small>{{ assets|length }} {{ t.files }}</small></a>
-            <a class="step-card" href="/import?lang={{ lang }}"><span class="material-symbols-outlined">auto_awesome</span><strong>{{ t.generate }}</strong><small>{{ t.start_batch }}</small></a>
-            <a class="step-card" href="{% if project_batches %}/batches/{{ project_batches[0].batch_id }}?lang={{ lang }}{% else %}/import?lang={{ lang }}{% endif %}"><span class="material-symbols-outlined">fact_check</span><strong>{{ t.review }}</strong><small>{{ project_batches|length }} {{ t.batches }}</small></a>
-            <a class="step-card" href="{% if project_batches %}/batches/{{ project_batches[0].batch_id }}/zip{% else %}#{% endif %}"><span class="material-symbols-outlined">download</span><strong>{{ t.export }}</strong><small>{{ t.zip }} / {{ t.report }}</small></a>
+            <a class="step-card" href="/import?lang={{ lang }}&tool=cutout"><span class="material-symbols-outlined">layers_clear</span><strong>{{ t.cutout_nav }}</strong><small>PhotoRoom</small></a>
+            <a class="step-card" href="/import?lang={{ lang }}&tool=ai_background"><span class="material-symbols-outlined">auto_awesome</span><strong>{{ t.ai_background_nav }}</strong><small>PhotoRoom</small></a>
+            <a class="step-card" href="/review?lang={{ lang }}"><span class="material-symbols-outlined">fact_check</span><strong>{{ t.review_nav }}</strong><small>{{ project_batches|length }} {{ t.batches }}</small></a>
           </section>
           <section id="assets" class="panel-section">
             <div class="section-title"><h2>{{ t.uploaded_assets }}</h2><span>{{ assets|length }}</span></div>
             <div class="asset-grid">
-              {% for asset in assets %}<article class="asset-card"><img src="{{ asset.url }}" alt="{{ asset.filename }}"><div><strong>{{ asset.filename }}</strong><small>{{ (asset.size / 1024 / 1024)|round(1) }} MB</small></div></article>{% else %}<div class="empty-glass"><span class="material-symbols-outlined">cloud_upload</span><strong>{{ t.no_assets }}</strong><p>{{ t.no_assets_hint }}</p></div>{% endfor %}
+              {% for asset in assets %}
+              <article class="asset-card"><img src="{{ asset.url }}" alt="{{ asset.filename }}"><div><strong>{{ asset.filename }}</strong><small>{{ (asset.size / 1024 / 1024)|round(1) }} MB</small></div></article>
+              {% else %}
+              <div class="empty-glass"><span class="material-symbols-outlined">cloud_upload</span><strong>{{ t.no_assets }}</strong><p>{{ t.no_assets_hint }}</p></div>
+              {% endfor %}
             </div>
           </section>
         </div>
         <aside class="right-inspector"><h2><span class="material-symbols-outlined">tune</span>{{ t.project_console }}</h2><dl class="metric-list"><dt>{{ t.status }}</dt><dd>{{ project.status_label }}</dd><dt>{{ t.assets }}</dt><dd>{{ project.asset_count }}</dd><dt>{{ t.results }}</dt><dd>{{ project.result_count }}</dd><dt>{{ t.updated }}</dt><dd>{{ project.updated_at }}</dd></dl><div class="inspector-block"><h3>{{ t.recent_batches }}</h3>{% for batch in project_batches %}<a class="history-chip" href="/batches/{{ batch.batch_id }}?lang={{ lang }}"><strong>{{ batch.display_time }}</strong><span>{{ batch.status }} / {{ batch.progress }}%</span></a>{% else %}<p>{{ t.no_attached_batches }}</p>{% endfor %}</div></aside>
       </section>
+
       {% elif view|default('home') == 'import' %}
-      <section class="work-grid"><div class="main-column"><header class="page-heading"><p class="eyebrow">{{ t.import }}</p><h1>{{ t.asset_import }}</h1><p>{{ t.import_intro }}</p></header><section class="glass-card flow-strip"><article class="flow-step is-active"><span class="material-symbols-outlined">upload_file</span><strong>{{ t.workflow_upload }}</strong><small>{{ t.workflow_upload_hint }}</small></article><article class="flow-step"><span class="material-symbols-outlined">layers_clear</span><strong>{{ t.workflow_cutout }}</strong><small>{{ t.workflow_cutout_hint }}</small></article><article class="flow-step"><span class="material-symbols-outlined">wallpaper</span><strong>{{ t.workflow_background }}</strong><small>{{ t.workflow_background_hint }}</small></article><article class="flow-step"><span class="material-symbols-outlined">wb_twilight</span><strong>{{ t.workflow_relight }}</strong><small>{{ t.workflow_relight_hint }}</small></article><article class="flow-step"><span class="material-symbols-outlined">ios_share</span><strong>{{ t.workflow_export }}</strong><small>{{ t.workflow_export_hint }}</small></article></section><section class="glass-card upload-workbench"><form class="local-picker-form" action="/batches/pick-local?lang={{ lang }}" method="post"><div><strong>{{ t.local_picker }}</strong><span>{{ t.local_picker_hint }}</span></div><button class="secondary-pill" type="submit"><span class="material-symbols-outlined">folder_open</span>{{ t.select_images }}</button></form><form id="upload-form" action="/batches?lang={{ lang }}" method="post" enctype="multipart/form-data"><label id="upload-zone" class="liquid-dropzone" for="file-input"><span class="material-symbols-outlined">cloud_upload</span><strong>{{ t.drop_title }}</strong><em>{{ t.drop_hint }}</em></label><input id="file-input" class="native-file" type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required><div id="file-summary" class="file-summary">{{ t.no_images }}</div><ul id="file-list" class="file-list"></ul><button id="submit-button" class="primary-pill" type="submit"><span class="material-symbols-outlined">model_training</span>{{ t.start_generation }}</button></form></section><section class="glass-card api-workbench" data-api-workbench><div class="section-title"><h2><span class="material-symbols-outlined">api</span>{{ t.api_ready }}</h2><button class="secondary-pill compact" type="button" data-provider-refresh>{{ t.api_refresh }}</button></div><p>{{ t.api_ready_hint }}</p><div class="api-status-line"><span>{{ t.api_status }}</span><strong data-provider-status>{{ t.api_unconfigured }}</strong></div><div class="api-form-grid"><label><span>{{ t.api_image_path }}</span><input id="api-image-path" type="text" placeholder="data/batches/example/input/input_01.png"></label><label><span>{{ t.api_background_prompt }}</span><input id="api-background-prompt" type="text" placeholder="{% if lang == 'zh' %}干净的电商棚拍背景{% else %}clean ecommerce studio background{% endif %}"></label></div><div class="api-actions"><button class="secondary-pill" type="button" data-photoroom-remove><span class="material-symbols-outlined">layers_clear</span>{{ t.api_remove_bg }}</button><button class="secondary-pill" type="button" data-photoroom-edit><span class="material-symbols-outlined">auto_fix_high</span>{{ t.api_edit }}</button></div><pre id="api-result" class="api-result">{{ t.api_result_placeholder }}</pre></section></div><aside class="right-inspector"><h2><span class="material-symbols-outlined">rule</span>{{ t.input_check }}</h2><div class="check-row is-ok"><span></span>{{ t.exact_required }}</div><div class="check-row is-ok"><span></span>{{ t.screen_supported }}</div><div class="check-row"><span></span>{{ t.avoid_duplicate }}</div><div class="inspector-block"><h3>{{ t.photoroom_workflow }}</h3><p>{{ t.pipeline_summary }}</p></div><div class="inspector-block"><h3>{{ t.api_ready }}</h3><p>{{ t.api_key_required }}</p></div></aside></section>
+      <section class="work-grid">
+        <div class="main-column">
+          <header class="page-heading">
+            {% if active_tool == 'cutout' %}
+            <p class="eyebrow">{{ t.workflow_cutout }}</p>
+            <h1>{{ t.cutout_nav }}</h1>
+            <p>先上传商品图，调用 PhotoRoom 抠图，马上在中间预览原图和透明背景结果。</p>
+            {% else %}
+            <p class="eyebrow">{{ t.workflow_background }}</p>
+            <h1>{{ t.ai_background_nav }}</h1>
+            <p>先用抠图结果作为主体，再选择智能提示词或手动背景，生成后进入复核。</p>
+            {% endif %}
+          </header>
+          <section class="glass-card flow-strip photoroom-feature-strip">
+            <a class="flow-step {% if active_tool == 'cutout' %}is-active{% endif %}" href="/import?lang={{ lang }}&tool=cutout"><span class="material-symbols-outlined">layers_clear</span><strong>{{ t.cutout_nav }}</strong><small>上传原图，返回透明主体。</small></a>
+            <a class="flow-step {% if active_tool == 'ai_background' %}is-active{% endif %}" href="/import?lang={{ lang }}&tool=ai_background"><span class="material-symbols-outlined">auto_awesome</span><strong>{{ t.ai_background_nav }}</strong><small>基于抠图主体生成背景。</small></a>
+            <a class="flow-step" href="/review?lang={{ lang }}"><span class="material-symbols-outlined">fact_check</span><strong>{{ t.review_nav }}</strong><small>查看最近真实返回图片。</small></a>
+          </section>
+          <section class="glass-card upload-workbench batch-upload-secondary">
+            <form id="upload-form" action="/batches?lang={{ lang }}" method="post" enctype="multipart/form-data">
+              <label id="upload-zone" class="liquid-dropzone" for="file-input"><span class="material-symbols-outlined">cloud_upload</span><strong>{{ t.drop_title }}</strong><em>{{ t.drop_hint }}</em></label>
+              <input id="file-input" class="native-file" type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required>
+              <div id="file-summary" class="file-summary">{{ t.no_images }}</div>
+              <ul id="file-list" class="file-list"></ul>
+              <button id="submit-button" class="primary-pill" type="submit"><span class="material-symbols-outlined">model_training</span>{{ t.start_generation }}</button>
+            </form>
+          </section>
+          <section class="glass-card api-workbench" data-api-workbench data-mode="{{ active_tool }}"></section>
+        </div>
+        <aside class="right-inspector">
+          <h2><span class="material-symbols-outlined">history</span>{{ t.generation_history }}</h2>
+          {% for group in photoroom_groups[:8] %}
+          <a class="history-chip photoroom-history-chip" href="/review?lang={{ lang }}#{{ group.id }}">
+            <strong>{{ group.display_time }}</strong>
+            <span>{{ group.mode_summary }} / {{ group.status }}</span>
+            {% if group.thumbnail_url %}<img src="{{ group.thumbnail_url }}" alt="{{ group.mode_summary }}">{% endif %}
+            {% if group.error %}<em>{{ group.error }}</em>{% endif %}
+          </a>
+          {% else %}
+          <p class="muted-text">{{ t.no_history }}</p>
+          {% endfor %}
+        </aside>
+      </section>
+
+      {% elif view|default('home') == 'review' %}
+      <section class="work-grid">
+        <div class="main-column">
+          <header class="page-heading">
+            <p class="eyebrow">{{ t.review_nav }}</p>
+            <h1>{{ t.result_review }}</h1>
+            <p>这里显示 PhotoRoom 沙盒真实返回的图片。能看到处理后图片，才算本次调用成功。</p>
+          </header>
+          <div class="review-result-grid">
+            {% for group in photoroom_groups %}
+            <article id="{{ group.id }}" class="glass-card review-result-card">
+              <div class="review-result-meta">
+                <span>{{ group.mode_summary }}</span>
+                <strong>{{ group.status }}</strong>
+                <small>{{ group.display_time }}</small>
+              </div>
+              <div class="review-result-images">
+                {% if group.input_url %}<a href="{{ group.input_url }}"><img src="{{ group.input_url }}" alt="{{ t.original }}"></a>{% endif %}
+                {% if group.result_url %}<a href="{{ group.result_url }}"><img src="{{ group.result_url }}" alt="{{ t.ai_result }}"></a>{% endif %}
+              </div>
+              <div class="photoroom-stage-list">
+                {% for item in group['items'] %}
+                <a href="{{ item.result_url or item.input_url }}"><span>{{ item.mode_label }}</span><strong>{{ item.status }}</strong></a>
+                {% endfor %}
+              </div>
+              {% if group.error %}<p class="error-text">{{ group.error }}</p>{% endif %}
+              {% if group.result_url %}<a class="secondary-pill compact" href="{{ group.result_url }}" download><span class="material-symbols-outlined">download</span>{{ t.download_image }}</a>{% endif %}
+            </article>
+            {% else %}
+            <div class="empty-glass"><span class="material-symbols-outlined">image_search</span><strong>{{ t.no_history }}</strong><p>先到左侧抠图或 AI 智能背景跑一次真实调用。</p></div>
+            {% endfor %}
+          </div>
+        </div>
+        <aside class="right-inspector"><h2><span class="material-symbols-outlined">checklist</span>复核路径</h2><div class="check-row is-ok"><span></span>先看抠图边缘</div><div class="check-row is-ok"><span></span>再看背景和光影</div><div class="check-row"><span></span>失败记录显示真实 API 错误</div></aside>
+      </section>
+
       {% elif view|default('home') == 'backgrounds' %}
-      <section class="main-column full-width"><header class="page-heading"><p class="eyebrow">{{ t.background_title }}</p><h1>{{ t.backgrounds }}</h1><p>{{ t.background_intro }}</p></header><div class="asset-grid background-grid">{% for bg in backgrounds %}<article class="asset-card"><img src="/background-assets/{{ bg.file }}" alt="{{ t.background }} {{ bg.id }}"><div><strong>{{ bg.id }} / {{ bg.scene_type_label }}</strong><small>{{ bg.ground_type_label }} / {{ bg.lighting_direction_label }} / {{ bg.scene_level_label }}</small></div></article>{% else %}<div class="empty-glass"><span class="material-symbols-outlined">wallpaper</span><strong>{{ t.no_backgrounds }}</strong><p>{{ t.no_backgrounds_hint }}</p></div>{% endfor %}</div></section>
+      <section class="main-column full-width">
+        <header class="page-heading">
+          <p class="eyebrow">{{ t.background_title }}</p>
+          <h1>{{ t.backgrounds }}</h1>
+          <p>支持手动上传背景；下方背景可点击打开大图，用于检查构图、地面和光影方向。</p>
+        </header>
+        <section class="glass-card background-upload-card">
+          <form action="/backgrounds/upload?lang={{ lang }}" method="post" enctype="multipart/form-data">
+            <label class="native-upload-label"><span class="material-symbols-outlined">upload_file</span><strong>上传背景图</strong><input type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required></label>
+            <button class="primary-pill" type="submit"><span class="material-symbols-outlined">add_photo_alternate</span>加入背景库</button>
+          </form>
+        </section>
+        <div class="asset-grid background-grid">
+          {% for bg in backgrounds %}
+          <a class="asset-card background-card" href="/background-assets/{{ bg.file }}" title="打开大图：{{ bg.id }}">
+            <img src="/background-assets/{{ bg.file }}" alt="{{ t.background }} {{ bg.id }}">
+            <div><strong>{{ bg.id }} / {{ bg.scene_type_label }}</strong><small>{{ bg.ground_type_label }} / {{ bg.lighting_direction_label }} / {{ bg.scene_level_label }}</small></div>
+          </a>
+          {% else %}
+          <div class="empty-glass"><span class="material-symbols-outlined">wallpaper</span><strong>{{ t.no_backgrounds }}</strong><p>{{ t.no_backgrounds_hint }}</p></div>
+          {% endfor %}
+        </div>
+      </section>
+
       {% elif view|default('home') == 'settings' %}
       <section class="work-grid"><div class="main-column"><header class="page-heading"><p class="eyebrow">{{ t.settings }}</p><h1>{{ t.settings_title }}</h1><p>{{ t.settings_intro }}</p></header><section class="glass-card settings-grid">{% for provider in provider_status.providers %}<div class="provider-card"><div><span>{{ provider.provider }}</span><strong>{% if provider.configured %}{{ t.api_configured }}{% else %}{{ t.api_unconfigured }}{% endif %}</strong></div><small>{{ provider.required_env|join(', ') }}</small><code>{{ provider.endpoints|tojson }}</code></div>{% endfor %}</section></div><aside class="right-inspector"><h2><span class="material-symbols-outlined">verified_user</span>{{ t.guardrails }}</h2><p>{{ t.guardrails_hint }}</p><div class="inspector-block"><h3>{{ t.api_ready }}</h3><p>{{ t.api_ready_hint }}</p></div></aside></section>
+
       {% else %}
-      <section class="home-grid"><header class="page-heading home-heading"><p class="eyebrow">{{ t.projects }}</p><h1>{{ t.home_title }}</h1><p>{{ t.home_intro }}</p></header><section class="glass-card project-type-strip"><button class="type-chip is-active"><span class="material-symbols-outlined">new_releases</span>{{ t.new_listing }}</button><button class="type-chip"><span class="material-symbols-outlined">style</span>{{ t.style_reuse }}</button><button class="type-chip"><span class="material-symbols-outlined">campaign</span>{{ t.campaign }}</button><button class="type-chip"><span class="material-symbols-outlined">visibility</span>{{ t.buyer_preview }}</button></section><section class="project-board"><div class="section-title"><h2>{{ t.recent_projects }}</h2><a href="/import?lang={{ lang }}">{{ t.new_batch }}</a></div><div class="project-grid">{% for project in projects %}<a class="project-card" href="/projects/{{ project.id }}?lang={{ lang }}"><span class="status-dot"></span><small>{{ project.type_label }}</small><strong>{{ project.name }}</strong><p>{{ project.description or t.production_workspace }}</p><div><span>{{ project.asset_count }} {{ t.assets }}</span><span>{{ project.status_label }}</span></div></a>{% else %}<a class="project-card featured" href="/import?lang={{ lang }}"><small>{{ t.mvp_flow }}</small><strong>{{ t.create_first_batch }}</strong><p>{{ t.mvp_ready }}</p><div><span>{{ t.local_pipeline }}</span><span>{{ t.ready }}</span></div></a>{% endfor %}</div></section><aside class="glass-card recent-batches"><div class="section-title"><h2>{{ t.generation_history }}</h2><span>{{ history_items|length }}</span></div>{% for item in history_items %}<a class="history-chip {% if item.batch_id == current_batch_id %}is-active{% endif %}" href="/batches/{{ item.batch_id }}?lang={{ lang }}"><strong>{{ item.display_time }}</strong><span>{{ item.status }} / {{ item.total }} {{ t.items }} / {{ t.pass }} {{ item.pass_count }} / {{ t.review }} {{ item.review_count }} / {{ t.fail }} {{ item.fail_count }}</span></a>{% else %}<p class="muted-text">{{ t.no_history }}</p>{% endfor %}</aside></section>
+      <section class="home-grid">
+        <header class="page-heading home-heading"><p class="eyebrow">{{ t.projects }}</p><h1>{{ t.home_title }}</h1><p>当前主路径是：抠图 -> AI 智能背景 -> 结果复核。首页只保留这三条真实业务入口和真实调用记录。</p></header>
+        <section class="operation-board">
+          <a class="operation-card" href="/import?lang={{ lang }}&tool=cutout">
+            <span class="material-symbols-outlined">layers_clear</span>
+            <small>01</small>
+            <strong>{{ t.cutout_nav }}</strong>
+            <p>上传商品图，调用 PhotoRoom remove background，检查透明主体边缘。</p>
+          </a>
+          <a class="operation-card" href="/import?lang={{ lang }}&tool=ai_background">
+            <span class="material-symbols-outlined">auto_awesome</span>
+            <small>02</small>
+            <strong>{{ t.ai_background_nav }}</strong>
+            <p>选择提示词或参考背景，调用 PhotoRoom edit 生成背景和光影。</p>
+          </a>
+          <a class="operation-card" href="/review?lang={{ lang }}">
+            <span class="material-symbols-outlined">fact_check</span>
+            <small>03</small>
+            <strong>{{ t.review_nav }}</strong>
+            <p>按真实返回图片复核，失败记录会显示 API 错误。</p>
+          </a>
+        </section>
+        <aside class="glass-card recent-batches">
+          <div class="section-title"><h2>{{ t.generation_history }}</h2><span>{{ photoroom_groups|length }}</span></div>
+          {% for group in photoroom_groups %}
+          <a class="history-chip photoroom-history-chip" href="/review?lang={{ lang }}#{{ group.id }}">
+            <strong>{{ group.display_time }}</strong>
+            <span>{{ group.mode_summary }} / {{ group.status }}</span>
+            {% if group.thumbnail_url %}<img src="{{ group.thumbnail_url }}" alt="{{ group.mode_summary }}">{% endif %}
+            {% if group.error %}<em>{{ group.error }}</em>{% endif %}
+          </a>
+          {% else %}
+          <p class="muted-text">{{ t.no_history }}</p>
+          {% endfor %}
+        </aside>
+      </section>
       {% endif %}
     </main>
-    <script src="/static/workbench.js?v=20260609-photoroom-ready"></script>
+    <script src="/static/workbench.js?v=20260613-image-lightbox"></script>
   </body>
 </html>

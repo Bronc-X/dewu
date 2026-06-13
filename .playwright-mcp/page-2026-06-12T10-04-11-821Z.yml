@@ -1,0 +1,89 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - button "add 新建批次" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: 新建批次
+    - navigation "主导航" [ref=e12]:
+      - link "folder_copy 项目" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e14]: folder_copy
+        - text: 项目
+      - link "add_photo_alternate 导入" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e16]: add_photo_alternate
+        - text: 导入
+      - link "auto_awesome 生成" [ref=e17] [cursor=pointer]:
+        - /url: /import?lang=zh
+        - generic [ref=e18]: auto_awesome
+        - text: 生成
+      - link "fact_check 复核" [ref=e19] [cursor=pointer]:
+        - /url: /batches/20260612_172917_78260e84?lang=zh
+        - generic [ref=e20]: fact_check
+        - text: 复核
+      - link "wallpaper 背景库" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e22]: wallpaper
+        - text: 背景库
+    - generic [ref=e23]:
+      - link "settings 设置" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e25]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e27]: help
+        - text: 帮助
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - link "切换到英文" [ref=e30] [cursor=pointer]:
+        - /url: /batches/20260612_172917_78260e84?lang=en
+      - button "通知" [ref=e31] [cursor=pointer]:
+        - generic [ref=e32]: notifications
+      - button "账户" [ref=e33] [cursor=pointer]:
+        - generic [ref=e34]: account_circle
+  - main [ref=e35]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "结果复核" [level=1] [ref=e39]
+        - paragraph [ref=e40]: 批次 2026-06-12 17:29:17 / 通过 0 / 复核 1 / 失败 1
+      - generic [ref=e41]:
+        - button "zoom_in 缩放" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: zoom_in
+          - text: 缩放
+        - button "fit_screen 适应" [ref=e44] [cursor=pointer]:
+          - generic [ref=e45]: fit_screen
+          - text: 适应
+    - complementary [ref=e46]:
+      - generic [ref=e47]:
+        - heading "analytics 质量分析" [level=2] [ref=e48]:
+          - generic [ref=e49]: analytics
+          - text: 质量分析
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - strong [ref=e52]: 92%
+            - generic [ref=e53]: 光照
+          - generic [ref=e54]:
+            - strong [ref=e55]: 88%
+            - generic [ref=e56]: 边缘
+          - generic [ref=e57]:
+            - strong [ref=e58]: 95%
+            - generic [ref=e59]: 对齐
+      - heading "auto_fix_high 建议" [level=2] [ref=e61]:
+        - generic [ref=e62]: auto_fix_high
+        - text: 建议
+      - generic [ref=e63]:
+        - link "data_object 报告" [ref=e64] [cursor=pointer]:
+          - /url: /batches/20260612_172917_78260e84/report.json
+          - generic [ref=e65]: data_object
+          - text: 报告
+        - link "download 压缩包" [ref=e66] [cursor=pointer]:
+          - /url: /batches/20260612_172917_78260e84/zip
+          - generic [ref=e67]: download
+          - text: 压缩包
+    - generic [ref=e69]: 批次

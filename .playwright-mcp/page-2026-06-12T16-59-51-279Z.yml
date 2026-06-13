@@ -1,0 +1,229 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - link "layers_clear PhotoRoom 抠图" [ref=e9] [cursor=pointer]:
+      - /url: /import?lang=zh&tool=cutout
+      - generic [ref=e10]: layers_clear
+      - text: PhotoRoom 抠图
+    - navigation "主导航" [ref=e11]:
+      - link "home 项目" [ref=e12] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e13]: home
+        - text: 项目
+      - link "layers_clear PhotoRoom 抠图" [ref=e14] [cursor=pointer]:
+        - /url: /import?lang=zh&tool=cutout
+        - generic [ref=e15]: layers_clear
+        - text: PhotoRoom 抠图
+      - link "auto_awesome AI 智能背景" [ref=e16] [cursor=pointer]:
+        - /url: /import?lang=zh&tool=ai_background
+        - generic [ref=e17]: auto_awesome
+        - text: AI 智能背景
+      - link "fact_check 结果复核" [ref=e18] [cursor=pointer]:
+        - /url: /review?lang=zh
+        - generic [ref=e19]: fact_check
+        - text: 结果复核
+      - link "wallpaper 背景库" [ref=e20] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e21]: wallpaper
+        - text: 背景库
+    - generic [ref=e22]:
+      - link "settings 设置" [ref=e23] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e24]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e25] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e26]: help
+        - text: 帮助
+  - banner [ref=e27]:
+    - generic [ref=e28]:
+      - generic [ref=e29]: search
+      - searchbox "搜索工作台..." [ref=e30]
+    - generic [ref=e31]:
+      - link "切换到英文" [ref=e32] [cursor=pointer]:
+        - /url: /import?lang=en&tool=ai_background&qa=batch20-2
+      - button "通知" [ref=e33] [cursor=pointer]:
+        - generic [ref=e34]: notifications
+      - button "账户" [ref=e35] [cursor=pointer]:
+        - generic [ref=e36]: account_circle
+  - main [ref=e37]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - paragraph [ref=e41]: 选择背景
+          - heading "AI 智能背景" [level=1] [ref=e42]
+          - paragraph [ref=e43]: 先用抠图结果作为主体，再选择智能提示词或手动背景，生成后进入复核。
+        - generic [ref=e44]:
+          - link "layers_clear PhotoRoom 抠图 上传原图，返回透明主体。" [ref=e45] [cursor=pointer]:
+            - /url: /import?lang=zh&tool=cutout
+            - generic [ref=e46]: layers_clear
+            - strong [ref=e47]: PhotoRoom 抠图
+            - generic [ref=e48]: 上传原图，返回透明主体。
+          - link "auto_awesome AI 智能背景 基于抠图主体生成背景。" [ref=e49] [cursor=pointer]:
+            - /url: /import?lang=zh&tool=ai_background
+            - generic [ref=e50]: auto_awesome
+            - strong [ref=e51]: AI 智能背景
+            - generic [ref=e52]: 基于抠图主体生成背景。
+          - link "fact_check 结果复核 查看最近真实返回图片。" [ref=e53] [cursor=pointer]:
+            - /url: /review?lang=zh
+            - generic [ref=e54]: fact_check
+            - strong [ref=e55]: 结果复核
+            - generic [ref=e56]: 查看最近真实返回图片。
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59] [cursor=pointer]:
+              - generic [ref=e60]: cloud_upload
+              - strong [ref=e61]: 拖拽上传素材
+              - emphasis [ref=e62]: 支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 10 张。
+            - button "cloud_upload 拖拽上传素材 支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 10 张。" [ref=e63]
+            - generic [ref=e64]: 尚未选择图片。
+            - list
+            - button "model_training 开始批量生成" [ref=e65] [cursor=pointer]:
+              - generic [ref=e66]: model_training
+              - text: 开始批量生成
+          - text: Batch pipeline
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]:
+              - heading "auto_fix_high AI 智能背景工作台" [level=2] [ref=e70]:
+                - generic [ref=e71]: auto_fix_high
+                - text: AI 智能背景工作台
+              - paragraph [ref=e72]: 这里做第二步：使用已抠好的主体，生成新背景。
+            - button "刷新状态" [ref=e73] [cursor=pointer]
+          - generic [ref=e74]:
+            - generic [ref=e75]: 接口状态
+            - strong [ref=e76]: 已配置
+          - generic [ref=e77]:
+            - generic "PhotoRoom 分步工作台" [ref=e78]:
+              - button "01 导入" [ref=e79]:
+                - generic [ref=e80]: "01"
+                - strong [ref=e81]: 导入
+              - button "02 抠图" [ref=e82]:
+                - generic [ref=e83]: "02"
+                - strong [ref=e84]: 抠图
+              - button "03 AI 背景" [ref=e85]:
+                - generic [ref=e86]: "03"
+                - strong [ref=e87]: AI 背景
+              - button "04 结果" [ref=e88]:
+                - generic [ref=e89]: "04"
+                - strong [ref=e90]: 结果
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - generic [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]: add_photo_alternate
+                  - strong [ref=e95]: 上传原图
+                  - generic [ref=e96]: 点击或拖入商品图
+                - generic [ref=e97] [cursor=pointer]:
+                  - generic [ref=e98]: wallpaper
+                  - strong [ref=e99]: 参考背景
+                  - generic [ref=e100]: 可选：手动指定背景
+              - generic [ref=e101]:
+                - button "arrow_forward 进入 AI 背景" [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]: arrow_forward
+                  - text: 进入 AI 背景
+                - button "history 使用最近抠图" [ref=e104] [cursor=pointer]:
+                  - generic [ref=e105]: history
+                  - text: 使用最近抠图
+            - generic [ref=e106]:
+              - article [ref=e107]:
+                - strong [ref=e108]: 原图
+                - img "原图" [ref=e109]
+                - generic [ref=e110]: 等待结果
+              - article [ref=e111]:
+                - strong [ref=e112]: 抠图结果
+                - img "抠图结果" [ref=e113]
+                - generic [ref=e114]: 等待结果
+              - article [ref=e115]:
+                - strong [ref=e116]: AI 背景结果
+                - img "AI 背景结果" [ref=e117]
+                - generic [ref=e118]: 等待结果
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - button "电商白底" [ref=e121] [cursor=pointer]
+                - button "街头水泥" [ref=e122] [cursor=pointer]
+                - button "自然户外" [ref=e123] [cursor=pointer]
+                - button "室内棚拍" [ref=e124] [cursor=pointer]
+                - button "暗调高级" [ref=e125] [cursor=pointer]
+                - button "奶油柔光" [ref=e126] [cursor=pointer]
+              - generic [ref=e127]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]: 背景方向
+                  - textbox "背景方向" [ref=e130]:
+                    - /placeholder: 例：clean premium ecommerce studio background, matching product angle and lighting
+                    - text: clean white ecommerce studio background, soft product shadow, catalog-ready
+                - generic [ref=e131]:
+                  - generic [ref=e132]: 调光
+                  - combobox "调光" [ref=e133]:
+                    - option "自动调光" [selected]
+                    - option "不启用"
+                - generic [ref=e134]:
+                  - generic [ref=e135]: 阴影
+                  - combobox "阴影" [ref=e136]:
+                    - option "柔和阴影" [selected]
+                    - option "硬阴影"
+                    - option "浮空阴影"
+                    - option "不启用"
+              - generic [ref=e137]:
+                - button "auto_awesome 生成 AI 背景" [ref=e138] [cursor=pointer]:
+                  - generic [ref=e139]: auto_awesome
+                  - text: 生成 AI 背景
+                - button "wallpaper 使用参考背景" [disabled] [ref=e140] [cursor=pointer]:
+                  - generic [ref=e141]: wallpaper
+                  - text: 使用参考背景
+                - link "download 下载结果":
+                  - /url: "#"
+                  - generic: download
+                  - text: 下载结果
+          - generic [ref=e142]: 已载入最近一张抠图，可以直接生成背景。
+          - group [ref=e143]:
+            - generic "API 调用详情" [ref=e144] [cursor=pointer]
+      - complementary [ref=e145]:
+        - heading "history 真实生成记录" [level=2] [ref=e146]:
+          - generic [ref=e147]: history
+          - text: 真实生成记录
+        - 'link "2026-06-13 00:37:20 PhotoRoom 抠图 -> AI 智能背景 / 3/4 已返回图片 PhotoRoom 抠图 -> AI 智能背景 PhotoRoom request failed before response: ConnectError" [ref=e148] [cursor=pointer]':
+          - /url: /review?lang=zh#photoroom_batch_1781281397756_c7cc5236
+          - strong [ref=e149]: 2026-06-13 00:37:20
+          - generic [ref=e150]: PhotoRoom 抠图 -> AI 智能背景 / 3/4 已返回图片
+          - img "PhotoRoom 抠图 -> AI 智能背景" [ref=e151]
+          - emphasis [ref=e152]: "PhotoRoom request failed before response: ConnectError"
+        - link "2026-06-12 22:28:06 PhotoRoom 抠图 -> AI 智能背景 / 2/2 已返回图片 PhotoRoom 抠图 -> AI 智能背景" [ref=e153] [cursor=pointer]:
+          - /url: /review?lang=zh#qa_batch_group_20260612_001
+          - strong [ref=e154]: 2026-06-12 22:28:06
+          - generic [ref=e155]: PhotoRoom 抠图 -> AI 智能背景 / 2/2 已返回图片
+          - img "PhotoRoom 抠图 -> AI 智能背景" [ref=e156]
+        - link "2026-06-12 19:20:44 PhotoRoom 抠图 / 1/1 已返回图片 PhotoRoom 抠图" [ref=e157] [cursor=pointer]:
+          - /url: /review?lang=zh#photoroom_input_20260612_192041_d12ca44d_photoroom_input_20260612_163146_8d6786d9_input_02
+          - strong [ref=e158]: 2026-06-12 19:20:44
+          - generic [ref=e159]: PhotoRoom 抠图 / 1/1 已返回图片
+          - img "PhotoRoom 抠图" [ref=e160]
+        - link "2026-06-12 18:58:06 AI 智能背景 / 1/1 已返回图片 AI 智能背景" [ref=e161] [cursor=pointer]:
+          - /url: /review?lang=zh#photoroom_input_20260612_185743_0cc94394
+          - strong [ref=e162]: 2026-06-12 18:58:06
+          - generic [ref=e163]: AI 智能背景 / 1/1 已返回图片
+          - img "AI 智能背景" [ref=e164]
+        - link "2026-06-12 18:57:10 AI 智能背景 / 1/1 已返回图片 AI 智能背景" [ref=e165] [cursor=pointer]:
+          - /url: /review?lang=zh#photoroom_input_20260612_185645_8bfaf9f4
+          - strong [ref=e166]: 2026-06-12 18:57:10
+          - generic [ref=e167]: AI 智能背景 / 1/1 已返回图片
+          - img "AI 智能背景" [ref=e168]
+        - link "2026-06-12 18:56:24 PhotoRoom 抠图 / 1/1 已返回图片 PhotoRoom 抠图" [ref=e169] [cursor=pointer]:
+          - /url: /review?lang=zh#photoroom_input_20260612_185614_3f0c7eb9_R6A6991
+          - strong [ref=e170]: 2026-06-12 18:56:24
+          - generic [ref=e171]: PhotoRoom 抠图 / 1/1 已返回图片
+          - img "PhotoRoom 抠图" [ref=e172]
+        - link "2026-06-12 18:02:06 AI 智能背景 / 1/1 已返回图片 AI 智能背景" [ref=e173] [cursor=pointer]:
+          - /url: /review?lang=zh#photoroom_input_20260612_180135_68bfeed8
+          - strong [ref=e174]: 2026-06-12 18:02:06
+          - generic [ref=e175]: AI 智能背景 / 1/1 已返回图片
+          - img "AI 智能背景" [ref=e176]
+        - link "2026-06-12 18:00:51 PhotoRoom 抠图 / 1/1 已返回图片 PhotoRoom 抠图" [ref=e177] [cursor=pointer]:
+          - /url: /review?lang=zh#photoroom_input_20260612_180035_7d1dbc44_R6A6175
+          - strong [ref=e178]: 2026-06-12 18:00:51
+          - generic [ref=e179]: PhotoRoom 抠图 / 1/1 已返回图片
+          - img "PhotoRoom 抠图" [ref=e180]

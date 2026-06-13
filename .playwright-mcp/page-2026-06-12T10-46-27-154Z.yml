@@ -1,0 +1,151 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - button "add 新建批次" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]: add
+      - text: 新建批次
+    - navigation "主导航" [ref=e12]:
+      - link "folder_copy 项目" [ref=e13] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e14]: folder_copy
+        - text: 项目
+      - link "layers_clear PhotoRoom 抠图" [ref=e15] [cursor=pointer]:
+        - /url: /import?lang=zh&tool=cutout#photoroom-cutout
+        - generic [ref=e16]: layers_clear
+        - text: PhotoRoom 抠图
+      - link "auto_awesome AI 智能背景" [ref=e17] [cursor=pointer]:
+        - /url: /import?lang=zh&tool=ai_background#photoroom-background
+        - generic [ref=e18]: auto_awesome
+        - text: AI 智能背景
+      - link "fact_check 结果复核" [ref=e19] [cursor=pointer]:
+        - /url: /batches/20260612_181744_807bf7f0?lang=zh
+        - generic [ref=e20]: fact_check
+        - text: 结果复核
+      - link "wallpaper 背景库" [ref=e21] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e22]: wallpaper
+        - text: 背景库
+    - generic [ref=e23]:
+      - link "settings 设置" [ref=e24] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e25]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e26] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e27]: help
+        - text: 帮助
+  - banner [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]: search
+      - searchbox "搜索工作台..." [ref=e31]
+    - generic [ref=e32]:
+      - link "切换到英文" [ref=e33] [cursor=pointer]:
+        - /url: /?lang=en
+      - button "通知" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: notifications
+      - button "账户" [ref=e36] [cursor=pointer]:
+        - generic [ref=e37]: account_circle
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: 项目
+        - heading "智能图像生产工作台" [level=1] [ref=e42]
+        - paragraph [ref=e43]: 按项目沉淀素材、批次、复核和交付结果，形成可追踪的图像生产链路。
+      - generic [ref=e44]:
+        - link "layers_clear PhotoRoom 抠图" [ref=e45] [cursor=pointer]:
+          - /url: /import?lang=zh&tool=cutout#photoroom-cutout
+          - generic [ref=e46]: layers_clear
+          - text: PhotoRoom 抠图
+        - link "auto_awesome AI 智能背景" [ref=e47] [cursor=pointer]:
+          - /url: /import?lang=zh&tool=ai_background#photoroom-background
+          - generic [ref=e48]: auto_awesome
+          - text: AI 智能背景
+        - button "visibility 买家预览" [ref=e49] [cursor=pointer]:
+          - generic [ref=e50]: visibility
+          - text: 买家预览
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - heading "最近项目" [level=2] [ref=e53]
+          - link "新建批次" [ref=e54] [cursor=pointer]:
+            - /url: /import?lang=zh
+        - link "PhotoRoom 抠图 AI 智能背景 当前后端已支持上传图片、生成结果、导出报告和压缩包。 PhotoRoom Sandbox 就绪" [ref=e56] [cursor=pointer]:
+          - /url: /import?lang=zh&tool=cutout#photoroom-cutout
+          - generic [ref=e57]: PhotoRoom 抠图
+          - strong [ref=e58]: AI 智能背景
+          - paragraph [ref=e59]: 当前后端已支持上传图片、生成结果、导出报告和压缩包。
+          - generic [ref=e60]:
+            - generic [ref=e61]: PhotoRoom Sandbox
+            - generic [ref=e62]: 就绪
+      - complementary [ref=e63]:
+        - generic [ref=e64]:
+          - heading "真实生成记录" [level=2] [ref=e65]
+          - generic [ref=e66]: "14"
+        - link "2026-06-12 18:17:44 已完成 / 4 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 1 / 失败 3 失败原因：成图存在明显的主体融合错误：人物上半身与衣服整体被灰色半透明遮罩覆盖，出现严重的抠图/合成残影与透底；胸前、肩部和手臂边缘有大面积异常过渡，导致商品外观和人物轮廓不清晰。" [ref=e67] [cursor=pointer]:
+          - /url: /batches/20260612_181744_807bf7f0?lang=zh
+          - strong [ref=e68]: 2026-06-12 18:17:44
+          - generic [ref=e69]: 已完成 / 4 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 1 / 失败 3
+          - emphasis [ref=e70]: 失败原因：成图存在明显的主体融合错误：人物上半身与衣服整体被灰色半透明遮罩覆盖，出现严重的抠图/合成残影与透底；胸前、肩部和手臂边缘有大面积异常过渡，导致商品外观和人物轮廓不清晰。
+        - link "2026-06-12 17:29:17 已完成 / 2 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 1 / 失败 1 失败原因：成品图存在明显抠图/合成错误：上半身衣服主体大面积被灰色背景覆盖，服装细节与原图不一致；人物轮廓边缘破碎且有明显残留/缺失，手臂、腿部和衣服局部出现不自然的切边与半透明覆盖。整体已影响商品与人..." [ref=e71] [cursor=pointer]:
+          - /url: /batches/20260612_172917_78260e84?lang=zh
+          - strong [ref=e72]: 2026-06-12 17:29:17
+          - generic [ref=e73]: 已完成 / 2 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 1 / 失败 1
+          - emphasis [ref=e74]: 失败原因：成品图存在明显抠图/合成错误：上半身衣服主体大面积被灰色背景覆盖，服装细节与原图不一致；人物轮廓边缘破碎且有明显残留/缺失，手臂、腿部和衣服局部出现不自然的切边与半透明覆盖。整体已影响商品与人...
+        - link "2026-06-12 17:09:14 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 1 / 复核 3 / 失败 4 失败原因：合成结果存在明显主体抠图/遮罩错误：胸口、右臂、双腿和鞋子出现大面积缺失或被背景覆盖，鞋型与下半身结构已被破坏，产品一致性不成立。" [ref=e75] [cursor=pointer]:
+          - /url: /batches/20260612_170914_4c9c2d11?lang=zh
+          - strong [ref=e76]: 2026-06-12 17:09:14
+          - generic [ref=e77]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 1 / 复核 3 / 失败 4
+          - emphasis [ref=e78]: 失败原因：合成结果存在明显主体抠图/遮罩错误：胸口、右臂、双腿和鞋子出现大面积缺失或被背景覆盖，鞋型与下半身结构已被破坏，产品一致性不成立。
+        - link "2026-06-09 13:42:45 已完成 / 1 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 0 / 失败 1 失败原因：商品区域与原图一致性不足，鞋型、衣服图案或 Logo 可能发生了可见变化；前景边缘羽化偏软，主体细节有发糊迹象。" [ref=e79] [cursor=pointer]:
+          - /url: /batches/20260609_134245_1c7caf2e?lang=zh
+          - strong [ref=e80]: 2026-06-09 13:42:45
+          - generic [ref=e81]: 已完成 / 1 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 0 / 失败 1
+          - emphasis [ref=e82]: 失败原因：商品区域与原图一致性不足，鞋型、衣服图案或 Logo 可能发生了可见变化；前景边缘羽化偏软，主体细节有发糊迹象。
+        - link "2026-06-09 13:33:07 已完成 / 1 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 0 / 失败 1 失败原因：商品主体一致性存在明显风险：鞋型、服装图案或 Logo 可能已被处理影响；同时前景边缘过软，局部羽化范围偏大，主体细节显得发糊。" [ref=e83] [cursor=pointer]:
+          - /url: /batches/20260609_133307_2527c9af?lang=zh
+          - strong [ref=e84]: 2026-06-09 13:33:07
+          - generic [ref=e85]: 已完成 / 1 <built-in method items of dict object at 0x0000024BF623A680> / 通过 0 / 复核 0 / 失败 1
+          - emphasis [ref=e86]: 失败原因：商品主体一致性存在明显风险：鞋型、服装图案或 Logo 可能已被处理影响；同时前景边缘过软，局部羽化范围偏大，主体细节显得发糊。
+        - link "2026-06-07 10:36:51 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 4 / 复核 4 / 失败 0 失败原因：前景边缘过软，局部羽化范围偏大，细节会显得发糊。；头发或上半身边缘与周围背景亮度差偏大，边缘光不够贴合。" [ref=e87] [cursor=pointer]:
+          - /url: /batches/20260607_103651_a1c50047?lang=zh
+          - strong [ref=e88]: 2026-06-07 10:36:51
+          - generic [ref=e89]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 4 / 复核 4 / 失败 0
+          - emphasis [ref=e90]: 失败原因：前景边缘过软，局部羽化范围偏大，细节会显得发糊。；头发或上半身边缘与周围背景亮度差偏大，边缘光不够贴合。
+        - link "2026-06-07 10:29:45 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 5 / 复核 3 / 失败 0 失败原因：前景边缘过软，局部羽化范围偏大，细节会显得发糊。；头发或上半身边缘与周围背景亮度差偏大，边缘光不够贴合。" [ref=e91] [cursor=pointer]:
+          - /url: /batches/20260607_102945_81c77091?lang=zh
+          - strong [ref=e92]: 2026-06-07 10:29:45
+          - generic [ref=e93]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 5 / 复核 3 / 失败 0
+          - emphasis [ref=e94]: 失败原因：前景边缘过软，局部羽化范围偏大，细节会显得发糊。；头发或上半身边缘与周围背景亮度差偏大，边缘光不够贴合。
+        - link "2026-06-07 10:38:21 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 5 / 复核 3 / 失败 0 失败原因：主体与邻近背景的亮度差偏大，棚拍光和外景光仍不够统一。" [ref=e95] [cursor=pointer]:
+          - /url: /batches/20260607_103821_9e8fa26b?lang=zh
+          - strong [ref=e96]: 2026-06-07 10:38:21
+          - generic [ref=e97]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 5 / 复核 3 / 失败 0
+          - emphasis [ref=e98]: 失败原因：主体与邻近背景的亮度差偏大，棚拍光和外景光仍不够统一。
+        - link "2026-06-06 03:26:05 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0" [ref=e99] [cursor=pointer]:
+          - /url: /batches/20260606_032605_89752b44?lang=zh
+          - strong [ref=e100]: 2026-06-06 03:26:05
+          - generic [ref=e101]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-05 23:40:17 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0" [ref=e102] [cursor=pointer]:
+          - /url: /batches/20260605_234017_1171aef5?lang=zh
+          - strong [ref=e103]: 2026-06-05 23:40:17
+          - generic [ref=e104]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-05 21:31:47 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0" [ref=e105] [cursor=pointer]:
+          - /url: /batches/20260605_213147_230aba7c?lang=zh
+          - strong [ref=e106]: 2026-06-05 21:31:47
+          - generic [ref=e107]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-05 21:25:22 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0" [ref=e108] [cursor=pointer]:
+          - /url: /batches/20260605_212522_4e416c2e?lang=zh
+          - strong [ref=e109]: 2026-06-05 21:25:22
+          - generic [ref=e110]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-05 20:57:13 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0" [ref=e111] [cursor=pointer]:
+          - /url: /batches/20260605_205713_a14fa061?lang=zh
+          - strong [ref=e112]: 2026-06-05 20:57:13
+          - generic [ref=e113]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0
+        - link "2026-06-05 20:49:41 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0" [ref=e114] [cursor=pointer]:
+          - /url: /batches/20260605_204941_a28182c8?lang=zh
+          - strong [ref=e115]: 2026-06-05 20:49:41
+          - generic [ref=e116]: 已完成 / 8 <built-in method items of dict object at 0x0000024BF623A680> / 通过 8 / 复核 0 / 失败 0

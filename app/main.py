@@ -1,6 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 import asyncio
+import json
 import os
 import shutil
 import subprocess
@@ -8,7 +9,7 @@ import sys
 import threading
 from uuid import uuid4
 
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.responses import JSONResponse
 from fastapi.responses import Response
@@ -30,6 +31,7 @@ from app.models import (
     ItemStatus,
     PhotoRoomEditRequest,
     PhotoRoomMattingRequest,
+    PhotoRoomSandboxMode,
     ProjectCreateRequest,
     ProjectRecord,
     ProjectStatus,
@@ -70,6 +72,17 @@ IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 ACTIVE_WORKERS: set[str] = set()
 ACTIVE_WORKERS_LOCK = threading.Lock()
 WORKSPACE_ROOT = Path.cwd().resolve()
+PROVIDER_INPUTS_DIR = settings.app_data_dir / "provider_inputs"
+PROVIDER_OUTPUTS_DIR = settings.app_data_dir / "provider_outputs"
+PHOTOROOM_HISTORY_PATH = PROVIDER_OUTPUTS_DIR / "photoroom_history.json"
+DEV_BATCH_PREFIXES = (
+    "api_probe",
+    "api_two",
+    "preview",
+    "regression",
+    "screen_guard",
+    "smoke",
+)
 
 UI_TEXT = {
     "zh": {
@@ -81,6 +94,9 @@ UI_TEXT = {
         "import": "导入",
         "pipeline": "生成",
         "review": "复核",
+        "cutout_nav": "PhotoRoom 抠图",
+        "ai_background_nav": "AI 智能背景",
+        "review_nav": "结果复核",
         "backgrounds": "背景库",
         "settings": "设置",
         "support": "帮助",
@@ -94,7 +110,7 @@ UI_TEXT = {
         "campaign": "活动投放",
         "buyer_preview": "买家预览",
         "recent_projects": "最近项目",
-        "generation_history": "生成历史",
+        "generation_history": "真实生成记录",
         "create_first_batch": "创建第一个批次",
         "mvp_ready": "当前后端已支持上传图片、生成结果、导出报告和压缩包。",
         "no_history": "暂无批次记录。",
@@ -107,16 +123,16 @@ UI_TEXT = {
         "recent_batches": "最近批次",
         "no_attached_batches": "暂无绑定批次。",
         "asset_import": "素材导入",
-        "import_intro": "按照影棚工具式流程处理商品图：上传 1 到 8 张图片，先抠图，再选背景、调光影，最后进入复核导出。",
+        "import_intro": "按照影棚工具式流程处理商品图：上传 1 到 10 张图片，先抠图，再选背景、调光影，最后进入复核导出。",
         "local_picker": "本机文件选择",
         "local_picker_hint": "浏览器上传不方便时，可用本地选择器。",
         "select_images": "选择图片",
         "drop_title": "拖拽上传素材",
-        "drop_hint": "支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 8 张。",
+        "drop_hint": "支持 PNG、JPG、JPEG、WEBP，单张也可以处理，最多 10 张。",
         "no_images": "尚未选择图片。",
         "start_generation": "开始批量生成",
         "input_check": "输入检查",
-        "exact_required": "支持 1 到 8 张图片",
+        "exact_required": "支持 1 到 10 张图片",
         "screen_supported": "支持绿幕或白底输入",
         "avoid_duplicate": "处理中请勿重复提交",
         "pipeline_summary": "上传、抠图、背景、光影、阴影、复核、导出。",
@@ -137,11 +153,21 @@ UI_TEXT = {
         "api_configured": "已配置",
         "api_unconfigured": "未配置",
         "api_refresh": "刷新状态",
-        "api_remove_bg": "测试抠图",
-        "api_edit": "测试编辑",
+        "api_remove_bg": "去背景",
+        "api_edit": "AI 智能背景",
+        "api_relight": "仅调光",
+        "api_static_background": "手选背景",
         "api_image_path": "图片路径",
+        "api_upload_image": "上传测试图",
+        "api_background_image": "背景参考图",
+        "api_mode": "处理模式",
         "api_background_prompt": "背景提示词",
-        "api_result_placeholder": "选择本地结果路径后，可从这里调用后端工具。",
+        "api_lighting_mode": "光照",
+        "api_shadow_mode": "阴影",
+        "api_result_placeholder": "选择一张测试图后，可直接调用 PhotoRoom 沙盒。",
+        "api_run_sandbox": "运行沙盒",
+        "api_download_result": "下载结果",
+        "api_no_result": "还没有结果",
         "api_key_required": "需要在 .env 配置 PhotoRoom 密钥。",
         "background_title": "背景库",
         "background_intro": "预览当前固定背景资源，生成时由后端自动匹配。",
@@ -161,6 +187,8 @@ UI_TEXT = {
         "quality_analysis": "质量分析",
         "suggestions": "建议",
         "download_image": "下载本图",
+        "failure_note": "失败原因",
+        "review_note": "复核提示",
         "background": "背景",
         "json": "报告",
         "zip": "压缩包",
@@ -216,6 +244,9 @@ UI_TEXT = {
         "import": "Import",
         "pipeline": "Pipeline",
         "review": "Review",
+        "cutout_nav": "PhotoRoom Cutout",
+        "ai_background_nav": "AI Background",
+        "review_nav": "Review Results",
         "backgrounds": "Backgrounds",
         "settings": "Settings",
         "support": "Support",
@@ -229,7 +260,7 @@ UI_TEXT = {
         "campaign": "Campaign",
         "buyer_preview": "Buyer Preview",
         "recent_projects": "Recent Projects",
-        "generation_history": "Generation History",
+        "generation_history": "Real Generation Runs",
         "create_first_batch": "Create the first batch",
         "mvp_ready": "The backend can upload images, generate results, and export reports and ZIP packages.",
         "no_history": "No batch history yet.",
@@ -242,16 +273,16 @@ UI_TEXT = {
         "recent_batches": "Recent Batches",
         "no_attached_batches": "No attached batches.",
         "asset_import": "Asset Import",
-        "import_intro": "Use a PhotoRoom-style flow: upload 1 to 8 product photos, remove the background, choose a background, relight, then review and export.",
+        "import_intro": "Use a PhotoRoom-style flow: upload 1 to 10 product photos, remove the background, choose a background, relight, then review and export.",
         "local_picker": "Local File Picker",
         "local_picker_hint": "Use the local picker when browser upload is inconvenient.",
         "select_images": "Select Images",
         "drop_title": "Drag & Drop Assets",
-        "drop_hint": "PNG, JPG, JPEG, and WEBP are supported. One image is enough, up to 8 images.",
+        "drop_hint": "PNG, JPG, JPEG, and WEBP are supported. One image is enough, up to 10 images.",
         "no_images": "No images selected.",
         "start_generation": "Start Batch Generation",
         "input_check": "Input Check",
-        "exact_required": "Accepts 1 to 8 images",
+        "exact_required": "Accepts 1 to 10 images",
         "screen_supported": "Green screen and white background inputs are supported",
         "avoid_duplicate": "Avoid duplicate submit while processing",
         "pipeline_summary": "Upload, cutout, background, relight, shadow, review, export.",
@@ -272,11 +303,21 @@ UI_TEXT = {
         "api_configured": "Configured",
         "api_unconfigured": "Not Configured",
         "api_refresh": "Refresh Status",
-        "api_remove_bg": "Test Cutout API",
-        "api_edit": "Test Edit API",
+        "api_remove_bg": "Remove Background",
+        "api_edit": "AI Background",
+        "api_relight": "Relight Only",
+        "api_static_background": "Chosen Background",
         "api_image_path": "Image Path",
+        "api_upload_image": "Upload Test Image",
+        "api_background_image": "Background Reference",
+        "api_mode": "Mode",
         "api_background_prompt": "Background Prompt",
-        "api_result_placeholder": "Enter a local result path to call backend tools from here.",
+        "api_lighting_mode": "Lighting",
+        "api_shadow_mode": "Shadow",
+        "api_result_placeholder": "Choose a test image to call the PhotoRoom sandbox.",
+        "api_run_sandbox": "Run Sandbox",
+        "api_download_result": "Download Result",
+        "api_no_result": "No result yet",
         "api_key_required": "Set PHOTOROOM_API_KEY in .env.",
         "background_title": "Backgrounds",
         "background_intro": "Preview the fixed background library used by backend matching.",
@@ -296,6 +337,8 @@ UI_TEXT = {
         "quality_analysis": "Quality Analysis",
         "suggestions": "Suggestions",
         "download_image": "Download Image",
+        "failure_note": "Failure",
+        "review_note": "Review note",
         "background": "Background",
         "json": "Report",
         "zip": "ZIP",
@@ -350,11 +393,16 @@ def index(request: Request) -> HTMLResponse:
     lang = _ui_lang(request)
     latest_batch = _latest_batch_summary(lang)
     projects = _localized_projects(list_projects(), lang)
+    photoroom_history = _recent_photoroom_history(limit=10, lang=lang)
+    photoroom_groups = _recent_photoroom_groups(limit=10, lang=lang)
     return templates.TemplateResponse(
         "index.html",
         _template_context(request, {
             "request": request,
             "history_items": _recent_batch_history(lang=lang),
+            "photoroom_history": photoroom_history,
+            "photoroom_groups": photoroom_groups,
+            "latest_photoroom": photoroom_history[0] if photoroom_history else None,
             "current_batch_id": "",
             "projects": projects,
             "provider_status": provider_status(),
@@ -498,15 +546,46 @@ def project_detail(request: Request, project_id: str) -> HTMLResponse:
 
 @app.get("/import", response_class=HTMLResponse)
 def import_workspace(request: Request) -> HTMLResponse:
+    lang = _ui_lang(request)
+    active_tool = _active_photo_tool(request)
+    photoroom_history = _recent_photoroom_history(limit=10, lang=lang)
+    photoroom_groups = _recent_photoroom_groups(limit=8, lang=lang)
     return templates.TemplateResponse(
         "index.html",
         _template_context(request, {
             "request": request,
             "view": "import",
-            "history_items": _recent_batch_history(lang=_ui_lang(request)),
+            "history_items": _recent_batch_history(lang=lang),
+            "photoroom_history": photoroom_history,
+            "photoroom_groups": photoroom_groups,
+            "latest_photoroom": photoroom_history[0] if photoroom_history else None,
             "current_batch_id": "",
             "provider_status": provider_status(),
-            "active_nav": "import",
+            "active_nav": active_tool,
+            "active_tool": active_tool,
+            "min_images": settings.min_images_per_batch,
+            "max_images": settings.max_images_per_batch,
+        }),
+    )
+
+
+@app.get("/review", response_class=HTMLResponse)
+def review_workspace(request: Request) -> HTMLResponse:
+    lang = _ui_lang(request)
+    photoroom_history = _recent_photoroom_history(limit=20, lang=lang)
+    photoroom_groups = _recent_photoroom_groups(limit=20, lang=lang)
+    return templates.TemplateResponse(
+        "index.html",
+        _template_context(request, {
+            "request": request,
+            "view": "review",
+            "history_items": _recent_batch_history(lang=lang),
+            "photoroom_history": photoroom_history,
+            "photoroom_groups": photoroom_groups,
+            "latest_photoroom": photoroom_history[0] if photoroom_history else None,
+            "current_batch_id": "",
+            "provider_status": provider_status(),
+            "active_nav": "review",
             "min_images": settings.min_images_per_batch,
             "max_images": settings.max_images_per_batch,
         }),
@@ -516,16 +595,7 @@ def import_workspace(request: Request) -> HTMLResponse:
 @app.get("/backgrounds", response_class=HTMLResponse)
 def background_library(request: Request) -> HTMLResponse:
     lang = _ui_lang(request)
-    backgrounds = []
-    meta_path = settings.background_dir / "backgrounds.json"
-    try:
-        import json
-
-        payload = json.loads(meta_path.read_text(encoding="utf-8"))
-        raw_backgrounds = payload if isinstance(payload, list) else payload.get("backgrounds", [])
-        backgrounds = [_localized_background(bg, lang) for bg in raw_backgrounds]
-    except Exception:
-        backgrounds = []
+    backgrounds = _load_background_library(lang)
     return templates.TemplateResponse(
         "index.html",
         _template_context(request, {
@@ -533,6 +603,7 @@ def background_library(request: Request) -> HTMLResponse:
             "view": "backgrounds",
             "backgrounds": backgrounds,
             "history_items": _recent_batch_history(lang=lang),
+            "photoroom_history": _recent_photoroom_history(limit=8, lang=lang),
             "current_batch_id": "",
             "provider_status": provider_status(),
             "active_nav": "backgrounds",
@@ -540,6 +611,30 @@ def background_library(request: Request) -> HTMLResponse:
             "max_images": settings.max_images_per_batch,
         }),
     )
+
+
+@app.post("/backgrounds/upload")
+async def upload_backgrounds(
+    request: Request,
+    files: list[UploadFile] = File(...),
+) -> RedirectResponse:
+    lang = _ui_lang(request)
+    if not files:
+        raise HTTPException(status_code=400, detail="at least one background image is required")
+    settings.background_dir.mkdir(parents=True, exist_ok=True)
+    for upload in files:
+        suffix = Path(upload.filename or "").suffix.lower() or ".png"
+        if suffix not in IMAGE_SUFFIXES:
+            raise HTTPException(status_code=400, detail=f"unsupported file type: {suffix}")
+        filename = (
+            datetime.now().strftime("user_%Y%m%d_%H%M%S_")
+            + uuid4().hex[:8]
+            + "_"
+            + _safe_name(upload.filename or f"background{suffix}")
+        )
+        destination = settings.background_dir / filename
+        destination.write_bytes(await upload.read())
+    return RedirectResponse(url=f"/backgrounds?lang={lang}", status_code=303)
 
 
 @app.get("/settings", response_class=HTMLResponse)
@@ -640,6 +735,11 @@ def _ui_lang(request: Request) -> str:
     return "en" if lang.startswith("en") else "zh"
 
 
+def _active_photo_tool(request: Request) -> str:
+    tool = request.query_params.get("tool", "cutout").lower()
+    return "cutout" if tool in {"cutout", "remove_background"} else "ai_background"
+
+
 def _lang_url(request: Request, lang: str) -> str:
     params = dict(request.query_params)
     params["lang"] = lang
@@ -657,6 +757,21 @@ def _template_context(request: Request, context: dict) -> dict:
     }
     merged.update(context)
     return merged
+
+
+def _now_iso() -> str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def _safe_name(filename: str) -> str:
+    allowed = []
+    for char in filename:
+        if char.isalnum() or char in {".", "-", "_"}:
+            allowed.append(char)
+        else:
+            allowed.append("_")
+    safe = "".join(allowed).strip("._")
+    return safe or "file"
 
 
 def _item_status_label(status: object, lang: str = "zh") -> str:
@@ -743,6 +858,26 @@ def _english_quality_suggestion(item: ImageItemReport) -> str:
     return "Review the image and rerun with a safer scene if needed."
 
 
+def _is_business_batch(batch_id: str) -> bool:
+    return not batch_id.startswith(DEV_BATCH_PREFIXES)
+
+
+def _batch_issue_summary(report: BatchReport, lang: str = "zh") -> tuple[str, str]:
+    failed_items = [item for item in report.items if item.status == ItemStatus.fail]
+    review_items = [item for item in report.items if item.status == ItemStatus.review]
+    prioritized = failed_items or review_items
+    if not prioritized:
+        return "", ""
+    item = prioritized[0]
+    reason = item.reason if lang == "zh" else (item.reason_en or _english_quality_reason(item))
+    if not reason:
+        reason = _english_quality_reason(item) if lang == "en" else "需要复核主体边缘、商品一致性和背景融合。"
+    reason = reason.strip()
+    label_key = "failure_note" if failed_items else "review_note"
+    label = UI_TEXT.get(lang, UI_TEXT["zh"])[label_key]
+    return reason[:96] + ("..." if len(reason) > 96 else ""), label
+
+
 def _recent_batch_history(limit: int = 14, lang: str = "en") -> list[dict[str, str | int]]:
     batches_dir = settings.app_data_dir / "batches"
     if not batches_dir.exists():
@@ -754,13 +889,16 @@ def _recent_batch_history(limit: int = 14, lang: str = "en") -> list[dict[str, s
         reverse=True,
     )
     history: list[dict[str, str | int]] = []
-    for report_file in report_files[:limit]:
+    for report_file in report_files:
         batch_id = report_file.parent.name
+        if not _is_business_batch(batch_id):
+            continue
         try:
             report = load_report(batch_id)
         except Exception:
             continue
         report.recompute_counts()
+        issue_summary, issue_label = _batch_issue_summary(report, lang)
         history.append(
             {
                 "batch_id": batch_id,
@@ -770,9 +908,273 @@ def _recent_batch_history(limit: int = 14, lang: str = "en") -> list[dict[str, s
                 "pass_count": report.pass_count,
                 "review_count": report.review_count,
                 "fail_count": report.fail_count,
+                "issue_summary": issue_summary,
+                "issue_label": issue_label,
+            }
+        )
+        if len(history) >= limit:
+            break
+    return history
+
+
+def _read_photoroom_history() -> list[dict]:
+    if not PHOTOROOM_HISTORY_PATH.exists():
+        return []
+    try:
+        payload = json.loads(PHOTOROOM_HISTORY_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    if not isinstance(payload, list):
+        return []
+    return [item for item in payload if isinstance(item, dict)]
+
+
+def _write_photoroom_history(items: list[dict]) -> None:
+    PROVIDER_OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    PHOTOROOM_HISTORY_PATH.write_text(
+        json.dumps(items[:80], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def _record_photoroom_history(entry: dict) -> dict:
+    now = datetime.now()
+    normalized = {
+        "id": entry.get("id") or now.strftime("photoroom_%Y%m%d_%H%M%S_") + uuid4().hex[:8],
+        "batch_id": entry.get("batch_id") or now.strftime("photoroom_batch_%Y%m%d_%H%M%S_") + uuid4().hex[:8],
+        "created_at": entry.get("created_at") or now.isoformat(timespec="seconds"),
+        "provider": "photoroom",
+        "ok": bool(entry.get("ok")),
+        "mode": str(entry.get("mode") or ""),
+        "input_url": entry.get("input_url") or "",
+        "input_path": entry.get("input_path") or "",
+        "result_url": entry.get("result_url") or "",
+        "result_path": entry.get("result_path") or "",
+        "alpha_url": entry.get("alpha_url") or "",
+        "background_url": entry.get("background_url") or "",
+        "background_path": entry.get("background_path") or "",
+        "background_prompt": entry.get("background_prompt") or "",
+        "lighting_mode": entry.get("lighting_mode") or "",
+        "shadow_mode": entry.get("shadow_mode") or "",
+        "error": entry.get("error") or "",
+    }
+    history = [item for item in _read_photoroom_history() if item.get("id") != normalized["id"]]
+    history.insert(0, normalized)
+    _write_photoroom_history(history)
+    return normalized
+
+
+def _photoroom_mode_label(mode: str, lang: str) -> str:
+    labels = {
+        "zh": {
+            "remove_background": "PhotoRoom 抠图",
+            "ai_background": "AI 智能背景",
+            "background_image": "手选背景",
+            "relight": "调光",
+        },
+        "en": {
+            "remove_background": "PhotoRoom Cutout",
+            "ai_background": "AI Background",
+            "background_image": "Chosen Background",
+            "relight": "Relight",
+        },
+    }
+    return labels.get(lang, labels["zh"]).get(mode, mode or "PhotoRoom")
+
+
+def _photoroom_status_label(ok: bool, lang: str) -> str:
+    if lang == "en":
+        return "Returned Image" if ok else "Failed"
+    return "已返回图片" if ok else "失败"
+
+
+def _history_display_time(created_at: str, fallback_path: Path | None = None) -> str:
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d %H:%M:%S"):
+        try:
+            return datetime.strptime(created_at[:19], fmt).strftime("%Y-%m-%d %H:%M:%S")
+        except ValueError:
+            pass
+    if fallback_path and fallback_path.exists():
+        return datetime.fromtimestamp(fallback_path.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S")
+    return created_at[:19] if created_at else ""
+
+
+def _result_url_from_output(path: Path) -> str:
+    return "/data/provider_outputs/" + path.name
+
+
+def _input_url_from_output(output_path: Path) -> str:
+    possible_stem = output_path.stem
+    for suffix in ("_remove_background", "_ai_background", "_background_image", "_relight"):
+        if possible_stem.endswith(suffix):
+            possible_stem = possible_stem[: -len(suffix)]
+            break
+    for candidate in sorted(PROVIDER_INPUTS_DIR.glob(possible_stem + ".*")):
+        if candidate.is_file() and candidate.suffix.lower() in IMAGE_SUFFIXES:
+            return "/data/provider_inputs/" + candidate.name
+    return ""
+
+
+def _legacy_photoroom_batch_key(item: dict) -> str:
+    for key in ("batch_id", "input_url", "input_path"):
+        value = str(item.get(key) or "")
+        if value:
+            stem = Path(value).stem
+            return stem.removesuffix("_photoroom-cutout")
+    result = str(item.get("result_url") or item.get("result_path") or item.get("id") or "")
+    stem = Path(result).stem
+    for suffix in ("_remove_background", "_ai_background", "_background_image", "_relight"):
+        if stem.endswith(suffix):
+            stem = stem[: -len(suffix)]
+            break
+    return stem.removesuffix("_photoroom-cutout") or str(item.get("id") or result)
+
+
+def _legacy_photoroom_output_items() -> list[dict]:
+    if not PROVIDER_OUTPUTS_DIR.exists():
+        return []
+    items = []
+    for path in sorted(PROVIDER_OUTPUTS_DIR.glob("*.png"), key=lambda item: item.stat().st_mtime, reverse=True):
+        if path.name.endswith("_alpha.png") or path.name.startswith("photoroom_smoke"):
+            continue
+        mode = ""
+        for candidate in ("remove_background", "ai_background", "background_image", "relight"):
+            if path.stem.endswith("_" + candidate):
+                mode = candidate
+                break
+        if not mode:
+            continue
+        created = datetime.fromtimestamp(path.stat().st_mtime).isoformat(timespec="seconds")
+        alpha_path = path.with_name(path.stem + "_alpha.png")
+        items.append(
+            {
+                "id": "legacy_" + path.stem,
+                "batch_id": _legacy_photoroom_batch_key({"result_url": _result_url_from_output(path), "input_url": _input_url_from_output(path)}),
+                "created_at": created,
+                "provider": "photoroom",
+                "ok": True,
+                "mode": mode,
+                "input_url": _input_url_from_output(path),
+                "input_path": "",
+                "result_url": _result_url_from_output(path),
+                "result_path": str(path),
+                "alpha_url": _result_url_from_output(alpha_path) if alpha_path.exists() else "",
+                "background_url": "",
+                "background_path": "",
+                "background_prompt": "",
+                "lighting_mode": "",
+                "shadow_mode": "",
+                "error": "",
+            }
+        )
+    return items
+
+
+def _recent_photoroom_history(limit: int = 12, lang: str = "zh", mode: str | None = None) -> list[dict]:
+    keyed: dict[str, dict] = {}
+    for item in _legacy_photoroom_output_items():
+        if item.get("result_url"):
+            keyed[str(item["result_url"])] = item
+    for item in reversed(_read_photoroom_history()):
+        key = str(item.get("result_url") or item.get("id"))
+        keyed[key] = item
+    combined = sorted(
+        keyed.values(),
+        key=lambda item: str(item.get("created_at") or ""),
+        reverse=True,
+    )
+    if mode:
+        combined = [item for item in combined if item.get("mode") == mode]
+
+    history = []
+    for item in combined[:limit]:
+        result_path = Path(str(item.get("result_path") or ""))
+        result_url = str(item.get("result_url") or "")
+        ok = bool(item.get("ok")) and bool(result_url)
+        history.append(
+            {
+                "id": str(item.get("id") or result_url),
+                "batch_id": str(item.get("batch_id") or _legacy_photoroom_batch_key(item)),
+                "display_time": _history_display_time(str(item.get("created_at") or ""), result_path if result_path else None),
+                "mode": str(item.get("mode") or ""),
+                "mode_label": _photoroom_mode_label(str(item.get("mode") or ""), lang),
+                "status": _photoroom_status_label(ok, lang),
+                "ok": ok,
+                "input_url": str(item.get("input_url") or ""),
+                "result_url": result_url,
+                "alpha_url": str(item.get("alpha_url") or ""),
+                "background_url": str(item.get("background_url") or ""),
+                "background_prompt": str(item.get("background_prompt") or ""),
+                "lighting_mode": str(item.get("lighting_mode") or ""),
+                "shadow_mode": str(item.get("shadow_mode") or ""),
+                "error": str(item.get("error") or ""),
             }
         )
     return history
+
+
+def _recent_photoroom_groups(limit: int = 10, lang: str = "zh") -> list[dict]:
+    items = _recent_photoroom_history(limit=60, lang=lang)
+    grouped: dict[str, dict] = {}
+    stage_order = {
+        "remove_background": 1,
+        "background_image": 2,
+        "ai_background": 3,
+        "relight": 4,
+    }
+    for item in items:
+        batch_id = str(item.get("batch_id") or item.get("id"))
+        group = grouped.setdefault(
+            batch_id,
+            {
+                "id": batch_id,
+                "display_time": item["display_time"],
+                "items": [],
+                "ok": True,
+                "error": "",
+                "thumbnail_url": "",
+                "input_url": "",
+                "result_url": "",
+                "mode_summary": "",
+                "status": "",
+            },
+        )
+        group["items"].append(item)
+        group["display_time"] = max(str(group["display_time"]), str(item["display_time"]))
+        group["ok"] = bool(group["ok"]) and bool(item.get("ok"))
+        if item.get("error") and not group["error"]:
+            group["error"] = item["error"]
+        if item.get("input_url") and not group["input_url"]:
+            group["input_url"] = item["input_url"]
+        if item.get("result_url"):
+            group["result_url"] = item["result_url"]
+            group["thumbnail_url"] = item["result_url"]
+
+    groups = sorted(grouped.values(), key=lambda group: str(group["display_time"]), reverse=True)
+    for group in groups:
+        group["items"].sort(key=lambda item: (stage_order.get(str(item.get("mode")), 99), str(item.get("display_time"))))
+        input_candidates = [item for item in group["items"] if item.get("input_url")]
+        result_candidates = [item for item in group["items"] if item.get("result_url")]
+        if input_candidates:
+            group["input_url"] = input_candidates[0]["input_url"]
+        if result_candidates:
+            group["result_url"] = result_candidates[-1]["result_url"]
+            group["thumbnail_url"] = group["result_url"]
+        labels = []
+        for item in group["items"]:
+            label = str(item.get("mode_label") or "")
+            if label and label not in labels:
+                labels.append(label)
+        group["mode_summary"] = " -> ".join(labels)
+        ok_count = sum(1 for item in group["items"] if item.get("ok"))
+        total = len(group["items"])
+        if lang == "en":
+            group["status"] = f"{ok_count}/{total} returned"
+        else:
+            group["status"] = f"{ok_count}/{total} 已返回图片"
+        if not group["thumbnail_url"]:
+            group["thumbnail_url"] = group["input_url"]
+    return groups[:limit]
 
 
 def _latest_batch_summary(lang: str = "zh") -> dict[str, str | int] | None:
@@ -824,6 +1226,20 @@ def _batch_context(report: BatchReport, batch_id: str, lang: str = "zh") -> dict
         "zip_exists": zip_path(batch_id).exists(),
         "batch_status_label": _status_label(report.status, lang),
     }
+
+
+def _selected_batch_item(report: BatchReport, request: Request) -> ImageItemReport | None:
+    requested_item = request.query_params.get("item")
+    if requested_item:
+        try:
+            requested_index = int(requested_item)
+        except ValueError:
+            requested_index = None
+        if requested_index is not None:
+            selected = next((item for item in report.items if item.index == requested_index), None)
+            if selected:
+                return selected
+    return next((item for item in report.items if item.final), None) or (report.items[0] if report.items else None)
 
 
 def _project_type_label(value: object, lang: str = "zh") -> str:
@@ -925,7 +1341,52 @@ def _localized_background(raw: dict, lang: str) -> dict:
     data["lighting_direction_label"] = lighting_labels.get(lighting, lighting)
     data["scene_level_label"] = level_labels.get(level, level)
     data["priority"] = raw.get("priority", 50)
+    data["file"] = str(raw.get("file") or "")
+    data["id"] = str(raw.get("id") or Path(data["file"]).stem)
     return data
+
+
+def _load_background_library(lang: str) -> list[dict]:
+    meta_path = settings.background_dir / "backgrounds.json"
+    indexed: dict[str, dict] = {}
+    try:
+        payload = json.loads(meta_path.read_text(encoding="utf-8"))
+        raw_backgrounds = payload if isinstance(payload, list) else payload.get("backgrounds", [])
+    except Exception:
+        raw_backgrounds = []
+
+    for raw in raw_backgrounds:
+        if not isinstance(raw, dict):
+            continue
+        filename = str(raw.get("file") or "")
+        if not filename:
+            continue
+        path = settings.background_dir / filename
+        if not path.exists() or path.suffix.lower() not in IMAGE_SUFFIXES:
+            continue
+        indexed[filename] = _localized_background(raw, lang)
+
+    for path in sorted(settings.background_dir.glob("*")):
+        if not path.is_file() or path.suffix.lower() not in IMAGE_SUFFIXES:
+            continue
+        if path.name in indexed:
+            continue
+        if indexed and not path.name.startswith("user_"):
+            continue
+        indexed[path.name] = _localized_background(
+            {
+                "id": path.stem,
+                "file": path.name,
+                "scene_type": "custom",
+                "ground_type": "custom",
+                "lighting_direction": "custom",
+                "scene_level": "user_uploaded",
+                "priority": 80,
+            },
+            lang,
+        )
+
+    return sorted(indexed.values(), key=lambda item: (int(item.get("priority", 80)), str(item.get("id", ""))))
 
 
 def _load_project_or_404(project_id: str) -> ProjectRecord:
@@ -952,6 +1413,31 @@ def _resolve_allowed_path(path: str, *, must_exist: bool = True) -> Path:
     return resolved
 
 
+def _data_url(path: Path) -> str:
+    resolved = path.resolve()
+    data_root = settings.app_data_dir.resolve()
+    try:
+        return "/data/" + str(resolved.relative_to(data_root)).replace("\\", "/")
+    except ValueError:
+        return str(path)
+
+
+async def _save_provider_upload(upload: UploadFile, target_dir: Path, prefix: str) -> Path:
+    suffix = Path(upload.filename or "").suffix.lower() or ".png"
+    if suffix not in IMAGE_SUFFIXES:
+        raise HTTPException(status_code=400, detail=f"unsupported file type: {suffix}")
+    target_dir.mkdir(parents=True, exist_ok=True)
+    filename = (
+        datetime.now().strftime(f"{prefix}_%Y%m%d_%H%M%S_")
+        + uuid4().hex[:8]
+        + "_"
+        + _safe_name(upload.filename or f"image{suffix}")
+    )
+    destination = target_dir / filename
+    destination.write_bytes(await upload.read())
+    return destination
+
+
 def _is_relative_to(path: Path, root: Path) -> bool:
     try:
         path.relative_to(root)
@@ -974,6 +1460,23 @@ def _provider_exception_response(exc: Exception) -> JSONResponse:
 @app.get("/api/providers/status")
 def api_provider_status() -> dict:
     return provider_status()
+
+
+@app.get("/api/tools/photoroom/history")
+def api_photoroom_history(request: Request) -> dict:
+    lang = _ui_lang(request)
+    mode = request.query_params.get("mode")
+    try:
+        limit = int(request.query_params.get("limit", "12"))
+    except ValueError:
+        limit = 12
+    return {
+        "items": _recent_photoroom_history(
+            limit=max(1, min(limit, 40)),
+            lang=lang,
+            mode=mode if mode else None,
+        )
+    }
 
 
 @app.get("/api/batches/{batch_id}")
@@ -1095,6 +1598,115 @@ def api_project_batches(project_id: str) -> dict:
     return {"batches": batches}
 
 
+@app.post("/api/tools/photoroom/sandbox")
+async def api_photoroom_sandbox(
+    image: UploadFile = File(...),
+    mode: PhotoRoomSandboxMode = Form(PhotoRoomSandboxMode.ai_background),
+    batch_id: str = Form(""),
+    background_prompt: str = Form(""),
+    background_image: UploadFile | None = File(default=None),
+    lighting_mode: str = Form("ai.auto"),
+    shadow_mode: str = Form("ai.soft"),
+    padding: float | None = Form(default=None),
+    output_size: str | None = Form(default=None),
+):
+    history_batch_id = batch_id.strip() or datetime.now().strftime("photoroom_batch_%Y%m%d_%H%M%S_") + uuid4().hex[:8]
+    source = await _save_provider_upload(image, PROVIDER_INPUTS_DIR, "photoroom_input")
+    background_path = (
+        await _save_provider_upload(background_image, PROVIDER_INPUTS_DIR, "photoroom_bg")
+        if background_image
+        else None
+    )
+    if mode == PhotoRoomSandboxMode.background_image and background_path is None:
+        raise HTTPException(status_code=400, detail="background_image is required for background_image mode")
+    output_stem = f"{source.stem}_{mode.value}"
+    output_path = PROVIDER_OUTPUTS_DIR / f"{output_stem}.png"
+    alpha_path = PROVIDER_OUTPUTS_DIR / f"{output_stem}_alpha.png"
+    photoroom = PhotoRoomClient()
+
+    try:
+        if mode == PhotoRoomSandboxMode.remove_background:
+            call = await photoroom.remove_background(source, output_path, alpha_path)
+            alpha_url = _data_url(alpha_path)
+        else:
+            prompt = background_prompt.strip() or None
+            if mode == PhotoRoomSandboxMode.background_image:
+                prompt = None
+            if mode == PhotoRoomSandboxMode.ai_background and prompt is None:
+                prompt = "clean ecommerce background matching the subject angle, style, lighting, and shadows"
+            call = await photoroom.edit_image(
+                source,
+                output_path,
+                background_image_path=background_path if mode == PhotoRoomSandboxMode.background_image else None,
+                background_prompt=prompt if mode == PhotoRoomSandboxMode.ai_background else None,
+                lighting_mode=lighting_mode.strip() or None,
+                shadow_mode=shadow_mode.strip() or None,
+                remove_background=mode != PhotoRoomSandboxMode.relight,
+                padding=padding,
+                output_size=output_size.strip() if output_size else None,
+                max_width=settings.processing_long_edge,
+                max_height=settings.processing_long_edge,
+            )
+            alpha_url = None
+    except ProviderError as exc:
+        _record_photoroom_history(
+            {
+                "ok": False,
+                "batch_id": history_batch_id,
+                "mode": mode.value,
+                "input_url": _data_url(source),
+                "input_path": str(source),
+                "background_url": _data_url(background_path) if background_path else "",
+                "background_path": str(background_path) if background_path else "",
+                "background_prompt": background_prompt.strip(),
+                "lighting_mode": lighting_mode.strip(),
+                "shadow_mode": shadow_mode.strip(),
+                "error": str(exc),
+            }
+        )
+        return _provider_exception_response(exc)
+
+    history_entry = _record_photoroom_history(
+        {
+            "ok": True,
+            "batch_id": history_batch_id,
+            "mode": mode.value,
+            "input_url": _data_url(source),
+            "input_path": str(source),
+            "result_url": _data_url(output_path),
+            "result_path": str(output_path),
+            "alpha_url": alpha_url or "",
+            "background_url": _data_url(background_path) if background_path else "",
+            "background_path": str(background_path) if background_path else "",
+            "background_prompt": background_prompt.strip(),
+            "lighting_mode": lighting_mode.strip(),
+            "shadow_mode": shadow_mode.strip(),
+        }
+    )
+
+    return {
+        "ok": True,
+        "mode": mode.value,
+        "history": history_entry,
+        "input": {
+            "path": str(source),
+            "url": _data_url(source),
+        },
+        "result": {
+            "path": str(output_path),
+            "url": _data_url(output_path),
+            "alpha_url": alpha_url,
+        },
+        "call": call,
+        "unsupported_addons": [
+            {
+                "name": "manual_retouch",
+                "reason": "当前 PhotoRoom 工具接口已覆盖抠图、背景、光影、阴影；像画笔擦除/局部人工修图这类交互需要后续接画布层或 PhotoRoom 对应编辑端点。",
+            }
+        ],
+    }
+
+
 @app.post("/api/tools/photoroom/remove-background")
 async def api_photoroom_remove_background(payload: PhotoRoomMattingRequest):
     source = _resolve_allowed_path(payload.image_path)
@@ -1210,6 +1822,8 @@ def view_batch(request: Request, batch_id: str) -> HTMLResponse:
     if not report_path(batch_id).exists():
         raise HTTPException(status_code=404, detail="批次不存在")
     batch_context = _batch_context(report, batch_id, lang)
+    selected_item = _selected_batch_item(report, request)
+    localized_selected = _localized_item(selected_item, lang) if selected_item else None
     return templates.TemplateResponse(
         "batch.html",
         _template_context(request, {
@@ -1225,6 +1839,8 @@ def view_batch(request: Request, batch_id: str) -> HTMLResponse:
             "active_item": batch_context["active_item"],
             "first_final": batch_context["first_final"],
             "preview_items": batch_context["preview_items"],
+            "selected_item": localized_selected,
+            "localized_items": batch_context["localized_items"],
             "is_processing": batch_context["is_processing"],
             "active_nav": "pipeline" if batch_context["is_processing"] else "review",
         }),
@@ -1259,7 +1875,7 @@ def download_report_json(batch_id: str) -> FileResponse:
 def download_report_html(request: Request, batch_id: str) -> FileResponse:
     lang = _ui_lang(request)
     path = html_report_path(batch_id, lang)
-    if not path.exists() and report_path(batch_id).exists():
+    if report_path(batch_id).exists():
         from app.agent.reporting import render_html_report
 
         report = load_report(batch_id)

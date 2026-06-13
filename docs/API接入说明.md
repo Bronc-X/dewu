@@ -44,8 +44,46 @@ PHOTOROOM_AI_BACKGROUND_MODEL=
 
 ```text
 GET  /api/providers/status
+POST /api/tools/photoroom/sandbox
 POST /api/tools/photoroom/remove-background
 POST /api/tools/photoroom/edit
+```
+
+前端沙盒入口：
+
+```text
+GET /import
+```
+
+当前 `/import` 页已经可以直接上传测试图调用后端 PhotoRoom 沙盒，支持：
+
+- 去背景：`mode=remove_background`，输出 RGBA 结果和 alpha mask。
+- 自适应生成背景：`mode=ai_background`，通过 `background_prompt` 让 PhotoRoom 按商品角度、风格、光影生成背景。
+- 手选背景：`mode=background_image`，同时上传一张背景参考图。
+- 调光/阴影：通过 `lighting_mode` 和 `shadow_mode` 传给 PhotoRoom Image Editing API；页面默认值为 `ai.auto` 和 `ai.soft`。
+
+接口形态是 `multipart/form-data`，示例字段：
+
+```text
+image=<商品图文件>
+mode=ai_background
+background_prompt=clean ecommerce background matching the subject angle, style, lighting, and shadows
+lighting_mode=ai.auto
+shadow_mode=ai.soft
+```
+
+返回值会包含前端可直接预览的 `/data/...` 地址：
+
+```json
+{
+  "ok": true,
+  "mode": "ai_background",
+  "result": {
+    "path": "data/provider_outputs/example.png",
+    "url": "/data/provider_outputs/example.png",
+    "alpha_url": null
+  }
+}
 ```
 
 示例请求：
@@ -176,3 +214,32 @@ React/Tailwind 前端
 ```
 
 前端可先调用 `GET /api/providers/status` 判断哪些工具已经配置，再决定是否显示对应功能入口。
+
+## 8. PhotoRoom 功能边界
+
+已验证可跑：
+
+- `remove_background`
+- `ai_background`
+- `background_image`
+- `relight`
+
+仍需评估/单独实现：
+
+- 羽化：本地管线已有边缘质量判断和 alpha mask 输出，但 PhotoRoom 沙盒前端还没有独立的羽化滑杆。下一步可以在后端对 alpha 做轻量 feather 后再合成，或接 PhotoRoom/Photoshop 对应参数。
+- 人工修图：目前没有画布画笔/擦除交互层。要接近 PhotoRoom 前端，需要新增 canvas 编辑层，保存用户 mask 或涂抹区域，再调用对应编辑端点或本地局部修图逻辑。
+
+## 9. 当前网盘素材状态
+
+链接：
+
+```text
+https://nas.shike.chat/@s/8JB0aTpU
+```
+
+本机当前访问情况：
+
+- HTTPS 握手阶段被远端重置，`curl` / PowerShell / Python 都无法拿到目录页。
+- HTTP 明文请求返回阿里云 `Non-compliance ICP Filing` 拦截页，状态为 `403 Forbidden`。
+
+所以这批网盘文件暂时还没有下载到项目目录。等该域名恢复 HTTPS、换一个可访问下载链接，或用户提供压缩包/本地目录后，可以继续按原文件夹结构落到 `data/imports/` 或指定项目素材目录。

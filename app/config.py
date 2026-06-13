@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     vision_api_timeout_seconds: float = 120
     image_api_base_url: str = ""
     image_api_key: str = ""
-    image_model: str = "gpt-image-1.5"
+    image_model: str = "Imagine-2"
     image_quality: str = "medium"
     matting_provider: str = "local"
     compositing_provider: str = "local"
@@ -23,6 +23,10 @@ class Settings(BaseSettings):
     photoroom_segment_url: str = "https://sdk.photoroom.com/v1/segment"
     photoroom_edit_url: str = "https://image-api.photoroom.com/v2/edit"
     photoroom_ai_background_model: str = ""
+    photoroom_max_requests_per_minute: int = 55
+    photoroom_max_concurrency: int = 8
+    photoroom_429_max_retries: int = 4
+    photoroom_429_backoff_seconds: float = 2.0
     adobe_client_id: str = ""
     adobe_client_secret: str = ""
     adobe_scope: str = "openid,AdobeID,session,additional_info,read_organizations,firefly_api,ff_apis"
@@ -33,7 +37,7 @@ class Settings(BaseSettings):
     adobe_job_poll_attempts: int = 40
     adobe_job_poll_interval_seconds: float = 3
     min_images_per_batch: int = 1
-    max_images_per_batch: int = 8
+    max_images_per_batch: int = 10
     max_retries_per_image: int = 1
     processing_long_edge: int = 1800
     product_change_review_threshold: float = 32

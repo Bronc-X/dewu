@@ -1,0 +1,6 @@
+[   11633ms] [INFO] [adjust-sdk] 2026-06-12T07:52:56.739Z INFO:  Log level set to error @ https://app.photoroom.com/assets/TemplateExporter-Drm3zlxY.js:88
+[   25300ms] [WARNING] [GSI_LOGGER]: google.accounts.id.initialize() is called multiple times. This could cause unexpected behavior and only the last initialized instance will be used. @ https://app.photoroom.com/assets/TemplateExporter-Drm3zlxY.js:88
+[   25427ms] [ERROR] Not signed in with the identity provider. @ https://app.photoroom.com/login?next=%2Fapi-dashboard%2Fapi-keys:0
+[   25427ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NotAllowedError: Only one navigator.credentials.get request may be outstanding at one time. @ https://app.photoroom.com/assets/TemplateExporter-Drm3zlxY.js:88
+[   25428ms] [ERROR] Only one navigator.credentials.get request may be outstanding at one time. @ https://app.photoroom.com/login?next=%2Fapi-dashboard%2Fapi-keys:0
+[   25898ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://app.photoroom.com/assets/TemplateExporter-Drm3zlxY.js:88

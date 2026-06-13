@@ -1,15 +1,71 @@
 from pathlib import Path
+import asyncio
+from collections import deque
 import mimetypes
+import random
+import re
+import threading
+import time
 
 import httpx
 from PIL import Image
 
-from app.api_clients.errors import ProviderError, ProviderNotConfiguredError
+from app.api_clients.errors import ProviderError, ProviderNotConfiguredError, ProviderRateLimitError
 from app.config import settings
 
 
 def _mime_type(path: Path) -> str:
     return mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+
+
+class _PhotoRoomRequestLimiter:
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._timestamps: deque[float] = deque()
+        self._active_requests = 0
+        self._blocked_until = 0.0
+        self._blocked_message = ""
+
+    async def wait_for_slot(self) -> None:
+        limit = max(1, settings.photoroom_max_requests_per_minute)
+        window_seconds = 60.0
+        while True:
+            with self._lock:
+                now = time.monotonic()
+                if self._blocked_until > now:
+                    retry_after = self._blocked_until - now
+                    message = self._blocked_message or "PhotoRoom rate limit is active."
+                    raise ProviderRateLimitError(message, retry_after)
+                while self._timestamps and now - self._timestamps[0] >= window_seconds:
+                    self._timestamps.popleft()
+                if len(self._timestamps) < limit:
+                    self._timestamps.append(now)
+                    return
+                wait_seconds = window_seconds - (now - self._timestamps[0])
+            await asyncio.sleep(max(wait_seconds, 0.05))
+
+    async def acquire_concurrency(self) -> None:
+        while True:
+            with self._lock:
+                limit = max(1, settings.photoroom_max_concurrency)
+                if self._active_requests < limit:
+                    self._active_requests += 1
+                    return
+            await asyncio.sleep(0.05)
+
+    def release_concurrency(self) -> None:
+        with self._lock:
+            self._active_requests = max(0, self._active_requests - 1)
+
+    def block_for(self, retry_after_seconds: float, message: str) -> None:
+        if retry_after_seconds <= 0:
+            return
+        with self._lock:
+            self._blocked_until = max(self._blocked_until, time.monotonic() + retry_after_seconds)
+            self._blocked_message = message
+
+
+_REQUEST_LIMITER = _PhotoRoomRequestLimiter()
 
 
 class PhotoRoomClient:
@@ -34,6 +90,11 @@ class PhotoRoomClient:
             "endpoints": {
                 "remove_background": settings.photoroom_segment_url,
                 "image_editing": settings.photoroom_edit_url,
+            },
+            "rate_limits": {
+                "max_requests_per_minute": settings.photoroom_max_requests_per_minute,
+                "max_concurrency": settings.photoroom_max_concurrency,
+                "too_many_requests_retries": settings.photoroom_429_max_retries,
             },
         }
 
@@ -222,12 +283,60 @@ class PhotoRoomClient:
     ) -> bytes:
         headers = {"x-api-key": settings.photoroom_api_key}
         headers.update(extra_headers or {})
-        async with httpx.AsyncClient(timeout=timeout) as client:
-            response = await client.post(url, headers=headers, data=data, files=files)
-        try:
-            response.raise_for_status()
-        except httpx.HTTPStatusError as exc:
-            detail = response.text[:500]
-            raise ProviderError(f"PhotoRoom request failed: {exc.response.status_code} {detail}") from exc
-        return response.content
+        max_attempts = max(1, settings.photoroom_429_max_retries + 1)
+        last_429_detail = ""
+        for attempt in range(1, max_attempts + 1):
+            await _REQUEST_LIMITER.wait_for_slot()
+            await _REQUEST_LIMITER.acquire_concurrency()
+            try:
+                async with httpx.AsyncClient(timeout=timeout) as client:
+                    response = await client.post(url, headers=headers, data=data, files=files)
+            except httpx.RequestError as exc:
+                raise ProviderError(f"PhotoRoom request failed before response: {exc.__class__.__name__}") from exc
+            finally:
+                _REQUEST_LIMITER.release_concurrency()
 
+            if response.status_code == 429:
+                last_429_detail = response.text[:500]
+                retry_after = self._retry_after_seconds(response)
+                if retry_after and retry_after > 300:
+                    message = f"PhotoRoom rate limit active; retry after {int(retry_after)} seconds. {last_429_detail}"
+                    _REQUEST_LIMITER.block_for(retry_after, message)
+                    raise ProviderRateLimitError(message, retry_after)
+                if attempt >= max_attempts:
+                    raise ProviderError(f"PhotoRoom request failed: 429 {last_429_detail}")
+                if retry_after is None:
+                    base = max(0.2, settings.photoroom_429_backoff_seconds)
+                    retry_after = min(base * (2 ** (attempt - 1)), 30.0)
+                    retry_after += random.uniform(0, min(1.0, retry_after * 0.2))
+                await asyncio.sleep(retry_after)
+                continue
+
+            try:
+                response.raise_for_status()
+            except httpx.HTTPStatusError as exc:
+                detail = response.text[:500]
+                raise ProviderError(f"PhotoRoom request failed: {exc.response.status_code} {detail}") from exc
+            return response.content
+
+        retry_after = self._retry_after_seconds(response) if "response" in locals() else None
+        message = f"PhotoRoom request failed: 429 {last_429_detail}"
+        if retry_after and retry_after > 300:
+            _REQUEST_LIMITER.block_for(retry_after, message)
+            raise ProviderRateLimitError(message, retry_after)
+        raise ProviderError(message)
+
+    def _retry_after_seconds(self, response: httpx.Response) -> float | None:
+        raw_value = response.headers.get("Retry-After")
+        body_match = re.search(r"available in ([0-9]+(?:\.[0-9]+)?) seconds", response.text)
+        if body_match:
+            try:
+                return float(body_match.group(1))
+            except ValueError:
+                return None
+        if not raw_value:
+            return None
+        try:
+            return max(float(raw_value), 0.2)
+        except ValueError:
+            return None

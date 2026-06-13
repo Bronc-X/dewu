@@ -6,6 +6,7 @@ from app.agent.background_matcher import background_path, choose_background, loa
 from app.agent.product_protection import protect_candidate_or_revert
 from app.agent.quality_check import evaluate_result
 from app.agent.reporting import copy_final_to_bucket, create_zip, normalize_report_paths, render_html_report
+from app.api_clients.errors import ProviderRateLimitError
 from app.api_clients.photoroom import PhotoRoomClient
 from app.api_clients.vision_api import VisionApiClient
 from app.config import settings
@@ -30,6 +31,19 @@ def _final_filename(item: ImageItemReport) -> str:
     return f"{original}_final.png"
 
 
+def _photoroom_background_prompt(background, pose: str, scene_level: str, risk_tags: list[str]) -> str:
+    style = ", ".join(background.style) if background.style else "clean ecommerce studio"
+    risks = ", ".join(risk_tags) if risk_tags else "none"
+    return (
+        "Create a realistic ecommerce product background that matches the subject angle, pose, "
+        "lighting, contact shadow, and styling. "
+        f"Pose: {pose}. Scene level: {scene_level}. "
+        f"Reference direction: {background.scene_type}, {background.ground_type} ground, "
+        f"{background.lighting_direction} lighting, {background.color_temperature} color temperature, "
+        f"{style}. Avoid artifacts related to: {risks}."
+    )
+
+
 def _has_existing_final(batch_id: str, item: ImageItemReport) -> bool:
     if not item.final:
         return False
@@ -46,6 +60,21 @@ def _status_from_value(value: str) -> ItemStatus:
     return ItemStatus.review
 
 
+def _uses_photoroom_provider() -> bool:
+    return (
+        settings.matting_provider == "photoroom"
+        or settings.compositing_provider == "photoroom"
+    )
+
+
+def _max_parallel_items(pending_count: int) -> int:
+    if pending_count <= 0:
+        return 1
+    if not _uses_photoroom_provider():
+        return 1
+    return max(1, min(settings.photoroom_max_concurrency, pending_count))
+
+
 async def process_batch(batch_id: str) -> None:
     report = load_report(batch_id)
     report.status = BatchStatus.processing
@@ -57,27 +86,79 @@ async def process_batch(batch_id: str) -> None:
     used_background_ids: list[str] = [
         item.background_id for item in report.items if item.background_id
     ]
+    report_lock = asyncio.Lock()
+    stop_batch = asyncio.Event()
 
     try:
-        for item in report.items:
+        async def process_one(item: ImageItemReport) -> None:
+            if stop_batch.is_set():
+                item.status = ItemStatus.fail
+                item.reason = "PhotoRoom 当前触发限流，后续图片已暂停处理。"
+                item.suggestion = "请等待 PhotoRoom 配额窗口恢复，或更换可用配额后重新提交。"
+                async with report_lock:
+                    save_report(report)
+                return
             completed = item.status in {
                 ItemStatus.pass_,
                 ItemStatus.review,
                 ItemStatus.fail,
             }
             if completed and _has_existing_final(batch_id, item):
-                continue
-            background_id = await _process_item(
-                batch_id,
-                item,
-                backgrounds,
-                vision,
-                photoroom,
-                used_background_ids,
+                return
+            try:
+                item.status = ItemStatus.processing
+                async with report_lock:
+                    save_report(report)
+                async with report_lock:
+                    background_snapshot = list(used_background_ids)
+                background_id = await _process_item(
+                    batch_id,
+                    item,
+                    backgrounds,
+                    vision,
+                    photoroom,
+                    background_snapshot,
+                )
+                async with report_lock:
+                    if background_id:
+                        used_background_ids.append(background_id)
+                    save_report(report)
+            except ProviderRateLimitError as exc:
+                stop_batch.set()
+                item.status = ItemStatus.fail
+                retry_after = getattr(exc, "retry_after_seconds", None)
+                wait_label = f"{int(retry_after)} 秒" if retry_after else "稍后"
+                item.reason = f"PhotoRoom 触发限流：{exc}"
+                item.suggestion = f"请等待约 {wait_label} 后重试；同账号/key 的多个请求不能假设可叠加配额。"
+                async with report_lock:
+                    save_report(report)
+            except Exception as exc:
+                item.status = ItemStatus.fail
+                item.reason = f"处理失败：{exc}"
+                item.suggestion = "请检查服务日志、PhotoRoom API 返回、输入图片和背景库后重试。"
+                item.elapsed_seconds = max(item.elapsed_seconds, 0)
+                async with report_lock:
+                    save_report(report)
+
+        pending_items = [
+            item
+            for item in report.items
+            if not (
+                item.status in {ItemStatus.pass_, ItemStatus.review, ItemStatus.fail}
+                and _has_existing_final(batch_id, item)
             )
-            if background_id:
-                used_background_ids.append(background_id)
-            save_report(report)
+        ]
+        max_parallel_items = _max_parallel_items(len(pending_items))
+        for offset in range(0, len(pending_items), max_parallel_items):
+            await asyncio.gather(*(process_one(item) for item in pending_items[offset:offset + max_parallel_items]))
+            if stop_batch.is_set():
+                for item in pending_items[offset + max_parallel_items:]:
+                    if item.status in {ItemStatus.queued, ItemStatus.processing}:
+                        item.status = ItemStatus.fail
+                        item.reason = "PhotoRoom 当前触发限流，后续图片已暂停处理。"
+                        item.suggestion = "请等待 PhotoRoom 配额窗口恢复，或更换可用配额后重新提交。"
+                save_report(report)
+                break
 
         report.status = BatchStatus.completed
         normalize_report_paths(report)
@@ -115,7 +196,7 @@ async def _process_item(
     if not input_path.is_absolute() and not input_path.exists():
         input_path = batch_root / input_path
     screen_type = detect_screen_type(input_path)
-    if screen_type == "unsupported":
+    if screen_type == "unsupported" and settings.matting_provider == "local":
         item.status = ItemStatus.fail
         item.reason = "输入图不是可识别的绿幕或白幕图，已停止处理，避免把已有背景、墙体或山景误抠进主体。"
         item.suggestion = "请上传原始绿幕/白幕商品上身图；如果是已经合成过的图片，需要先走人工/模型级重抠图流程。"
@@ -181,12 +262,12 @@ async def _process_item(
 
         if settings.compositing_provider == "photoroom":
             composite_call = await photoroom.edit_image(
-                input_path,
+                matte_path,
                 shadow_path,
-                background_image_path=bg_path,
+                background_prompt=_photoroom_background_prompt(background, pose, scene_level, risk_tags),
                 lighting_mode="ai.auto",
                 shadow_mode="ai.soft",
-                remove_background=True,
+                remove_background=False,
                 max_width=settings.processing_long_edge,
                 max_height=settings.processing_long_edge,
             )

@@ -33,9 +33,18 @@ def _edge_softness_score(mask_path: Path) -> tuple[float, float]:
     return transitional, hard_edges
 
 
+def _final_rgb_and_alpha(final_path: Path, mask_path: Path) -> tuple[np.ndarray, np.ndarray]:
+    final_image = Image.open(final_path).convert("RGB")
+    alpha_image = Image.open(mask_path).convert("L")
+    if alpha_image.size != final_image.size:
+        alpha_image = alpha_image.resize(final_image.size, Image.Resampling.BILINEAR)
+    final = np.asarray(final_image).astype(np.float32)
+    alpha = np.asarray(alpha_image).astype(np.float32) / 255
+    return final, alpha
+
+
 def _foreground_background_luma_gap(final_path: Path, mask_path: Path) -> float:
-    final = np.asarray(Image.open(final_path).convert("RGB")).astype(np.float32)
-    alpha = np.asarray(Image.open(mask_path).convert("L")).astype(np.float32) / 255
+    final, alpha = _final_rgb_and_alpha(final_path, mask_path)
     luma = final[:, :, 0] * 0.2126 + final[:, :, 1] * 0.7152 + final[:, :, 2] * 0.0722
     fg_edge = cv2.dilate((alpha > 0.05).astype(np.uint8), np.ones((23, 23), np.uint8), iterations=1).astype(bool) & (alpha > 0.55)
     bg_near = cv2.dilate((alpha > 0.05).astype(np.uint8), np.ones((65, 65), np.uint8), iterations=1).astype(bool) & (alpha < 0.02)
@@ -47,8 +56,8 @@ def _foreground_background_luma_gap(final_path: Path, mask_path: Path) -> float:
 
 
 def _background_blur_score(final_path: Path, mask_path: Path) -> float:
-    final = np.asarray(Image.open(final_path).convert("RGB"))
-    alpha = np.asarray(Image.open(mask_path).convert("L")) / 255
+    final, alpha = _final_rgb_and_alpha(final_path, mask_path)
+    final = final.astype(np.uint8)
     bg = alpha < 0.02
     if bg.mean() < 0.1:
         return 999
@@ -58,8 +67,7 @@ def _background_blur_score(final_path: Path, mask_path: Path) -> float:
 
 
 def _hair_edge_luma_gap(final_path: Path, mask_path: Path) -> float:
-    final = np.asarray(Image.open(final_path).convert("RGB")).astype(np.float32)
-    alpha = np.asarray(Image.open(mask_path).convert("L")).astype(np.float32) / 255
+    final, alpha = _final_rgb_and_alpha(final_path, mask_path)
     height = alpha.shape[0]
     edge = (alpha > 0.04) & (alpha < 0.92)
     upper_edge = edge.copy()

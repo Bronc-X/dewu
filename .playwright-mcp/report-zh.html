@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>20260612_181744_807bf7f0 - 批次报告</title>
+    <style>
+      :root { color-scheme: dark; --surface: #0b1326; --panel: rgba(23,31,51,.68); --text: #dae2fd; --muted: #b9cacb; --cyan: #7df4ff; --pink: #fface8; --line: rgba(255,255,255,.1); }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; font-family: "Hanken Grotesk", "Noto Sans SC", "Microsoft YaHei", sans-serif; background: radial-gradient(circle at 15% 20%, rgba(0,219,233,.09), transparent 28%), var(--surface); color: var(--text); }
+      body.has-image-lightbox { overflow: hidden; }
+      main { width: min(1180px, calc(100vw - 48px)); margin: 0 auto; padding: 40px 0 56px; }
+      header { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
+      h1 { margin: 0; font-size: 32px; line-height: 1.2; }
+      header p { margin: 8px 0 0; color: var(--muted); }
+      .summary { display: flex; gap: 10px; flex-wrap: wrap; }
+      .summary span, .status { padding: 7px 10px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--line); color: var(--cyan); font-size: 12px; font-weight: 800; }
+      .grid { display: grid; gap: 18px; }
+      .card { border: 1px solid var(--line); border-top-color: rgba(255,255,255,.2); border-radius: 18px; background: var(--panel); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.22); }
+      .compare-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); }
+      figure { margin: 0; min-height: 220px; background: rgba(255,255,255,.04); position: relative; cursor: zoom-in; }
+      img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; }
+      figcaption { position: absolute; left: 10px; top: 10px; padding: 6px 9px; border-radius: 999px; background: rgba(11,19,38,.72); border: 1px solid var(--line); color: var(--cyan); font-size: 11px; font-weight: 800; }
+      .card-body { padding: 18px; display: grid; gap: 10px; }
+      h2 { margin: 0; font-size: 20px; }
+      p { margin: 0; color: var(--muted); line-height: 1.55; }
+      .suggestion { color: var(--pink); }
+      .metrics { color: rgba(218,226,253,.78); font-size: 13px; }
+      .image-lightbox[hidden] { display: none; }
+      .image-lightbox { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 28px; }
+      .image-lightbox__backdrop { position: absolute; inset: 0; background: rgba(3, 8, 20, .78); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+      .image-lightbox__card { position: relative; width: min(1120px, calc(100vw - 44px)); max-height: calc(100vh - 44px); display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; padding: 14px; border-radius: 18px; background: rgba(23,31,51,.92); border: 1px solid rgba(255,255,255,.16); box-shadow: 0 30px 90px rgba(0,0,0,.52), 0 0 34px rgba(0,219,233,.12); }
+      .image-lightbox__stage { min-height: min(70vh, 760px); display: grid; place-items: center; overflow: hidden; border-radius: 14px; background: linear-gradient(45deg, rgba(255,255,255,.05) 25%, transparent 25% 50%, rgba(255,255,255,.05) 50% 75%, transparent 75%), rgba(0,0,0,.24); background-size: 24px 24px; }
+      .image-lightbox__stage img { max-width: 100%; max-height: calc(100vh - 150px); width: auto; height: auto; min-height: 0; object-fit: contain; display: block; border-radius: 10px; }
+      .image-lightbox__close { position: absolute; top: 12px; right: 12px; z-index: 2; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; display: grid; place-items: center; color: var(--cyan); background: rgba(11,19,38,.78); cursor: pointer; }
+      .image-lightbox__close:hover { background: rgba(0,219,233,.12); }
+      .image-lightbox__card footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; }
+      .image-lightbox__card footer strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: rgba(218,226,253,.86); font-size: 14px; }
+      .image-lightbox__download { min-height: 34px; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border-radius: 8px; color: #002022; background: var(--cyan); font-size: 12px; font-weight: 800; text-decoration: none; }
+      @media (max-width: 760px) { header { display: block; } .summary { margin-top: 14px; } .compare-strip { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>批次报告</h1>
+          <p>20260612_181744_807bf7f0</p>
+        </div>
+        <div class="summary">
+          <span>通过 0</span>
+          <span>可参考 1</span>
+          <span>未通过 3</span>
+        </div>
+      </header>
+      <section class="grid">
+        
+        <article class="card status-fail">
+          <div class="compare-strip">
+            <figure>
+              <img src="input/input_01.jpg" alt="原图 1">
+              <figcaption>原图</figcaption>
+            </figure>
+            
+            <figure>
+              <img src="debug_matte/input_01_try_2_alpha.png" alt="抠图 1">
+              <figcaption>抠图</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="debug_composite/input_01_try_2_composite.png" alt="初合成 1">
+              <figcaption>初合成</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="final_fail/input_01_final.png" alt="最终图 1">
+              <figcaption>最终图</figcaption>
+            </figure>
+            
+          </div>
+          <div class="card-body">
+            <div class="status">未通过</div>
+            <h2>图片 1</h2>
+            <p>成图存在明显的主体融合错误：人物上半身与衣服整体被灰色半透明遮罩覆盖，出现严重的抠图/合成残影与透底；胸前、肩部和手臂边缘有大面积异常过渡，导致商品外观和人物轮廓不清晰。</p>
+            <p class="suggestion">重新检查蒙版与前景分离，去除灰色透底和残影，恢复衣服真实纹理、轮廓和边缘清晰度后再出图。</p>
+            <p>背景: B10 / 耗时: 144.54秒</p>
+            
+            <p class="metrics">商品变化分: 5.82 / 回退基线: 5.79</p>
+            
+            
+            <p class="metrics">保护: candidate</p>
+            
+          </div>
+        </article>
+        
+        <article class="card status-fail">
+          <div class="compare-strip">
+            <figure>
+              <img src="input/input_02.jpg" alt="原图 2">
+              <figcaption>原图</figcaption>
+            </figure>
+            
+            <figure>
+              <img src="debug_matte/input_02_try_2_alpha.png" alt="抠图 2">
+              <figcaption>抠图</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="debug_composite/input_02_try_2_composite.png" alt="初合成 2">
+              <figcaption>初合成</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="final_fail/input_02_final.png" alt="最终图 2">
+              <figcaption>最终图</figcaption>
+            </figure>
+            
+          </div>
+          <div class="card-body">
+            <div class="status">未通过</div>
+            <h2>图片 2</h2>
+            <p>成片出现明显抠图残留与主体错位：上半身和手臂区域仍可见原背景/灰色底纹覆盖，衣服与身体边缘有大面积透明感和穿帮；右侧手臂、肩部、头发边缘融合不自然，整体主体完整性受损。</p>
+            <p class="suggestion">需重新抠图并修正主体蒙版，尤其是上半身、右臂、肩线和头发边缘；清除透明残影后再与新背景做一致的光照与边缘融合。</p>
+            <p>背景: B09 / 耗时: 115.0秒</p>
+            
+            <p class="metrics">商品变化分: 6.25 / 回退基线: 6.25</p>
+            
+            
+            <p class="metrics">保护: candidate</p>
+            
+          </div>
+        </article>
+        
+        <article class="card status-review">
+          <div class="compare-strip">
+            <figure>
+              <img src="input/input_03.jpg" alt="原图 3">
+              <figcaption>原图</figcaption>
+            </figure>
+            
+            <figure>
+              <img src="debug_matte/input_03_try_1_alpha.png" alt="抠图 3">
+              <figcaption>抠图</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="debug_composite/input_03_try_1_composite.png" alt="初合成 3">
+              <figcaption>初合成</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="final_review/input_03_final.png" alt="最终图 3">
+              <figcaption>最终图</figcaption>
+            </figure>
+            
+          </div>
+          <div class="card-body">
+            <div class="status">可参考</div>
+            <h2>图片 3</h2>
+            <p>人物姿态与服装主体基本一致，但合成后主体边缘较生硬且局部透光/抠图痕迹明显，整体前景亮度与新背景不完全统一。</p>
+            <p class="suggestion">建议重新抠图并细化边缘过渡，去除半透明残影，同时统一前景曝光和色温以更自然地融入背景。</p>
+            <p>背景: B11 / 耗时: 82.58秒</p>
+            
+            <p class="metrics">商品变化分: 6.0 / 回退基线: 5.99</p>
+            
+            
+            <p class="metrics">保护: candidate</p>
+            
+          </div>
+        </article>
+        
+        <article class="card status-fail">
+          <div class="compare-strip">
+            <figure>
+              <img src="input/input_04.jpg" alt="原图 4">
+              <figcaption>原图</figcaption>
+            </figure>
+            
+            <figure>
+              <img src="debug_matte/input_04_try_2_alpha.png" alt="抠图 4">
+              <figcaption>抠图</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="debug_composite/input_04_try_2_composite.png" alt="初合成 4">
+              <figcaption>初合成</figcaption>
+            </figure>
+            
+            
+            <figure>
+              <img src="final_fail/input_04_final.png" alt="最终图 4">
+              <figcaption>最终图</figcaption>
+            </figure>
+            
+          </div>
+          <div class="card-body">
+            <div class="status">未通过</div>
+            <h2>图片 4</h2>
+            <p>成片存在明显抠图残留与边缘异常：原图服装轮廓未被干净替换，画面中可见大面积灰色底纹、半透明残影和不完整的人体/衣物边缘，商品与模特下半身被严重破坏。</p>
+            <p class="suggestion">请重新抠图并完整重建人物与服装边缘，去除残影和灰色底纹，确保服装轮廓、袖口与人体比例一致后再出图。</p>
+            <p>背景: B12 / 耗时: 149.73秒</p>
+            
+            <p class="metrics">商品变化分: 21.26 / 回退基线: 21.16</p>
+            
+            
+            <p class="metrics">保护: candidate</p>
+            
+          </div>
+        </article>
+        
+      </section>
+    </main>
+    <script>
+      (() => {
+        function ensureLightbox() {
+          let lightbox = document.querySelector("[data-image-lightbox]");
+          if (lightbox) return lightbox;
+          lightbox = document.createElement("div");
+          lightbox.className = "image-lightbox";
+          lightbox.dataset.imageLightbox = "true";
+          lightbox.hidden = true;
+          lightbox.innerHTML = `
+            <div class="image-lightbox__backdrop" data-lightbox-close></div>
+            <section class="image-lightbox__card" role="dialog" aria-modal="true" aria-label="Image preview">
+              <button class="image-lightbox__close" type="button" data-lightbox-close aria-label="Close preview">X</button>
+              <div class="image-lightbox__stage"><img alt=""></div>
+              <footer><strong data-lightbox-title></strong><a class="image-lightbox__download" data-lightbox-download href="#" download>Download</a></footer>
+            </section>
+          `;
+          document.body.appendChild(lightbox);
+          lightbox.addEventListener("click", (event) => {
+            if (event.target.closest("[data-lightbox-close]")) closeLightbox();
+          });
+          return lightbox;
+        }
+
+        function openLightbox(url, title) {
+          if (!url) return;
+          const lightbox = ensureLightbox();
+          const image = lightbox.querySelector("img");
+          const titleEl = lightbox.querySelector("[data-lightbox-title]");
+          const download = lightbox.querySelector("[data-lightbox-download]");
+          image.src = url;
+          image.alt = title || "Image preview";
+          titleEl.textContent = title || image.alt;
+          download.href = url;
+          lightbox.hidden = false;
+          document.body.classList.add("has-image-lightbox");
+          lightbox.querySelector(".image-lightbox__close")?.focus();
+        }
+
+        function closeLightbox() {
+          const lightbox = document.querySelector("[data-image-lightbox]");
+          if (!lightbox) return;
+          lightbox.hidden = true;
+          const image = lightbox.querySelector("img");
+          if (image) image.src = "";
+          document.body.classList.remove("has-image-lightbox");
+        }
+
+        document.addEventListener("click", (event) => {
+          if (event.target.closest(".image-lightbox")) return;
+          const figure = event.target.closest(".compare-strip figure");
+          if (!figure) return;
+          const image = figure.querySelector("img");
+          if (!image?.src) return;
+          event.preventDefault();
+          openLightbox(image.currentSrc || image.src, image.alt || figure.textContent.trim());
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeLightbox();
+        });
+      })();
+    </script>
+  </body>
+</html>

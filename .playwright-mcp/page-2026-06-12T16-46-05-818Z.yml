@@ -1,0 +1,367 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - link "得物 AI" [ref=e3] [cursor=pointer]:
+      - /url: /?lang=zh
+      - generic [ref=e5]: psychology
+      - generic [ref=e6]:
+        - strong [ref=e7]: 得物 AI
+        - emphasis [ref=e8]: 智能生图引擎
+    - link "layers_clear PhotoRoom 抠图" [ref=e9] [cursor=pointer]:
+      - /url: /import?lang=zh&tool=cutout
+      - generic [ref=e10]: layers_clear
+      - text: PhotoRoom 抠图
+    - navigation "主导航" [ref=e11]:
+      - link "home 项目" [ref=e12] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e13]: home
+        - text: 项目
+      - link "layers_clear PhotoRoom 抠图" [ref=e14] [cursor=pointer]:
+        - /url: /import?lang=zh&tool=cutout
+        - generic [ref=e15]: layers_clear
+        - text: PhotoRoom 抠图
+      - link "auto_awesome AI 智能背景" [ref=e16] [cursor=pointer]:
+        - /url: /import?lang=zh&tool=ai_background
+        - generic [ref=e17]: auto_awesome
+        - text: AI 智能背景
+      - link "fact_check 结果复核" [ref=e18] [cursor=pointer]:
+        - /url: /review?lang=zh
+        - generic [ref=e19]: fact_check
+        - text: 结果复核
+      - link "wallpaper 背景库" [ref=e20] [cursor=pointer]:
+        - /url: /backgrounds?lang=zh
+        - generic [ref=e21]: wallpaper
+        - text: 背景库
+    - generic [ref=e22]:
+      - link "settings 设置" [ref=e23] [cursor=pointer]:
+        - /url: /settings?lang=zh
+        - generic [ref=e24]: settings
+        - text: 设置
+      - link "help 帮助" [ref=e25] [cursor=pointer]:
+        - /url: /?lang=zh
+        - generic [ref=e26]: help
+        - text: 帮助
+  - banner [ref=e27]:
+    - generic [ref=e28]:
+      - generic [ref=e29]: search
+      - searchbox "搜索工作台..." [ref=e30]
+    - generic [ref=e31]:
+      - link "切换到英文" [ref=e32] [cursor=pointer]:
+        - /url: /review?lang=en
+      - button "通知" [ref=e33] [cursor=pointer]:
+        - generic [ref=e34]: notifications
+      - button "账户" [ref=e35] [cursor=pointer]:
+        - generic [ref=e36]: account_circle
+  - main [ref=e37]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - paragraph [ref=e41]: 结果复核
+          - heading "结果复核" [level=1] [ref=e42]
+          - paragraph [ref=e43]: 这里显示 PhotoRoom 沙盒真实返回的图片。能看到处理后图片，才算本次调用成功。
+        - generic [ref=e44]:
+          - article [ref=e45]:
+            - generic [ref=e46]:
+              - generic [ref=e47]: PhotoRoom 抠图 -> AI 智能背景
+              - strong [ref=e48]: 3/4 已返回图片
+              - generic [ref=e49]: 2026-06-13 00:37:20
+            - generic [ref=e50]:
+              - link "原图" [ref=e51] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260613_002350_5f821be5_R6A6225.jpg
+                - img "原图" [ref=e52]
+              - link "生成图" [ref=e53] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260613_003635_3a37303c_photoroom-cutout_ai_background.png
+                - img "生成图" [ref=e54]
+            - generic [ref=e55]:
+              - link "PhotoRoom 抠图 已返回图片" [ref=e56] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260613_002350_5f821be5_R6A6225_remove_background.png
+                - generic [ref=e57]: PhotoRoom 抠图
+                - strong [ref=e58]: 已返回图片
+              - link "AI 智能背景 失败" [ref=e59] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260613_002426_30e0346b_photoroom-cutout.png
+                - generic [ref=e60]: AI 智能背景
+                - strong [ref=e61]: 失败
+              - link "AI 智能背景 已返回图片" [ref=e62] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260613_002428_5d0a2121_photoroom-cutout_ai_background.png
+                - generic [ref=e63]: AI 智能背景
+                - strong [ref=e64]: 已返回图片
+              - link "AI 智能背景 已返回图片" [ref=e65] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260613_003635_3a37303c_photoroom-cutout_ai_background.png
+                - generic [ref=e66]: AI 智能背景
+                - strong [ref=e67]: 已返回图片
+            - paragraph [ref=e68]: "PhotoRoom request failed before response: ConnectError"
+            - link "download 下载本图" [ref=e69] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260613_003635_3a37303c_photoroom-cutout_ai_background.png
+              - generic [ref=e70]: download
+              - text: 下载本图
+          - article [ref=e71]:
+            - generic [ref=e72]:
+              - generic [ref=e73]: PhotoRoom 抠图 -> AI 智能背景
+              - strong [ref=e74]: 2/2 已返回图片
+              - generic [ref=e75]: 2026-06-12 22:28:06
+            - generic [ref=e76]:
+              - link "原图" [ref=e77] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_222755_8a22a362_photoroom_input_20260612_163146_8d6786d9_input_02.png
+                - img "原图" [ref=e78]
+              - link "生成图" [ref=e79] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_222759_85e2ed47_photoroom_input_20260612_222755_8a22a362_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background_ai_background.png
+                - img "生成图" [ref=e80]
+            - generic [ref=e81]:
+              - link "PhotoRoom 抠图 已返回图片" [ref=e82] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_222755_8a22a362_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+                - generic [ref=e83]: PhotoRoom 抠图
+                - strong [ref=e84]: 已返回图片
+              - link "AI 智能背景 已返回图片" [ref=e85] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_222759_85e2ed47_photoroom_input_20260612_222755_8a22a362_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background_ai_background.png
+                - generic [ref=e86]: AI 智能背景
+                - strong [ref=e87]: 已返回图片
+            - link "download 下载本图" [ref=e88] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_222759_85e2ed47_photoroom_input_20260612_222755_8a22a362_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background_ai_background.png
+              - generic [ref=e89]: download
+              - text: 下载本图
+          - article [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]: PhotoRoom 抠图
+              - strong [ref=e93]: 1/1 已返回图片
+              - generic [ref=e94]: 2026-06-12 19:20:44
+            - generic [ref=e95]:
+              - link "原图" [ref=e96] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_192041_d12ca44d_photoroom_input_20260612_163146_8d6786d9_input_02.png
+                - img "原图" [ref=e97]
+              - link "生成图" [ref=e98] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_192041_d12ca44d_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+                - img "生成图" [ref=e99]
+            - link "PhotoRoom 抠图 已返回图片" [ref=e101] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_192041_d12ca44d_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+              - generic [ref=e102]: PhotoRoom 抠图
+              - strong [ref=e103]: 已返回图片
+            - link "download 下载本图" [ref=e104] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_192041_d12ca44d_photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+              - generic [ref=e105]: download
+              - text: 下载本图
+          - article [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]: AI 智能背景
+              - strong [ref=e109]: 1/1 已返回图片
+              - generic [ref=e110]: 2026-06-12 18:58:06
+            - generic [ref=e111]:
+              - link "原图" [ref=e112] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_185743_0cc94394_photoroom-cutout.png
+                - img "原图" [ref=e113]
+              - link "生成图" [ref=e114] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_185743_0cc94394_photoroom-cutout_ai_background.png
+                - img "生成图" [ref=e115]
+            - link "AI 智能背景 已返回图片" [ref=e117] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_185743_0cc94394_photoroom-cutout_ai_background.png
+              - generic [ref=e118]: AI 智能背景
+              - strong [ref=e119]: 已返回图片
+            - link "download 下载本图" [ref=e120] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_185743_0cc94394_photoroom-cutout_ai_background.png
+              - generic [ref=e121]: download
+              - text: 下载本图
+          - article [ref=e122]:
+            - generic [ref=e123]:
+              - generic [ref=e124]: AI 智能背景
+              - strong [ref=e125]: 1/1 已返回图片
+              - generic [ref=e126]: 2026-06-12 18:57:10
+            - generic [ref=e127]:
+              - link "原图" [ref=e128] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_185645_8bfaf9f4_photoroom-cutout.png
+                - img "原图" [ref=e129]
+              - link "生成图" [ref=e130] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_185645_8bfaf9f4_photoroom-cutout_ai_background.png
+                - img "生成图" [ref=e131]
+            - link "AI 智能背景 已返回图片" [ref=e133] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_185645_8bfaf9f4_photoroom-cutout_ai_background.png
+              - generic [ref=e134]: AI 智能背景
+              - strong [ref=e135]: 已返回图片
+            - link "download 下载本图" [ref=e136] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_185645_8bfaf9f4_photoroom-cutout_ai_background.png
+              - generic [ref=e137]: download
+              - text: 下载本图
+          - article [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]: PhotoRoom 抠图
+              - strong [ref=e141]: 1/1 已返回图片
+              - generic [ref=e142]: 2026-06-12 18:56:24
+            - generic [ref=e143]:
+              - link "原图" [ref=e144] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_185614_3f0c7eb9_R6A6991.jpg
+                - img "原图" [ref=e145]
+              - link "生成图" [ref=e146] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_185614_3f0c7eb9_R6A6991_remove_background.png
+                - img "生成图" [ref=e147]
+            - link "PhotoRoom 抠图 已返回图片" [ref=e149] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_185614_3f0c7eb9_R6A6991_remove_background.png
+              - generic [ref=e150]: PhotoRoom 抠图
+              - strong [ref=e151]: 已返回图片
+            - link "download 下载本图" [ref=e152] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_185614_3f0c7eb9_R6A6991_remove_background.png
+              - generic [ref=e153]: download
+              - text: 下载本图
+          - article [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]: AI 智能背景
+              - strong [ref=e157]: 1/1 已返回图片
+              - generic [ref=e158]: 2026-06-12 18:02:06
+            - generic [ref=e159]:
+              - link "原图" [ref=e160] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_180135_68bfeed8_photoroom-cutout.png
+                - img "原图" [ref=e161]
+              - link "生成图" [ref=e162] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_180135_68bfeed8_photoroom-cutout_ai_background.png
+                - img "生成图" [ref=e163]
+            - link "AI 智能背景 已返回图片" [ref=e165] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_180135_68bfeed8_photoroom-cutout_ai_background.png
+              - generic [ref=e166]: AI 智能背景
+              - strong [ref=e167]: 已返回图片
+            - link "download 下载本图" [ref=e168] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_180135_68bfeed8_photoroom-cutout_ai_background.png
+              - generic [ref=e169]: download
+              - text: 下载本图
+          - article [ref=e170]:
+            - generic [ref=e171]:
+              - generic [ref=e172]: PhotoRoom 抠图
+              - strong [ref=e173]: 1/1 已返回图片
+              - generic [ref=e174]: 2026-06-12 18:00:51
+            - generic [ref=e175]:
+              - link "原图" [ref=e176] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_180035_7d1dbc44_R6A6175.jpg
+                - img "原图" [ref=e177]
+              - link "生成图" [ref=e178] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_180035_7d1dbc44_R6A6175_remove_background.png
+                - img "生成图" [ref=e179]
+            - link "PhotoRoom 抠图 已返回图片" [ref=e181] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_180035_7d1dbc44_R6A6175_remove_background.png
+              - generic [ref=e182]: PhotoRoom 抠图
+              - strong [ref=e183]: 已返回图片
+            - link "download 下载本图" [ref=e184] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_180035_7d1dbc44_R6A6175_remove_background.png
+              - generic [ref=e185]: download
+              - text: 下载本图
+          - article [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: PhotoRoom 抠图
+              - strong [ref=e189]: 1/1 已返回图片
+              - generic [ref=e190]: 2026-06-12 16:47:31
+            - generic [ref=e191]:
+              - link "原图" [ref=e192] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_164721_16a79f1c_input_01.png
+                - img "原图" [ref=e193]
+              - link "生成图" [ref=e194] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_164721_16a79f1c_input_01_remove_background.png
+                - img "生成图" [ref=e195]
+            - link "PhotoRoom 抠图 已返回图片" [ref=e197] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_164721_16a79f1c_input_01_remove_background.png
+              - generic [ref=e198]: PhotoRoom 抠图
+              - strong [ref=e199]: 已返回图片
+            - link "download 下载本图" [ref=e200] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_164721_16a79f1c_input_01_remove_background.png
+              - generic [ref=e201]: download
+              - text: 下载本图
+          - article [ref=e202]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: PhotoRoom 抠图
+              - strong [ref=e205]: 1/1 已返回图片
+              - generic [ref=e206]: 2026-06-12 16:31:55
+            - generic [ref=e207]:
+              - link "原图" [ref=e208] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_163146_8d6786d9_input_02.png
+                - img "原图" [ref=e209]
+              - link "生成图" [ref=e210] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+                - img "生成图" [ref=e211]
+            - link "PhotoRoom 抠图 已返回图片" [ref=e213] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+              - generic [ref=e214]: PhotoRoom 抠图
+              - strong [ref=e215]: 已返回图片
+            - link "download 下载本图" [ref=e216] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_163146_8d6786d9_input_02_remove_background.png
+              - generic [ref=e217]: download
+              - text: 下载本图
+          - article [ref=e218]:
+            - generic [ref=e219]:
+              - generic [ref=e220]: 调光
+              - strong [ref=e221]: 1/1 已返回图片
+              - generic [ref=e222]: 2026-06-12 16:28:50
+            - generic [ref=e223]:
+              - link "原图" [ref=e224] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_162835_42791d3d_input_01.png
+                - img "原图" [ref=e225]
+              - link "生成图" [ref=e226] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_162835_42791d3d_input_01_relight.png
+                - img "生成图" [ref=e227]
+            - link "调光 已返回图片" [ref=e229] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162835_42791d3d_input_01_relight.png
+              - generic [ref=e230]: 调光
+              - strong [ref=e231]: 已返回图片
+            - link "download 下载本图" [ref=e232] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162835_42791d3d_input_01_relight.png
+              - generic [ref=e233]: download
+              - text: 下载本图
+          - article [ref=e234]:
+            - generic [ref=e235]:
+              - generic [ref=e236]: 手选背景
+              - strong [ref=e237]: 1/1 已返回图片
+              - generic [ref=e238]: 2026-06-12 16:28:19
+            - generic [ref=e239]:
+              - link "原图" [ref=e240] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_162801_307e0366_input_01.png
+                - img "原图" [ref=e241]
+              - link "生成图" [ref=e242] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_162801_307e0366_input_01_background_image.png
+                - img "生成图" [ref=e243]
+            - link "手选背景 已返回图片" [ref=e245] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162801_307e0366_input_01_background_image.png
+              - generic [ref=e246]: 手选背景
+              - strong [ref=e247]: 已返回图片
+            - link "download 下载本图" [ref=e248] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162801_307e0366_input_01_background_image.png
+              - generic [ref=e249]: download
+              - text: 下载本图
+          - article [ref=e250]:
+            - generic [ref=e251]:
+              - generic [ref=e252]: AI 智能背景
+              - strong [ref=e253]: 1/1 已返回图片
+              - generic [ref=e254]: 2026-06-12 16:26:35
+            - generic [ref=e255]:
+              - link "原图" [ref=e256] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_162619_8e745483_input_01.png
+                - img "原图" [ref=e257]
+              - link "生成图" [ref=e258] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_162619_8e745483_input_01_ai_background.png
+                - img "生成图" [ref=e259]
+            - link "AI 智能背景 已返回图片" [ref=e261] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162619_8e745483_input_01_ai_background.png
+              - generic [ref=e262]: AI 智能背景
+              - strong [ref=e263]: 已返回图片
+            - link "download 下载本图" [ref=e264] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162619_8e745483_input_01_ai_background.png
+              - generic [ref=e265]: download
+              - text: 下载本图
+          - article [ref=e266]:
+            - generic [ref=e267]:
+              - generic [ref=e268]: PhotoRoom 抠图
+              - strong [ref=e269]: 1/1 已返回图片
+              - generic [ref=e270]: 2026-06-12 16:26:02
+            - generic [ref=e271]:
+              - link "原图" [ref=e272] [cursor=pointer]:
+                - /url: /data/provider_inputs/photoroom_input_20260612_162551_60084a91_input_01.png
+                - img "原图" [ref=e273]
+              - link "生成图" [ref=e274] [cursor=pointer]:
+                - /url: /data/provider_outputs/photoroom_input_20260612_162551_60084a91_input_01_remove_background.png
+                - img "生成图" [ref=e275]
+            - link "PhotoRoom 抠图 已返回图片" [ref=e277] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162551_60084a91_input_01_remove_background.png
+              - generic [ref=e278]: PhotoRoom 抠图
+              - strong [ref=e279]: 已返回图片
+            - link "download 下载本图" [ref=e280] [cursor=pointer]:
+              - /url: /data/provider_outputs/photoroom_input_20260612_162551_60084a91_input_01_remove_background.png
+              - generic [ref=e281]: download
+              - text: 下载本图
+      - complementary [ref=e282]:
+        - heading "checklist 复核路径" [level=2] [ref=e283]:
+          - generic [ref=e284]: checklist
+          - text: 复核路径
+        - generic [ref=e285]: 先看抠图边缘
+        - generic [ref=e287]: 再看背景和光影
+        - generic [ref=e289]: 失败记录显示真实 API 错误

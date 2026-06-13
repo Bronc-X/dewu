@@ -127,6 +127,13 @@ class PhotoRoomEditRequest(BaseModel):
     output_size: str | None = None
 
 
+class PhotoRoomSandboxMode(str, Enum):
+    remove_background = "remove_background"
+    ai_background = "ai_background"
+    background_image = "background_image"
+    relight = "relight"
+
+
 class PhotoRoomMattingRequest(BaseModel):
     image_path: str
     output_rgba_path: str | None = None

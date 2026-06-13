@@ -1,4 +1,5 @@
 import json
+import threading
 import time
 from pathlib import Path
 
@@ -80,7 +81,7 @@ def project_results_dir(project_id: str) -> Path:
 def save_report(report: BatchReport) -> None:
     report.recompute_counts()
     path = report_path(report.batch_id)
-    tmp_path = path.with_suffix(".json.tmp")
+    tmp_path = path.with_name(f"{path.name}.{threading.get_ident()}.tmp")
     tmp_path.write_text(report.model_dump_json(indent=2), encoding="utf-8")
     tmp_path.replace(path)
 

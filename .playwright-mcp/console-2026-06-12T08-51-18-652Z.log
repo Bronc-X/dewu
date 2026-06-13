@@ -1,0 +1,15 @@
+[     537ms] [LOG] %c OpenList %c v4.2.1 (Commit: 8d39d63) - Frontend: v4.2.1 - Build at: 2026-04-09 14:27:23 +0000 %c https://github.com/OpenListTeam/OpenList color: #fff; background: #5f5f5f color: #fff; background: #70c6be  @ https://nas.shike.chat/assets/store-lTnl42_k.js:41
+[     631ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://nas.shike.chat/@s/8JB0aTpU:0
+[     656ms] [ERROR] CanceledError: canceled
+    at https://nas.shike.chat/assets/store-lTnl42_k.js:20:2656
+    at c (https://nas.shike.chat/assets/store-lTnl42_k.js:39:24701)
+    at https://nas.shike.chat/assets/Layout-B4euphb4.js:2:4086
+    at https://nas.shike.chat/assets/store-lTnl42_k.js:2:3822
+    at A (https://nas.shike.chat/assets/store-lTnl42_k.js:2:3626)
+    at Object.fn (https://nas.shike.chat/assets/store-lTnl42_k.js:2:3816)
+    at Te (https://nas.shike.chat/assets/store-lTnl42_k.js:2:6287)
+    at we (https://nas.shike.chat/assets/store-lTnl42_k.js:2:6066)
+    at De (https://nas.shike.chat/assets/store-lTnl42_k.js:2:7663)
+    at Me (https://nas.shike.chat/assets/store-lTnl42_k.js:2:8970) @ https://nas.shike.chat/assets/store-lTnl42_k.js:19
+[     747ms] [LOG] solid-contextmenu-scale @ https://nas.shike.chat/assets/solid-contextmenu-ibbBAo_F.js:0
+[     856ms] [LOG] %c ArtPlayer %c 5.4.0 %c https://artplayer.org color: #fff; background: #5f5f5f color: #fff; background: #4bc729  @ https://nas.shike.chat/assets/video_box-D_cOEgWR.js:1823
