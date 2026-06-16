@@ -17,6 +17,8 @@
   --ok: #66f4a2;
   --warn: #ffd166;
   --sidebar: 256px;
+  --sidebar-collapsed: 76px;
+  --editor-tool-rail: 72px;
   --topbar: 80px;
   --gutter: 24px;
   --radius: 8px;
@@ -178,20 +180,26 @@ body.photoroom-ui-page .review-result-meta strong,
 body.photoroom-ui-page .photoroom-stage-list span { color: #0f172a; }
 body.photoroom-editor-page { background: #f4f5f7; color: #17202c; overflow: hidden; }
 body.photoroom-editor-page::before,
-body.photoroom-editor-page > .side-nav,
 body.photoroom-editor-page > .top-appbar,
 body.photoroom-editor-page .page-heading,
 body.photoroom-editor-page .flow-strip,
 body.photoroom-editor-page .upload-workbench,
 body.photoroom-editor-page .right-inspector { display: none; }
-body.photoroom-editor-page .workspace { margin-left: 0; padding: 0; min-height: 100vh; }
-body.photoroom-editor-page .work-grid { display: block; width: 100vw; margin: 0; padding: 0; }
+body.photoroom-editor-page .workspace { margin-left: var(--sidebar); padding: 0; min-height: 100vh; transition: margin-left .18s ease; }
+body.photoroom-editor-page .work-grid { display: block; width: calc(100vw - var(--sidebar)); margin: 0; padding: 0; transition: width .18s ease; }
 body.photoroom-editor-page .main-column { width: 100%; }
 body.photoroom-editor-page .api-workbench { margin: 0; }
 body.photoroom-editor-page .sandbox-form { gap: 0; }
 body.photoroom-editor-page .photoroom-wizard { margin: 0; }
 body.photoroom-editor-page .background-stage { padding: 0; border: 0; border-radius: 0; background: transparent; }
-body.photoroom-editor-page .photoroom-editor-shell { width: 100vw; height: 100vh; min-height: 100vh; border-radius: 0; border: 0; box-shadow: none; }
+body.photoroom-editor-page .photoroom-editor-shell { width: calc(100vw - var(--sidebar)); height: 100vh; min-height: 100vh; border-radius: 0; border: 0; box-shadow: none; transition: width .18s ease, grid-template-columns .18s ease; }
+body.primary-nav-collapsed { --sidebar: var(--sidebar-collapsed); }
+body.primary-nav-collapsed .side-nav { width: var(--sidebar-collapsed); padding: 16px 10px; gap: 16px; align-items: center; }
+body.primary-nav-collapsed .brand-block { justify-content: center; }
+body.primary-nav-collapsed .brand-block > span:last-child,
+body.primary-nav-collapsed .nav-link { font-size: 0; gap: 0; justify-content: center; padding: 0; width: 48px; }
+body.primary-nav-collapsed .nav-link .material-symbols-outlined { font-size: 22px; }
+body.primary-nav-collapsed .side-footer { width: 100%; justify-items: center; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 img { display: block; max-width: 100%; }
@@ -201,7 +209,10 @@ img { display: block; max-width: 100%; }
 .glass-card::before, .right-inspector::before, .review-inspector::before, .comparison-view::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, rgba(255,255,255,.2), transparent 55%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
 .high-card { background: rgba(23,31,51,.62); backdrop-filter: blur(60px); box-shadow: 0 0 32px rgba(0, 219, 233, .18), 0 20px 60px rgba(0,0,0,.25); }
 
-.side-nav { position: fixed; z-index: 50; left: 0; top: 0; width: var(--sidebar); height: 100vh; padding: 24px; display: flex; flex-direction: column; gap: 22px; border-radius: 0; border-left: 0; border-top: 0; border-bottom: 0; }
+.side-nav { position: fixed; z-index: 50; left: 0; top: 0; width: var(--sidebar); height: 100vh; padding: 24px; display: flex; flex-direction: column; gap: 22px; border-radius: 0; border-left: 0; border-top: 0; border-bottom: 0; transition: width .18s ease, padding .18s ease; }
+.nav-collapse-toggle { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid #dce2ea; border-radius: 10px; color: #475569; background: #fff; cursor: pointer; }
+.primary-nav-toggle { position: absolute; top: 14px; right: 12px; }
+body.primary-nav-collapsed .primary-nav-toggle { position: static; order: -1; }
 .brand-block { display: flex; align-items: center; gap: 14px; min-height: 48px; }
 .brand-orb { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; color: var(--primary-fixed); background: linear-gradient(135deg, rgba(0,219,233,.2), rgba(209,188,255,.12)); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 22px rgba(0,219,233,.18); }
 .brand-block strong { display: block; font-size: 24px; line-height: 1.05; font-weight: 800; letter-spacing: 0; background: linear-gradient(135deg, #dbfcff, #fface8, #faf3ff); -webkit-background-clip: text; color: transparent; }
@@ -364,13 +375,20 @@ img { display: block; max-width: 100%; }
 .prompt-presets { display: flex; flex-wrap: wrap; gap: 8px; }
 .preset-chip { min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color: rgba(218,226,253,.78); font-size: 13px; font-weight: 800; cursor: pointer; }
 .preset-chip:hover, .preset-chip.is-active { color: var(--primary-fixed); border-color: rgba(0,219,233,.34); background: rgba(0,219,233,.1); }
-.photoroom-editor-shell { display: grid; grid-template-columns: 72px minmax(300px, 390px) minmax(480px, 1fr); min-height: 760px; overflow: hidden; border-radius: 16px; border: 1px solid rgba(10, 18, 32, .12); background: #f4f5f7; color: #17202c; box-shadow: 0 18px 52px rgba(0,0,0,.24); }
+.photoroom-editor-shell { display: grid; grid-template-columns: var(--editor-tool-rail) minmax(300px, 390px) minmax(480px, 1fr); min-height: 760px; overflow: hidden; border-radius: 16px; border: 1px solid rgba(10, 18, 32, .12); background: #f4f5f7; color: #17202c; box-shadow: 0 18px 52px rgba(0,0,0,.24); }
 .photoroom-tool-rail { display: grid; align-content: start; gap: 6px; padding: 12px 7px; background: #fff; border-right: 1px solid #e7e9ee; }
+.photoroom-rail-collapse { min-height: 44px; margin-bottom: 4px; }
 .photoroom-tool { min-height: 64px; border: 0; border-radius: 10px; display: grid; place-items: center; gap: 4px; color: #687282; background: transparent; cursor: pointer; }
 .photoroom-tool:hover, .photoroom-tool.is-active { color: #111827; background: #eef1f5; }
 .photoroom-tool .material-symbols-outlined { font-size: 24px; }
 .photoroom-tool strong { max-width: 58px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; font-weight: 800; letter-spacing: 0; text-transform: none; }
 .photoroom-bg-drawer { min-width: 0; display: grid; grid-template-rows: auto auto auto auto minmax(0, 1fr) minmax(0, auto); align-content: start; gap: 12px; padding: 18px 16px; background: #fff; border-right: 1px solid #e7e9ee; overflow: auto; }
+body.secondary-nav-collapsed { --editor-tool-rail: 56px; }
+body.secondary-nav-collapsed .photoroom-editor-shell { grid-template-columns: var(--editor-tool-rail) 0 minmax(480px, 1fr); }
+body.secondary-nav-collapsed .photoroom-bg-drawer { width: 0; min-width: 0; padding: 0; border-right: 0; overflow: hidden; }
+body.secondary-nav-collapsed .photoroom-tool-rail { padding-left: 6px; padding-right: 6px; }
+body.secondary-nav-collapsed .photoroom-tool { min-height: 52px; }
+body.secondary-nav-collapsed .photoroom-tool strong { display: none; }
 .photoroom-drawer-view { display: none; min-width: 0; align-content: start; gap: 12px; }
 .photoroom-drawer-view.is-active { display: grid; }
 .photoroom-drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #111827; }
@@ -661,7 +679,7 @@ body.photoroom-editor-page .pr-reuse-card strong { color: #0f172a; }
   :root { --sidebar: 220px; }
   .workspace { padding-left: 28px; padding-right: 28px; }
   .home-grid, .work-grid, .monitor-grid, .review-shell { grid-template-columns: 1fr; }
-  .photoroom-editor-shell { grid-template-columns: 72px 320px minmax(0, 1fr); }
+  .photoroom-editor-shell { grid-template-columns: var(--editor-tool-rail) 320px minmax(0, 1fr); }
   .photoroom-page { width: min(460px, 82%); }
   .photoroom-clone-board, .pr-background-board { grid-template-columns: 1fr; }
   .photoroom-clone-sidebar { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); }
