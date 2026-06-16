@@ -7,16 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Hanken+Grotesk:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css?v=20260613-image-lightbox">
+    <link rel="stylesheet" href="/static/styles.css?v=20260616-pr-dual-nav">
   </head>
-  <body class="app-body" data-active-nav="{{ active_nav|default('projects') }}" data-min-images="{{ min_images|default(1) }}" data-max-images="{{ max_images|default(8) }}" data-lang="{{ lang }}">
+  <body class="app-body photoroom-ui-page {% if view|default('home') == 'import' and active_tool == 'ai_background' %}photoroom-editor-page{% endif %}" data-active-nav="{{ active_nav|default('projects') }}" data-min-images="{{ min_images|default(1) }}" data-max-images="{{ max_images|default(8) }}" data-lang="{{ lang }}">
     <aside class="side-nav">
+      <button class="nav-collapse-toggle primary-nav-toggle" type="button" data-nav-collapse="primary" aria-label="折叠主导航">
+        <span class="material-symbols-outlined">menu_open</span>
+      </button>
       <a class="brand-block" href="/?lang={{ lang }}" aria-label="{{ t.brand }}">
         <span class="brand-orb"><span class="material-symbols-outlined">psychology</span></span>
         <span><strong>{{ t.brand }}</strong><em>{{ t.engine }}</em></span>
-      </a>
-      <a class="primary-pill side-cta" href="/import?lang={{ lang }}&tool=cutout">
-        <span class="material-symbols-outlined">layers_clear</span>{{ t.cutout_nav }}
       </a>
       <nav class="nav-links" aria-label="{{ t.main_navigation }}">
         <a class="nav-link {% if active_nav|default('projects') == 'projects' %}is-active{% endif %}" href="/?lang={{ lang }}"><span class="material-symbols-outlined">home</span>{{ t.projects }}</a>
@@ -146,28 +146,41 @@
       </section>
 
       {% elif view|default('home') == 'backgrounds' %}
-      <section class="main-column full-width">
-        <header class="page-heading">
-          <p class="eyebrow">{{ t.background_title }}</p>
-          <h1>{{ t.backgrounds }}</h1>
-          <p>支持手动上传背景；下方背景可点击打开大图，用于检查构图、地面和光影方向。</p>
-        </header>
-        <section class="glass-card background-upload-card">
-          <form action="/backgrounds/upload?lang={{ lang }}" method="post" enctype="multipart/form-data">
-            <label class="native-upload-label"><span class="material-symbols-outlined">upload_file</span><strong>上传背景图</strong><input type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required></label>
-            <button class="primary-pill" type="submit"><span class="material-symbols-outlined">add_photo_alternate</span>加入背景库</button>
-          </form>
-        </section>
-        <div class="asset-grid background-grid">
-          {% for bg in backgrounds %}
-          <a class="asset-card background-card" href="/background-assets/{{ bg.file }}" title="打开大图：{{ bg.id }}">
-            <img src="/background-assets/{{ bg.file }}" alt="{{ t.background }} {{ bg.id }}">
-            <div><strong>{{ bg.id }} / {{ bg.scene_type_label }}</strong><small>{{ bg.ground_type_label }} / {{ bg.lighting_direction_label }} / {{ bg.scene_level_label }}</small></div>
-          </a>
-          {% else %}
-          <div class="empty-glass"><span class="material-symbols-outlined">wallpaper</span><strong>{{ t.no_backgrounds }}</strong><p>{{ t.no_backgrounds_hint }}</p></div>
-          {% endfor %}
+      <section class="work-grid">
+        <div class="main-column">
+          <header class="page-heading">
+            <p class="eyebrow">{{ t.background_title }}</p>
+            <h1>{{ t.backgrounds }}</h1>
+            <p>背景库用于检查和沉淀可复用的背景方向；真正给商品换背景时，优先从左侧进入 AI 智能背景编辑器。</p>
+          </header>
+          <section class="glass-card background-upload-card">
+            <form action="/backgrounds/upload?lang={{ lang }}" method="post" enctype="multipart/form-data">
+              <label class="native-upload-label"><span class="material-symbols-outlined">upload_file</span><strong>上传背景图</strong><input type="file" name="files" accept=".png,.jpg,.jpeg,.webp" multiple required></label>
+              <button class="primary-pill" type="submit"><span class="material-symbols-outlined">add_photo_alternate</span>加入背景库</button>
+            </form>
+          </section>
+          <div class="asset-grid background-grid">
+            {% for bg in backgrounds %}
+            <a class="asset-card background-card" href="/background-assets/{{ bg.file }}" title="打开大图：{{ bg.id }}">
+              <img src="/background-assets/{{ bg.file }}" alt="{{ t.background }} {{ bg.id }}">
+              <div><strong>{{ bg.id }} / {{ bg.scene_type_label }}</strong><small>{{ bg.ground_type_label }} / {{ bg.lighting_direction_label }} / {{ bg.scene_level_label }}</small></div>
+            </a>
+            {% else %}
+            <div class="empty-glass"><span class="material-symbols-outlined">wallpaper</span><strong>{{ t.no_backgrounds }}</strong><p>{{ t.no_backgrounds_hint }}</p></div>
+            {% endfor %}
+          </div>
         </div>
+        <aside class="right-inspector">
+          <h2><span class="material-symbols-outlined">wallpaper</span>{{ t.backgrounds }}</h2>
+          <p>这里是背景素材库，不是主生成入口。主生成入口走 AI 智能背景，那里复刻 PhotoRoom 的 Backgrounds / AI Backgrounds 面板。</p>
+          <div class="inspector-block">
+            <h3>使用逻辑</h3>
+            <div class="check-row is-ok"><span></span>AI 背景页：生成并应用新背景</div>
+            <div class="check-row is-ok"><span></span>背景库：存放参考背景和素材</div>
+            <div class="check-row"><span></span>结果复核：检查真实返回图</div>
+          </div>
+          <a class="primary-pill side-cta" href="/import?lang={{ lang }}&tool=ai_background"><span class="material-symbols-outlined">auto_awesome</span>{{ t.ai_background_nav }}</a>
+        </aside>
       </section>
 
       {% elif view|default('home') == 'settings' %}
@@ -212,6 +225,6 @@
       </section>
       {% endif %}
     </main>
-    <script src="/static/workbench.js?v=20260613-image-lightbox"></script>
+    <script src="/static/workbench.js?v=20260616-pr-dual-nav"></script>
   </body>
 </html>

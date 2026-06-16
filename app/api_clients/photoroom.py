@@ -18,6 +18,14 @@ def _mime_type(path: Path) -> str:
     return mimetypes.guess_type(path.name)[0] or "application/octet-stream"
 
 
+def _has_alpha_channel(path: Path) -> bool:
+    try:
+        image = Image.open(path)
+        return image.mode in {"RGBA", "LA"} or "transparency" in image.info
+    except Exception:
+        return False
+
+
 class _PhotoRoomRequestLimiter:
     def __init__(self) -> None:
         self._lock = threading.Lock()
@@ -141,6 +149,7 @@ class PhotoRoomClient:
         *,
         background_image_path: Path | None = None,
         background_prompt: str | None = None,
+        background_seed: int | None = None,
         guidance_image_path: Path | None = None,
         guidance_scale: float | None = None,
         lighting_mode: str | None = None,
@@ -172,6 +181,8 @@ class PhotoRoomClient:
             )
         if background_prompt:
             data["background.prompt"] = background_prompt
+        if background_seed is not None:
+            data["background.seed"] = str(background_seed)
         if guidance_scale is not None:
             data["background.guidance.scale"] = str(guidance_scale)
         if lighting_mode:
@@ -180,6 +191,8 @@ class PhotoRoomClient:
             data["shadow.mode"] = shadow_mode
         if remove_background is not None:
             data["removeBackground"] = "true" if remove_background else "false"
+        if remove_background and _has_alpha_channel(image_path):
+            data["keepExistingAlphaChannel"] = "auto"
         if padding is not None:
             data["padding"] = str(padding)
         if output_size:
@@ -209,6 +222,7 @@ class PhotoRoomClient:
             "output": str(output_path),
             "background_image": str(background_image_path) if background_image_path else None,
             "background_prompt": background_prompt,
+            "background_seed": background_seed,
             "lighting_mode": lighting_mode,
             "shadow_mode": shadow_mode,
             "used_external_api": True,

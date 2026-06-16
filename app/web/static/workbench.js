@@ -8,6 +8,11 @@
   const minImages = Number(document.body.dataset.minImages || 1);
   const maxImages = Number(document.body.dataset.maxImages || 8);
   const lang = document.body.dataset.lang === "en" ? "en" : "zh";
+  const primaryNavToggle = document.querySelector("[data-nav-collapse='primary']");
+  primaryNavToggle?.addEventListener("click", () => {
+    const collapsed = document.body.classList.toggle("primary-nav-collapsed");
+    primaryNavToggle.querySelector(".material-symbols-outlined").textContent = collapsed ? "menu" : "menu_open";
+  });
   const copy = {
     zh: {
       none: "\u5c1a\u672a\u9009\u62e9\u56fe\u7247\u3002",
@@ -62,13 +67,87 @@
       backgroundDone: "\u80cc\u666f\u5df2\u751f\u6210\uff0c\u7ed3\u679c\u5728\u53f3\u4fa7\u3002",
       latestCutoutLoaded: "\u5df2\u8f7d\u5165\u6700\u8fd1\u4e00\u5f20\u62a0\u56fe\uff0c\u53ef\u4ee5\u76f4\u63a5\u751f\u6210\u80cc\u666f\u3002",
       noLatestCutout: "\u6682\u65e0\u6700\u8fd1\u62a0\u56fe\uff0c\u8bf7\u5148\u5230 PhotoRoom \u62a0\u56fe\u5b8c\u6210\u4e00\u6b21\u3002",
-      presets: [
-        ["\u7535\u5546\u767d\u5e95", "clean white ecommerce studio background, soft product shadow, catalog-ready"],
-        ["\u8857\u5934\u6c34\u6ce5", "urban concrete streetwear background, natural daylight, realistic ground contact"],
-        ["\u81ea\u7136\u6237\u5916", "natural outdoor lifestyle background, soft sunlight, premium retail campaign"],
-        ["\u5ba4\u5185\u68da\u62cd", "minimal indoor studio set, softbox lighting, matching product angle"],
-        ["\u6697\u8c03\u9ad8\u7ea7", "dark luxury editorial background, controlled highlights, premium shadows"],
-        ["\u5976\u6cb9\u67d4\u5149", "warm cream soft-light studio background, gentle shadows, refined ecommerce style"],
+      themeLibrary: "\u80cc\u666f\u4e3b\u9898",
+      backgroundTab: "\u80cc\u666f",
+      aiBackgroundsTab: "AI \u80cc\u666f",
+      searchBackgrounds: "\u641c\u7d22\u80cc\u666f",
+      suggestedBackgrounds: "\u63a8\u8350",
+      trendingBackgrounds: "\u70ed\u95e8",
+      createBackground: "\u521b\u5efa\u80cc\u666f",
+      generateMore: "\u518d\u751f\u6210 2 \u4e2a",
+      editorHome: "\u4e3b\u9875",
+      resize: "\u8c03\u6574\u5c3a\u5bf8",
+      editingCanvas: "\u7f16\u8f91\u753b\u5e03",
+      previewArea: "\u9884\u89c8",
+      fixedPreview: "\u56fa\u5b9a\u9884\u89c8\u533a",
+      generateCandidates: "\u751f\u6210 4 \u4e2a\u5019\u9009",
+      regenerateSelected: "\u91cd\u65b0\u751f\u6210\u9009\u4e2d\u5019\u9009",
+      applyOne: "\u5e94\u7528\u81f3 1 \u5f20\u56fe\u50cf",
+      applied: "\u5df2\u5e94\u7528",
+      advancedSettings: "\u9ad8\u7ea7\u8bbe\u7f6e",
+      reuseTitle: "\u4e0a\u8f6e\u5df2\u5e94\u7528\u9884\u89c8",
+      noReuse: "\u6682\u65e0\u53ef\u590d\u7528\u9884\u89c8\u3002",
+      candidateEmpty: "\u70b9\u51fb\u5de6\u4fa7\u80cc\u666f\u4e3b\u9898\u540e\uff0c\u8fd9\u91cc\u4f1a\u4fdd\u7559\u5b8c\u6574\u9884\u89c8\u56fe\u3002",
+      candidateLoading: "\u6b63\u5728\u751f\u6210\u9884\u89c8...",
+      candidateReady: "\u5019\u9009\u5df2\u751f\u6210\uff0c\u70b9\u51fb\u53ef\u9009\u4e2d\u3002",
+      candidateApplied: "\u5df2\u5e94\u7528\u8be5\u9884\u89c8\u914d\u7f6e\uff0c\u65b0\u56fe\u53ef\u7ee7\u7eed\u590d\u7528\u3002",
+      reuseApplied: "\u5df2\u5957\u7528\u4e0a\u8f6e\u9884\u89c8\u7684 prompt \u548c seed\u3002",
+      seedLabel: "Seed",
+      selectedTheme: "\u5df2\u9009\u4e3b\u9898",
+      themeGroups: [
+        {
+          group: "Mood",
+          items: [
+            ["Wood", "a warm wood studio interior with natural wooden surfaces, soft daylight, realistic ground contact, premium ecommerce portrait background"],
+            ["Minimalist", "a minimalist premium studio with warm neutral walls, subtle tonal gradient, soft floor shadow, uncluttered ecommerce campaign background"],
+            ["Snow", "a clean snowy outdoor lifestyle scene with soft overcast light, gentle snow texture, realistic standing contact shadow, fashion ecommerce background"],
+            ["Monstera", "a bright botanical interior with monstera leaves, warm daylight, soft wall shadows, realistic floor contact, premium lifestyle background"],
+          ],
+        },
+        {
+          group: "Countertop",
+          items: [
+            ["Stone countertop", "a refined stone countertop and warm wall studio scene, soft daylight, realistic contact shadow, product photography background"],
+            ["Kitchen countertop", "a modern kitchen countertop scene with muted cabinets, natural daylight, realistic surface perspective, ecommerce product background"],
+            ["Wood countertop", "a warm wood countertop scene with clean wall, soft side light, realistic surface contact and shadow, premium catalog background"],
+          ],
+        },
+        {
+          group: "Plant",
+          items: [
+            ["Indoor plant", "a sunlit indoor plant studio with potted greenery, cream wall, soft floor shadow, realistic portrait-scale lifestyle background"],
+            ["Greenhouse", "a calm greenhouse lifestyle scene with layered plants, diffused daylight, realistic depth and ground contact, premium fashion background"],
+            ["Plant corner", "a minimal plant corner with warm neutral wall, soft leaves shadows, natural floor contact, clean ecommerce background"],
+          ],
+        },
+        {
+          group: "Texture",
+          items: [
+            ["Soil", "an earthy textured studio scene with soil-toned backdrop, natural warm light, soft grounded shadow, premium editorial background"],
+            ["Marble", "a soft marble studio background with subtle veining, controlled daylight, realistic contact shadow, refined ecommerce visual"],
+          ],
+        },
+        {
+          group: "Mountain",
+          items: [
+            ["Sand dunes", "a soft sand dunes landscape with warm natural light, shallow depth, realistic standing contact, outdoor lifestyle fashion background"],
+            ["Mountain sunset", "a mountain sunset lifestyle scene with warm rim light, slightly blurred distance, grounded subject area, premium campaign background"],
+          ],
+        },
+        {
+          group: "Flower",
+          items: [
+            ["Tulip studio", "a bright flower studio with tulips and soft cream wall, natural daylight, realistic floor contact, fresh fashion ecommerce background"],
+            ["Garden flowers", "a refined garden flower lifestyle scene with soft depth of field, warm daylight, natural ground contact, premium campaign background"],
+            ["Floral wall", "a subtle floral wall studio background with gentle color accents, soft shadow, clean subject space, ecommerce portrait background"],
+          ],
+        },
+        {
+          group: "Creative",
+          items: [
+            ["Graffiti", "a tasteful urban graffiti wall with realistic concrete ground, natural street light, grounded shadow, streetwear ecommerce background"],
+          ],
+        },
       ],
     },
     en: {
@@ -124,13 +203,87 @@
       backgroundDone: "Background generated. The result is on the right.",
       latestCutoutLoaded: "Loaded the latest cutout. You can generate the background now.",
       noLatestCutout: "No recent cutout yet. Run PhotoRoom Cutout first.",
-      presets: [
-        ["White studio", "clean white ecommerce studio background, soft product shadow, catalog-ready"],
-        ["Concrete street", "urban concrete streetwear background, natural daylight, realistic ground contact"],
-        ["Outdoor lifestyle", "natural outdoor lifestyle background, soft sunlight, premium retail campaign"],
-        ["Indoor studio", "minimal indoor studio set, softbox lighting, matching product angle"],
-        ["Dark premium", "dark luxury editorial background, controlled highlights, premium shadows"],
-        ["Cream soft light", "warm cream soft-light studio background, gentle shadows, refined ecommerce style"],
+      themeLibrary: "Background Themes",
+      backgroundTab: "Background",
+      aiBackgroundsTab: "AI Backgrounds",
+      searchBackgrounds: "Search for backgrounds",
+      suggestedBackgrounds: "Suggested",
+      trendingBackgrounds: "Trending",
+      createBackground: "Create a background",
+      generateMore: "Generate 2 more",
+      editorHome: "Home",
+      resize: "Resize",
+      editingCanvas: "Editing canvas",
+      previewArea: "Previews",
+      fixedPreview: "Pinned Preview Area",
+      generateCandidates: "Generate 4 Candidates",
+      regenerateSelected: "Regenerate Selected",
+      applyOne: "Apply To 1 Image",
+      applied: "Applied",
+      advancedSettings: "Advanced Settings",
+      reuseTitle: "Previously Applied Preview",
+      noReuse: "No reusable preview yet.",
+      candidateEmpty: "Click a background theme on the left; generated full-image previews stay here.",
+      candidateLoading: "Generating preview...",
+      candidateReady: "Candidate generated. Click to select it.",
+      candidateApplied: "Applied this preview configuration. It can now be reused on a new image.",
+      reuseApplied: "Copied the previous preview prompt and seed.",
+      seedLabel: "Seed",
+      selectedTheme: "Selected Theme",
+      themeGroups: [
+        {
+          group: "Mood",
+          items: [
+            ["Wood", "a warm wood studio interior with natural wooden surfaces, soft daylight, realistic ground contact, premium ecommerce portrait background"],
+            ["Minimalist", "a minimalist premium studio with warm neutral walls, subtle tonal gradient, soft floor shadow, uncluttered ecommerce campaign background"],
+            ["Snow", "a clean snowy outdoor lifestyle scene with soft overcast light, gentle snow texture, realistic standing contact shadow, fashion ecommerce background"],
+            ["Monstera", "a bright botanical interior with monstera leaves, warm daylight, soft wall shadows, realistic floor contact, premium lifestyle background"],
+          ],
+        },
+        {
+          group: "Countertop",
+          items: [
+            ["Stone countertop", "a refined stone countertop and warm wall studio scene, soft daylight, realistic contact shadow, product photography background"],
+            ["Kitchen countertop", "a modern kitchen countertop scene with muted cabinets, natural daylight, realistic surface perspective, ecommerce product background"],
+            ["Wood countertop", "a warm wood countertop scene with clean wall, soft side light, realistic surface contact and shadow, premium catalog background"],
+          ],
+        },
+        {
+          group: "Plant",
+          items: [
+            ["Indoor plant", "a sunlit indoor plant studio with potted greenery, cream wall, soft floor shadow, realistic portrait-scale lifestyle background"],
+            ["Greenhouse", "a calm greenhouse lifestyle scene with layered plants, diffused daylight, realistic depth and ground contact, premium fashion background"],
+            ["Plant corner", "a minimal plant corner with warm neutral wall, soft leaves shadows, natural floor contact, clean ecommerce background"],
+          ],
+        },
+        {
+          group: "Texture",
+          items: [
+            ["Soil", "an earthy textured studio scene with soil-toned backdrop, natural warm light, soft grounded shadow, premium editorial background"],
+            ["Marble", "a soft marble studio background with subtle veining, controlled daylight, realistic contact shadow, refined ecommerce visual"],
+          ],
+        },
+        {
+          group: "Mountain",
+          items: [
+            ["Sand dunes", "a soft sand dunes landscape with warm natural light, shallow depth, realistic standing contact, outdoor lifestyle fashion background"],
+            ["Mountain sunset", "a mountain sunset lifestyle scene with warm rim light, slightly blurred distance, grounded subject area, premium campaign background"],
+          ],
+        },
+        {
+          group: "Flower",
+          items: [
+            ["Tulip studio", "a bright flower studio with tulips and soft cream wall, natural daylight, realistic floor contact, fresh fashion ecommerce background"],
+            ["Garden flowers", "a refined garden flower lifestyle scene with soft depth of field, warm daylight, natural ground contact, premium campaign background"],
+            ["Floral wall", "a subtle floral wall studio background with gentle color accents, soft shadow, clean subject space, ecommerce portrait background"],
+          ],
+        },
+        {
+          group: "Creative",
+          items: [
+            ["Graffiti", "a tasteful urban graffiti wall with realistic concrete ground, natural street light, grounded shadow, streetwear ecommerce background"],
+          ],
+        },
       ],
     },
   }[lang];
@@ -272,6 +425,7 @@
   function mountPhotoRoomWorkbench() {
     if (!apiWorkbench) return;
     const isBackgroundMode = workbenchMode === "ai_background";
+    if (isBackgroundMode) window.scrollTo(0, 0);
     const title = isBackgroundMode ? copy.backgroundTitle : copy.cutoutTitle;
     const hint = isBackgroundMode ? copy.backgroundHint : copy.cutoutHint;
     apiWorkbench.innerHTML = `
@@ -324,24 +478,120 @@
           </article>
           <article class="result-card">
             <strong>${copy.aiResult}</strong>
-            <img id="sandbox-result" alt="${copy.aiResult}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+            <img id="sandbox-result-summary" alt="${copy.aiResult}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
             <span>${copy.empty}</span>
           </article>
         </section>
         <section class="photoroom-stage background-stage is-locked" id="photoroom-background-panel" data-background-stage>
-          <div class="prompt-presets">
-            ${copy.presets.map(([label, prompt], index) => `<button class="preset-chip ${index === 0 ? "is-active" : ""}" type="button" data-prompt="${escapeHtml(prompt)}">${escapeHtml(label)}</button>`).join("")}
+          <div class="photoroom-editor-shell">
+            <nav class="photoroom-tool-rail" aria-label="${copy.backgroundTab}">
+              <button class="photoroom-tool photoroom-rail-collapse" type="button" data-secondary-collapse aria-label="${copy.resize}">
+                <span class="material-symbols-outlined">left_panel_close</span>
+                <strong></strong>
+              </button>
+              <button class="photoroom-tool" type="button" data-editor-tool="home">
+                <span class="material-symbols-outlined">home</span>
+                <strong>${copy.editorHome}</strong>
+              </button>
+              <button class="photoroom-tool is-active" type="button" data-editor-tool="background">
+                <span class="material-symbols-outlined">wallpaper</span>
+                <strong>${copy.backgroundTab}</strong>
+              </button>
+              <button class="photoroom-tool" type="button" data-editor-tool="resize">
+                <span class="material-symbols-outlined">crop_free</span>
+                <strong>${copy.resize}</strong>
+              </button>
+            </nav>
+            <aside class="photoroom-bg-drawer">
+              <div class="photoroom-drawer-view is-active" data-drawer-view="background">
+                <div class="photoroom-drawer-head">
+                  <strong>${copy.backgroundTab}</strong>
+                  <button class="photoroom-drawer-close" type="button" data-editor-tool="home" aria-label="${copy.editorHome}"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <div class="photoroom-bg-tabs" role="tablist">
+                  <button class="is-active" type="button">${copy.aiBackgroundsTab}</button>
+                  <button type="button">${copy.useReference}</button>
+                </div>
+                <label class="photoroom-search">
+                  <span class="material-symbols-outlined">search</span>
+                  <input id="api-background-search" type="search" placeholder="${copy.searchBackgrounds}">
+                </label>
+                <button class="photoroom-create-bg" type="button" data-create-background>
+                  <span class="material-symbols-outlined">auto_awesome</span>
+                  <strong>${copy.createBackground}</strong>
+                </button>
+                <section class="photoroom-bg-section">
+                  <div class="photoroom-bg-section-title"><strong>${copy.suggestedBackgrounds}</strong></div>
+                  <div class="photoroom-bg-list">
+                    ${copy.themeGroups.slice(0, 3).flatMap((group) => group.items).slice(0, 8).map(([label, prompt], itemIndex) => `<button class="preset-chip photoroom-bg-preset ${itemIndex === 0 ? "is-active" : ""}" type="button" data-theme="${escapeHtml(label)}" data-prompt="${escapeHtml(prompt)}"><span></span><strong>${escapeHtml(label)}</strong></button>`).join("")}
+                  </div>
+                </section>
+                <section class="photoroom-bg-section">
+                  <div class="photoroom-bg-section-title"><strong>${copy.trendingBackgrounds}</strong></div>
+                  <div class="photoroom-bg-list">
+                    ${copy.themeGroups.slice(3).flatMap((group) => group.items).map(([label, prompt]) => `<button class="preset-chip photoroom-bg-preset" type="button" data-theme="${escapeHtml(label)}" data-prompt="${escapeHtml(prompt)}"><span></span><strong>${escapeHtml(label)}</strong></button>`).join("")}
+                  </div>
+                </section>
+                <section class="photoroom-bg-section">
+                  <div class="photoroom-bg-section-title"><strong>${copy.reuseTitle}</strong><span data-reuse-empty>${copy.noReuse}</span></div>
+                  <div class="pr-reuse-list" data-reuse-list></div>
+                </section>
+              </div>
+              <div class="photoroom-drawer-view" data-drawer-view="resize">
+                <div class="photoroom-drawer-head">
+                  <strong>${copy.resize}</strong>
+                  <button class="photoroom-drawer-close" type="button" data-editor-tool="home" aria-label="${copy.editorHome}"><span class="material-symbols-outlined">close</span></button>
+                </div>
+                <section class="photoroom-resize-section">
+                  <button class="photoroom-size-option is-active" type="button" data-aspect-ratio="4:5"><strong>4:5</strong><span>${copy.previewArea}</span></button>
+                  <button class="photoroom-size-option" type="button" data-aspect-ratio="1:1"><strong>1:1</strong><span>Square</span></button>
+                  <button class="photoroom-size-option" type="button" data-aspect-ratio="3:4"><strong>3:4</strong><span>Portrait</span></button>
+                  <button class="photoroom-size-option" type="button" data-aspect-ratio="16:9"><strong>16:9</strong><span>Landscape</span></button>
+                </section>
+                <div class="photoroom-resize-note">${copy.fixedPreview}</div>
+                <div class="photoroom-resize-actions">
+                  <button class="primary-pill compact" type="button" data-editor-tool="background"><span class="material-symbols-outlined">wallpaper</span>${copy.backgroundTab}</button>
+                </div>
+              </div>
+            </aside>
+            <main class="photoroom-canvas-shell">
+              <div class="photoroom-canvas-topbar">
+                <button id="sandbox-bg-submit" class="secondary-pill compact photoroom-hidden-action" type="button" disabled><span class="material-symbols-outlined">auto_awesome</span>${copy.generateCandidates}</button>
+                <span>${copy.editingCanvas}</span>
+                <div class="photoroom-canvas-actions">
+                  <button id="sandbox-generate-more" class="secondary-pill compact" type="button" disabled><span class="material-symbols-outlined">add_photo_alternate</span>${copy.generateMore}</button>
+                  <a id="sandbox-download-top" class="secondary-pill compact disabled" href="#" download><span class="material-symbols-outlined">download</span>${copy.download}</a>
+                </div>
+              </div>
+              <div class="photoroom-canvas-stage">
+                <div class="photoroom-page">
+                  <img id="sandbox-result" alt="${copy.aiResult}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
+                  <div class="photoroom-canvas-placeholder">
+                    <span class="material-symbols-outlined">wallpaper</span>
+                    <strong>${copy.candidateEmpty}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="photoroom-variation-strip" data-candidate-grid></div>
+              <div class="photoroom-apply-dock">
+                <span>${copy.selectedTheme}: <em data-selected-theme>${escapeHtml(copy.themeGroups[0].items[0][0])}</em></span>
+                <button id="sandbox-apply-selected" class="primary-pill" type="button" disabled><span class="material-symbols-outlined">done</span>${copy.applyOne}</button>
+              </div>
+            </main>
           </div>
-          <div class="api-form-grid sandbox-fields">
-            <label><span>${copy.prompt}</span><input id="api-background-prompt" type="text" value="${escapeHtml(copy.presets[0][1])}" placeholder="${copy.promptPlaceholder}"></label>
-            <label><span>${copy.lighting}</span><select id="api-lighting-mode"><option value="ai.auto">${copy.lightAuto}</option><option value="">${copy.keepOff}</option></select></label>
-            <label><span>${copy.shadow}</span><select id="api-shadow-mode"><option value="ai.soft">${copy.shadowSoft}</option><option value="ai.hard">${copy.shadowHard}</option><option value="ai.floating">${copy.shadowFloating}</option><option value="">${copy.keepOff}</option></select></label>
-          </div>
-          <div class="photoroom-actions">
-            <button id="sandbox-bg-submit" class="primary-pill" type="button" disabled><span class="material-symbols-outlined">auto_awesome</span>${copy.generateBackground}</button>
-            <button id="sandbox-static-submit" class="secondary-pill" type="button" disabled><span class="material-symbols-outlined">wallpaper</span>${copy.useReference}</button>
-            <a id="sandbox-download" class="secondary-pill disabled" href="#" download><span class="material-symbols-outlined">download</span>${copy.download}</a>
-          </div>
+          <details class="photoroom-advanced">
+            <summary>${copy.advancedSettings}</summary>
+            <div class="api-form-grid sandbox-fields">
+              <label><span>${copy.prompt}</span><input id="api-background-prompt" type="text" value="${escapeHtml(copy.themeGroups[0].items[0][1])}" placeholder="${copy.promptPlaceholder}"></label>
+              <label><span>${copy.lighting}</span><select id="api-lighting-mode"><option value="ai.auto">${copy.lightAuto}</option><option value="">${copy.keepOff}</option></select></label>
+              <label><span>${copy.shadow}</span><select id="api-shadow-mode"><option value="">${copy.keepOff}</option><option value="ai.soft">${copy.shadowSoft}</option><option value="ai.hard">${copy.shadowHard}</option><option value="ai.floating">${copy.shadowFloating}</option></select></label>
+            </div>
+            <div class="photoroom-actions">
+              <button id="sandbox-regenerate-selected" class="secondary-pill" type="button" disabled><span class="material-symbols-outlined">refresh</span>${copy.regenerateSelected}</button>
+              <button id="sandbox-static-submit" class="secondary-pill" type="button" disabled><span class="material-symbols-outlined">wallpaper</span>${copy.useReference}</button>
+              <a id="sandbox-download" class="secondary-pill disabled" href="#" download><span class="material-symbols-outlined">download</span>${copy.download}</a>
+            </div>
+          </details>
         </section>
       </form>
       <div id="api-status-message" class="result-state">${copy.chooseImage}</div>
@@ -367,14 +617,29 @@
     const sandboxNextButton = apiWorkbench.querySelector("#sandbox-next-background");
     const sandboxLatestButton = apiWorkbench.querySelector("#sandbox-latest-cutout");
     const sandboxBgButton = apiWorkbench.querySelector("#sandbox-bg-submit");
+    const sandboxGenerateMoreButton = apiWorkbench.querySelector("#sandbox-generate-more");
+    const sandboxRegenerateButton = apiWorkbench.querySelector("#sandbox-regenerate-selected");
+    const sandboxApplyButton = apiWorkbench.querySelector("#sandbox-apply-selected");
     const sandboxStaticButton = apiWorkbench.querySelector("#sandbox-static-submit");
     const sandboxDownload = apiWorkbench.querySelector("#sandbox-download");
+    const sandboxDownloadTop = apiWorkbench.querySelector("#sandbox-download-top");
     const apiBackgroundPrompt = apiWorkbench.querySelector("#api-background-prompt");
     const apiLightingMode = apiWorkbench.querySelector("#api-lighting-mode");
     const apiShadowMode = apiWorkbench.querySelector("#api-shadow-mode");
     const backgroundStage = apiWorkbench.querySelector("[data-background-stage]");
+    const toolRailButtons = Array.from(apiWorkbench.querySelectorAll(".photoroom-tool[data-editor-tool]"));
+    const editorToolTriggers = Array.from(apiWorkbench.querySelectorAll("[data-editor-tool]"));
+    const secondaryCollapseButton = apiWorkbench.querySelector("[data-secondary-collapse]");
+    const drawerViews = Array.from(apiWorkbench.querySelectorAll("[data-drawer-view]"));
+    const resizeButtons = Array.from(apiWorkbench.querySelectorAll("[data-aspect-ratio]"));
+    const candidateGrid = apiWorkbench.querySelector("[data-candidate-grid]");
+    const reuseList = apiWorkbench.querySelector("[data-reuse-list]");
+    const reuseEmpty = apiWorkbench.querySelector("[data-reuse-empty]");
+    const selectedThemeLabel = apiWorkbench.querySelector("[data-selected-theme]");
     const stageDots = Array.from(apiWorkbench.querySelectorAll("[data-stage]"));
     const presetChips = Array.from(apiWorkbench.querySelectorAll("[data-prompt]"));
+    const previewSeeds = [117879368, 55994449, 48672244, 65080068];
+    const reuseStorageKey = "photoroom.appliedPreviewConfigs";
     const state = {
       batchId: `photoroom_batch_${Date.now()}_${Math.random().toString(16).slice(2, 10)}`,
       originalFile: null,
@@ -382,6 +647,20 @@
       cutoutUrl: "",
       finalUrl: "",
       stage: "upload",
+      selectedTheme: copy.themeGroups[0].items[0][0],
+      candidates: previewSeeds.map((seed, index) => ({
+        id: `candidate_${index + 1}`,
+        label: `${index + 1}`,
+        seed,
+        theme: copy.themeGroups[0].items[0][0],
+        prompt: copy.themeGroups[0].items[0][1],
+        url: "",
+        status: "empty",
+      })),
+      selectedCandidateId: "candidate_1",
+      appliedConfig: null,
+      isGenerating: false,
+      activeTool: "background",
     };
 
     function setApiResult(payload) {
@@ -410,24 +689,161 @@
       const hasImage = Boolean(state.originalFile);
       const hasCutout = Boolean(state.cutoutUrl);
       const hasBackgroundFile = Boolean(sandboxBackgroundImage?.files?.[0]);
-      sandboxCutoutButton.disabled = !hasImage;
-      sandboxNextButton.disabled = !hasCutout;
-      sandboxBgButton.disabled = !hasCutout;
-      sandboxStaticButton.disabled = !hasCutout || !hasBackgroundFile;
+      sandboxCutoutButton.disabled = !hasImage || state.isGenerating;
+      sandboxNextButton.disabled = !hasCutout || state.isGenerating;
+      sandboxBgButton.disabled = !hasCutout || state.isGenerating;
+      if (sandboxGenerateMoreButton) sandboxGenerateMoreButton.disabled = !hasCutout || state.isGenerating;
+      if (sandboxRegenerateButton) sandboxRegenerateButton.disabled = !hasCutout || !selectedCandidate() || state.isGenerating;
+      if (sandboxApplyButton) sandboxApplyButton.disabled = !selectedCandidate()?.url || state.isGenerating;
+      sandboxStaticButton.disabled = !hasCutout || !hasBackgroundFile || state.isGenerating;
       backgroundStage?.classList.toggle("is-locked", !hasCutout);
       sandboxDownload?.classList.toggle("disabled", !state.finalUrl);
       if (sandboxDownload && state.finalUrl) sandboxDownload.href = state.finalUrl;
+      sandboxDownloadTop?.classList.toggle("disabled", !state.finalUrl);
+      if (sandboxDownloadTop && state.finalUrl) sandboxDownloadTop.href = state.finalUrl;
       apiWorkbench.classList.toggle("is-background-mode", workbenchMode === "ai_background");
       apiWorkbench.classList.toggle("is-cutout-mode", workbenchMode !== "ai_background");
+    }
+
+    function setActiveTool(tool) {
+      state.activeTool = tool;
+      toolRailButtons.forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.editorTool === tool);
+      });
+      drawerViews.forEach((view) => {
+        view.classList.toggle("is-active", view.dataset.drawerView === tool);
+      });
+      apiWorkbench.classList.toggle("is-resize-mode", tool === "resize");
+      apiWorkbench.classList.toggle("is-background-drawer", tool === "background");
+    }
+
+    function setSecondaryNavCollapsed(collapsed) {
+      document.body.classList.toggle("secondary-nav-collapsed", collapsed);
+      if (secondaryCollapseButton) {
+        secondaryCollapseButton.querySelector(".material-symbols-outlined").textContent = collapsed ? "left_panel_open" : "left_panel_close";
+      }
     }
 
     function resetResults() {
       state.cutoutUrl = "";
       state.finalUrl = "";
+      state.isGenerating = false;
+      state.appliedConfig = null;
+      resetCandidates();
       setImageSource(sandboxCutout, "");
       setImageSource(sandboxResult, "");
       setStage("upload");
       updateControls();
+    }
+
+    function selectedCandidate() {
+      return state.candidates.find((candidate) => candidate.id === state.selectedCandidateId) || state.candidates[0];
+    }
+
+    function resetCandidates() {
+      state.candidates = previewSeeds.map((seed, index) => ({
+        id: `candidate_${index + 1}`,
+        label: `${index + 1}`,
+        seed,
+        theme: state.selectedTheme,
+        prompt: apiBackgroundPrompt?.value.trim() || "",
+        url: "",
+        status: "empty",
+      }));
+      state.selectedCandidateId = state.candidates[0]?.id || "";
+      renderCandidates();
+    }
+
+    function readReuseConfigs() {
+      try {
+        const payload = JSON.parse(window.localStorage?.getItem(reuseStorageKey) || "[]");
+        return Array.isArray(payload) ? payload.filter((item) => item && item.prompt && item.seed).slice(0, 12) : [];
+      } catch (_) {
+        return [];
+      }
+    }
+
+    function writeReuseConfig(config) {
+      const configs = readReuseConfigs().filter((item) => `${item.theme}-${item.seed}-${item.prompt}` !== `${config.theme}-${config.seed}-${config.prompt}`);
+      configs.unshift({ ...config, savedAt: new Date().toISOString() });
+      window.localStorage?.setItem(reuseStorageKey, JSON.stringify(configs.slice(0, 12)));
+      renderReuseConfigs();
+    }
+
+    function renderCandidates() {
+      if (!candidateGrid) return;
+      candidateGrid.innerHTML = state.candidates.map((candidate) => {
+        const selected = candidate.id === state.selectedCandidateId;
+        const image = candidate.url
+          ? `<img src="${escapeHtml(candidate.url)}" alt="${escapeHtml(candidate.theme)} ${copy.seedLabel} ${candidate.seed}">`
+          : `<div class="pr-candidate-empty ${candidate.status === "running" ? "is-loading" : ""}"><span class="material-symbols-outlined">${candidate.status === "running" ? "hourglass_empty" : "image"}</span><em>${candidate.status === "running" ? copy.candidateLoading : copy.candidateEmpty}</em></div>`;
+        const status = candidate.status === "running" ? copy.candidateLoading : candidate.url ? copy.candidateReady : `${copy.seedLabel} ${candidate.seed}`;
+        return `
+          <button class="pr-candidate-card ${selected ? "is-selected" : ""} ${candidate.url ? "has-result" : ""}" type="button" data-candidate-id="${escapeHtml(candidate.id)}">
+            ${image}
+            <strong>${escapeHtml(candidate.theme)} / ${escapeHtml(candidate.label)}</strong>
+            <span>${escapeHtml(status)}</span>
+          </button>
+        `;
+      }).join("");
+      candidateGrid.querySelectorAll("[data-candidate-id]").forEach((card) => {
+        card.addEventListener("click", () => {
+          state.selectedCandidateId = card.dataset.candidateId || state.selectedCandidateId;
+          const candidate = selectedCandidate();
+          if (candidate?.url) {
+            state.finalUrl = candidate.url;
+            setImageSource(sandboxResult, candidate.url);
+            if (sandboxDownload) sandboxDownload.href = candidate.url;
+            if (sandboxDownloadTop) sandboxDownloadTop.href = candidate.url;
+          } else if (state.cutoutUrl && !state.isGenerating) {
+            generateCandidate(candidate);
+          }
+          renderCandidates();
+          updateControls();
+        });
+      });
+    }
+
+    function renderReuseConfigs() {
+      if (!reuseList) return;
+      const configs = readReuseConfigs();
+      if (reuseEmpty) reuseEmpty.hidden = configs.length > 0;
+      reuseList.innerHTML = configs.map((config, index) => `
+        <button class="pr-reuse-card" type="button" data-reuse-index="${index}">
+          ${config.url ? `<img src="${escapeHtml(config.url)}" alt="${escapeHtml(config.theme || copy.reuseTitle)}">` : ""}
+          <strong>${escapeHtml(config.theme || copy.reuseTitle)}</strong>
+          <span>${copy.seedLabel} ${escapeHtml(config.seed)}</span>
+        </button>
+      `).join("");
+      reuseList.querySelectorAll("[data-reuse-index]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const config = configs[Number(card.dataset.reuseIndex || 0)];
+          if (!config) return;
+          state.selectedTheme = config.theme || state.selectedTheme;
+          if (selectedThemeLabel) selectedThemeLabel.textContent = state.selectedTheme;
+          if (apiBackgroundPrompt) apiBackgroundPrompt.value = config.prompt || "";
+          state.candidates = previewSeeds.map((seed, index) => ({
+            id: `candidate_${index + 1}`,
+            label: `${index + 1}`,
+            seed,
+            theme: state.selectedTheme,
+            prompt: apiBackgroundPrompt?.value.trim() || "",
+            url: "",
+            status: "empty",
+          }));
+          const matched = state.candidates.find((candidate) => candidate.seed === Number(config.seed));
+          state.selectedCandidateId = matched?.id || state.candidates[0]?.id || "";
+          state.finalUrl = "";
+          setImageSource(sandboxResult, "");
+          presetChips.forEach((chip) => chip.classList.toggle("is-active", chip.dataset.theme === state.selectedTheme));
+          renderCandidates();
+          updateControls();
+          setStatus(copy.reuseApplied, "ok");
+          if (state.cutoutUrl && !state.isGenerating) {
+            generateCandidate(selectedCandidate());
+          }
+        });
+      });
     }
 
     async function refreshProviderStatus() {
@@ -477,7 +893,7 @@
       }
     }
 
-    async function callPhotoRoomSandbox(mode) {
+    async function callPhotoRoomSandbox(mode, options = {}) {
       const sourceFile = mode === "remove_background" ? state.originalFile : await imageFileForBackground();
       if (!sourceFile) {
         setStatus(copy.missingImage, "error");
@@ -497,6 +913,9 @@
       formData.append("mode", mode);
       formData.append("batch_id", state.batchId);
       formData.append("background_prompt", apiBackgroundPrompt?.value.trim() || "");
+      if (options.seed) formData.append("background_seed", String(options.seed));
+      formData.append("background_theme", options.theme || state.selectedTheme || "");
+      formData.append("candidate_label", options.label || "");
       formData.append("lighting_mode", apiLightingMode?.value || "");
       formData.append("shadow_mode", apiShadowMode?.value || "");
       if (sandboxBackgroundImage?.files?.[0]) {
@@ -506,6 +925,7 @@
       const isCutout = mode === "remove_background";
       const activeButton = isCutout ? sandboxCutoutButton : mode === "background_image" ? sandboxStaticButton : sandboxBgButton;
       const activeText = isCutout ? copy.runningCutout : copy.runningBackground;
+      state.isGenerating = true;
       activeButton.disabled = true;
       activeButton.innerHTML = `<span class="material-symbols-outlined">hourglass_empty</span>${activeText}`;
       setStatus(activeText);
@@ -537,13 +957,27 @@
           setImageSource(sandboxResult, versionedUrl);
           setStage("final");
           setStatus(copy.backgroundDone, "ok");
+          if (options.candidateId) {
+            const candidate = state.candidates.find((item) => item.id === options.candidateId);
+            if (candidate) {
+              candidate.url = versionedUrl;
+              candidate.status = "generated";
+              candidate.prompt = apiBackgroundPrompt?.value.trim() || candidate.prompt;
+              candidate.theme = state.selectedTheme;
+              candidate.seed = options.seed || candidate.seed;
+              state.selectedCandidateId = candidate.id;
+              renderCandidates();
+            }
+          }
         }
       } catch (error) {
         setApiResult({ ok: false, error: String(error) });
         setStatus(String(error), "error");
       } finally {
+        state.isGenerating = false;
         sandboxCutoutButton.innerHTML = `<span class="material-symbols-outlined">layers_clear</span>${copy.startCutout}`;
-        sandboxBgButton.innerHTML = `<span class="material-symbols-outlined">auto_awesome</span>${copy.generateBackground}`;
+        sandboxBgButton.innerHTML = `<span class="material-symbols-outlined">auto_awesome</span>${copy.generateCandidates}`;
+        if (sandboxGenerateMoreButton) sandboxGenerateMoreButton.innerHTML = `<span class="material-symbols-outlined">add_photo_alternate</span>${copy.generateMore}`;
         sandboxStaticButton.innerHTML = `<span class="material-symbols-outlined">wallpaper</span>${copy.useReference}`;
         updateControls();
       }
@@ -571,9 +1005,62 @@
       chip.addEventListener("click", () => {
         presetChips.forEach((item) => item.classList.remove("is-active"));
         chip.classList.add("is-active");
+        state.selectedTheme = chip.dataset.theme || chip.textContent.trim();
+        if (selectedThemeLabel) selectedThemeLabel.textContent = state.selectedTheme;
         apiBackgroundPrompt.value = chip.dataset.prompt || "";
+        resetCandidates();
+        if (state.cutoutUrl && !state.isGenerating) {
+          generateAllCandidates();
+        }
       });
     });
+
+    async function generateCandidate(candidate) {
+      if (!candidate) return;
+      candidate.status = "running";
+      candidate.prompt = apiBackgroundPrompt?.value.trim() || candidate.prompt;
+      candidate.theme = state.selectedTheme;
+      state.selectedCandidateId = candidate.id;
+      renderCandidates();
+      await callPhotoRoomSandbox("ai_background", {
+        candidateId: candidate.id,
+        seed: candidate.seed,
+        theme: candidate.theme,
+        label: candidate.label,
+      });
+      if (!candidate.url) {
+        candidate.status = "empty";
+        renderCandidates();
+      }
+    }
+
+    async function generateAllCandidates() {
+      for (const candidate of state.candidates) {
+        await generateCandidate(candidate);
+        if (!candidate.url) break;
+      }
+    }
+
+    function applySelectedCandidate() {
+      const candidate = selectedCandidate();
+      if (!candidate?.url) return;
+      state.finalUrl = candidate.url;
+      state.appliedConfig = {
+        theme: candidate.theme,
+        prompt: candidate.prompt || apiBackgroundPrompt?.value.trim() || "",
+        seed: candidate.seed,
+        label: candidate.label,
+        url: candidate.url,
+        lightingMode: apiLightingMode?.value || "",
+        shadowMode: apiShadowMode?.value || "",
+      };
+      setImageSource(sandboxResult, candidate.url);
+      if (sandboxDownloadTop) sandboxDownloadTop.href = candidate.url;
+      setStage("final");
+      writeReuseConfig(state.appliedConfig);
+      setStatus(copy.candidateApplied, "ok");
+      updateControls();
+    }
 
     sandboxCutoutButton?.addEventListener("click", () => callPhotoRoomSandbox("remove_background"));
     sandboxLatestButton?.addEventListener("click", loadLatestCutout);
@@ -581,24 +1068,71 @@
       setStage("background");
       backgroundStage?.scrollIntoView({ behavior: "smooth", block: "center" });
     });
-    sandboxBgButton?.addEventListener("click", () => callPhotoRoomSandbox("ai_background"));
+    sandboxBgButton?.addEventListener("click", generateAllCandidates);
+    sandboxGenerateMoreButton?.addEventListener("click", async () => {
+      const startIndex = Math.max(0, state.candidates.findIndex((candidate) => !candidate.url));
+      const targets = state.candidates.slice(startIndex, startIndex + 2);
+      for (const candidate of targets.length ? targets : state.candidates.slice(0, 2)) {
+        await generateCandidate(candidate);
+      }
+    });
+    sandboxRegenerateButton?.addEventListener("click", () => generateCandidate(selectedCandidate()));
+    sandboxApplyButton?.addEventListener("click", applySelectedCandidate);
     sandboxStaticButton?.addEventListener("click", () => callPhotoRoomSandbox("background_image"));
     sandboxForm?.addEventListener("submit", (event) => event.preventDefault());
     providerRefresh?.addEventListener("click", refreshProviderStatus);
+    secondaryCollapseButton?.addEventListener("click", () => {
+      setSecondaryNavCollapsed(!document.body.classList.contains("secondary-nav-collapsed"));
+    });
+    editorToolTriggers.forEach((button) => {
+      button.addEventListener("click", () => {
+        const tool = button.dataset.editorTool || "background";
+        if (tool === "home") {
+          window.location.href = `/?lang=${lang}`;
+          return;
+        }
+        if (document.body.classList.contains("secondary-nav-collapsed")) {
+          setSecondaryNavCollapsed(false);
+        }
+        setActiveTool(tool);
+        if (tool === "background") {
+          backgroundStage?.classList.remove("is-resize-focus");
+        }
+      });
+    });
+    resizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const ratio = button.dataset.aspectRatio || "4:5";
+        resizeButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+        const [width, height] = ratio.split(":").map(Number);
+        const safeWidth = Number.isFinite(width) && width > 0 ? width : 4;
+        const safeHeight = Number.isFinite(height) && height > 0 ? height : 5;
+        const aspect = `${safeWidth} / ${safeHeight}`;
+        const page = apiWorkbench.querySelector(".photoroom-page");
+        if (page) page.style.aspectRatio = aspect;
+        setStatus(`${copy.resize}: ${ratio}`, "ok");
+      });
+    });
 
     refreshProviderStatus();
+    renderCandidates();
+    renderReuseConfigs();
     updateControls();
 
     if (workbenchMode === "ai_background") {
+      setActiveTool("background");
       setStage("background");
       loadLatestCutout();
-      backgroundStage?.scrollIntoView({ behavior: "smooth", block: "center" });
     } else if (location.hash === "#photoroom-background") {
+      setActiveTool("background");
       setStage("background");
       backgroundStage?.scrollIntoView({ behavior: "smooth", block: "center" });
     } else if (location.hash === "#photoroom-cutout") {
+      setActiveTool("background");
       setStage("cutout");
       apiWorkbench.querySelector("#photoroom-cutout-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      setActiveTool("background");
     }
   }
 

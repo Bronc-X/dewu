@@ -118,6 +118,9 @@ class PhotoRoomEditRequest(BaseModel):
     output_path: str | None = None
     background_image_path: str | None = None
     background_prompt: str | None = None
+    background_seed: int | None = None
+    background_theme: str | None = None
+    candidate_label: str | None = None
     guidance_image_path: str | None = None
     guidance_scale: float | None = None
     lighting_mode: str | None = None
