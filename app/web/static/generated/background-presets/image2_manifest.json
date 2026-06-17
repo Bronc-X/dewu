@@ -1,0 +1,274 @@
+[
+  {
+    "slug": "01-wood",
+    "label": "Wood",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\01-wood.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\01-wood.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\01-wood.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Real scene, not abstract, not a diagram. Empty warm wood studio interior with a clean central negative-space area where a cutout model can stand naturally. Believable wooden floor with realistic perspective, subtle contact-shadow area in the center, warm wood wall details, soft daylight from one side, premium commercial photo styling, practical and clean like a PhotoRoom AI Background preset thumbnail. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. Full scene only, spacious and usable for fashion e-commerce compositing. Theme: wood."
+    }
+  },
+  {
+    "slug": "02-minimalist",
+    "label": "Minimalist",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\02-minimalist.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\02-minimalist.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\02-minimalist.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Show a real empty scene, not a mood board, not a diagram, not abstract art. Minimalist premium studio interior with a warm off-white wall, pale gray floor, subtle tonal gradient from wall to floor, realistic perspective, and a soft contact-shadow zone on the floor where a standing model cutout could naturally be placed. Keep a clean central negative-space area with unobstructed open space. Commercial, practical, premium, clean, PhotoRoom AI Background preset thumbnail feel. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frame. Wide composition, photorealistic lighting, high realism."
+    }
+  },
+  {
+    "slug": "03-snow",
+    "label": "Snow",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\03-snow.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\03-snow.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\03-snow.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for a full-body fashion model replacement. Scene: empty snowy outdoor lifestyle environment with clean snow-covered ground plane, realistic perspective, subtle contact-shadow area in the center where a cutout model could stand naturally, soft overcast daylight, gentle winter texture, premium commercial look, practical and clean, clear central negative-space standing area, no person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames, not abstract, not a mood board, not a diagram. Style like a PhotoRoom AI Background preset thumbnail, but the image itself should be the real scene."
+    }
+  },
+  {
+    "slug": "04-monstera",
+    "label": "Monstera",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\04-monstera.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\04-monstera.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\04-monstera.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Real interior scene, not abstract, not a mood board, not a diagram. Theme: Monstera. Empty bright botanical interior with a cream wall, clean light floor, and realistic perspective. Monstera leaves and potted greenery placed near both sides of the composition, leaving a clean central negative-space area where a standing full-body cutout model could naturally fit. Include believable floor/ground plane and a subtle contact-shadow area in the center foreground. Premium commercial aesthetic, clean, practical, PhotoRoom AI background preset thumbnail style. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frame. Natural daylight, soft shadows, realistic materials, high detail, uncluttered composition."
+    }
+  },
+  {
+    "slug": "05-stone-countertop",
+    "label": "Stone countertop",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\05-stone-countertop.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\05-stone-countertop.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\05-stone-countertop.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Empty refined stone studio set with a light stone floor or low platform and a warm stone wall, subtle natural stone texture, soft daylight, premium commercial look, practical and realistic. Composition must leave a clean central negative-space area where a cutout model can stand naturally. Include a believable floor/ground plane with realistic perspective and a subtle contact-shadow area near center foreground. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. Not a mood board, not an abstract graphic, not a diagram. Style feels like a clean PhotoRoom AI background preset thumbnail: crisp, realistic, minimal, premium ecommerce studio backdrop."
+    }
+  },
+  {
+    "slug": "06-kitchen-countertop",
+    "label": "Kitchen countertop",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\06-kitchen-countertop.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\06-kitchen-countertop.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\06-kitchen-countertop.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Empty modern kitchen-inspired studio set, premium commercial look, clean and practical, like a PhotoRoom AI background thumbnail. Theme: Kitchen countertop. Scene should clearly show a real usable environment, not abstract. Muted modern cabinets in the background, a clean stone countertop surface and matching floor plane with realistic perspective, subtle contact-shadow area at the center for a standing cutout model, and a clear central negative-space area. Natural daylight, soft realistic shadows, neutral warm-gray and soft beige tones, high-end lifestyle photography, wide composition, uncluttered, no person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames."
+    }
+  },
+  {
+    "slug": "07-wood-countertop",
+    "label": "Wood countertop",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\07-wood-countertop.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\07-wood-countertop.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\07-wood-countertop.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Real scene only, not a mood board, not a diagram. A clean premium commercial studio environment themed as a wood countertop / wooden platform: an empty warm natural wood surface in the foreground with realistic grain, subtle edge, and believable perspective, transitioning into a neutral matte wall/backdrop. Soft side light from one side creating gentle highlights and a clear subtle contact-shadow area in the center where a standing cutout model could naturally be placed. Leave a clean central negative-space area suitable for a full-body fashion model. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. PhotoRoom AI background preset thumbnail aesthetic: clean, premium, practical, polished, photorealistic, high-end ecommerce studio background."
+    }
+  },
+  {
+    "slug": "08-indoor-plant",
+    "label": "Indoor plant",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\08-indoor-plant.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\08-indoor-plant.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\08-indoor-plant.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Real scene only, not abstract, not a diagram, not a mood board. Empty sunlit indoor plant corner in a premium clean commercial style: warm neutral wall, soft natural daylight from side, a couple of potted greenery plants placed near the left and right edges, subtle textured ceramic pots, clean central negative-space area where a standing cutout model can naturally be composited. Include a believable indoor floor/ground plane with realistic perspective lines and a subtle contact-shadow area in the center. Spacious, practical, elegant, minimal, PhotoRoom AI background preset thumbnail feel. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. High resolution, photorealistic, soft shadows, balanced composition, natural indoor atmosphere."
+    }
+  },
+  {
+    "slug": "09-soil",
+    "label": "Soil",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\09-soil.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\09-soil.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\09-soil.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Scene only, no people. Empty earthy editorial studio with a soil theme: warm soil-toned textured ground plane and matching backdrop, subtle natural variations in the earth texture, realistic perspective, soft warm natural light, clean premium commercial look. Leave a clear central negative-space area for a standing cutout model, with believable floor/ground contact-shadow area in the center. Composition should feel like a practical PhotoRoom AI background preset thumbnail: clean, polished, minimal, realistic, studio-quality. No text, no logos, no watermark, no UI labels, no frames, no mannequins, no products, no objects, no abstract mood-board style, no illustration, no diagram."
+    }
+  },
+  {
+    "slug": "10-marble",
+    "label": "Marble",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\10-marble.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\10-marble.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\10-marble.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Empty elegant marble studio scene, designed as a practical premium commercial backdrop. Light marble wall and matching marble floor with delicate gray veining, soft diffused studio lighting, subtle realistic shadows, believable floor/ground plane perspective, clean central negative-space area for a standing cutout model, no people, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. Composition should feel like a real scene that will be applied behind a model, not an abstract mood board or diagram. PhotoRoom-style background preset thumbnail aesthetic: clean, premium, commercial, practical, photorealistic."
+    }
+  },
+  {
+    "slug": "11-sand-dunes",
+    "label": "Sand dunes",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\11-sand-dunes.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\11-sand-dunes.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\11-sand-dunes.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for a full-body fashion model cutout. Empty desert sand dunes scene, low-saturation warm natural light, premium commercial look, practical and clean like a PhotoRoom AI background preset thumbnail. Composition: a believable desert floor/ground plane with realistic perspective, flat foreground area in the center for standing model, subtle contact-shadow area in the center, gentle dune ridges framing the scene, ample clean central negative space, no subject. Real scene, not abstract, not illustrated. Natural sand texture, soft atmospheric depth, slightly hazy distant dunes, warm golden-beige palette, minimal clutter, no people, no mannequin, no product, no text, no logo, no watermark, no UI, no decorative frame."
+    }
+  },
+  {
+    "slug": "12-mountain-sunset",
+    "label": "Mountain sunset",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\12-mountain-sunset.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\12-mountain-sunset.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\12-mountain-sunset.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for a full-body fashion model cutout placement. Realistic empty mountain sunset fashion campaign scene, not abstract, not a diagram. Clean premium commercial styling like a PhotoRoom AI background preset thumbnail. Wide landscape composition with a large clean central negative-space area for a standing model. Include a believable flat foreground platform or ground plane with realistic perspective and a subtle contact-shadow area near the center. Distant mountains in the background, warm soft sunset rim light, gentle atmospheric depth, golden-hour sky, clean and practical studio-like outdoor set feel. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames."
+    }
+  },
+  {
+    "slug": "13-tulip-studio",
+    "label": "Tulip studio",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\13-tulip-studio.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\13-tulip-studio.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\13-tulip-studio.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview, designed as a real empty studio scene for replacing the background behind a full-body fashion model. Theme: Tulip studio. Scene: a bright, airy flower studio with a soft cream wall, fresh daylight from large unseen windows, subtle realistic shadows, a clean central floor area with believable perspective and enough negative space for a standing cutout model, tulips arranged naturally near the left and right edges and corners only, minimal elegant styling, premium commercial photography look, practical and usable background plate. The floor should be a light neutral matte surface with a subtle contact-shadow zone in the center. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. Composition should clearly show the actual scene, not an abstract mood board. High-resolution, realistic, clean, PhotoRoom AI Background preset thumbnail aesthetic, but as a full photographic scene."
+    }
+  },
+  {
+    "slug": "14-garden-flowers",
+    "label": "Garden flowers",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\14-garden-flowers.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\14-garden-flowers.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\14-garden-flowers.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Real empty scene, not a mood board, not a diagram. Theme: garden flowers. A refined outdoor garden setting with abundant flowers framing the left and right sides, soft depth of field, natural daylight, premium commercial style, practical and clean. Leave a large clean central negative-space area where a standing full-body cutout model could naturally fit. Include a believable ground plane or garden path with realistic perspective and a subtle contact-shadow area in the center foreground. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. The image should feel like a PhotoRoom AI background preset thumbnail: clean, premium, realistic, ecommerce-ready."
+    }
+  },
+  {
+    "slug": "15-floral-wall",
+    "label": "Floral wall",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\15-floral-wall.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\15-floral-wall.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\15-floral-wall.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview, designed for replacing the background behind a full-body fashion model. Realistic empty studio scene with a subtle floral wall theme: an elegant floral-patterned wall or backdrop with gentle pastel color accents, premium clean commercial styling, practical and believable. Leave a large clean central negative-space area where a cutout model can stand naturally. Include a realistic floor or ground plane with correct perspective and a subtle soft contact-shadow area near the center foreground. The scene must clearly look like a real photographed environment, not a mood board, not a diagram, not abstract art. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames. Studio lighting, soft shadows, high-end ecommerce background preset thumbnail aesthetic, polished and minimal."
+    }
+  },
+  {
+    "slug": "16-graffiti",
+    "label": "Graffiti",
+    "status": "generated",
+    "png": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\16-graffiti.png",
+    "webp": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\16-graffiti.webp",
+    "result": {
+      "provider": "codex_auth_image_api",
+      "purpose": "generate_background",
+      "output": "D:\\Toni\\code\\得物生图\\app\\web\\static\\generated\\background-presets\\16-graffiti.png",
+      "used_external_api": true,
+      "base_url": "https://testvideo.site/v1",
+      "model": "gpt-image-2",
+      "quality": "medium",
+      "revised_prompt": "Photorealistic ecommerce AI background preset preview for replacing the background behind a full-body fashion model. Show the real scene clearly, not an abstract mood board, not a diagram. Empty tasteful urban graffiti wall scene with a colorful painted wall behind the subject area, realistic concrete floor/ground plane with believable perspective and a subtle contact-shadow area near the center. Leave a clean central negative-space area where a cutout model could stand naturally. Soft daylight, premium commercial practical styling, clean and polished like a PhotoRoom AI Background preset thumbnail. No person, no mannequin, no product, no text, no logo, no watermark, no UI labels, no decorative frames."
+    }
+  }
+]

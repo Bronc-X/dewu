@@ -1,0 +1,96 @@
+{
+  "items": [
+    {
+      "slug": "wood",
+      "file": "app/web/static/generated/background-presets/01-wood.png",
+      "status": "existing"
+    },
+    {
+      "slug": "minimalist",
+      "file": "app/web/static/generated/background-presets/02-minimalist.png",
+      "status": "generated",
+      "result": {
+        "provider": "codex_auth_image_api",
+        "purpose": "generate_background",
+        "output": "app\\web\\static\\generated\\background-presets\\02-minimalist.png",
+        "used_external_api": true,
+        "base_url": "https://testvideo.site/v1",
+        "model": "gpt-image-2",
+        "quality": "medium",
+        "revised_prompt": "Square 1:1 premium ecommerce background preset thumbnail, minimalist pale warm gray studio background, soft same-color gradient from wall to floor, clean seamless floor plane, subtle natural shadows, large clean central negative space for a cutout fashion model, no foreground subject, no people, no product, no text, no logo, no watermark, premium PhotoRoom preset thumbnail style, polished studio lighting, modern ecommerce aesthetic."
+      }
+    },
+    {
+      "slug": "snow",
+      "file": "app/web/static/generated/background-presets/03-snow.png",
+      "status": "generated",
+      "result": {
+        "provider": "codex_auth_image_api",
+        "purpose": "generate_background",
+        "output": "app\\web\\static\\generated\\background-presets\\03-snow.png",
+        "used_external_api": true,
+        "base_url": "https://testvideo.site/v1",
+        "model": "gpt-image-2",
+        "quality": "medium",
+        "revised_prompt": "Square 1:1 premium ecommerce background preset thumbnail. Clean snowy outdoor lifestyle scene with soft overcast daylight, subtle gentle snow texture, minimal elegant winter environment, clear central negative space/standing area for a cutout fashion model. No foreground subject, no people, no product, no text, no logo, no watermark. High-end clean composition, neutral winter tones, realistic, polished ecommerce backdrop."
+      }
+    },
+    {
+      "slug": "monstera",
+      "file": "app/web/static/generated/background-presets/04-monstera.png",
+      "status": "generated",
+      "result": {
+        "provider": "codex_auth_image_api",
+        "purpose": "generate_background",
+        "output": "app\\web\\static\\generated\\background-presets\\04-monstera.png",
+        "used_external_api": true,
+        "base_url": "https://testvideo.site/v1",
+        "model": "gpt-image-2",
+        "quality": "medium",
+        "revised_prompt": "Square 1:1 premium ecommerce background preset thumbnail, interior scene with bright botanical styling. Clean central negative space for a cutout fashion model. No foreground subject. No text, no watermark, no logo. Warm daylight streaming into a minimal, elegant room. Monstera leaves and lush tropical foliage placed along the left and right sides, framing the scene. Central floor and wall kept open, uncluttered, and neutral for compositing. Sophisticated high-end aesthetic, soft shadows, natural tones, clean composition, realistic photography style, empty center, no people, no product."
+      }
+    },
+    {
+      "slug": "stone-countertop",
+      "file": "app/web/static/generated/background-presets/05-stone-countertop.png",
+      "status": "generated",
+      "result": {
+        "provider": "codex_auth_image_api",
+        "purpose": "generate_background",
+        "output": "app\\web\\static\\generated\\background-presets\\05-stone-countertop.png",
+        "used_external_api": true,
+        "base_url": "https://testvideo.site/v1",
+        "model": "gpt-image-2",
+        "quality": "medium",
+        "revised_prompt": "Square 1:1 premium ecommerce background preset thumbnail. Empty scene with no foreground subject, no people, no product, no text, no logo, no watermark. Clean central negative space for a cutout fashion model. Refined light stone surface floor and warm wall studio background, subtle natural texture, soft daylight, clean commercial ecommerce style, elegant minimal composition, neutral beige and warm ivory tones, soft shadows, high-end editorial studio backdrop."
+      }
+    },
+    {
+      "slug": "kitchen-countertop",
+      "file": "app/web/static/generated/background-presets/06-kitchen-countertop.png",
+      "status": "generated",
+      "result": {
+        "provider": "codex_auth_image_api",
+        "purpose": "generate_background",
+        "output": "app\\web\\static\\generated\\background-presets\\06-kitchen-countertop.png",
+        "used_external_api": true,
+        "base_url": "https://testvideo.site/v1",
+        "model": "gpt-image-2",
+        "quality": "medium",
+        "revised_prompt": "Square 1:1 premium ecommerce background preset thumbnail, modern kitchen countertop inspired interior scene. Muted cabinets, subtle stone or quartz countertop, soft natural daylight from side window, clean uncluttered central negative space designed for a cutout fashion model. No foreground subject, no product, no text, no logo, no watermark. Minimal, elegant, high-end, realistic, soft shadows, neutral palette, ample empty center area, composition suitable for ecommerce thumbnail."
+      }
+    }
+  ],
+  "failures": [
+    "wood-countertop",
+    "indoor-plant",
+    "soil",
+    "marble",
+    "sand-dunes",
+    "mountain-sunset",
+    "tulip-studio",
+    "garden-flowers",
+    "floral-wall",
+    "graffiti"
+  ]
+}

@@ -25,6 +25,7 @@ from app.config import settings
 from app.models import (
     AdobeFireflyGenerateRequest,
     AdobePhotoshopRemoveBackgroundRequest,
+    BackgroundFeedbackRequest,
     BatchReport,
     BatchStatus,
     ImageItemReport,
@@ -75,6 +76,8 @@ WORKSPACE_ROOT = Path.cwd().resolve()
 PROVIDER_INPUTS_DIR = settings.app_data_dir / "provider_inputs"
 PROVIDER_OUTPUTS_DIR = settings.app_data_dir / "provider_outputs"
 PHOTOROOM_HISTORY_PATH = PROVIDER_OUTPUTS_DIR / "photoroom_history.json"
+BACKGROUND_LEARNING_DIR = settings.app_data_dir / "learning"
+BACKGROUND_FEEDBACK_PATH = BACKGROUND_LEARNING_DIR / "background_feedback.jsonl"
 DEV_BATCH_PREFIXES = (
     "api_probe",
     "api_two",
@@ -967,6 +970,101 @@ def _record_photoroom_history(entry: dict) -> dict:
     return normalized
 
 
+BACKGROUND_FEEDBACK_LABELS = {
+    "pass": {"zh": "通过", "en": "Pass", "result": "pass", "weight": 2},
+    "fake_background": {"zh": "背景假", "en": "Fake Background", "result": "fail", "weight": -3},
+    "bad_floor_contact": {"zh": "脚底/地面不对", "en": "Bad Floor Contact", "result": "fail", "weight": -3},
+    "insufficient_background_change": {"zh": "背景变化太小", "en": "Too Little Change", "result": "fail", "weight": -2},
+    "background_subject_scale_mismatch": {"zh": "主体比例不对", "en": "Scale Mismatch", "result": "fail", "weight": -3},
+    "product_changed": {"zh": "商品变了", "en": "Product Changed", "result": "fail", "weight": -5},
+}
+
+
+def _read_background_feedback() -> list[dict]:
+    if not BACKGROUND_FEEDBACK_PATH.exists():
+        return []
+    items: list[dict] = []
+    for line in BACKGROUND_FEEDBACK_PATH.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            payload = json.loads(line)
+        except Exception:
+            continue
+        if isinstance(payload, dict):
+            items.append(payload)
+    return items
+
+
+def _append_background_feedback(entry: dict) -> dict:
+    BACKGROUND_LEARNING_DIR.mkdir(parents=True, exist_ok=True)
+    normalized = {
+        "id": entry.get("id") or datetime.now().strftime("bgfb_%Y%m%d_%H%M%S_") + uuid4().hex[:8],
+        "created_at": entry.get("created_at") or datetime.now().isoformat(timespec="seconds"),
+        "history_id": entry.get("history_id") or "",
+        "batch_id": entry.get("batch_id") or "",
+        "input_type": entry.get("input_type") or "unknown",
+        "theme": entry.get("theme") or "",
+        "prompt_id": entry.get("prompt_id") or "",
+        "prompt": entry.get("prompt") or "",
+        "seed": entry.get("seed") if entry.get("seed") not in (None, "") else "",
+        "candidate_label": entry.get("candidate_label") or "",
+        "lighting_mode": entry.get("lighting_mode") or "",
+        "shadow_mode": entry.get("shadow_mode") or "",
+        "result": entry.get("result") or "fail",
+        "feedback_tag": entry.get("feedback_tag") or "",
+        "failure_tags": entry.get("failure_tags") or [],
+        "weight": entry.get("weight") or 0,
+        "note": entry.get("note") or "",
+    }
+    with BACKGROUND_FEEDBACK_PATH.open("a", encoding="utf-8") as file:
+        file.write(json.dumps(normalized, ensure_ascii=False) + "\n")
+    return normalized
+
+
+def _background_feedback_summary(lang: str = "zh") -> dict:
+    rows = _read_background_feedback()
+    theme_scores: dict[str, int] = {}
+    tag_counts: dict[str, int] = {}
+    recent = []
+    for row in rows:
+      theme = str(row.get("theme") or "")
+      if theme:
+          theme_scores[theme] = theme_scores.get(theme, 0) + int(row.get("weight") or 0)
+      tag = str(row.get("feedback_tag") or "")
+      if tag:
+          tag_counts[tag] = tag_counts.get(tag, 0) + 1
+    for row in reversed(rows[-12:]):
+        tag = str(row.get("feedback_tag") or "")
+        label = BACKGROUND_FEEDBACK_LABELS.get(tag, {}).get(lang, tag)
+        recent.append(
+            {
+                "created_at": row.get("created_at", ""),
+                "theme": row.get("theme", ""),
+                "seed": row.get("seed", ""),
+                "feedback_tag": tag,
+                "feedback_label": label,
+                "result": row.get("result", ""),
+                "weight": row.get("weight", 0),
+            }
+        )
+    return {
+        "count": len(rows),
+        "theme_scores": theme_scores,
+        "tag_counts": tag_counts,
+        "recent": recent,
+        "labels": [
+            {
+                "tag": tag,
+                "label": data.get(lang, tag),
+                "result": data["result"],
+                "weight": data["weight"],
+            }
+            for tag, data in BACKGROUND_FEEDBACK_LABELS.items()
+        ],
+    }
+
+
 def _photoroom_mode_label(mode: str, lang: str) -> str:
     labels = {
         "zh": {
@@ -1092,14 +1190,24 @@ def _recent_photoroom_history(limit: int = 12, lang: str = "zh", mode: str | Non
     if mode:
         combined = [item for item in combined if item.get("mode") == mode]
 
+    latest_feedback_by_history: dict[str, dict] = {}
+    for row in _read_background_feedback():
+        history_id = str(row.get("history_id") or "")
+        if history_id:
+            latest_feedback_by_history[history_id] = row
+
     history = []
     for item in combined[:limit]:
         result_path = Path(str(item.get("result_path") or ""))
         result_url = str(item.get("result_url") or "")
         ok = bool(item.get("ok")) and bool(result_url)
+        item_id = str(item.get("id") or result_url)
+        feedback = latest_feedback_by_history.get(item_id, {})
+        feedback_tag = str(feedback.get("feedback_tag") or "")
+        feedback_label = BACKGROUND_FEEDBACK_LABELS.get(feedback_tag, {}).get(lang, feedback_tag)
         history.append(
             {
-                "id": str(item.get("id") or result_url),
+                "id": item_id,
                 "batch_id": str(item.get("batch_id") or _legacy_photoroom_batch_key(item)),
                 "display_time": _history_display_time(str(item.get("created_at") or ""), result_path if result_path else None),
                 "mode": str(item.get("mode") or ""),
@@ -1117,6 +1225,10 @@ def _recent_photoroom_history(limit: int = 12, lang: str = "zh", mode: str | Non
                 "lighting_mode": str(item.get("lighting_mode") or ""),
                 "shadow_mode": str(item.get("shadow_mode") or ""),
                 "error": str(item.get("error") or ""),
+                "feedback_tag": feedback_tag,
+                "feedback_label": feedback_label,
+                "feedback_result": str(feedback.get("result") or ""),
+                "feedback_at": str(feedback.get("created_at") or ""),
             }
         )
     return history
@@ -1485,6 +1597,56 @@ def api_photoroom_history(request: Request) -> dict:
             lang=lang,
             mode=mode if mode else None,
         )
+    }
+
+
+@app.get("/api/learning/background-feedback")
+def api_background_feedback_summary(request: Request) -> dict:
+    return _background_feedback_summary(_ui_lang(request))
+
+
+@app.post("/api/learning/background-feedback")
+def api_background_feedback(payload: BackgroundFeedbackRequest, request: Request) -> dict:
+    labels = BACKGROUND_FEEDBACK_LABELS
+    if payload.feedback_tag not in labels:
+        raise HTTPException(status_code=400, detail="unsupported feedback_tag")
+    history_item = next(
+        (item for item in _read_photoroom_history() if str(item.get("id") or "") == payload.history_id),
+        None,
+    )
+    if not history_item:
+        history_item = next(
+            (item for item in _legacy_photoroom_output_items() if str(item.get("id") or "") == payload.history_id),
+            None,
+        )
+    if not history_item:
+        raise HTTPException(status_code=404, detail="history item not found")
+    label = labels[payload.feedback_tag]
+    result = payload.result.strip() or str(label["result"])
+    feedback = _append_background_feedback(
+        {
+            "history_id": payload.history_id,
+            "batch_id": history_item.get("batch_id") or "",
+            "input_type": "unknown",
+            "theme": history_item.get("background_theme") or "",
+            "prompt_id": f"{history_item.get('background_theme') or 'unknown'}:{history_item.get('candidate_label') or ''}",
+            "prompt": history_item.get("background_prompt") or "",
+            "seed": history_item.get("background_seed") if history_item.get("background_seed") not in (None, "") else "",
+            "candidate_label": history_item.get("candidate_label") or "",
+            "lighting_mode": history_item.get("lighting_mode") or "",
+            "shadow_mode": history_item.get("shadow_mode") or "",
+            "result": result,
+            "feedback_tag": payload.feedback_tag,
+            "failure_tags": [] if result == "pass" else [payload.feedback_tag],
+            "weight": label["weight"],
+            "note": payload.note.strip(),
+        }
+    )
+    feedback["feedback_label"] = label.get(_ui_lang(request), payload.feedback_tag)
+    return {
+        "ok": True,
+        "feedback": feedback,
+        "summary": _background_feedback_summary(_ui_lang(request)),
     }
 
 

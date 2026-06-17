@@ -11,7 +11,7 @@
   const primaryNavToggle = document.querySelector("[data-nav-collapse='primary']");
   primaryNavToggle?.addEventListener("click", () => {
     const collapsed = document.body.classList.toggle("primary-nav-collapsed");
-    primaryNavToggle.querySelector(".material-symbols-outlined").textContent = collapsed ? "menu" : "menu_open";
+    primaryNavToggle.querySelector(".material-symbols-outlined").textContent = collapsed ? "left_panel_open" : "left_panel_close";
   });
   const copy = {
     zh: {
@@ -339,6 +339,34 @@
       .replaceAll('"', "&quot;");
   }
 
+  function themeThumb(label) {
+    const slug = String(label || "")
+      .trim()
+      .toLowerCase()
+      .replaceAll("&", "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    const indexBySlug = {
+      wood: "01",
+      minimalist: "02",
+      snow: "03",
+      monstera: "04",
+      "stone-countertop": "05",
+      "kitchen-countertop": "06",
+      "wood-countertop": "07",
+      "indoor-plant": "08",
+      soil: "09",
+      marble: "10",
+      "sand-dunes": "11",
+      "mountain-sunset": "12",
+      "tulip-studio": "13",
+      "garden-flowers": "14",
+      "floral-wall": "15",
+      graffiti: "16",
+    };
+    return indexBySlug[slug] ? `/static/generated/background-presets/${indexBySlug[slug]}-${slug}.webp` : "";
+  }
+
   function setImageSource(image, url) {
     if (!image) return;
     image.src = url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
@@ -404,6 +432,7 @@
 
   document.addEventListener("click", (event) => {
     if (event.target.closest(".image-lightbox")) return;
+    if (event.target.closest("[data-bg-feedback]")) return;
     const clickable = event.target.closest(".asset-card, .background-card, .history-chip, .review-result-images a, .result-card, .preview-tile, .comparison-view, .thumb, .photoroom-stage-list a");
     if (!clickable) return;
     const directImage = event.target.closest("img");
@@ -420,6 +449,37 @@
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeImageLightbox();
+  });
+
+  const feedbackSavedCopy = lang === "en" ? "Saved: " : "\u5df2\u8bb0\u5f55\uff1a";
+  const feedbackErrorCopy = lang === "en" ? "Save failed" : "\u4fdd\u5b58\u5931\u8d25";
+
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-bg-feedback]");
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const row = button.closest("[data-feedback-row]");
+    const historyId = button.dataset.historyId || "";
+    const feedbackTag = button.dataset.feedbackTag || "";
+    if (!historyId || !feedbackTag) return;
+    button.classList.add("is-saving");
+    const status = row?.querySelector("[data-feedback-status]");
+    try {
+      const response = await fetch(`/api/learning/background-feedback?lang=${lang}`, {
+        method: "POST",
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({ history_id: historyId, feedback_tag: feedbackTag }),
+      });
+      const payload = await response.json();
+      if (!response.ok || !payload.ok) throw new Error(payload.detail || payload.error || feedbackErrorCopy);
+      row?.querySelectorAll("[data-bg-feedback]").forEach((item) => item.classList.toggle("is-selected", item === button));
+      if (status) status.textContent = `${feedbackSavedCopy}${payload.feedback?.feedback_label || button.textContent.trim()}`;
+    } catch (error) {
+      if (status) status.textContent = `${feedbackErrorCopy}: ${String(error.message || error)}`;
+    } finally {
+      button.classList.remove("is-saving");
+    }
   });
 
   function mountPhotoRoomWorkbench() {
@@ -485,9 +545,8 @@
         <section class="photoroom-stage background-stage is-locked" id="photoroom-background-panel" data-background-stage>
           <div class="photoroom-editor-shell">
             <nav class="photoroom-tool-rail" aria-label="${copy.backgroundTab}">
-              <button class="photoroom-tool photoroom-rail-collapse" type="button" data-secondary-collapse aria-label="${copy.resize}">
+              <button class="collapse-button photoroom-rail-collapse" type="button" data-secondary-collapse aria-label="${copy.resize}">
                 <span class="material-symbols-outlined">left_panel_close</span>
-                <strong></strong>
               </button>
               <button class="photoroom-tool" type="button" data-editor-tool="home">
                 <span class="material-symbols-outlined">home</span>
@@ -523,13 +582,13 @@
                 <section class="photoroom-bg-section">
                   <div class="photoroom-bg-section-title"><strong>${copy.suggestedBackgrounds}</strong></div>
                   <div class="photoroom-bg-list">
-                    ${copy.themeGroups.slice(0, 3).flatMap((group) => group.items).slice(0, 8).map(([label, prompt], itemIndex) => `<button class="preset-chip photoroom-bg-preset ${itemIndex === 0 ? "is-active" : ""}" type="button" data-theme="${escapeHtml(label)}" data-prompt="${escapeHtml(prompt)}"><span></span><strong>${escapeHtml(label)}</strong></button>`).join("")}
+                    ${copy.themeGroups.slice(0, 3).flatMap((group) => group.items).slice(0, 8).map(([label, prompt], itemIndex) => `<button class="preset-chip photoroom-bg-preset ${itemIndex === 0 ? "is-active" : ""}" type="button" data-theme="${escapeHtml(label)}" data-prompt="${escapeHtml(prompt)}" data-thumb="${escapeHtml(themeThumb(label))}"><span></span><strong>${escapeHtml(label)}</strong></button>`).join("")}
                   </div>
                 </section>
                 <section class="photoroom-bg-section">
                   <div class="photoroom-bg-section-title"><strong>${copy.trendingBackgrounds}</strong></div>
                   <div class="photoroom-bg-list">
-                    ${copy.themeGroups.slice(3).flatMap((group) => group.items).map(([label, prompt]) => `<button class="preset-chip photoroom-bg-preset" type="button" data-theme="${escapeHtml(label)}" data-prompt="${escapeHtml(prompt)}"><span></span><strong>${escapeHtml(label)}</strong></button>`).join("")}
+                    ${copy.themeGroups.slice(3).flatMap((group) => group.items).map(([label, prompt]) => `<button class="preset-chip photoroom-bg-preset" type="button" data-theme="${escapeHtml(label)}" data-prompt="${escapeHtml(prompt)}" data-thumb="${escapeHtml(themeThumb(label))}"><span></span><strong>${escapeHtml(label)}</strong></button>`).join("")}
                   </div>
                 </section>
                 <section class="photoroom-bg-section">
@@ -638,6 +697,9 @@
     const selectedThemeLabel = apiWorkbench.querySelector("[data-selected-theme]");
     const stageDots = Array.from(apiWorkbench.querySelectorAll("[data-stage]"));
     const presetChips = Array.from(apiWorkbench.querySelectorAll("[data-prompt]"));
+    presetChips.forEach((chip) => {
+      if (chip.dataset.thumb) chip.style.setProperty("--preset-thumb", `url("${chip.dataset.thumb}")`);
+    });
     const previewSeeds = [117879368, 55994449, 48672244, 65080068];
     const reuseStorageKey = "photoroom.appliedPreviewConfigs";
     const state = {
@@ -672,6 +734,36 @@
       if (!statusMessage) return;
       statusMessage.textContent = message;
       statusMessage.dataset.tone = tone;
+    }
+
+    function sortPresetSectionByLearning(list, scores) {
+      const chips = Array.from(list.querySelectorAll("[data-prompt]"));
+      chips
+        .map((chip, index) => ({
+          chip,
+          index,
+          score: Number(scores?.[chip.dataset.theme || ""] || 0),
+        }))
+        .sort((left, right) => (right.score - left.score) || (left.index - right.index))
+        .forEach(({ chip, score }) => {
+          chip.dataset.learningScore = String(score);
+          list.appendChild(chip);
+        });
+    }
+
+    async function applyBackgroundLearning() {
+      if (!isBackgroundMode) return;
+      try {
+        const response = await fetch(`/api/learning/background-feedback?lang=${lang}`, {
+          headers: { accept: "application/json" },
+        });
+        if (!response.ok) return;
+        const summary = await response.json();
+        const scores = summary.theme_scores || {};
+        apiWorkbench.querySelectorAll(".photoroom-bg-list").forEach((list) => sortPresetSectionByLearning(list, scores));
+      } catch (_) {
+        // Learning is advisory; generation controls must stay usable if this read fails.
+      }
     }
 
     function setStage(stage) {
@@ -1115,6 +1207,7 @@
     });
 
     refreshProviderStatus();
+    applyBackgroundLearning();
     renderCandidates();
     renderReuseConfigs();
     updateControls();

@@ -11,8 +11,8 @@
   </head>
   <body class="app-body photoroom-ui-page {% if view|default('home') == 'import' and active_tool == 'ai_background' %}photoroom-editor-page{% endif %}" data-active-nav="{{ active_nav|default('projects') }}" data-min-images="{{ min_images|default(1) }}" data-max-images="{{ max_images|default(8) }}" data-lang="{{ lang }}">
     <aside class="side-nav">
-      <button class="nav-collapse-toggle primary-nav-toggle" type="button" data-nav-collapse="primary" aria-label="折叠主导航">
-        <span class="material-symbols-outlined">menu_open</span>
+      <button class="collapse-button primary-nav-toggle" type="button" data-nav-collapse="primary" aria-label="折叠主导航">
+        <span class="material-symbols-outlined">left_panel_close</span>
       </button>
       <a class="brand-block" href="/?lang={{ lang }}" aria-label="{{ t.brand }}">
         <span class="brand-orb"><span class="material-symbols-outlined">psychology</span></span>
@@ -132,6 +132,25 @@
               <div class="photoroom-stage-list">
                 {% for item in group['items'] %}
                 <a href="{{ item.result_url or item.input_url }}"><span>{{ item.mode_label }}</span><strong>{{ item.status }}</strong></a>
+                {% if item.mode == 'ai_background' and item.result_url %}
+                <div class="background-feedback-row" data-feedback-row="{{ item.id }}">
+                  <span class="background-feedback-label">{% if lang == 'en' %}Feedback{% else %}反馈{% endif %}</span>
+                  {% set feedback_options = [
+                    ('pass', '通过', 'Pass'),
+                    ('fake_background', '背景假', 'Fake'),
+                    ('bad_floor_contact', '脚底/地面不对', 'Floor'),
+                    ('insufficient_background_change', '背景变化太小', 'Too similar'),
+                    ('background_subject_scale_mismatch', '主体比例不对', 'Scale'),
+                    ('product_changed', '商品变了', 'Product changed')
+                  ] %}
+                  {% for tag, zh_label, en_label in feedback_options %}
+                  <button class="background-feedback-button {% if item.feedback_tag == tag %}is-selected{% endif %}" type="button" data-bg-feedback data-history-id="{{ item.id }}" data-feedback-tag="{{ tag }}">
+                    {% if lang == 'en' %}{{ en_label }}{% else %}{{ zh_label }}{% endif %}
+                  </button>
+                  {% endfor %}
+                  <small data-feedback-status>{% if item.feedback_label %}{% if lang == 'en' %}Saved: {% else %}已记录：{% endif %}{{ item.feedback_label }}{% endif %}</small>
+                </div>
+                {% endif %}
                 {% endfor %}
               </div>
               {% if group.error %}<p class="error-text">{{ group.error }}</p>{% endif %}

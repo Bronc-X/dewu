@@ -130,6 +130,13 @@ class PhotoRoomEditRequest(BaseModel):
     output_size: str | None = None
 
 
+class BackgroundFeedbackRequest(BaseModel):
+    history_id: str
+    feedback_tag: str
+    result: str = ""
+    note: str = ""
+
+
 class PhotoRoomSandboxMode(str, Enum):
     remove_background = "remove_background"
     ai_background = "ai_background"
