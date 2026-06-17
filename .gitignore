@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .env
+.codex_tmp/
 .playwright-mcp/
 data/batches/
 data/client_batches/
