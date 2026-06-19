@@ -15,6 +15,7 @@ data/provider_outputs/*.webp
 data/provider_outputs/*.zip
 data/provider_outputs/photoroom_history.json
 data/training/
+data/models/
 assets/backgrounds/*.png
 assets/backgrounds/*.jpg
 assets/backgrounds/*.jpeg
